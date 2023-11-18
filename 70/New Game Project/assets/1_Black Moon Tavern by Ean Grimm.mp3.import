@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfo607hu24dvs"
+path="res://.godot/imported/1_Black Moon Tavern by Ean Grimm.mp3-04f1b6e1e58871a569eb68f777e4d717.mp3str"
+
+[deps]
+
+source_file="res://assets/1_Black Moon Tavern by Ean Grimm.mp3"
+dest_files=["res://.godot/imported/1_Black Moon Tavern by Ean Grimm.mp3-04f1b6e1e58871a569eb68f777e4d717.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cla0hh2x5afue"]
+
+[ext_resource type="Texture2D" uid="uid://cgjqn4gb111i8" path="res://arts/TilesetHouse.png" id="1_m55ni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeduq"]
+size = Vector2(160, 160)
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(552, 488)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m55ni")
+region_enabled = true
+region_rect = Rect2(400, 226, 64, 78)
+
+[node name="Home" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_eeduq")
+
+[node name="Identity" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

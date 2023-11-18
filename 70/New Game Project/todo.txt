@@ -1,0 +1,6 @@
+Todo list
+---------
+1. Paint Tilemap sprite water blue
+2. Create new sprite for boat
+3. Shrink panel backgrounds for hp
+4. Change color and layout of gold text in bottom right panel

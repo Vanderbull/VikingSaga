@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6ch1b8v2uwvo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1qxwr"]
+
+[sub_resource type="Sky" id="Sky_n2mar"]
+sky_material = SubResource("ProceduralSkyMaterial_1qxwr")
+
+[sub_resource type="Environment" id="Environment_rn8ff"]
+background_mode = 2
+sky = SubResource("Sky_n2mar")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bxi61"]
+
+[node name="RootCanvas" type="CanvasLayer"]
+
+[node name="Root3D" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Root3D"]
+environment = SubResource("Environment_rn8ff")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Root3D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="Root3D/SubViewportContainer"]
+size = Vector2i(1152, 658)
+
+[node name="Camera3D" type="Camera3D" parent="Root3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.51714)
+
+[node name="Node3D" type="Node3D" parent="Root3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.73867)
+mesh = SubResource("CapsuleMesh_bxi61")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 464.0
+offset_top = 232.0
+offset_right = 685.0
+offset_bottom = 263.0
+text = "CLICK ME MTOHER FIUCKER"

@@ -1,0 +1,112 @@
+[gd_scene load_steps=12 format=3 uid="uid://yk5m3h7ehfw7"]
+
+[ext_resource type="Script" path="res://3d/Node3D.gd" id="1_cx6hl"]
+[ext_resource type="Texture2D" uid="uid://c71v7oyj7680d" path="res://arts/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_rjhhu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1qxwr"]
+ground_bottom_color = Color(0.14902, 0.227451, 0.117647, 1)
+
+[sub_resource type="Sky" id="Sky_n2mar"]
+sky_material = SubResource("ProceduralSkyMaterial_1qxwr")
+
+[sub_resource type="Environment" id="Environment_rn8ff"]
+background_mode = 2
+sky = SubResource("Sky_n2mar")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bxi61"]
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_ctj14"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gli3y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wculy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynibj"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_snu8x"]
+
+[node name="RootCanvas" type="CanvasLayer"]
+
+[node name="Root3D" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Root3D"]
+environment = SubResource("Environment_rn8ff")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Root3D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="Root3D/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 658)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Root3D/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.8411)
+
+[node name="Node3D" type="Node3D" parent="Root3D"]
+script = ExtResource("1_cx6hl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(0.681193, 0, 0, 0, 0.772563, 0, 0, 0, 0.263608, -1.48893, -1.97313, 1.1491)
+mesh = SubResource("CapsuleMesh_bxi61")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.0152977, -1.8043, -1.75179)
+mesh = SubResource("TubeTrailMesh_ctj14")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(0.111145, 0, 0, 0, 1, 0, 0, 0, 0.124377, 0, -2.20302, -1.75971)
+mesh = SubResource("BoxMesh_gli3y")
+
+[node name="House" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(2.85925, 0, 0, 0, 2.11566, 0, 0, 0, 5.09786, -2.34896, 0, -4.27705)
+sorting_offset = 20.0
+mesh = SubResource("BoxMesh_wculy")
+
+[node name="Area3D" type="Area3D" parent="Root3D/Node3D/House"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Root3D/Node3D/House/Area3D"]
+shape = SubResource("BoxShape3D_ynibj")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Root3D/Node3D"]
+transform = Transform3D(3.06561, 0, 0, 0, 1, 0, 0, 0, 5.29773, -2.38353, 1.55636, -4.33404)
+mesh = SubResource("PrismMesh_snu8x")
+
+[node name="Background" type="Sprite3D" parent="Root3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0100772, 0)
+texture = ExtResource("1_rjhhu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Root3D/Node3D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Root3D/Node3D"]
+offset_left = 328.0
+offset_top = 56.0
+offset_right = 421.0
+offset_bottom = 79.0
+scale = Vector2(5, 5)
+text = "GAME OVER"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Main Menu" type="Button" parent="Root3D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 108.0
+offset_right = 64.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN MENU"
+
+[connection signal="area_entered" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_area_entered"]
+[connection signal="area_shape_entered" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_area_shape_entered"]
+[connection signal="body_entered" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_body_entered"]
+[connection signal="body_shape_entered" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_body_shape_entered"]
+[connection signal="input_event" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="Root3D/Node3D/House/Area3D" to="Root3D/Node3D/House" method="_on_area_3d_mouse_entered"]
+[connection signal="pressed" from="Root3D/Main Menu" to="Root3D/Node3D" method="_on_main_menu_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b34yj0vg4rwkn"
+path="res://.godot/imported/5_Dark Woods Tavern by Ean Grimm.mp3-2fe77cac3512f5524935efe6301d5352.mp3str"
+
+[deps]
+
+source_file="res://assets/5_Dark Woods Tavern by Ean Grimm.mp3"
+dest_files=["res://.godot/imported/5_Dark Woods Tavern by Ean Grimm.mp3-2fe77cac3512f5524935efe6301d5352.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
