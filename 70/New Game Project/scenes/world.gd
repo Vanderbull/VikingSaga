@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var globals = get_node("/root/Globals")
 
-@onready var heartsContainer = $CanvasLayer/TopRightPanel/heartsContainer
-@onready var heartsContainer2 = $CanvasLayer/TopLeftPanel/heartsContainer2
+@onready var heartsContainer = $HUD/TopRightPanel/heartsContainer
+@onready var heartsContainer2 = $HUD/TopLeftPanel/heartsContainer2
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
 @onready var slime = $TileMap/slime
@@ -20,22 +20,22 @@ var CurrentArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CanvasLayer/BottomRightPanel/WaterProgressBar.max_value = globals.PlayerWater
-	$CanvasLayer/BottomRightPanel/FoodProgressBar.max_value = globals.PlayerFood
-	$CanvasLayer/BottomRightPanel/WaterProgressBar.value = globals.PlayerWater
-	$CanvasLayer/BottomRightPanel/FoodProgressBar.value = globals.PlayerFood
+	$HUD/BottomRightPanel/WaterProgressBar.max_value = globals.PlayerWater
+	$HUD/BottomRightPanel/FoodProgressBar.max_value = globals.PlayerFood
+	$HUD/BottomRightPanel/WaterProgressBar.value = globals.PlayerWater
+	$HUD/BottomRightPanel/FoodProgressBar.value = globals.PlayerFood
 	ship.speed = globals.PlayerShipSpeed
 	print("ARE WE LOADING THIS")
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	$TileMap/Path2D/PathFollow2D/Ship.visible = false
 	
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerGold.text = "Gold: " + str(0)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerThralls.text = "Thralls: " + str(0)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerHides.text = "Hides: " + str(0)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerWarriors.text = "Warriors: " + str(0)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerFarmers.text = "Farmers: " + str(0)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerGold.text = "Gold: " + str(0)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerThralls.text = "Thralls: " + str(0)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerHides.text = "Hides: " + str(0)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerWarriors.text = "Warriors: " + str(0)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerFarmers.text = "Farmers: " + str(0)
 	
 	pass
 	ResourceLoader.load_threaded_request(ENEMY_SCENE_PATH)
@@ -57,8 +57,8 @@ func _ready():
 		player.healthChangedShip.connect(heartsContainer2.updateHearts)
 		$PathProgress.text = str($TileMap/Path2D/PathFollow2D.progress)
 		#camera.limit_bottom = 1010
-		#$CanvasLayer/Viewport.text = str(camera.get_viewport_rect())
-		#$CanvasLayer/BottomRightPanel/Gold.text = "Gold: " + str(globals.PlayerGold)
+		#$HUD/Viewport.text = str(camera.get_viewport_rect())
+		#$HUD/BottomRightPanel/Gold.text = "Gold: " + str(globals.PlayerGold)
 		globals.ready_already = false
 	else:
 		player.position = globals.player_position
@@ -69,16 +69,16 @@ func _process(_delta):
 
 	# we can use format strings to pad it to a length of 2 with zeros, e.g. 01:20:12
 	#print("%02d:%02d:%02d" % [time.hour, time.minute, time.second])
-	$CanvasLayer/Time.text = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
+	$HUD/Time.text = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
 	if globals.PlayerFood < 0.0 or globals.PlayerWater < 0.0:
 		get_tree().change_scene_to_file("res://3d/3d.tscn")
 	if player.velocity.x != 0.0 or player.velocity.y != 0.0:
 		globals.PlayerFood -= 0.1
 		globals.PlayerWater -= 0.1
-		$CanvasLayer/BottomRightPanel/WaterProgressBar.value = globals.PlayerWater
-		$CanvasLayer/BottomRightPanel/FoodProgressBar.value = globals.PlayerFood
-		#$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerFood.text = "Food: " + str(globals.PlayerFood)
-		#$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerWater.text = "Water: " + str(globals.PlayerWater)
+		$HUD/BottomRightPanel/WaterProgressBar.value = globals.PlayerWater
+		$HUD/BottomRightPanel/FoodProgressBar.value = globals.PlayerFood
+		#$HUD/BottomRightPanel/HBoxContainer/PlayerFood.text = "Food: " + str(globals.PlayerFood)
+		#$HUD/BottomRightPanel/HBoxContainer/PlayerWater.text = "Water: " + str(globals.PlayerWater)
 	PlayerGridPosition = player.global_position / 16
 	var PlayerTileData = $TileMap.get_cell_tile_data ( 1, PlayerGridPosition.round())
 	if PlayerTileData != null:
@@ -93,12 +93,12 @@ func _process(_delta):
 		#print(named_tile)
 	var root = get_tree().get_root()
 	
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerGold.text = "Gold: " + str(globals.PlayerGold)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerThralls.text = "Thralls: " + str(globals.PlayerThralls)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerHides.text = "Hides: " + str(globals.PlayerHides)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerWarriors.text = "Warriors: " + str(globals.PlayerWarriors)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerFarmers.text = "Farmers: " + str(globals.PlayerFarmers)
-	$CanvasLayer/BottomRightPanel/HBoxContainer/PlayerWood.text = "Wood: " + str(globals.PlayerWood)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerGold.text = "Gold: " + str(globals.PlayerGold)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerThralls.text = "Thralls: " + str(globals.PlayerThralls)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerHides.text = "Hides: " + str(globals.PlayerHides)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerWarriors.text = "Warriors: " + str(globals.PlayerWarriors)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerFarmers.text = "Farmers: " + str(globals.PlayerFarmers)
+	$HUD/BottomRightPanel/HBoxContainer/PlayerWood.text = "Wood: " + str(globals.PlayerWood)
 	
 	$PathProgress.text = str($TileMap/Path2D/PathFollow2D.progress)
 
@@ -150,88 +150,88 @@ func _unhandled_input(event):
 
 func _on_area_2d_body_entered(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = true
-	$CanvasLayer/StatusInfo/EnterButton.visible = true
+	$HUD/StatusInfo/Label.visible = true
+	$HUD/StatusInfo/EnterButton.visible = true
 	pass # Replace with function body.
 
 
 func _on_area_2d_body_exited(_body):
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
 	pass # Replace with function body.
 
 
 func _on_sigtuna_area_body_entered(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = true
-	$CanvasLayer/StatusInfo/EnterButton.visible = true
-	$CanvasLayer/StatusInfo/RaidButton.visible = true
-	$CanvasLayer/StatusInfo/Label.text = $TileMap/SigtunaArea/Identity.text
+	$HUD/StatusInfo/Label.visible = true
+	$HUD/StatusInfo/EnterButton.visible = true
+	$HUD/StatusInfo/RaidButton.visible = true
+	$HUD/StatusInfo/Label.text = $TileMap/SigtunaArea/Identity.text
 	CurrentArea = $TileMap/SigtunaArea/Identity.text
 	pass # Replace with function body.
 
 
 func _on_sigtuna_area_body_exited(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
 	pass # Replace with function body.
 
 
 func _on_home_area_body_entered(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = true
-	$CanvasLayer/StatusInfo/EnterButton.visible = true
-	$CanvasLayer/StatusInfo/Label.text = $TileMap/HomeArea/Identity.text
+	$HUD/StatusInfo/Label.visible = true
+	$HUD/StatusInfo/EnterButton.visible = true
+	$HUD/StatusInfo/Label.text = $TileMap/HomeArea/Identity.text
 	CurrentArea = $TileMap/HomeArea/Identity.text
 	pass # Replace with function body.
 
 
 func _on_home_area_body_exited(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
 	pass # Replace with function body.
 
 
 func _on_birka_body_entered(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = true
-	$CanvasLayer/StatusInfo/EnterButton.visible = true
-	$CanvasLayer/StatusInfo/RaidButton.visible = true
-	$CanvasLayer/StatusInfo/Label.text = $TileMap/BirkaArea/Identity.text
+	$HUD/StatusInfo/Label.visible = true
+	$HUD/StatusInfo/EnterButton.visible = true
+	$HUD/StatusInfo/RaidButton.visible = true
+	$HUD/StatusInfo/Label.text = $TileMap/BirkaArea/Identity.text
 	CurrentArea = $TileMap/BirkaArea/Identity.text
 	pass # Replace with function body.
 
 
 func _on_birka_body_exited(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
 	pass # Replace with function body.
 
 
 func _on_helgo_body_entered(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = true
-	$CanvasLayer/StatusInfo/EnterButton.visible = true
-	$CanvasLayer/StatusInfo/RaidButton.visible = true
-	$CanvasLayer/StatusInfo/Label.text = $TileMap/HelgoArea/Identity.text
+	$HUD/StatusInfo/Label.visible = true
+	$HUD/StatusInfo/EnterButton.visible = true
+	$HUD/StatusInfo/RaidButton.visible = true
+	$HUD/StatusInfo/Label.text = $TileMap/HelgoArea/Identity.text
 	CurrentArea = $TileMap/HelgoArea/Identity.text
 	pass # Replace with function body.
 
 
 func _on_helgo_body_exited(_body):
 	print("body entered area")
-	$CanvasLayer/StatusInfo/Label.visible = false
-	$CanvasLayer/StatusInfo/EnterButton.visible = false
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/Label.visible = false
+	$HUD/StatusInfo/EnterButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
 	pass # Replace with function body.
 
@@ -245,7 +245,7 @@ func _on_forest_body_exited(_body):
 	pass # Replace with function body.
 
 func _on_quest_area_body_entered(_body):
-	$QuestCanvasLayer/Control/ItemList.add_item("FIND A DONKEY")
+	#$QuestCanvasLayer/Control/ItemList.add_item("FIND A DONKEY")
 	$TileMap/QuestArea.queue_free()
 	pass # Replace with function body.
 
@@ -262,7 +262,7 @@ func _on_raid_button_pressed():
 	pass # Replace with function body.
 
 func _on_raid_button_button_up():
-	$CanvasLayer/StatusInfo/RaidButton.visible = false
+	$HUD/StatusInfo/RaidButton.visible = false
 	pass # Replace with function body.
 	
 func _on_enter_button_pressed():

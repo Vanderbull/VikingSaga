@@ -4,8 +4,8 @@ var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
 
-var width = 256
-var height = 256
+var width = 8
+var height = 8
 
 @onready var player = $CharacterBody2D#get_parent().get_child(1)
 
@@ -16,7 +16,7 @@ func _ready():
 	
 func _process(delta):
 	generate_chunk(player.position)
-	print("Position: " + str(player.position.x) + " , " + str(player.position.y))
+	#print("Position: " + str(player.position.x) + " , " + str(player.position.y))
 	
 func generate_chunk(position):
 	var tile_pos = local_to_map(position)
