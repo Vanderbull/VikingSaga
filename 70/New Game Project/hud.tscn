@@ -216,3 +216,10 @@ offset_top = 64.0
 offset_right = 1056.0
 offset_bottom = 87.0
 text = "00:00:00"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 454.0
+offset_top = 236.0
+offset_right = 494.0
+offset_bottom = 259.0
+text = "PRUTTEN GOES TO TOWN"

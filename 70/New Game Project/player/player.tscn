@@ -203,19 +203,17 @@ curve = SubResource("Curve_q48s2")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_760yx"]
 lifetime_randomness = 1.0
+particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 16.0
-particle_flag_disable_z = true
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_es1to")
 spread = 180.0
-gravity = Vector3(0, -98, 0)
 initial_velocity_min = 50.0
 initial_velocity_max = 50.0
 angular_velocity_max = 300.0
 angular_velocity_curve = SubResource("CurveTexture_la5x6")
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-angle_max = 360.0
-angle_curve = SubResource("CurveTexture_es1to")
+gravity = Vector3(0, -98, 0)
 anim_speed_max = 0.21
 anim_speed_curve = SubResource("CurveTexture_1viqd")
 
@@ -307,6 +305,8 @@ material = SubResource("CanvasItemMaterial_2dkp0")
 process_material = SubResource("ParticleProcessMaterial_760yx")
 texture = ExtResource("5_qevvx")
 lifetime = 6.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]

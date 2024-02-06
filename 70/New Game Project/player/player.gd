@@ -23,11 +23,11 @@ signal healthChangedVillage
 @export_enum("VIKING", "MARAUDER", "SHIELDMAIDEN") var character_class: int
 
 @export_flags("Fire", "Water", "Earth", "Wind") var spell_elements = 0
-@onready var gold = 0
-@onready var warriors = 0
-@onready var farmers = 0
-@onready var thralls = 0
-@onready var hides = 0
+@onready var gold = 1000
+@onready var warriors = 1000
+@onready var farmers = 1000
+@onready var thralls = 1000
+@onready var hides = 1000
 
 var walking = false
 
@@ -36,8 +36,11 @@ var walking = false
 @onready var globals = get_node("/root/Globals")
 
 @onready var worldMap = $".."
+@onready var HUD = $"../../HUD/Label"
 
 func _ready():
+	HUD.text = str(gold)
+	
 	worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
 	$Identity.text = Identity
 	#print_debug("READY THE PLAYER AGAIN")
@@ -72,7 +75,11 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_P:
 			var tile_pos = worldMap.local_to_map(position)
 			print_debug(tile_pos.x)
-			worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y), -1 ,Vector2i(0,0))
+			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 5), 0 ,Vector2i(25,14))
+			worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 1 ,Vector2i(0,0))
+			gold -= 100
+			HUD.text = str(gold)
+			
 		
 func _physics_process(_delta):
 	$Identity.text = Identity
