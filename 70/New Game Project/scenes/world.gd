@@ -20,6 +20,8 @@ var CurrentArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HUD.visible = true
+	
 	$HUD/BottomRightPanel/WaterProgressBar.max_value = globals.PlayerWater
 	$HUD/BottomRightPanel/FoodProgressBar.max_value = globals.PlayerFood
 	$HUD/BottomRightPanel/WaterProgressBar.value = globals.PlayerWater

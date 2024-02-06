@@ -35,7 +35,10 @@ var walking = false
 
 @onready var globals = get_node("/root/Globals")
 
+@onready var worldMap = $".."
+
 func _ready():
+	worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
 	$Identity.text = Identity
 	#print_debug("READY THE PLAYER AGAIN")
 	effects.play("RESET")
@@ -62,9 +65,14 @@ func updateAnimation():
 		animations.play("walk" + direction)
 		walking = true
 		
-#func _input(event):
-#	if event.is_action_pressed("click"):
-#		target = get_global_mouse_position()
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			get_tree().quit()
+		if event.pressed and event.keycode == KEY_P:
+			var tile_pos = worldMap.local_to_map(position)
+			print_debug(tile_pos.x)
+			worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y), -1 ,Vector2i(0,0))
 		
 func _physics_process(_delta):
 	$Identity.text = Identity
@@ -77,7 +85,9 @@ func _physics_process(_delta):
 	move_and_slide()
 	#handleCollision()
 	updateAnimation()
+	
 	if walking:
+
 		if !sound.playing:
 			sound.play()
 	else:

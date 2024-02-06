@@ -1,0 +1,218 @@
+[gd_scene load_steps=7 format=3 uid="uid://vxkecikk05c3"]
+
+[ext_resource type="Theme" uid="uid://v7pubmug8qly" path="res://assets/default_theme.tres" id="1_kweqq"]
+[ext_resource type="PackedScene" uid="uid://diyj18cwd0fc5" path="res://UI/Hearts/heartsContainer.tscn" id="2_45e4u"]
+
+[sub_resource type="Gradient" id="Gradient_yc276"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dh2go"]
+gradient = SubResource("Gradient_yc276")
+width = 16
+height = 150
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_4wfvy"]
+offsets = PackedFloat32Array(0.00231481)
+colors = PackedColorArray(0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1qv11"]
+gradient = SubResource("Gradient_4wfvy")
+width = 16
+height = 150
+fill_to = Vector2(0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+layer = 0
+
+[node name="TopLeftPanel" type="Panel" parent="."]
+offset_right = 224.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_kweqq")
+
+[node name="heartsContainer2" parent="TopLeftPanel" instance=ExtResource("2_45e4u")]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TopLeftPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_right = 112.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "Ship HP"
+horizontal_alignment = 1
+
+[node name="TopRightPanel" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_bottom = 64.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("1_kweqq")
+
+[node name="heartsContainer" parent="TopRightPanel" instance=ExtResource("2_45e4u")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="TopRightPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_bottom = 88.0
+grow_horizontal = 0
+text = "Player HP"
+horizontal_alignment = 1
+
+[node name="StatusInfo" type="Panel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="StatusInfo"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 26.0
+text = "Home town"
+
+[node name="EnterButton" type="Button" parent="StatusInfo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enter"
+
+[node name="RaidButton" type="Button" parent="StatusInfo"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 72.0
+offset_right = 112.0
+offset_bottom = 103.0
+text = "Raid"
+
+[node name="BottomRightPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_kweqq")
+
+[node name="WaterProgressBar" type="TextureProgressBar" parent="BottomRightPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -150.0
+offset_right = 24.0
+tooltip_text = "Water"
+max_value = 1500.0
+value = 750.0
+fill_mode = 3
+texture_progress = SubResource("GradientTexture2D_dh2go")
+
+[node name="FoodProgressBar" type="TextureProgressBar" parent="BottomRightPanel"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -150.0
+offset_right = 48.0
+tooltip_text = "Food"
+max_value = 1500.0
+value = 750.0
+fill_mode = 3
+texture_progress = SubResource("GradientTexture2D_1qv11")
+
+[node name="Timer" type="Timer" parent="BottomRightPanel"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomRightPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -40.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerThralls" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = "Thralls: 0"
+
+[node name="PlayerHides" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = "Hides: 0"
+
+[node name="PlayerWarriors" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = " warriors: 0"
+
+[node name="PlayerFarmers" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = " farmers: 0"
+
+[node name="PlayerGold" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = " gold: 0"
+
+[node name="PlayerWood" type="Label" parent="BottomRightPanel/HBoxContainer"]
+layout_mode = 2
+text = "Wood: 100"
+
+[node name="PlayerFood" type="Label" parent="BottomRightPanel/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Food: 100"
+
+[node name="PlayerWater" type="Label" parent="BottomRightPanel/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Water: 100"
+
+[node name="Time" type="Label" parent="."]
+offset_left = 1016.0
+offset_top = 64.0
+offset_right = 1056.0
+offset_bottom = 87.0
+text = "00:00:00"
