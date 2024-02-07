@@ -307,6 +307,7 @@ texture = ExtResource("5_qevvx")
 lifetime = 6.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]

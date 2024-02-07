@@ -41,7 +41,7 @@ var walking = false
 func _ready():
 	HUD.text = str(gold)
 	
-	worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
+	#worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
 	$Identity.text = Identity
 	#print_debug("READY THE PLAYER AGAIN")
 	effects.play("RESET")
@@ -52,6 +52,7 @@ func handleInput():
 	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	#print(moveDirection)
 	velocity = moveDirection*speed
+
 	
 	
 func updateAnimation():
@@ -69,17 +70,35 @@ func updateAnimation():
 		walking = true
 		
 func _unhandled_input(event):
+	var tile_pos = worldMap.local_to_map(position)
+	#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 0 ,Vector2i(25,14))
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed and event.keycode == KEY_P:
-			var tile_pos = worldMap.local_to_map(position)
+			
 			print_debug(tile_pos.x)
 			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 5), 0 ,Vector2i(25,14))
-			worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 1 ,Vector2i(0,0))
+			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 1 ,Vector2i(0,0))
 			gold -= 100
 			HUD.text = str(gold)
-			
+		if event.pressed and event.keycode == KEY_Z:
+			$Camera2D.zoom.x += 0.25
+			$Camera2D.zoom.y += 0.25
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			# zoom in
+			print("scrolle")
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				print("up")
+				$Camera2D.zoom.x += 0.25
+				$Camera2D.zoom.y += 0.25
+			# zoom out
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				print("down")
+				$Camera2D.zoom.x -= 0.25
+				$Camera2D.zoom.y -= 0.25
+		
 		
 func _physics_process(_delta):
 	$Identity.text = Identity
@@ -94,7 +113,6 @@ func _physics_process(_delta):
 	updateAnimation()
 	
 	if walking:
-
 		if !sound.playing:
 			sound.play()
 	else:
