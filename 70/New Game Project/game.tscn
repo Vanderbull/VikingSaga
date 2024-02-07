@@ -4023,15 +4023,18 @@ layer_1/tile_data = PackedInt32Array(4259877, 131075, 0, 4259876, 131075, 0, 432
 script = ExtResource("9_esbca")
 
 [node name="Path2D" type="Path2D" parent="world/TileMap"]
+visible = false
 z_index = 1
 curve = SubResource("Curve2D_vp26w")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="world/TileMap/Path2D"]
+visible = false
 position = Vector2(192, 248)
 rotation = 1.5708
 loop = false
 
 [node name="Ship" parent="world/TileMap/Path2D/PathFollow2D" instance=ExtResource("6_xcmf1")]
+visible = false
 z_index = 1
 collision_layer = 2
 collision_mask = 2
@@ -4043,6 +4046,7 @@ position = Vector2(544, 544)
 scale = Vector2(2, 2)
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
+visible = false
 enabled = false
 limit_left = 0
 limit_top = 0
@@ -4067,6 +4071,7 @@ texture = ExtResource("10_77ybu")
 script = ExtResource("11_t532q")
 
 [node name="Line2D" type="Line2D" parent="world/TileMap"]
+visible = false
 z_index = 1
 width = 20.0
 gradient = SubResource("Gradient_6uk6y")
@@ -4159,6 +4164,7 @@ script = ExtResource("20_pjl25")
 Identity = "Helgo settlement"
 
 [node name="Forest" type="Area2D" parent="world/TileMap"]
+visible = false
 position = Vector2(464, 928)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="world/TileMap/Forest"]
@@ -4179,6 +4185,7 @@ position = Vector2(623.426, 496)
 [node name="HUD" parent="world" instance=ExtResource("22_shoty")]
 
 [node name="PathProgress" type="Label" parent="world"]
+visible = false
 z_index = 2
 offset_left = 552.0
 offset_top = 432.0

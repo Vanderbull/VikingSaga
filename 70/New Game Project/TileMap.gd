@@ -12,6 +12,7 @@ var width = 256
 var height = 256
 
 @onready var player = $Player
+static var clear_delay = 10
 
 func _ready():
 	moisture.seed = -296421265#randi()
@@ -25,6 +26,15 @@ func _ready():
 	
 func _process(delta):
 	generate_chunk(player.position)
+	if clear_delay == 0:
+		clear_layer(1)
+		clear_delay = 10
+		moisture_tree.seed = randi()
+		temperature_tree.seed = randi()
+		altitude_tree.seed = randi()
+	else:
+		clear_delay -= 1
+
 	#print("Position: " + str(player.position.x) + " , " + str(player.position.y))
 	
 func generate_chunk(position):
