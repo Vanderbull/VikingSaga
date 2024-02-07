@@ -6,8 +6,9 @@ signal healthChanged
 signal healthChangedShip
 signal healthChangedVillage
 
+@onready var globals = get_node("/root/Globals")
+
 @export var speed: int = 300
-@export var Identity = "Player"
 
 @onready var animations = $AnimationPlayer
 @onready var effects = $Effects
@@ -31,10 +32,6 @@ signal healthChangedVillage
 
 var walking = false
 
-#var target = position #Vector2(544,544) is zero
-
-@onready var globals = get_node("/root/Globals")
-
 @onready var worldMap = $".."
 @onready var HUD = $"../../HUD/Label"
 
@@ -42,7 +39,7 @@ func _ready():
 	HUD.text = str(gold)
 	
 	#worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
-	$Identity.text = Identity
+	$Identity.text = globals.globalman
 	#print_debug("READY THE PLAYER AGAIN")
 	effects.play("RESET")
 	#print(position)
@@ -101,7 +98,7 @@ func _unhandled_input(event):
 		
 		
 func _physics_process(_delta):
-	$Identity.text = Identity
+	$Identity.text = globals.globalman
 	#velocity = position.direction_to(target) * speed
 	# look_at(target)
 	#if position.distance_to(target) > 10:

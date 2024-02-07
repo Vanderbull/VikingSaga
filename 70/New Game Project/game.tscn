@@ -4041,7 +4041,6 @@ script = ExtResource("7_hffsq")
 y_sort_enabled = true
 position = Vector2(544, 544)
 scale = Vector2(2, 2)
-Identity = "Drutten"
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
 enabled = false
@@ -4176,33 +4175,6 @@ shape = SubResource("RectangleShape2D_elo3y")
 
 [node name="Cat" parent="world/TileMap" instance=ExtResource("22_imjrg")]
 position = Vector2(623.426, 496)
-
-[node name="Area2D" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(3364.9, 5448)
-
-[node name="Area2D9" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(8504.18, 5216)
-
-[node name="Area2D8" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(10534.3, 10064)
-
-[node name="Area2D7" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(6370.14, 10976)
-
-[node name="Area2D6" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(8136.51, 9216)
-
-[node name="Area2D5" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(743.316, 8040)
-
-[node name="Area2D4" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(1470.65, 9480)
-
-[node name="Area2D3" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(2070.1, 6528)
-
-[node name="Area2D2" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(2581.62, 8480)
 
 [node name="HUD" parent="world" instance=ExtResource("22_shoty")]
 

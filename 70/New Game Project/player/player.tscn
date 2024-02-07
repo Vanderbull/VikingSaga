@@ -217,9 +217,8 @@ gravity = Vector3(0, -98, 0)
 anim_speed_max = 0.21
 anim_speed_curve = SubResource("CurveTexture_1viqd")
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_b0x02")
-Identity = ""
 knockbackPower = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
