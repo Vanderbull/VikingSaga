@@ -4111,7 +4111,7 @@ endPoint = NodePath("Marker2D")
 Identity = "Dronke"
 
 [node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy"]
-position = Vector2(112, 24)
+position = Vector2(229.421, -11)
 
 [node name="enemy2" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
 position = Vector2(720, 688)
@@ -4124,24 +4124,24 @@ Identity = "Ragnar Lodbrok"
 position = Vector2(240, 80)
 
 [node name="enemy3" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-position = Vector2(1521.6, 728)
+position = Vector2(1588.54, 652)
 script = ExtResource("17_msdxn")
 speed = 50
 endPoint = NodePath("Marker2D")
 Identity = "Bjorn Ironside"
 
 [node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy3"]
-position = Vector2(6.31909, 312)
+position = Vector2(-199.816, -77)
 
 [node name="enemy4" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-position = Vector2(1282.82, 702)
+position = Vector2(1086, 487)
 script = ExtResource("17_msdxn")
 speed = 50
 endPoint = NodePath("Marker2D")
 Identity = "Erik the Victorius"
 
 [node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy4"]
-position = Vector2(1336, 336)
+position = Vector2(204.812, 30)
 
 [node name="HomeArea" parent="world/TileMap" instance=ExtResource("19_mkluu")]
 position = Vector2(378.652, 400)
