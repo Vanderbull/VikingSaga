@@ -4042,8 +4042,7 @@ script = ExtResource("7_hffsq")
 
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_h5l8u")]
 y_sort_enabled = true
-position = Vector2(544, 544)
-scale = Vector2(2, 2)
+position = Vector2(256, 256)
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
 visible = false
@@ -4219,11 +4218,14 @@ visible = false
 process_mode = 2
 game_manager = NodePath("../..")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-visible = false
+[node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="QuestMenu" parent="CanvasLayer2" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_itlq3")]
+[node name="QuestMenu" parent="InGameCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_itlq3")]
 game_manager = NodePath("../..")
+
+[node name="PlayerPosition" type="Label" parent="InGameCanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="body_entered" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_entered"]
 [connection signal="body_exited" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_exited"]

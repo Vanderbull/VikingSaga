@@ -14,3 +14,5 @@ var PlayerShip = false
 var PlayerShipSpeed = 250.0
 var PlayerFood = 1500
 var PlayerWater = 1500
+
+var cloud_position = Vector2(100,100)
