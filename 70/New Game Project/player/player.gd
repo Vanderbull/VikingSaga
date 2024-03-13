@@ -36,6 +36,7 @@ var walking = false
 @onready var HUD = $"../../HUD/Label"
 
 func _ready():
+	velocity.y = 0
 	HUD.text = str(gold)
 	
 	#worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))

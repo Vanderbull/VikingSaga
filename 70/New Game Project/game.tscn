@@ -1585,7 +1585,6 @@ texture = ExtResource("3_jbup0")
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
@@ -1598,7 +1597,6 @@ texture = ExtResource("3_jbup0")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
@@ -1611,7 +1609,6 @@ texture = ExtResource("3_jbup0")
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0 = 0
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
@@ -1624,7 +1621,6 @@ texture = ExtResource("3_jbup0")
 3:3/0 = 0
 3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:3/0/physics_layer_0/angular_velocity = 0.0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nci7c"]
 texture = ExtResource("4_pg6v8")
@@ -4042,7 +4038,7 @@ script = ExtResource("7_hffsq")
 
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_h5l8u")]
 y_sort_enabled = true
-position = Vector2(256, 256)
+motion_mode = 1
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
 visible = false
@@ -4226,6 +4222,13 @@ game_manager = NodePath("../..")
 [node name="PlayerPosition" type="Label" parent="InGameCanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="PlayerVelocity" type="Label" parent="InGameCanvasLayer"]
+offset_left = 1.0
+offset_top = 28.0
+offset_right = 41.0
+offset_bottom = 51.0
+text = "Velocity"
 
 [connection signal="body_entered" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_entered"]
 [connection signal="body_exited" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_exited"]

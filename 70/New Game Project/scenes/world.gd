@@ -20,6 +20,8 @@ var CurrentArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player.position = Vector2i(0,0)
+	player.global_position = Vector2i(0,0)
 	$HUD.visible = true
 	
 	$HUD/BottomRightPanel/WaterProgressBar.max_value = globals.PlayerWater
@@ -47,7 +49,7 @@ func _ready():
 	enemy.hide()
 	
 	if globals.ready_already:
-		globals.player_position = player.position
+		#globals.player_position = player.position
 		heartsContainer.setMaxHearts(player.MaxHealth)
 		heartsContainer.updateHearts(player.CurrentHealth)
 		#heartsContainer2.setMaxHearts(ship.hp)
@@ -63,7 +65,8 @@ func _ready():
 		#$HUD/BottomRightPanel/Gold.text = "Gold: " + str(globals.PlayerGold)
 		globals.ready_already = false
 	else:
-		player.position = globals.player_position
+		pass
+		#player.position = globals.player_position
 
 
 func _process(_delta):

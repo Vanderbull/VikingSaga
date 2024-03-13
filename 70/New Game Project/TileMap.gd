@@ -8,8 +8,8 @@ var moisture_clouds = FastNoiseLite.new()
 var temperature_clouds = FastNoiseLite.new()
 var altitude_clouds = FastNoiseLite.new()
 
-var width = 256
-var height = 256
+var width = 3
+var height = 3
 
 @onready var player = $Player
 static var clear_delay = 10
@@ -17,7 +17,8 @@ static var clear_delay = 10
 var tile_position_info = []
 
 func _ready():
-	tile_position_info.resize(256*256)
+	player.global_position = Vector2i(0,0)
+	tile_position_info.resize(3*3)
 	tile_position_info.fill("0")
 	#Randomize world
 	moisture.seed = -296421265#randi()
@@ -32,9 +33,12 @@ func _ready():
 static var flockmos = 0
 
 func _process(delta):
+	if(player.position.y != 0):
+		player.global_position = Vector2i(0,0)
 	generate_chunk(player.position)
-	flockmos += 1
+	#flockmos += 1
 	$"../../InGameCanvasLayer/PlayerPosition".text = str(local_to_map(player.position))
+	$"../../InGameCanvasLayer/PlayerVelocity".text = str(player.global_position)
 	
 	var tile_pos = local_to_map(position)
 	var tile_index = tile_pos.x * width + tile_pos.y
