@@ -1,55 +1,16 @@
-[gd_scene load_steps=44 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=18 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
 [ext_resource type="Texture2D" uid="uid://cgjqn4gb111i8" path="res://arts/TilesetHouse.png" id="3_3ndop"]
 [ext_resource type="Texture2D" uid="uid://bmiqbdngbk5b0" path="res://assets/tiles2.png" id="3_jbup0"]
-[ext_resource type="Script" path="res://ProceduralMap.gd" id="3_wr2t6"]
 [ext_resource type="Texture2D" uid="uid://q0rjqjvpn47j" path="res://arts/TilesetFloor.png" id="4_pg6v8"]
 [ext_resource type="Texture2D" uid="uid://c6msi56q0f1d" path="res://arts/TilesetNature.png" id="5_g24uu"]
-[ext_resource type="PackedScene" uid="uid://b41dyrm1gidbb" path="res://character_body_2d.tscn" id="5_gaa2i"]
-[ext_resource type="PackedScene" uid="uid://bc8ot8gys5g8n" path="res://ships/ship.tscn" id="6_xcmf1"]
-[ext_resource type="Script" path="res://ships/ship.gd" id="7_hffsq"]
 [ext_resource type="PackedScene" uid="uid://bf4jil1d0pjen" path="res://player/player.tscn" id="8_h5l8u"]
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
-[ext_resource type="Texture2D" uid="uid://vmq4afkymq1e" path="res://arts/sprite_effects_fire_sprite_fx_0062.png" id="10_77ybu"]
-[ext_resource type="Script" path="res://scenes/PointLight2D.gd" id="11_t532q"]
-[ext_resource type="PackedScene" uid="uid://l1cvid332el6" path="res://enemies/slime.tscn" id="14_6f3qi"]
-[ext_resource type="Script" path="res://enemies/slime.gd" id="15_aqm1r"]
-[ext_resource type="PackedScene" uid="uid://dr2yvenwrsrsx" path="res://enemies/enemy.tscn" id="16_p1w2f"]
-[ext_resource type="Script" path="res://enemies/enemy.gd" id="17_msdxn"]
-[ext_resource type="PackedScene" uid="uid://cla0hh2x5afue" path="res://settlements/home.tscn" id="19_mkluu"]
-[ext_resource type="Script" path="res://settlements/home.gd" id="20_pjl25"]
-[ext_resource type="AudioStream" uid="uid://4i2u74qn0mab" path="res://arts/celtic-7136.mp3" id="22_55nqw"]
-[ext_resource type="PackedScene" uid="uid://cab1f1po631ly" path="res://enemies/cat.tscn" id="22_imjrg"]
-[ext_resource type="PackedScene" uid="uid://vxkecikk05c3" path="res://hud.tscn" id="22_shoty"]
-[ext_resource type="AudioStream" uid="uid://b6fe6mwyrc3uo" path="res://arts/gryffin-cry-6995.mp3" id="23_p13xr"]
-[ext_resource type="AudioStream" uid="uid://buceqg077dkvd" path="res://arts/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" id="24_6wf53"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4igg"]
-texture = ExtResource("3_jbup0")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_dam52"]
-sources/0 = SubResource("TileSetAtlasSource_a4igg")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -3956,42 +3917,6 @@ sources/2 = SubResource("TileSetAtlasSource_nci7c")
 sources/3 = SubResource("TileSetAtlasSource_goli3")
 sources/1 = SubResource("TileSetAtlasSource_758pu")
 
-[sub_resource type="Curve2D" id="Curve2D_vp26w"]
-bake_interval = 1.0
-_data = {
-"points": PackedVector2Array(0.499767, -26.7706, 0, 27, 192, 248, 65.4296, 135.206, -65.4296, -135.206, 71.9338, 312, 0, 0, 0, 0, 247.772, 128, -85.7308, 2.55905, 85.7308, -2.55905, 983.095, 128, -54.4647, -2.12353, 54.4647, 2.12353, 1790.35, 128, -48.2285, -41.9507, 48.2285, 41.9507, 2621.59, 152, -27.6733, -84.4694, 27.6733, 84.4694, 2805.42, 1352, 0, 0, 0, 0, 2134.04, 1416, 0, 0, 0, 0, 2134.04, 1440, 0, 0, 0, 0, 2237.94, 1448)
-}
-point_count = 10
-
-[sub_resource type="Gradient" id="Gradient_6uk6y"]
-offsets = PackedFloat32Array(0, 0.996078)
-colors = PackedColorArray(0, 0, 1, 0, 0, 0, 1, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_533yr"]
-size = Vector2(224, 160)
-
-[sub_resource type="GDScript" id="GDScript_1mx7t"]
-script/source = "extends Area2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_elo3y"]
-
-[sub_resource type="SystemFont" id="SystemFont_ngaid"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_f1w3f"]
-font = SubResource("SystemFont_ngaid")
-font_color = Color(1, 0, 1, 1)
-
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -4000,14 +3925,6 @@ script = ExtResource("1_sr55i")
 process_mode = 1
 scale = Vector2(1.00092, 1)
 script = ExtResource("2_868vg")
-
-[node name="ProceduralMap" type="TileMap" parent="world"]
-visible = false
-tile_set = SubResource("TileSet_dam52")
-format = 2
-script = ExtResource("3_wr2t6")
-
-[node name="CharacterBody2D" parent="world/ProceduralMap" instance=ExtResource("5_gaa2i")]
 
 [node name="TileMap" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
@@ -4018,27 +3935,12 @@ layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(4259877, 131075, 0, 4259876, 131075, 0, 4325411, 131075, 0, 4325410, 131075, 0, 4325409, 131075, 0, 4325408, 131075, 0, 4259871, 131075, 0, 4259870, 131075, 0, 4194335, 131075, 0, 4194336, 131075, 0, 4128800, 131075, 0, 4128801, 131075, 0, 4063265, 131075, 0, 4063266, 131075, 0, 4128802, 131075, 0, 4128803, 131075, 0, 4128804, 131075, 0, 4194340, 131075, 0, 4194341, 131075, 0, 4259878, 131075, 0, 4325415, 131075, 0, 4259879, 131075, 0, 4259880, 131075, 0, 4194344, 131075, 0, 4194345, 131075, 0, 4128809, 131075, 0, 4063273, 131075, 0, 3997737, 131075, 0, 3932201, 131075, 0, 3932200, 131075, 0, 3932199, 131075, 0, 3932198, 131075, 0, 3932197, 131075, 0, 3997733, 131075, 0, 4063269, 131075, 0, 4063270, 131075, 0, 4128806, 131075, 0, 4128807, 131075, 0, 4063271, 131075, 0, 4063272, 131075, 0, 3997736, 131075, 0, 3997735, 131075, 0, 4063268, 131075, 0, 4063267, 131075, 0, 4063264, 131075, 0, 3997728, 131075, 0, 3997729, 131075, 0, 3932193, 131075, 0, 3932192, 131075, 0, 3932191, 131075, 0)
 script = ExtResource("9_esbca")
 
-[node name="Path2D" type="Path2D" parent="world/TileMap"]
-visible = false
-z_index = 1
-curve = SubResource("Curve2D_vp26w")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="world/TileMap/Path2D"]
-visible = false
-position = Vector2(192, 248)
-rotation = 1.5708
-loop = false
-
-[node name="Ship" parent="world/TileMap/Path2D/PathFollow2D" instance=ExtResource("6_xcmf1")]
-visible = false
-z_index = 1
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("7_hffsq")
-
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_h5l8u")]
 y_sort_enabled = true
 motion_mode = 1
+slide_on_ceiling = false
+platform_on_leave = 2
+speed = 300
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
 visible = false
@@ -4049,163 +3951,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("9_v7iqx")
 tilemap = NodePath("../..")
-
-[node name="ShaderCanvas" type="CanvasLayer" parent="world/TileMap/Player/follow cam"]
-visible = false
-
-[node name="ShaderColor" type="ColorRect" parent="world/TileMap/Player/follow cam/ShaderCanvas"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PointLight2D" type="PointLight2D" parent="world/TileMap/Player/follow cam"]
-visible = false
-texture = ExtResource("10_77ybu")
-script = ExtResource("11_t532q")
-
-[node name="Line2D" type="Line2D" parent="world/TileMap"]
-visible = false
-z_index = 1
-width = 20.0
-gradient = SubResource("Gradient_6uk6y")
-antialiased = true
-
-[node name="slime" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("14_6f3qi")]
-position = Vector2(656, 328)
-script = ExtResource("15_aqm1r")
-endPoint = NodePath("Marker2D")
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/slime"]
-position = Vector2(-48, 40)
-
-[node name="HP" type="Label" parent="world/TileMap/slime"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="slime2" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("14_6f3qi")]
-position = Vector2(840, 496)
-script = ExtResource("15_aqm1r")
-endPoint = NodePath("Marker2D")
-Identity = "Slime2"
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/slime2"]
-position = Vector2(-48, 40)
-
-[node name="HP" type="Label" parent="world/TileMap/slime2"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="enemy" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-z_index = 1
-position = Vector2(400, 616)
-script = ExtResource("17_msdxn")
-speed = 50
-endPoint = NodePath("Marker2D")
-Identity = "Dronke"
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy"]
-position = Vector2(229.421, -11)
-
-[node name="enemy2" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-position = Vector2(720, 688)
-script = ExtResource("17_msdxn")
-speed = 40
-endPoint = NodePath("Marker2D")
-Identity = "Ragnar Lodbrok"
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy2"]
-position = Vector2(240, 80)
-
-[node name="enemy3" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-position = Vector2(1588.54, 652)
-script = ExtResource("17_msdxn")
-speed = 50
-endPoint = NodePath("Marker2D")
-Identity = "Bjorn Ironside"
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy3"]
-position = Vector2(-199.816, -77)
-
-[node name="enemy4" parent="world/TileMap" node_paths=PackedStringArray("endPoint") instance=ExtResource("16_p1w2f")]
-position = Vector2(1086, 487)
-script = ExtResource("17_msdxn")
-speed = 50
-endPoint = NodePath("Marker2D")
-Identity = "Erik the Victorius"
-
-[node name="Marker2D" type="Marker2D" parent="world/TileMap/enemy4"]
-position = Vector2(204.812, 30)
-
-[node name="HomeArea" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(378.652, 400)
-script = ExtResource("20_pjl25")
-Identity = "Home settlement"
-
-[node name="SigtunaArea" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(2006.15, 872)
-script = ExtResource("20_pjl25")
-Identity = "Sigtuna settlement"
-
-[node name="BirkaArea" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(1791.35, 1022)
-script = ExtResource("20_pjl25")
-Identity = "Birka settlement"
-
-[node name="HelgoArea" parent="world/TileMap" instance=ExtResource("19_mkluu")]
-position = Vector2(1569.56, 801)
-script = ExtResource("20_pjl25")
-Identity = "Helgo settlement"
-
-[node name="Forest" type="Area2D" parent="world/TileMap"]
-visible = false
-position = Vector2(464, 928)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world/TileMap/Forest"]
-position = Vector2(120, 88)
-shape = SubResource("RectangleShape2D_533yr")
-
-[node name="QuestArea" type="Area2D" parent="world/TileMap"]
-position = Vector2(1023.06, 768)
-script = SubResource("GDScript_1mx7t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world/TileMap/QuestArea"]
-position = Vector2(-479.559, -184)
-shape = SubResource("RectangleShape2D_elo3y")
-
-[node name="Cat" parent="world/TileMap" instance=ExtResource("22_imjrg")]
-position = Vector2(623.426, 496)
-
-[node name="HUD" parent="world" instance=ExtResource("22_shoty")]
-
-[node name="PathProgress" type="Label" parent="world"]
-visible = false
-z_index = 2
-offset_left = 552.0
-offset_top = 432.0
-offset_right = 592.0
-offset_bottom = 455.0
-label_settings = SubResource("LabelSettings_f1w3f")
-
-[node name="CelticMusic" type="AudioStreamPlayer" parent="world"]
-stream = ExtResource("22_55nqw")
-volume_db = -10.157
-
-[node name="GryffinCry" type="AudioStreamPlayer2D" parent="world"]
-visible = false
-position = Vector2(544, 504)
-stream = ExtResource("23_p13xr")
-autoplay = true
-
-[node name="ForestAmbience" type="AudioStreamPlayer" parent="world"]
-stream = ExtResource("24_6wf53")
-autoplay = true
-
-[node name="Timer" type="Timer" parent="world"]
-wait_time = 5.0
-one_shot = true
-autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -4223,21 +3968,15 @@ game_manager = NodePath("../..")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="PlayerVelocity" type="Label" parent="InGameCanvasLayer"]
+[node name="PlayerGlobalPosition" type="Label" parent="InGameCanvasLayer"]
 offset_left = 1.0
 offset_top = 28.0
 offset_right = 41.0
 offset_bottom = 51.0
 text = "Velocity"
 
-[connection signal="body_entered" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_entered"]
-[connection signal="body_exited" from="world/TileMap/HomeArea" to="world" method="_on_home_area_body_exited"]
-[connection signal="body_entered" from="world/TileMap/SigtunaArea" to="world" method="_on_sigtuna_area_body_entered"]
-[connection signal="body_exited" from="world/TileMap/SigtunaArea" to="world" method="_on_sigtuna_area_body_exited"]
-[connection signal="body_entered" from="world/TileMap/BirkaArea" to="world" method="_on_birka_body_entered"]
-[connection signal="body_exited" from="world/TileMap/BirkaArea" to="world" method="_on_birka_body_exited"]
-[connection signal="body_entered" from="world/TileMap/HelgoArea" to="world" method="_on_helgo_body_entered"]
-[connection signal="body_exited" from="world/TileMap/HelgoArea" to="world" method="_on_helgo_body_exited"]
-[connection signal="body_entered" from="world/TileMap/Forest" to="world" method="_on_forest_body_entered"]
-[connection signal="body_exited" from="world/TileMap/Forest" to="world" method="_on_forest_body_exited"]
-[connection signal="body_entered" from="world/TileMap/QuestArea" to="world" method="_on_quest_area_body_entered"]
+[node name="PlayerLocalToMapPosition" type="Label" parent="InGameCanvasLayer"]
+offset_left = 1.0
+offset_top = 77.0
+offset_right = 41.0
+offset_bottom = 100.0

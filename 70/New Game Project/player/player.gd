@@ -8,7 +8,7 @@ signal healthChangedVillage
 
 @onready var globals = get_node("/root/Globals")
 
-@export var speed: int = 300
+@export var speed: int = 16
 
 @onready var animations = $AnimationPlayer
 @onready var effects = $Effects
@@ -36,9 +36,8 @@ var walking = false
 @onready var HUD = $"../../HUD/Label"
 
 func _ready():
-	velocity.y = 0
-	HUD.text = str(gold)
-	
+	position.x = 80
+	position.y = 16
 	#worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
 	$Identity.text = globals.globalman
 	#print_debug("READY THE PLAYER AGAIN")
@@ -48,10 +47,7 @@ func _ready():
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	#print(moveDirection)
 	velocity = moveDirection*speed
-
-	
 	
 func updateAnimation():
 	if velocity.length() == 0:
@@ -75,7 +71,7 @@ func _unhandled_input(event):
 			get_tree().quit()
 		if event.pressed and event.keycode == KEY_P:
 			
-			print_debug(tile_pos.x)
+			#print_debug(tile_pos.x)
 			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 5), 0 ,Vector2i(25,14))
 			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 1 ,Vector2i(0,0))
 			gold -= 100
@@ -98,24 +94,21 @@ func _unhandled_input(event):
 				$Camera2D.zoom.y -= 0.25
 		
 		
-func _physics_process(_delta):
+func _process(_delta):
+	_delta = 0.00000000000
 	$Identity.text = globals.globalman
 	#velocity = position.direction_to(target) * speed
 	# look_at(target)
 	#if position.distance_to(target) > 10:
 	#	move_and_slide()
-	globals.player_position = position
+	#globals.player_position = position
+	
+
 	handleInput()
+	#print(velocity)
 	move_and_slide()
 	#handleCollision()
 	updateAnimation()
-	
-	if walking:
-		if !sound.playing:
-			sound.play()
-	else:
-		sound.stop()
-
 
 func _on_hurt_box_area_entered(area):
 	if area.name == "villageHitbox":
