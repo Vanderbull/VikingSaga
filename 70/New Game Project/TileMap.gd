@@ -8,8 +8,8 @@ var moisture_clouds = FastNoiseLite.new()
 var temperature_clouds = FastNoiseLite.new()
 var altitude_clouds = FastNoiseLite.new()
 
-var width = 3
-var height = 3
+var width = 16
+var height = 16
 
 @onready var player = $Player
 static var clear_delay = 10
@@ -24,14 +24,14 @@ func _ready():
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
 	#Randomize world
-	moisture.seed = -296421265#randi()
-	temperature.seed = 1329636442#randi()
-	altitude.seed = 1469612428#randi()
+	#moisture.seed = -296421265#randi()
+	#temperature.seed = 1329636442#randi()
+	#altitude.seed = 1469612428#randi()
 
 	#Randomize cloud layer
-	moisture_clouds.seed = randi()
-	temperature_clouds.seed = randi()
-	altitude_clouds.seed = randi()
+	moisture.seed = randi()
+	temperature.seed = randi()
+	altitude.seed = randi()
 
 static var flockmos = 0
 
@@ -44,6 +44,19 @@ func _process(_delta):
 	
 	var tile_pos = local_to_map(player.position)
 	var tile_index = tile_pos.x * width + tile_pos.y
+	
+	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
+	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+
+	if( round((moist+10)/5) >= 1 and round((temp+10)/5) == 1 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) >= 2 and round((temp+10)/5) == 1 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) >= 3 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	else:
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	print(tile_pos)
 	print(tile_position_info[tile_index])
 	#if clear_delay == 0:
@@ -64,6 +77,8 @@ func generate_chunk(position):
 			var moist = moisture.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10 # -10 to 10
 			var temp = temperature.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10
 			var alt = altitude.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10
+			
+			
 			#set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 0 ,Vector2(round((moist+10)/5),round((temp+10)/5)))
 			
 			#set_cell(0, Vector2i(tile_pos.x - width/2 + x - 0.5, tile_pos.y - height/2 + y - 0.5), 1 ,Vector2(3,round((temp+10)/5)))
@@ -72,15 +87,37 @@ func generate_chunk(position):
 			
 			# IF MOIST 1 or 2 and temp 1
 			# if moist 3 and temp anything then water
-			if alt  < 2:
-				set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 1 ,Vector2(3,round((temp+10)/5)))
-				tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			else:
-				set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 1 ,Vector2(round((moist+10)/5),round((temp+10)/5)))
-				if( round((moist+10)/5) >= 1 and round((temp+10)/5) == 1 ):
-					tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-				else:
-					tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#if alt  < 2:
+				#set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 1 ,Vector2(3,round((temp+10)/5)))
+				#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#else:
+			#if( round((moist+10)/5) == 0 ):
+				#print(" Extremly dry")
+			#if( round((moist+10)/5) == 1 ):
+				#print(" very dry")
+			#if( round((moist+10)/5) == 2 ):
+				#print(" normal dry")
+			#if( round((moist+10)/5) == 3 ):
+				#print(" wet dry")
+				#
+			#if( round((temp+10)/5) == 0 ):
+				#print(" Extremly cold")
+			#if( round((temp+10)/5) == 1 ):
+				#print(" very cold")
+			#if( round((temp+10)/5) == 2 ):
+				#print(" normal cold")
+			#if( round((temp+10)/5) == 3 ):
+				#print(" not cold")
+			
+			set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 1 ,Vector2(round((moist+10)/5),round((temp+10)/5)))
+			#if( round((moist+10)/5) >= 1 and round((temp+10)/5) == 1 ):
+				#tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#elif( round((moist+10)/5) >= 2 and round((temp+10)/5) == 1 ):
+				#tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#elif( round((moist+10)/5) >= 3 ):
+				#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#else:
+				#tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			
 			#if( moist > 0 and moist < 3):
 				#tile_position_info[x * width + y] = " FORREST Moist: " + str(moist) + ", Temp: " + str(temp) + ", Alt: " + str(alt)
