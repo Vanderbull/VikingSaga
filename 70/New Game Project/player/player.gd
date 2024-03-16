@@ -63,7 +63,6 @@ func updateAnimation():
 	
 		animations.play("walk" + direction)
 		walking = true
-		globals.xdonkey += 1
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
@@ -71,6 +70,10 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
+		if event.pressed and event.keycode == KEY_1:
+			globals.RoadWorks = not globals.RoadWorks
+		if event.pressed and event.keycode == KEY_2:
+			globals.ForestCutting = not globals.ForestCutting
 		if event.pressed and event.keycode == KEY_P:
 			
 			#print_debug(tile_pos.x)

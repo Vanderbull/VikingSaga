@@ -33,16 +33,16 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_1:
-			if globals.PlayerGold >= 1:
-				globals.PlayerGold -= 1
-				player.CurrentHealth = 10
-				heartsContainer.updateHearts(10)
-		if event.pressed and event.keycode == KEY_2:
-			if globals.playerGold >= 1:
-				globals.PlayerGold -= 1
-				ship.hp = 10
-				heartsContainer2.updateHearts(ship.hp)
+		#if event.pressed and event.keycode == KEY_1:
+			#if globals.PlayerGold >= 1:
+				#globals.PlayerGold -= 1
+				#player.CurrentHealth = 10
+				#heartsContainer.updateHearts(10)
+		#if event.pressed and event.keycode == KEY_2:
+			#if globals.playerGold >= 1:
+				#globals.PlayerGold -= 1
+				#ship.hp = 10
+				#heartsContainer2.updateHearts(ship.hp)
 		if event.pressed and event.keycode == KEY_3:
 			get_tree().change_scene_to_file("res://scenes/world.tscn")
 			enemy.visible = true

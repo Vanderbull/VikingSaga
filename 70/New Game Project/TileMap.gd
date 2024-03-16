@@ -49,17 +49,20 @@ func _process(_delta):
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-	if( globals.PlayerWood > 0):
+	if( globals.PlayerWood > 0 and globals.RoadWorks):
 		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 		globals.PlayerWood -= 1
+		globals.RoadWorks = not globals.RoadWorks
 	#set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 
 	if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.PlayerWood+=2
+		if(globals.ForestCutting):
+			globals.PlayerWood+=1
 	elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.PlayerWood+=2
+		if(globals.ForestCutting):
+			globals.PlayerWood+=1
 	#elif( round((moist+10)/5) >= 3 ):
 		#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	elif( round((temp+10)/5) == 0 ):
