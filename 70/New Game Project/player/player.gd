@@ -48,6 +48,7 @@ func _ready():
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	velocity = moveDirection*speed
+
 	
 func updateAnimation():
 	if velocity.length() == 0:
@@ -62,6 +63,7 @@ func updateAnimation():
 	
 		animations.play("walk" + direction)
 		walking = true
+		globals.xdonkey += 1
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)

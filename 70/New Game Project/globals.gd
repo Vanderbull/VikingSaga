@@ -16,3 +16,5 @@ var PlayerFood = 1500
 var PlayerWater = 1500
 
 var cloud_position = Vector2(100,100)
+
+var xdonkey = 0

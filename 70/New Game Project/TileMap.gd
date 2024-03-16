@@ -1,5 +1,7 @@
 extends TileMap
 
+@onready var globals = get_node("/root/Globals")
+
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
@@ -15,6 +17,7 @@ var height = 16
 static var clear_delay = 10
 
 var tile_position_info = []
+static var flockmos = 0
 
 func _ready():
 	#position = Vector2i(0,0)
@@ -33,13 +36,11 @@ func _ready():
 	temperature.seed = randi()
 	altitude.seed = randi()
 
-static var flockmos = 0
-
 func _process(_delta):
 	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
 	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
-
+	$"../../InGameCanvasLayer/Trees".text = "Trees " + str(globals.PlayerWood)
 	generate_chunk(player.position)
 	
 	var tile_pos = local_to_map(player.position)
@@ -48,13 +49,31 @@ func _process(_delta):
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	if( globals.PlayerWood > 0):
+		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
+		globals.PlayerWood -= 1
+	#set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 
-	if( round((moist+10)/5) >= 1 and round((temp+10)/5) == 1 ):
+	if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-	elif( round((moist+10)/5) >= 2 and round((temp+10)/5) == 1 ):
+		globals.PlayerWood+=2
+	elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-	elif( round((moist+10)/5) >= 3 ):
-		tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+		globals.PlayerWood+=2
+	#elif( round((moist+10)/5) >= 3 ):
+		#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((temp+10)/5) == 0 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+	elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
+		tile_position_info[tile_pos.x * width + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	else:
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	print(tile_pos)

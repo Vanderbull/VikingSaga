@@ -280,6 +280,7 @@ scale = Vector2(0.5, 0.5)
 occluder = SubResource("OccluderPolygon2D_0b3iy")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 50.0
