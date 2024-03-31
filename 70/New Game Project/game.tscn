@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=19 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bf4jil1d0pjen" path="res://player/player.tscn" id="8_h5l8u"]
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
+[ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 
@@ -3932,7 +3933,7 @@ format = 2
 layer_0/name = "ground"
 layer_1/name = "Buildings"
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(4259877, 131075, 0, 4259876, 131075, 0, 4325411, 131075, 0, 4325410, 131075, 0, 4325409, 131075, 0, 4325408, 131075, 0, 4259871, 131075, 0, 4259870, 131075, 0, 4194335, 131075, 0, 4194336, 131075, 0, 4128800, 131075, 0, 4128801, 131075, 0, 4063265, 131075, 0, 4063266, 131075, 0, 4128802, 131075, 0, 4128803, 131075, 0, 4128804, 131075, 0, 4194340, 131075, 0, 4194341, 131075, 0, 4259878, 131075, 0, 4325415, 131075, 0, 4259879, 131075, 0, 4259880, 131075, 0, 4194344, 131075, 0, 4194345, 131075, 0, 4128809, 131075, 0, 4063273, 131075, 0, 3997737, 131075, 0, 3932201, 131075, 0, 3932200, 131075, 0, 3932199, 131075, 0, 3932198, 131075, 0, 3932197, 131075, 0, 3997733, 131075, 0, 4063269, 131075, 0, 4063270, 131075, 0, 4128806, 131075, 0, 4128807, 131075, 0, 4063271, 131075, 0, 4063272, 131075, 0, 3997736, 131075, 0, 3997735, 131075, 0, 4063268, 131075, 0, 4063267, 131075, 0, 4063264, 131075, 0, 3997728, 131075, 0, 3997729, 131075, 0, 3932193, 131075, 0, 3932192, 131075, 0, 3932191, 131075, 0)
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("9_esbca")
 
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_h5l8u")]
@@ -3944,7 +3945,6 @@ platform_on_leave = 2
 speed = 300
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
-visible = false
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
@@ -3957,10 +3957,9 @@ tilemap = NodePath("../..")
 tile_set = SubResource("TileSet_ie527")
 format = 2
 layer_0/name = "ground"
-layer_0/tile_data = PackedInt32Array(-196613, 196609, 0, -196612, 196609, 0, -196611, 196609, 0, -131075, 196609, 0, -131074, 196609, 0, -65537, 196609, 0, -131072, 196609, 0, -65536, 196609, 0, 1, 196609, 0, 65537, 196609, 0, 65538, 196609, 0, 131074, 196609, 0, 131075, 196609, 0, 196611, 196609, 0, 262147, 196609, 0, 262148, 196609, 0, 327684, 196609, 0, 327685, 196609, 0)
 layer_1/name = "Buildings"
 layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(4259877, 131075, 0, 4259876, 131075, 0, 4325411, 131075, 0, 4325410, 131075, 0, 4325409, 131075, 0, 4325408, 131075, 0, 4259871, 131075, 0, 4259870, 131075, 0, 4194335, 131075, 0, 4194336, 131075, 0, 4128800, 131075, 0, 4128801, 131075, 0, 4063265, 131075, 0, 4063266, 131075, 0, 4128802, 131075, 0, 4128803, 131075, 0, 4128804, 131075, 0, 4194340, 131075, 0, 4194341, 131075, 0, 4259878, 131075, 0, 4325415, 131075, 0, 4259879, 131075, 0, 4259880, 131075, 0, 4194344, 131075, 0, 4194345, 131075, 0, 4128809, 131075, 0, 4063273, 131075, 0, 3997737, 131075, 0, 3932201, 131075, 0, 3932200, 131075, 0, 3932199, 131075, 0, 3932198, 131075, 0, 3932197, 131075, 0, 3997733, 131075, 0, 4063269, 131075, 0, 4063270, 131075, 0, 4128806, 131075, 0, 4128807, 131075, 0, 4063271, 131075, 0, 4063272, 131075, 0, 3997736, 131075, 0, 3997735, 131075, 0, 4063268, 131075, 0, 4063267, 131075, 0, 4063264, 131075, 0, 3997728, 131075, 0, 3997729, 131075, 0, 3932193, 131075, 0, 3932192, 131075, 0, 3932191, 131075, 0)
+layer_1/tile_data = PackedInt32Array()
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -3997,13 +3996,13 @@ offset_left = 345.0
 offset_top = 1.0
 offset_right = 385.0
 offset_bottom = 24.0
-text = "Trees"
+text = "Timber"
 
 [node name="Sand" type="Label" parent="InGameCanvasLayer"]
 offset_left = 460.0
 offset_right = 500.0
 offset_bottom = 23.0
-text = "Sand"
+text = "Sand:"
 
 [node name="ProgressBar" type="ProgressBar" parent="InGameCanvasLayer"]
 anchors_preset = 5
@@ -4016,3 +4015,18 @@ offset_bottom = 91.0
 grow_horizontal = 2
 size_flags_vertical = 4
 value = 100.0
+script = ExtResource("12_7vrp3")
+
+[node name="Label" type="Label" parent="InGameCanvasLayer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_top = -30.0
+offset_right = 51.5
+offset_bottom = -7.0
+grow_horizontal = 2
+text = "Action"
+horizontal_alignment = 1
+vertical_alignment = 1

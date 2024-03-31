@@ -35,7 +35,7 @@ func _ready():
 		#altitude.seed = randi()
 		#game_manager.playerData.LoadSaveGame = !game_manager.playerData.LoadSaveGame
 	#else:
-	print("Loading save game...")
+	#print("Loading save game...")
 	moisture.seed = game_manager.playerData.moisture
 	temperature.seed = game_manager.playerData.temperature
 	altitude.seed = game_manager.playerData.altitude
@@ -45,7 +45,7 @@ func _process(_delta):
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
 	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
 	#$"../../InGameCanvasLayer/Trees".text = "Trees " + str(globals.PlayerWood)
-	$"../../InGameCanvasLayer/Sand".text = "Sand " + str(globals.PlayerSand)
+	#$"../../InGameCanvasLayer/Sand".text = "Sand: " + str(globals.PlayerSand)
 	generate_chunk(player.position)
 	
 	var tile_pos = local_to_map(player.position)
@@ -59,6 +59,7 @@ func _process(_delta):
 	if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
 		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 		#globals.PlayerWood -= 1
+		game_manager.playerData.PlayerWood -= 1
 		globals.RoadWorks = not globals.RoadWorks
 	#set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 
@@ -78,35 +79,35 @@ func _process(_delta):
 		#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	elif( round((temp+10)/5) == 0 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "None"
+		globals.Terrain = "Snow"
 		globals.ForestCutting = false
 	elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 		if(globals.ForestCutting):
 			globals.PlayerSand+=1
-		globals.Terrain = "None"
+		globals.Terrain = "Sand"
 		globals.ForestCutting = false
 	elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 		if(globals.ForestCutting):
 			globals.PlayerSand+=1
-		globals.Terrain = "None"
+		globals.Terrain = "Sand"
 		globals.ForestCutting = false
 	elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "None"
+		globals.Terrain = "Forest"
 		globals.ForestCutting = false
 	elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "None"
+		globals.Terrain = "Water"
 		globals.ForestCutting = false
 	elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "None"
+		globals.Terrain = "Water"
 		globals.ForestCutting = false
 	else:
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "None"
+		globals.Terrain = "Clay"
 		globals.ForestCutting = false
 	
 func generate_chunk(position):

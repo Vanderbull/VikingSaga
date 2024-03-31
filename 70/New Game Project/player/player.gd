@@ -34,7 +34,7 @@ signal healthChangedVillage
 var walking = false
 
 @onready var worldMap = $".."
-@onready var HUD = $"../../HUD/Label"
+#@onready var HUD = $"../../HUD/Label"
 
 func _ready():
 	#position.x = 80
@@ -67,22 +67,25 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed and event.keycode == KEY_1:
+			#game_manager.playerData.PlayerWood -= 1
+			#$"../../../InGameCanvasLayer/ProgressBar".show()
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
+			if( globals.Terrain == "Sand" ):
+				$"../../../InGameCanvasLayer/ProgressBar".show()
+				globals.DigSand = not globals.DigSand
 			if( globals.Terrain == "Forest" ):
+				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
 			else:
 				globals.ForestCutting = false
-		if event.pressed and event.keycode == KEY_P:
-			gold -= 100
-			HUD.text = str(gold)
+				globals.DigSand = false
 		if event.pressed and event.keycode == KEY_Z:
 			$Camera2D.zoom.x += 0.25
 			$Camera2D.zoom.y += 0.25
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			# zoom in
-			print("scrolle")
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				print("up")
 				$Camera2D.zoom.x += 0.25

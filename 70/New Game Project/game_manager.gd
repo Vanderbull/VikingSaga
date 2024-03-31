@@ -32,13 +32,31 @@ func _ready():
 		print(TEST_CURVE.sample(0.25))
 		
 func _process(delta):
+	#if(globals.RoadWorks and playerData.PlayerWood > 0):
+		#$InGameCanvasLayer/ProgressBar/Label.text = "Building road"
+		#$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		#if( $InGameCanvasLayer/ProgressBar.value == 100 ):
+			#playerData.PlayerWood -= 1
+			#$InGameCanvasLayer/ProgressBar.value = 0
+			#globals.RoadWorks = false
+	if(globals.DigSand and globals.Terrain == "Sand"):
+		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
+			playerData.PlayerSand += 1
+			$InGameCanvasLayer/ProgressBar.value = 0
 	if(globals.ForestCutting and globals.Terrain == "Forest"):
+		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
+	else:
+		$InGameCanvasLayer/ProgressBar.hide()
+		$InGameCanvasLayer/ProgressBar.value = 0
 		
 	$InGameCanvasLayer/Trees.text = "Trees: " + str(playerData.PlayerWood)
+	$InGameCanvasLayer/Sand.text = "Sand: " + str(playerData.PlayerSand)
 	
 		
 func _input(event : InputEvent):

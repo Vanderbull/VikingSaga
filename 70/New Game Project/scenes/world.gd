@@ -2,14 +2,14 @@ extends Node2D
 
 @onready var globals = get_node("/root/Globals")
 
-@onready var heartsContainer = $HUD/TopRightPanel/heartsContainer
-@onready var heartsContainer2 = $HUD/TopLeftPanel/heartsContainer2
+#@onready var heartsContainer = $HUD/TopRightPanel/heartsContainer
+#@onready var heartsContainer2 = $HUD/TopLeftPanel/heartsContainer2
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
-@onready var slime = $TileMap/slime
-@onready var slime2 = $TileMap/slime2
-@onready var ship = $TileMap/Path2D/PathFollow2D/Ship
-@onready var timered = $Timer
+#@onready var slime = $TileMap/slime
+#@onready var slime2 = $TileMap/slime2
+#@onready var ship = $TileMap/Path2D/PathFollow2D/Ship
+#@onready var timered = $Timer
 
 const ENEMY_SCENE_PATH : String = "res://city.tscn"
 

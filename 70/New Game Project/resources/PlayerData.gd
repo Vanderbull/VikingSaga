@@ -15,25 +15,22 @@ const save_file_name := "PlayerSave.tres"
 @export var LoadSaveGame = false
 
 @export var PlayerGold = 100
-@export var PlayerHides = 100
-@export var PlayerThralls = 100
-@export var PlayerFarmers = 100
-@export var PlayerWarriors = 100
 
 @export var PlayerWood = 0
 @export var PlayerSand = 0
+@export var PlayerClay = 0
 @export var PlayerWater = 0
 
 @export var PlayerShip = false
 @export var PlayerShipSpeed = 250.0
 @export var PlayerFood = 1500
 
-
 @export var cloud_position = Vector2(100,100)
 
 @export var RoadWorks = false
 @export var ForestCutting = false
-@export var xdonkey = 0
+@export var DigSand = false
+@export var CollectWater = false
 
 func change_playerWood(value: int):
 	PlayerWood += value
