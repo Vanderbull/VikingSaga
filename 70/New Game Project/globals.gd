@@ -23,3 +23,4 @@ var cloud_position = Vector2(100,100)
 var RoadWorks = false
 var ForestCutting = false
 var xdonkey = 0
+var Terrain = "None"

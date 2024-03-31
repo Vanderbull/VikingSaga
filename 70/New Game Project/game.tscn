@@ -3966,6 +3966,7 @@ layer_1/tile_data = PackedInt32Array(4259877, 131075, 0, 4259876, 131075, 0, 432
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
 process_mode = 2
+visible = false
 game_manager = NodePath("../..")
 
 [node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
@@ -4003,3 +4004,15 @@ offset_left = 460.0
 offset_right = 500.0
 offset_bottom = 23.0
 text = "Sand"
+
+[node name="ProgressBar" type="ProgressBar" parent="InGameCanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_top = 64.0
+offset_right = 134.0
+offset_bottom = 91.0
+grow_horizontal = 2
+size_flags_vertical = 4
+value = 100.0

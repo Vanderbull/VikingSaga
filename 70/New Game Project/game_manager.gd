@@ -32,6 +32,12 @@ func _ready():
 		print(TEST_CURVE.sample(0.25))
 		
 func _process(delta):
+	if(globals.ForestCutting and globals.Terrain == "Forest"):
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
+			playerData.PlayerWood += 1
+			$InGameCanvasLayer/ProgressBar.value = 0
+		
 	$InGameCanvasLayer/Trees.text = "Trees: " + str(playerData.PlayerWood)
 	
 		

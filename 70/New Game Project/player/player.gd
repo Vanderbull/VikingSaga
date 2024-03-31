@@ -69,12 +69,11 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_1:
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
-			globals.ForestCutting = not globals.ForestCutting
+			if( globals.Terrain == "Forest" ):
+				globals.ForestCutting = not globals.ForestCutting
+			else:
+				globals.ForestCutting = false
 		if event.pressed and event.keycode == KEY_P:
-			
-			#print_debug(tile_pos.x)
-			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 5), 0 ,Vector2i(25,14))
-			#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 1 ,Vector2i(0,0))
 			gold -= 100
 			HUD.text = str(gold)
 		if event.pressed and event.keycode == KEY_Z:
