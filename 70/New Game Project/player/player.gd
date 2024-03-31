@@ -7,6 +7,7 @@ signal healthChangedShip
 signal healthChangedVillage
 
 @onready var globals = get_node("/root/Globals")
+@onready var game_manager = $"../../.."
 
 @export var speed: int = 16
 
@@ -36,14 +37,9 @@ var walking = false
 @onready var HUD = $"../../HUD/Label"
 
 func _ready():
-	position.x = 80
-	position.y = 16
-	#worldMap.set_cell(0, Vector2i(0, 0), 0 ,Vector2i(0,0))
-	$Identity.text = globals.globalman
-	#print_debug("READY THE PLAYER AGAIN")
+	#position.x = 80
+	#position.y = 16
 	effects.play("RESET")
-	#print(position)
-	#target = position
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
@@ -100,8 +96,9 @@ func _unhandled_input(event):
 		
 		
 func _process(_delta):
+	game_manager.playerData.player_position = position
+	#position.x += 1
 	_delta = 0.00000000000
-	$Identity.text = globals.globalman
 	#velocity = position.direction_to(target) * speed
 	# look_at(target)
 	#if position.distance_to(target) > 10:

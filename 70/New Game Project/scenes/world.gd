@@ -148,16 +148,13 @@ func _on_helgo_body_exited(_body):
 
 func _on_forest_body_entered(_body):
 	PlayerCuttingTrees = true
-	pass # Replace with function body.
 
 func _on_forest_body_exited(_body):
 	PlayerCuttingTrees = false
-	pass # Replace with function body.
 
 func _on_quest_area_body_entered(_body):
 	#$QuestCanvasLayer/Control/ItemList.add_item("FIND A DONKEY")
 	$TileMap/QuestArea.queue_free()
-	pass # Replace with function body.
 
 func _on_raid_button_pressed():
 	if CurrentArea == "Sigtuna settlement":
@@ -169,15 +166,12 @@ func _on_raid_button_pressed():
 	globals.PlayerGold += 1000
 	print("Settlement %s was raided")
 	CurrentArea = ""
-	pass # Replace with function body.
 
 func _on_raid_button_button_up():
 	$HUD/StatusInfo/RaidButton.visible = false
-	pass # Replace with function body.
 	
 func _on_enter_button_pressed():
 	get_tree().change_scene_to_file("res://city.tscn")
-	pass # Replace with function body.
 
 
 

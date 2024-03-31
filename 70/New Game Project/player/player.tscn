@@ -295,6 +295,7 @@ stream = ExtResource("4_cb2ry")
 volume_db = -13.368
 
 [node name="Identity" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Player"

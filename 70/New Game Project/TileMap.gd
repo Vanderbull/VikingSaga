@@ -1,6 +1,7 @@
 extends TileMap
 
 @onready var globals = get_node("/root/Globals")
+@onready var game_manager = $"../.."
 
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
@@ -26,21 +27,24 @@ func _ready():
 
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
-	#Randomize world
-	#moisture.seed = -296421265#randi()
-	#temperature.seed = 1329636442#randi()
-	#altitude.seed = 1469612428#randi()
 
-	#Randomize cloud layer
-	moisture.seed = randi()
-	temperature.seed = randi()
-	altitude.seed = randi()
+	#if( !game_manager.playerData.LoadSaveGame ):
+		#print("Not loading save game...")
+		#moisture.seed = randi()
+		#temperature.seed = randi()
+		#altitude.seed = randi()
+		#game_manager.playerData.LoadSaveGame = !game_manager.playerData.LoadSaveGame
+	#else:
+	print("Loading save game...")
+	moisture.seed = game_manager.playerData.moisture
+	temperature.seed = game_manager.playerData.temperature
+	altitude.seed = game_manager.playerData.altitude
 
 func _process(_delta):
 	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
 	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
-	$"../../InGameCanvasLayer/Trees".text = "Trees " + str(globals.PlayerWood)
+	#$"../../InGameCanvasLayer/Trees".text = "Trees " + str(globals.PlayerWood)
 	$"../../InGameCanvasLayer/Sand".text = "Sand " + str(globals.PlayerSand)
 	generate_chunk(player.position)
 	
@@ -50,20 +54,24 @@ func _process(_delta):
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-	if( globals.PlayerWood > 0 and globals.RoadWorks):
+	
+	#if( globals.PlayerWood > 0 and globals.RoadWorks):
+	if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
 		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
-		globals.PlayerWood -= 1
+		#globals.PlayerWood -= 1
 		globals.RoadWorks = not globals.RoadWorks
 	#set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 
 	if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 		if(globals.ForestCutting):
-			globals.PlayerWood+=1
+			game_manager.playerData.PlayerWood += 1
+			#globals.PlayerWood+=1
 	elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " FORERST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 		if(globals.ForestCutting):
-			globals.PlayerWood+=1
+			game_manager.playerData.PlayerWood += 1
+			#globals.PlayerWood+=1
 	#elif( round((moist+10)/5) >= 3 ):
 		#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 	elif( round((temp+10)/5) == 0 ):

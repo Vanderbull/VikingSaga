@@ -3,7 +3,7 @@ extends Control
 @export var game_manager : GameManager
 
 func _ready():
-	verify_save_directory(game_manager.save_file_path)
+	verify_save_directory(game_manager.playerData.save_file_path)
 	hide()
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
 	
@@ -35,12 +35,19 @@ func _on_exit_button_pressed():
 func _on_save_button_pressed():
 	print("SAVE PRESSED")
 	print(OS.get_user_data_dir())
-	ResourceSaver.save(game_manager.playerData, game_manager.save_file_path + game_manager.save_file_name)
+	ResourceSaver.save(game_manager.playerData, game_manager.playerData.save_file_path + game_manager.playerData.save_file_name)
+	game_manager.playerData.save("user://save/tilemap2.tres",$"../../world/TileMap2")
 	
 
 func _on_load_button_pressed():
 	print("LOAD PRESSED")
-	if ResourceLoader.exists(game_manager.save_file_path + game_manager.save_file_name):
-		game_manager.playerData = ResourceLoader.load(game_manager.save_file_path + game_manager.save_file_name).duplicate(true)
-		$"../../InGameCanvasLayer/Trees".text = str(game_manager.playerData.health)
+	if ResourceLoader.exists(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name):
+		game_manager.playerData = ResourceLoader.load(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name).duplicate(true)
+		$"../../world/TileMap/Player".position = game_manager.playerData.player_position
+		game_manager.playerData.LoadSaveGame = true
+		game_manager.playerData.load("user://save/tilemap2.tres",$"../../world/TileMap2")
+		#game_manager.playerData.moisture = moisture.seed
+		#game_manager.playerData.temperature = temperature.seed
+		#game_manager.playerData.altitude = altitude.seed
+		#$"../../InGameCanvasLayer/Trees".text = str(game_manager.playerData.health)
 	return null

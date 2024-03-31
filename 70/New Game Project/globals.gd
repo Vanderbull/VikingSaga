@@ -1,7 +1,6 @@
 extends Node
 
 var ready_already = true
-var globalman = "I AM A GLOBAL MAN"
 var player_position = Vector2(0,0)
 
 var PlayerGold = 100
@@ -10,7 +9,7 @@ var PlayerThralls = 100
 var PlayerFarmers = 100
 var PlayerWarriors = 100
 
-var PlayerWood = 0
+#var PlayerWood = 0
 var PlayerSand = 0
 var PlayerWater = 0
 
