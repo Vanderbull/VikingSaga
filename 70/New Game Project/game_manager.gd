@@ -7,6 +7,11 @@ signal toggle_quest_paused(is_paused : bool)
 
 var _save: SaveGame
 
+var save_file_path = "user://save/"
+var save_file_name = "PlayerSave.tres"
+
+var playerData = PlayerData.new()
+
 var game_paused : bool = false:
 	get:
 		return game_paused
