@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=24 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
+[ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
+[ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 
@@ -3934,6 +3936,8 @@ region = Rect2(48, 0, 16, 16)
 process_mode = 3
 script = ExtResource("1_sr55i")
 
+[node name="MeshInstance3D" parent="." instance=ExtResource("13_v05m7")]
+
 [node name="world" type="Node2D" parent="."]
 process_mode = 1
 scale = Vector2(1.00092, 1)
@@ -4062,3 +4066,10 @@ grow_horizontal = 2
 text = "Action"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InventoryGui" parent="InGameCanvasLayer" instance=ExtResource("14_ef3pu")]
+offset_left = 760.0
+offset_top = 400.0
+offset_right = 800.0
+offset_bottom = 440.0
+scale = Vector2(3, 3)
