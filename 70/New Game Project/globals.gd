@@ -7,5 +7,6 @@ var cloud_position = Vector2(100,100)
 var RoadWorks = false
 var ForestCutting = false
 var DigSand = false
+var CollectWater = false
 
 var Terrain = "None"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=22 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -3918,6 +3918,18 @@ sources/2 = SubResource("TileSetAtlasSource_nci7c")
 sources/3 = SubResource("TileSetAtlasSource_goli3")
 sources/1 = SubResource("TileSetAtlasSource_758pu")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7dll"]
+atlas = ExtResource("3_jbup0")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc48i"]
+atlas = ExtResource("3_jbup0")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g4l0"]
+atlas = ExtResource("3_jbup0")
+region = Rect2(48, 0, 16, 16)
+
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -3992,17 +4004,37 @@ offset_right = 41.0
 offset_bottom = 100.0
 
 [node name="Trees" type="Label" parent="InGameCanvasLayer"]
-offset_left = 345.0
-offset_top = 1.0
-offset_right = 385.0
-offset_bottom = 24.0
+offset_left = 320.0
+offset_right = 375.0
+offset_bottom = 23.0
 text = "Timber"
 
+[node name="Sprite2DTrees" type="Sprite2D" parent="InGameCanvasLayer/Trees"]
+position = Vector2(-24, 16)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_i7dll")
+
 [node name="Sand" type="Label" parent="InGameCanvasLayer"]
-offset_left = 460.0
-offset_right = 500.0
+offset_left = 448.0
+offset_right = 491.0
 offset_bottom = 23.0
 text = "Sand:"
+
+[node name="Sprite2DSand" type="Sprite2D" parent="InGameCanvasLayer/Sand"]
+position = Vector2(-24, 16)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_dc48i")
+
+[node name="Water" type="Label" parent="InGameCanvasLayer"]
+offset_left = 576.0
+offset_right = 628.0
+offset_bottom = 23.0
+text = "Water:"
+
+[node name="Sprite2DWater" type="Sprite2D" parent="InGameCanvasLayer/Water"]
+position = Vector2(-24, 16)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_4g4l0")
 
 [node name="ProgressBar" type="ProgressBar" parent="InGameCanvasLayer"]
 anchors_preset = 5

@@ -58,7 +58,6 @@ func _process(_delta):
 	#if( globals.PlayerWood > 0 and globals.RoadWorks):
 	if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
 		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
-		#globals.PlayerWood -= 1
 		game_manager.playerData.PlayerWood -= 1
 		globals.RoadWorks = not globals.RoadWorks
 	#set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))

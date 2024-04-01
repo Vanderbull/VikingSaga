@@ -45,11 +45,17 @@ func _process(delta):
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerSand += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
-	if(globals.ForestCutting and globals.Terrain == "Forest"):
+	elif(globals.ForestCutting and globals.Terrain == "Forest"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
+			$InGameCanvasLayer/ProgressBar.value = 0
+	elif(globals.CollectWater and globals.Terrain == "Water"):
+		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
+			playerData.PlayerWater += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
 	else:
 		$InGameCanvasLayer/ProgressBar.hide()
@@ -57,6 +63,7 @@ func _process(delta):
 		
 	$InGameCanvasLayer/Trees.text = "Trees: " + str(playerData.PlayerWood)
 	$InGameCanvasLayer/Sand.text = "Sand: " + str(playerData.PlayerSand)
+	$InGameCanvasLayer/Water.text = "Water: " + str(playerData.PlayerWater)
 	
 		
 func _input(event : InputEvent):

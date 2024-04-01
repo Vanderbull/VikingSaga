@@ -77,9 +77,14 @@ func _unhandled_input(event):
 			if( globals.Terrain == "Forest" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
-			else:
-				globals.ForestCutting = false
-				globals.DigSand = false
+			if( globals.Terrain == "Water" ):
+				$"../../../InGameCanvasLayer/ProgressBar".show()
+				globals.CollectWater = not globals.CollectWater
+			#else:
+				#globals.ForestCutting = false
+				#globals.DigSand = false
+				#globals.CollectWater = false
+				
 		if event.pressed and event.keycode == KEY_Z:
 			$Camera2D.zoom.x += 0.25
 			$Camera2D.zoom.y += 0.25
