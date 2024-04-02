@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cee5idrywffoe"]
+[gd_scene load_steps=4 format=3 uid="uid://cee5idrywffoe"]
 
 [ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="1_3tuag"]
+[ext_resource type="Script" path="res://inventory_gui.gd" id="1_vtpep"]
 [ext_resource type="Texture2D" uid="uid://cmjvhujihluf4" path="res://assets/inventorySlot.png" id="2_4xttj"]
 
 [node name="InventoryGui" type="Control"]
+custom_minimum_size = Vector2(138, 90)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_vtpep")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(138, 90)
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 80.0
