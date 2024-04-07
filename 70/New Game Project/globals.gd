@@ -10,3 +10,5 @@ var DigSand = false
 var CollectWater = false
 
 var Terrain = "None"
+
+var Walking = false

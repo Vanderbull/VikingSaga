@@ -18,10 +18,6 @@ signal healthChangedVillage
 @onready var sound = $AudioStreamPlayer2D
 @onready var soundAttack = $AudioStreamPlayer
 
-@export var MaxHealth = 10
-@onready var CurrentHealth: int = MaxHealth
-@export var knockbackPower: int  = 500
-
 @export_enum("VIKING", "MARAUDER", "SHIELDMAIDEN") var character_class: int
 
 @export_flags("Fire", "Water", "Earth", "Wind") var spell_elements = 0
@@ -34,7 +30,6 @@ signal healthChangedVillage
 var walking = false
 
 @onready var worldMap = $".."
-#@onready var HUD = $"../../HUD/Label"
 
 func _ready():
 	#position.x = 80
@@ -44,13 +39,13 @@ func _ready():
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	velocity = moveDirection*speed
-
 	
 func updateAnimation():
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
 			walking = false
+			globals.Walking = false
 	else:
 		var direction = "Down"
 		if velocity.x < 0: direction = "Left"
@@ -59,6 +54,7 @@ func updateAnimation():
 	
 		animations.play("walk" + direction)
 		walking = true
+		globals.Walking = true
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
@@ -67,8 +63,6 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed and event.keycode == KEY_1:
-			#game_manager.playerData.PlayerWood -= 1
-			#$"../../../InGameCanvasLayer/ProgressBar".show()
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
 			if( globals.Terrain == "Sand" ):
@@ -80,10 +74,9 @@ func _unhandled_input(event):
 			if( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
-			#else:
-				#globals.ForestCutting = false
-				#globals.DigSand = false
-				#globals.CollectWater = false
+		if event.pressed and event.keycode == KEY_3:
+			# Burn some wood
+			pass
 				
 		if event.pressed and event.keycode == KEY_Z:
 			$Camera2D.zoom.x += 0.25
@@ -126,13 +119,13 @@ func _on_hurt_box_area_entered(area):
 		if area.get_parent().hp <= 0:
 			gold += 10
 			area.get_parent().queue_free()
-		CurrentHealth -= 1
-		healthChanged.emit(CurrentHealth)
+		#CurrentHealth -= 1
+		#healthChanged.emit(CurrentHealth)
 		soundAttack.play()
-		var knockbackDirection = (-velocity).normalized() * knockbackPower
-		var knockbacked = knockbackDirection
-		velocity = knockbacked
-		move_and_slide()
+		#var knockbackDirection = (-velocity).normalized() * knockbackPower
+		#var knockbacked = knockbackDirection
+		#velocity = knockbacked
+		#move_and_slide()
 
 	if area.name == "shipHitbox":
 		if $"../Path2D/PathFollow2D/Ship".visible:
@@ -148,12 +141,12 @@ func _on_hurt_box_area_entered(area):
 		area.get_parent().hp -= 1
 		if area.get_parent().hp <= 0:
 			area.get_parent().queue_free()
-		CurrentHealth -= 1
-		if CurrentHealth < 0:
-			get_tree().change_scene_to_file("res://3d/3d.tscn")
+		#CurrentHealth -= 1
+		#if CurrentHealth < 0:
+			#get_tree().change_scene_to_file("res://3d/3d.tscn")
 			#CurrentHealth = MaxHealth
 			
-		healthChanged.emit(CurrentHealth)
+		#healthChanged.emit(CurrentHealth)
 		knockback(area.get_parent().velocity)
 		effects.play("hurtBlink")
 		hurtTimer.start()
@@ -162,9 +155,10 @@ func _on_hurt_box_area_entered(area):
 		soundAttack.play()
 
 func knockback(enemyVelocity: Vector2):
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
-	velocity = knockbackDirection
-	move_and_slide()
+	#var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	#velocity = knockbackDirection
+	#move_and_slide()
+	pass
 
 
 func _on_show_stats_box_area_entered(area):

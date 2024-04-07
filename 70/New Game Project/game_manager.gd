@@ -30,6 +30,7 @@ func _ready():
 	if OS.is_debug_build():
 		print("Debug mode enabled")
 		print(TEST_CURVE.sample(0.25))
+		game_paused = !game_paused
 		
 func _process(delta):
 	#if(globals.RoadWorks and playerData.PlayerWood > 0):
@@ -39,6 +40,10 @@ func _process(delta):
 			#playerData.PlayerWood -= 1
 			#$InGameCanvasLayer/ProgressBar.value = 0
 			#globals.RoadWorks = false
+	if( globals.Walking == true):
+		playerData.PlayerFood -= 1
+		playerData.PlayerWater -= 1
+		
 	if(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
@@ -64,10 +69,19 @@ func _process(delta):
 	$InGameCanvasLayer/Trees.text = "Trees: " + str(playerData.PlayerWood)
 	$InGameCanvasLayer/Sand.text = "Sand: " + str(playerData.PlayerSand)
 	$InGameCanvasLayer/Water.text = "Water: " + str(playerData.PlayerWater)
+	$InGameCanvasLayer/Clay.text = "Clay: " + str(playerData.PlayerClay)
 	
 		
 func _input(event : InputEvent):
 	if(event.is_action_pressed("ui_cancel")):
 		game_paused = !game_paused
-	if(event.is_action_pressed("ui_home")):
-		quest_paused = !quest_paused
+	#if(event.is_action_pressed("ui_home")):
+	#	quest_paused = !quest_paused
+
+
+func _on_inventory_gui_closed():
+	get_tree().paused = false
+
+
+func _on_inventory_gui_opened():
+	get_tree().paused = true

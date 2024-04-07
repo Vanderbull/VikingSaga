@@ -7,6 +7,7 @@ const save_file_path := "user://save/"
 const save_file_name := "PlayerSave.tres"
 
 @export var player_position = Vector2(0,0)
+@export var cloud_position = Vector2(100,100)
 
 @export var moisture = 0
 @export var temperature = 0
@@ -14,24 +15,26 @@ const save_file_name := "PlayerSave.tres"
 
 @export var LoadSaveGame = false
 
-@export var PlayerGold = 100
-
+# Resources
 @export var PlayerWood = 0
 @export var PlayerSand = 0
 @export var PlayerClay = 0
+@export var PlayerCoal = 0
 @export var PlayerWater = 0
-
-@export var PlayerShip = false
-@export var PlayerShipSpeed = 250.0
-@export var PlayerFood = 1500
-
-@export var cloud_position = Vector2(100,100)
-
+@export var PlayerFood = 0
+@export var PlayerGold = 0
+@export var PlayerSilver = 0
+@export var PlayerIron = 0
+@export var PlayerCopper = 0
+# Actions
 @export var RoadWorks = false
 @export var ForestCutting = false
 @export var DigSand = false
 @export var CollectWater = false
+@export var DigClay = false
+@export var Hunt = false
 
+# Functions below here
 func change_playerWood(value: int):
 	PlayerWood += value
 	return PlayerWood
@@ -54,8 +57,7 @@ func save(path:String, tile_map:TileMap) -> void:
 	# Save the array to a file as a JSON
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(tile_map_layers))
-	file.close()
-	
+	file.close()	
 
 func load(path:String, tile_map:TileMap) -> void:
 	# Read the file as a String and parse the JSON

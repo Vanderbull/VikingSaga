@@ -219,7 +219,6 @@ anim_speed_curve = SubResource("CurveTexture_1viqd")
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_b0x02")
-knockbackPower = 1000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
