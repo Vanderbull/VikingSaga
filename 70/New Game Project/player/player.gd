@@ -74,6 +74,7 @@ func _unhandled_input(event):
 			if( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
+				
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass

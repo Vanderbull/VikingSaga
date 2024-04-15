@@ -57,8 +57,10 @@ func _process(_delta):
 	
 	var data = $"../AnimalMap".get_cell_tile_data ( 0, Vector2i(tile_pos.x, tile_pos.y) )
 	if data:
+		globals.Hunt = true
 		print(data.get_custom_data("Type"))
 	else:
+		globals.Hunt = false
 		print("No animal present")
 	
 	#if( globals.PlayerWood > 0 and globals.RoadWorks):

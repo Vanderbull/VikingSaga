@@ -43,6 +43,9 @@ func _process(delta):
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
+	if( globals.Hunt == true):
+		playerData.PlayerFood += 1
+		
 		
 	if(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=38 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -5909,6 +5909,15 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("3_jbup0")
 region = Rect2(32, 0, 16, 16)
 
+[sub_resource type="Gradient" id="Gradient_a8qux"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l3lke"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mvi7"]
+seamless = true
+color_ramp = SubResource("Gradient_a8qux")
+noise = SubResource("FastNoiseLite_l3lke")
+
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -6105,6 +6114,11 @@ offset_right = 69.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+energy = 0.69
+texture = SubResource("NoiseTexture2D_6mvi7")
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
