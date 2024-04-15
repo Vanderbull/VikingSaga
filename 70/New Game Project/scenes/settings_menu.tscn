@@ -98,5 +98,5 @@ text = "Exit
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2te05")
-volume_db = -20.0
+volume_db = -40.0
 autoplay = true

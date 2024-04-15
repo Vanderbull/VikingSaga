@@ -45,7 +45,6 @@ func _unhandled_input(event):
 				#heartsContainer2.updateHearts(ship.hp)
 		if event.pressed and event.keycode == KEY_3:
 			get_tree().change_scene_to_file("res://scenes/world.tscn")
-			enemy.visible = true
 		if event.pressed and event.keycode == KEY_4:
 			get_tree().change_scene_to_file("res://city.tscn")
 		if event.pressed and event.keycode == KEY_5:

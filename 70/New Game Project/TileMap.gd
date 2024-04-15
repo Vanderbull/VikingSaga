@@ -55,6 +55,12 @@ func _process(_delta):
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	
+	var data = $"../AnimalMap".get_cell_tile_data ( 0, Vector2i(tile_pos.x, tile_pos.y) )
+	if data:
+		print(data.get_custom_data("Type"))
+	else:
+		print("No animal present")
+	
 	#if( globals.PlayerWood > 0 and globals.RoadWorks):
 	if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
 		$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))

@@ -8,6 +8,8 @@ var RoadWorks = false
 var ForestCutting = false
 var DigSand = false
 var CollectWater = false
+var Hunt = false
+
 
 var Terrain = "None"
 

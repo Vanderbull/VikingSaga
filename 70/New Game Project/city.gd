@@ -40,15 +40,6 @@ extends CanvasLayer
 
 func _ready():
 	RumorsLabel.visible = false
-	if globals.PlayerWood >= 10 and globals.PlayerShip != true:
-		$Control/CenterContainer/HBoxContainer/VBoxContainer/BuildShip.visible = true
-	else:
-		$Control/CenterContainer/HBoxContainer/VBoxContainer/BuildShip.visible = false
-		
-	if globals.PlayerWood >= 10 and globals.PlayerShip == true:
-		$Control/CenterContainer/HBoxContainer/VBoxContainer2/UpgradeShip.visible = true
-	else:
-		$Control/CenterContainer/HBoxContainer/VBoxContainer2/UpgradeShip.visible = false
 		
 func _on_exit_button_pressed():
 	#globals.player_position.x -= 100

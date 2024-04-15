@@ -26,13 +26,15 @@ const save_file_name := "PlayerSave.tres"
 @export var PlayerSilver = 0
 @export var PlayerIron = 0
 @export var PlayerCopper = 0
+@export var PlayerMeat = 0
+@export var PlayerFish = 0
 # Actions
 @export var RoadWorks = false
 @export var ForestCutting = false
 @export var DigSand = false
 @export var CollectWater = false
 @export var DigClay = false
-@export var Hunt = false
+@export var Hunting = false
 
 # Functions below here
 func change_playerWood(value: int):

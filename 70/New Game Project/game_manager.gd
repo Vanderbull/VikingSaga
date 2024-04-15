@@ -70,6 +70,7 @@ func _process(delta):
 	$InGameCanvasLayer/Sand.text = "Sand: " + str(playerData.PlayerSand)
 	$InGameCanvasLayer/Water.text = "Water: " + str(playerData.PlayerWater)
 	$InGameCanvasLayer/Clay.text = "Clay: " + str(playerData.PlayerClay)
+	$InGameCanvasLayer/Food.text = "Food: " + str(playerData.PlayerFood)
 	
 		
 func _input(event : InputEvent):
