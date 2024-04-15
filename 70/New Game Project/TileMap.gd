@@ -61,7 +61,7 @@ func _process(_delta):
 		print(data.get_custom_data("Type"))
 	else:
 		globals.Hunt = false
-		print("No animal present")
+		#print("No animal present")
 	
 	#if( globals.PlayerWood > 0 and globals.RoadWorks):
 	if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):

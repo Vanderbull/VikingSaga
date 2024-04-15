@@ -32,8 +32,9 @@ var walking = false
 @onready var worldMap = $".."
 
 func _ready():
-	#position.x = 80
-	#position.y = 16
+	walking = false
+	velocity = Vector2i(0,0)
+	globals.Walking = false
 	effects.play("RESET")
 
 func handleInput():
@@ -97,6 +98,8 @@ func _unhandled_input(event):
 		
 		
 func _process(_delta):
+	if( game_manager.playerData.PlayerFood < 0 ):
+		get_tree().reload_current_scene()
 	game_manager.playerData.player_position = position
 	#position.x += 1
 	_delta = 0.00000000000

@@ -2,16 +2,11 @@ extends Node2D
 
 @onready var globals = get_node("/root/Globals")
 
-#@onready var heartsContainer = $HUD/TopRightPanel/heartsContainer
-#@onready var heartsContainer2 = $HUD/TopLeftPanel/heartsContainer2
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
-#@onready var slime = $TileMap/slime
-#@onready var slime2 = $TileMap/slime2
-#@onready var ship = $TileMap/Path2D/PathFollow2D/Ship
-#@onready var timered = $Timer
 
 const ENEMY_SCENE_PATH : String = "res://city.tscn"
+
 
 var enemy = null
 var PlayerGridPosition = Vector2i(0,0)
@@ -20,6 +15,7 @@ var CurrentArea
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("Game _ready")
 	player.position = Vector2i(0,0)
 	player.global_position = Vector2i(0,0)
 	
@@ -53,9 +49,7 @@ func _unhandled_input(event):
 			pass
 			#$QuestCanvasLayer/Control/ItemList.add_donkey() #.add_item("FIND A DONKEY")
 		if event.pressed and event.keycode == KEY_7:
-			globals.PlayerFood = 1000
-			globals.PlayerWater = 1000
-			globals.PlayerWood = 100
+			get_tree().reload_current_scene()
 
 func _on_area_2d_body_entered(_body):
 	print("body entered area")

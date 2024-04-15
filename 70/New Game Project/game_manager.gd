@@ -27,6 +27,12 @@ var quest_paused : bool = false:
 		emit_signal("toggle_quest_paused",quest_paused)
 		
 func _ready():
+	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
+	
+	playerData = PlayerData.new()
+	#playerData = load("res://resources/PlayerData.gd")
+	#ResourceLoader.load_threaded_request(PLAYERDATA_PATH)
+	#playerData = ResourceLoader.load_threaded_get(PLAYERDATA_PATH)
 	if OS.is_debug_build():
 		print("Debug mode enabled")
 		print(TEST_CURVE.sample(0.25))
