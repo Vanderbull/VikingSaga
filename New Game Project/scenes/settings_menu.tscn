@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="1_h5g4a"]
 [ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_jka22"]
-[ext_resource type="AudioStream" uid="uid://cfo607hu24dvs" path="res://assets/1_Black Moon Tavern by Ean Grimm.mp3" id="3_2te05"]
+[ext_resource type="AudioStream" uid="uid://bd0qudx3dw1yt" path="res://sound/1_Black Moon Tavern by Ean Grimm.mp3" id="3_bnds6"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -97,6 +97,6 @@ text = "Exit
 "
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_2te05")
+stream = ExtResource("3_bnds6")
 volume_db = -40.0
 autoplay = true

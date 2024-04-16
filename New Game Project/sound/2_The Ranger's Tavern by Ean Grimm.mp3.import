@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba0gsqd47qycd"
+path="res://.godot/imported/2_The Ranger's Tavern by Ean Grimm.mp3-ffa8a2d05546242189aed05b6ac1421f.mp3str"
+
+[deps]
+
+source_file="res://sound/2_The Ranger's Tavern by Ean Grimm.mp3"
+dest_files=["res://.godot/imported/2_The Ranger's Tavern by Ean Grimm.mp3-ffa8a2d05546242189aed05b6ac1421f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

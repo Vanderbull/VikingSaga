@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6wvf0urm2dmc"
+path="res://.godot/imported/Nordic Fantasy Music – Yfir _ Viking, Enchanted.mp3-df00ed62add55fa69fba3efbd3248986.mp3str"
+
+[deps]
+
+source_file="res://sound/Nordic Fantasy Music – Yfir _ Viking, Enchanted.mp3"
+dest_files=["res://.godot/imported/Nordic Fantasy Music – Yfir _ Viking, Enchanted.mp3-df00ed62add55fa69fba3efbd3248986.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
