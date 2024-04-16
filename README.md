@@ -1,5 +1,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Vanderbull/VikingSaga)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Vanderbull/VikingSaga/total)
+![GitHub top language](https://img.shields.io/github/languages/top/vanderbull/vikingsaga)
 
 
 ![VIKINGSAGA](https://github.com/Vanderbull/VikingSaga/assets/1743820/579a6736-373b-428f-adc1-4897916ed971)
