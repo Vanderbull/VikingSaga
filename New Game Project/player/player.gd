@@ -32,6 +32,8 @@ var walking = false
 @onready var worldMap = $".."
 
 func _ready():
+	$Camera2D.zoom.x = 6.00
+	$Camera2D.zoom.y = 6.00
 	walking = false
 	velocity = Vector2i(0,0)
 	globals.Walking = false
