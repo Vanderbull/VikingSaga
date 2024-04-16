@@ -1,9 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=29 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://b22xcgirlfwm5" path="res://arts/player.png" id="1_b63l5"]
-[ext_resource type="AudioStream" uid="uid://c1qceuhiicxc3" path="res://arts/footsteps-boots-101657.mp3" id="3_3ucja"]
-[ext_resource type="AudioStream" uid="uid://cg0gh1w3fmxjc" path="res://arts/clean-fast-swooshaiff-14784.mp3" id="4_cb2ry"]
 [ext_resource type="Texture2D" uid="uid://c0r5j3lxabto2" path="res://assets/particle_examples/floaty_64.png" id="5_qevvx"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
@@ -284,14 +282,6 @@ shadow_enabled = true
 shadow_filter = 2
 shadow_filter_smooth = 50.0
 texture = SubResource("GradientTexture2D_p4d6c")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_3ucja")
-pitch_scale = 1.28
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_cb2ry")
-volume_db = -13.368
 
 [node name="Identity" type="Label" parent="."]
 visible = false
