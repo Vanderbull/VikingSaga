@@ -26,8 +26,10 @@ func _on_fullscreen_toggled(button_pressed):
 
 
 func _on_save__exit_pressed():
+	pass
 	#get_tree().change_scene_to_file("res://menu.tscn")
 
 
 func _on_cancel_pressed():
+	pass
 	#get_tree().change_scene_to_file("res://menu.tscn")
