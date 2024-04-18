@@ -1,0 +1,274 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2akoxu275fes"]
+
+[ext_resource type="Script" path="res://src/battle.gd" id="1_ckmuf"]
+[ext_resource type="Texture2D" uid="uid://i206c3d3ljw7" path="res://battleback/battleback1.png" id="1_flp4i"]
+[ext_resource type="Texture2D" uid="uid://c560lujjeqqit" path="res://battleback/05.png" id="2_7anms"]
+[ext_resource type="Resource" uid="uid://bb6nb4cu0bpb2" path="res://src/Dragon.tres" id="2_hk84q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5j0q"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxdux"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsyn"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dt7a"]
+bg_color = Color(0, 0, 0, 0.603922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1i2o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8ivk"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvbci"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ckmuf")
+enemy = ExtResource("2_hk84q")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_flp4i")
+
+[node name="EnemyContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -47.5
+offset_right = 72.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.04, 2.2)
+
+[node name="ProgressBar" type="ProgressBar" parent="EnemyContainer"]
+custom_minimum_size = Vector2(144, 16)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_g5j0q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jxdux")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="EnemyContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "HP: 25 / 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureRect" parent="EnemyContainer"]
+layout_mode = 2
+texture = ExtResource("2_7anms")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="EnemyContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.509804, 0.509804, 0.509804, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fjsyn")
+text = "Lets fight!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 584.0
+offset_right = 1153.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dt7a")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="PlayerData" type="HBoxContainer" parent="PlayerPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerPanel/MarginContainer/PlayerData"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAYER"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/MarginContainer/PlayerData"]
+custom_minimum_size = Vector2(144, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_g5j0q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jxdux")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlayerPanel/MarginContainer/PlayerData/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "HP: 25 / 50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dt7a")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="Actions" type="HBoxContainer" parent="ActionsPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Attack" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+text = "Attack"
+
+[node name="Defend" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+text = "Defend"
+
+[node name="Run" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+text = "Run"
+
+[node name="MarginTextbox" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 224.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 64
+
+[node name="Textbox" type="Panel" parent="MarginTextbox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lvbci")
+
+[node name="Label" type="Label" parent="MarginTextbox/Textbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A Rabbit appears!"
+
+[node name="Ticker" type="Label" parent="MarginTextbox/Textbox"]
+layout_mode = 0
+offset_left = 1114.0
+offset_top = 125.0
+offset_right = 1127.0
+offset_bottom = 148.0
+text = ">"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Run" to="." method="_on_run_pressed"]
