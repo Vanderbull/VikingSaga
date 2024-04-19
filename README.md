@@ -7,7 +7,7 @@
 ![VIKINGSAGA](https://github.com/Vanderbull/VikingSaga/assets/1743820/579a6736-373b-428f-adc1-4897916ed971)
 
 ## Introduction
-Small game project we are working on
+Small game project we are working on for fun, any feedback or help is appreciated.
 
 ## Screenshots
 
