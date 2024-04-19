@@ -6,6 +6,7 @@ signal textbox_closed
 
 var current_player_health = 0
 var current_enemy_health = 0
+var is_defending = false
 
 func _ready():
 	set_health($EnemyContainer/ProgressBar,enemy.health,enemy.health)
@@ -37,15 +38,40 @@ func display_text(text):
 	$MarginTextbox.show()
 	$MarginTextbox/Textbox/Label.text = text
 	
-
+func enemy_turn():
+	display_text("%s launches at you" % enemy.name)
+	await textbox_closed
+	if is_defending:
+		is_defending = false
+		display_text("you blocked the attack like a king")
+		await textbox_closed
+	else:
+		current_player_health = max(0, current_player_health - enemy.damage)
+		set_health($PlayerPanel/MarginContainer/PlayerData/ProgressBar,current_player_health,State.max_health)
+	$ActionsPanel.show()
 
 func _on_run_pressed():
+	display_text("you run away like a coward")
+	await textbox_closed
 	get_tree().change_scene_to_file("res://game.tscn")
 	#get_tree().quit()
 
 
 func _on_attack_pressed():
-	display_text("you swing your donkey")
+	display_text("you swing your cute paws")
 	await textbox_closed
 	current_enemy_health = max(0, current_enemy_health - State.damage)
 	set_health($EnemyContainer/ProgressBar,current_enemy_health,enemy.health)
+	
+	if current_enemy_health == 0:
+		display_text("%s was defeated" % enemy.name)
+		await textbox_closed
+		get_tree().change_scene_to_file("res://game.tscn")
+	enemy_turn()
+
+
+func _on_defend_pressed():
+	is_defending = true
+	display_text("you prepare to block the imcoming attack")
+	await textbox_closed
+	enemy_turn()

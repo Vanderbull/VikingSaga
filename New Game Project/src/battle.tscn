@@ -271,4 +271,5 @@ text = ">"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Run" to="." method="_on_run_pressed"]
