@@ -75,11 +75,11 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar.hide()
 		$InGameCanvasLayer/ProgressBar.value = 0
 		
-	$InGameCanvasLayer/Trees.text = "Trees: " + str(playerData.PlayerWood)
-	$InGameCanvasLayer/Sand.text = "Sand: " + str(playerData.PlayerSand)
-	$InGameCanvasLayer/Water.text = "Water: " + str(playerData.PlayerWater)
-	$InGameCanvasLayer/Clay.text = "Clay: " + str(playerData.PlayerClay)
-	$InGameCanvasLayer/Food.text = "Food: " + str(playerData.PlayerFood)
+	$InGameCanvasLayer/Panel/HBoxContainer/Trees.text = "Trees: " + str(playerData.PlayerWood)
+	$InGameCanvasLayer/Panel/HBoxContainer/Sand.text = "Sand: " + str(playerData.PlayerSand)
+	$InGameCanvasLayer/Panel/HBoxContainer/Water.text = "Water: " + str(playerData.PlayerWater)
+	$InGameCanvasLayer/Panel/HBoxContainer/Clay.text = "Clay: " + str(playerData.PlayerClay)
+	$InGameCanvasLayer/Panel/HBoxContainer/Food.text = "Food: " + str(playerData.PlayerFood)
 	
 		
 func _input(event : InputEvent):

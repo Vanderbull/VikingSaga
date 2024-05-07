@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=36 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cqlaggcdrlyu0" path="res://assets/RabbitSpriteSheet-Large.png" id="13_ugjh4"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
+[ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="17_r7hu2"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 
@@ -8578,25 +8579,15 @@ sources/0 = SubResource("TileSetAtlasSource_fm6y1")
 sources/1 = SubResource("TileSetAtlasSource_8wc2l")
 sources/2 = SubResource("TileSetAtlasSource_rrdps")
 
-[sub_resource type="Theme" id="Theme_61fg1"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lex6n"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i7dll"]
-atlas = ExtResource("3_jbup0")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dc48i"]
-atlas = ExtResource("3_jbup0")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4g4l0"]
-atlas = ExtResource("3_jbup0")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_djr5r"]
-atlas = ExtResource("3_jbup0")
-region = Rect2(32, 0, 16, 16)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="Gradient" id="Gradient_a8qux"]
 
@@ -8672,71 +8663,76 @@ process_mode = 3
 script = ExtResource("12_gr3u4")
 
 [node name="Panel" type="Panel" parent="InGameCanvasLayer"]
-custom_minimum_size = Vector2(640, 0)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -352.0
-offset_right = 352.0
-offset_bottom = 40.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 37.0
 grow_horizontal = 2
-theme = SubResource("Theme_61fg1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_lex6n")
 
-[node name="Trees" type="Label" parent="InGameCanvasLayer"]
-offset_left = 376.0
-offset_right = 431.0
-offset_bottom = 23.0
-text = "Timber"
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameCanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -299.0
+offset_top = -18.5
+offset_right = 300.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="Sprite2DTrees" type="Sprite2D" parent="InGameCanvasLayer/Trees"]
-position = Vector2(-24, 16)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_i7dll")
+[node name="TextureRect" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_r7hu2")
 
-[node name="Sand" type="Label" parent="InGameCanvasLayer"]
-offset_left = 504.0
-offset_right = 547.0
-offset_bottom = 23.0
-text = "Sand:"
+[node name="Trees" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Trees: 0"
 
-[node name="Sprite2DSand" type="Sprite2D" parent="InGameCanvasLayer/Sand"]
-position = Vector2(-24, 16)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_dc48i")
+[node name="TextureRect2" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_r7hu2")
 
-[node name="Water" type="Label" parent="InGameCanvasLayer"]
-offset_left = 632.0
-offset_right = 684.0
-offset_bottom = 23.0
-text = "Water:"
+[node name="Sand" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Sand: 0"
 
-[node name="Sprite2DWater" type="Sprite2D" parent="InGameCanvasLayer/Water"]
-position = Vector2(-24, 16)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_4g4l0")
+[node name="TextureRect3" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_r7hu2")
 
-[node name="Food" type="Label" parent="InGameCanvasLayer"]
-offset_left = 872.0
-offset_right = 924.0
-offset_bottom = 23.0
-text = "Food: 0"
+[node name="Water" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Water: 0"
 
-[node name="Sprite2DFood" type="Sprite2D" parent="InGameCanvasLayer/Food"]
-position = Vector2(-24, 16)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_djr5r")
+[node name="TextureRect4" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_r7hu2")
 
-[node name="Clay" type="Label" parent="InGameCanvasLayer"]
-offset_left = 760.0
-offset_right = 815.0
-offset_bottom = 23.0
+[node name="Clay" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
 text = "Clay: 0"
 
-[node name="Sprite2DTrees" type="Sprite2D" parent="InGameCanvasLayer/Clay"]
-position = Vector2(-24, 16)
-scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_i7dll")
+[node name="TextureRect5" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("17_r7hu2")
+
+[node name="Food" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Food: 0"
 
 [node name="QuestMenu" parent="InGameCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_itlq3")]
 visible = false
