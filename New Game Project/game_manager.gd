@@ -27,6 +27,8 @@ var quest_paused : bool = false:
 		emit_signal("toggle_quest_paused",quest_paused)
 		
 func _ready():
+	$world.hide()
+	$InGameCanvasLayer.hide()
 	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	
 	playerData = PlayerData.new()

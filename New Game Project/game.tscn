@@ -8603,6 +8603,7 @@ process_mode = 3
 script = ExtResource("1_sr55i")
 
 [node name="MeshInstance3D" parent="." instance=ExtResource("13_v05m7")]
+visible = false
 
 [node name="world" type="Node2D" parent="."]
 process_mode = 1
