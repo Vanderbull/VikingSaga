@@ -81,6 +81,9 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass
+		
+		if event.pressed and event.keycode == KEY_4:
+			get_tree().change_scene_to_file("res://src/battle.tscn")
 				
 		if event.pressed and event.keycode == KEY_Z:
 			$Camera2D.zoom.x += 0.25
