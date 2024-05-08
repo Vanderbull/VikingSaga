@@ -18,4 +18,13 @@ Small game project we are working on for fun, any feedback or help is appreciate
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/5d123ed1-9839-42ac-a1bb-1f8cc211b6d1)
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/20b70cda-705d-4a44-81ef-ed90f4476abc)
 
+## Tools
+
+Tools used for this project are
+* Godot Engine 4
+* Git
+
+# Setup
+Zapier
+
                                                                                                                         
