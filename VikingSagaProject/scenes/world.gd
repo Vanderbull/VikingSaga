@@ -12,13 +12,12 @@ var enemy = null
 var PlayerGridPosition = Vector2i(0,0)
 var PlayerCuttingTrees = false
 var CurrentArea
+var file_name = "world.gd"
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Game _ready")
+func _ready():	
 	player.position = Vector2i(0,0)
 	player.global_position = Vector2i(0,0)
-	
 	pass
 	ResourceLoader.load_threaded_request(ENEMY_SCENE_PATH)
 	var enemy_scene = ResourceLoader.load_threaded_get(ENEMY_SCENE_PATH)
@@ -29,115 +28,89 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		#if event.pressed and event.keycode == KEY_1:
-			#if globals.PlayerGold >= 1:
-				#globals.PlayerGold -= 1
-				#player.CurrentHealth = 10
-				#heartsContainer.updateHearts(10)
-		#if event.pressed and event.keycode == KEY_2:
-			#if globals.playerGold >= 1:
-				#globals.PlayerGold -= 1
-				#ship.hp = 10
-				#heartsContainer2.updateHearts(ship.hp)
+		if event.pressed and event.keycode == KEY_1:
+			print_debug("Debug: This is coming from file: ", file_name)
+		if event.pressed and event.keycode == KEY_2:
+			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_3:
+			print_debug("Debug: Change scene to file: res://scenes/world.tscn")
 			get_tree().change_scene_to_file("res://scenes/world.tscn")
 		if event.pressed and event.keycode == KEY_4:
+			print_debug("Debug: Change scene to file: res://city.tscn")
 			get_tree().change_scene_to_file("res://city.tscn")
 		if event.pressed and event.keycode == KEY_5:
+			print_debug("Debug: Change scene to file: res://quest/quest_canvas_layer.tscn")
 			get_tree().change_scene_to_file("res://quest/quest_canvas_layer.tscn")
 		if event.pressed and event.keycode == KEY_6:
-			pass
-			#$QuestCanvasLayer/Control/ItemList.add_donkey() #.add_item("FIND A DONKEY")
+			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_7:
+			print_debug("Debug: Reloading current scene")
 			get_tree().reload_current_scene()
+		if event.pressed and event.keycode == KEY_8:
+			print_debug("Debug: This is coming from file: ", file_name)
+		if event.pressed and event.keycode == KEY_9:
+			print_debug("Debug: This is coming from file: ", file_name)
+		if event.pressed and event.keycode == KEY_0:
+			print_debug("Debug: This is coming from file: ", file_name)
 
 func _on_area_2d_body_entered(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = true
 	$HUD/StatusInfo/EnterButton.visible = true
-	pass # Replace with function body.
-
 
 func _on_area_2d_body_exited(_body):
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
-	pass # Replace with function body.
-
 
 func _on_sigtuna_area_body_entered(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = true
 	$HUD/StatusInfo/EnterButton.visible = true
 	$HUD/StatusInfo/RaidButton.visible = true
 	$HUD/StatusInfo/Label.text = $TileMap/SigtunaArea/Identity.text
 	CurrentArea = $TileMap/SigtunaArea/Identity.text
-	pass # Replace with function body.
-
 
 func _on_sigtuna_area_body_exited(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
 	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
-	pass # Replace with function body.
-
 
 func _on_home_area_body_entered(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = true
 	$HUD/StatusInfo/EnterButton.visible = true
 	$HUD/StatusInfo/Label.text = $TileMap/HomeArea/Identity.text
 	CurrentArea = $TileMap/HomeArea/Identity.text
-	pass # Replace with function body.
-
 
 func _on_home_area_body_exited(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
 	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
-	pass # Replace with function body.
-
 
 func _on_birka_body_entered(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = true
 	$HUD/StatusInfo/EnterButton.visible = true
 	$HUD/StatusInfo/RaidButton.visible = true
 	$HUD/StatusInfo/Label.text = $TileMap/BirkaArea/Identity.text
 	CurrentArea = $TileMap/BirkaArea/Identity.text
-	pass # Replace with function body.
-
 
 func _on_birka_body_exited(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
 	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
-	pass # Replace with function body.
-
 
 func _on_helgo_body_entered(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = true
 	$HUD/StatusInfo/EnterButton.visible = true
 	$HUD/StatusInfo/RaidButton.visible = true
 	$HUD/StatusInfo/Label.text = $TileMap/HelgoArea/Identity.text
 	CurrentArea = $TileMap/HelgoArea/Identity.text
-	pass # Replace with function body.
-
 
 func _on_helgo_body_exited(_body):
-	print("body entered area")
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
 	$HUD/StatusInfo/RaidButton.visible = false
 	CurrentArea = ""
-	pass # Replace with function body.
-
 
 func _on_forest_body_entered(_body):
 	PlayerCuttingTrees = true

@@ -31,7 +31,30 @@ var walking = false
 
 @onready var worldMap = $".."
 
+# Reference to the DynamicArray script
+var dynamic_array_instance = null
+
 func _ready():
+	
+	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: None"
+	# Load the DynamicArray script
+	var DynamicArrayScript = preload("res://dynamic_array.gd")
+	# Create an instance of the DynamicArray script
+	dynamic_array_instance = DynamicArrayScript.new()
+	
+	# Add the dynamic array node to the scene tree if needed
+	# add_child(dynamic_array_instance)
+	
+	# Manually call _ready() to initialize the instance
+	dynamic_array_instance._ready()
+	
+	# Add new elements to the dynamic array
+	#dynamic_array_instance.add_element(40)
+	#dynamic_array_instance.add_element(50)
+	
+	# Print the updated array contents
+	#dynamic_array_instance.print_array()
+
 	$Camera2D.zoom.x = 6.00
 	$Camera2D.zoom.y = 6.00
 	walking = false
@@ -61,6 +84,7 @@ func updateAnimation():
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
+	print_debug(tile_pos)
 	#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 0 ,Vector2i(25,14))
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
@@ -68,10 +92,13 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_1:
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
+			# Add some kind of amount for the tile and decrease that until zero and then change the tile type according to some matrix
+			# add some kind of window with all the tile information in
 			if( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
 			if( globals.Terrain == "Forest" ):
+				$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
 			if( globals.Terrain == "Water" ):
@@ -84,22 +111,17 @@ func _unhandled_input(event):
 		
 		if event.pressed and event.keycode == KEY_4:
 			get_tree().change_scene_to_file("res://src/battle.tscn")
-				
-		if event.pressed and event.keycode == KEY_Z:
-			$Camera2D.zoom.x += 0.25
-			$Camera2D.zoom.y += 0.25
+			
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			# zoom in
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				print("up")
 				$Camera2D.zoom.x += 0.25
 				$Camera2D.zoom.y += 0.25
-			# zoom out
+				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ",  $Camera2D.zoom.y, ")")
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				print("down")
 				$Camera2D.zoom.x -= 0.25
 				$Camera2D.zoom.y -= 0.25
+				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
 		
 		
 func _process(_delta):
@@ -113,7 +135,6 @@ func _process(_delta):
 	#if position.distance_to(target) > 10:
 	#	move_and_slide()
 	#globals.player_position = position
-	
 
 	handleInput()
 	#print(velocity)
@@ -171,7 +192,7 @@ func knockback(enemyVelocity: Vector2):
 
 
 func _on_show_stats_box_area_entered(area):
-	print_debug(area)
+	#print_debug(area)
 	if area.name == "hitBox":
 		if area.get_parent().Identity == "Slime2":
 			print(area.get_parent().Identity)
@@ -189,9 +210,9 @@ func _on_show_stats_box_area_entered(area):
 
 
 func _on_show_stats_box_area_exited(area):
-	print_debug(area)
+	#print_debug(area)
 	if area.name == "villageHitbox":
-		print_debug("WOW WOW WOW WOW")
+		#print_debug("WOW WOW WOW WOW")
 		var root = get_tree().get_root()
 		for child in root.get_children():
 			var StatsBox = child.find_child("BottomLeftPanel")

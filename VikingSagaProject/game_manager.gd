@@ -36,8 +36,8 @@ func _ready():
 	#ResourceLoader.load_threaded_request(PLAYERDATA_PATH)
 	#playerData = ResourceLoader.load_threaded_get(PLAYERDATA_PATH)
 	if OS.is_debug_build():
-		print("Debug mode enabled")
-		print(TEST_CURVE.sample(0.25))
+		#print_debug("Debug mode enabled")
+		#print_debug(TEST_CURVE.sample(0.25))
 		game_paused = !game_paused
 		
 func _process(delta):

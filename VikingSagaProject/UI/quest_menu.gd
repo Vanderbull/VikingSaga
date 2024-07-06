@@ -11,13 +11,13 @@ func _process(_delta):
 
 func _on_quest_manager_toggle_quest_paused(is_paused : bool):
 	if(is_paused):
-		print("PAUSED")
+		print_debug("PAUSED")
 		show()
 	else:
 		hide()
 
 func _on_resume_button_pressed():
-	print("RESUME PRESSED")
+	print_debug("RESUME PRESSED")
 	game_manager.quest_paused = false
 
 

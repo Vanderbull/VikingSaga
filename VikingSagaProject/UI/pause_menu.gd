@@ -17,17 +17,17 @@ func _process(_delta):
 
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
-		print("PAUSED")
+		#print_debug("PAUSED")
 		$"../../world".set_visible(false)
 		$"../../InGameCanvasLayer".set_visible(false)
 		show()
 	else:
 		hide()
-		print("MOVE")
+		#print_debug("MOVE")
 		
 
 func _on_resume_button_pressed():
-	print("RESUME PRESSED")
+	#print_debug("RESUME PRESSED")
 	game_manager.game_paused = false
 	$"../../world".set_visible(true)
 	$"../../InGameCanvasLayer".set_visible(true)
