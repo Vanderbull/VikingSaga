@@ -8825,5 +8825,9 @@ text = "TILE TYPE"
 layout_mode = 2
 text = "10"
 
+[node name="TileCoordinates" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "POSITION: X - Y"
+
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

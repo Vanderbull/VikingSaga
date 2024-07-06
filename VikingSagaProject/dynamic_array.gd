@@ -1,43 +1,33 @@
 extends Node
 
-var dynamic_array: Array = []
+# Dictionary to store the coordinates with text
+var coordinates_with_text = {}
 
-# Function to add an element to the dynamic array
-func add_element(element):
-	dynamic_array.append(element)
-	#if Engine.is_debug_build():
-	print_debug("Added element:", element)
-	print_debug("Current array:", dynamic_array)
+# Function to generate coordinates with text
+func generate_coordinates_with_text():
+	for x in range(-1000, 1001):
+		for y in range(-1000, 1001):
+			var position = Vector2(x, y)
+			var text = "Coordinate: (" + str(x) + ", " + str(y) + ")"
+			coordinates_with_text[position] = text
 
-# Function to print the contents of the dynamic array
-func print_array():
-	#if Engine.is_debug_build():
-	print_debug("Array contents:", dynamic_array)
+# Function to find text by x and y
+func find_coordinate_with_text(x: int, y: int) -> String:
+	var position = Vector2(x, y)
+	if position in coordinates_with_text:
+		return coordinates_with_text[position]
+	return "Coordinate not found"
 
 func _ready():
-
-	# Accessing an element
-	# var element = grid[row_index][col_index]
-
-	# Modifying an element
-	# grid[row_index][col_index] = new_value
+	# Call the function to generate the coordinates with text
+	generate_coordinates_with_text()
 	
-	# Initialize the grid with empty arrays (rows)
-	for i in range(3):
-		var row: Array = []
-		for j in range(3):
-			# Initialize each element in the row with a placeholder value
-			row.append(0)
-		# Add the row to the grid
-		dynamic_array.append(row)
-		
-	for i in range(dynamic_array.size()):
-		print_debug("Row ", i, ": ", dynamic_array[i])
-	# Adding elements to the array
-	#add_element(10)
-	#add_element(20)
-	#add_element(30)
-	
-	# Printing the array contents
-	#print_array()
+	# Example of finding a specific coordinate
+	var result = find_coordinate_with_text(100, 200)
+	print(result)
+	# Output will be: "Coordinate: (100, 200)"
+
+	var result_not_found = find_coordinate_with_text(2000, 2000)
+	print(result_not_found)
+	# Output will be: "Coordinate not found"
 

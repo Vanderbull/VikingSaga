@@ -85,6 +85,9 @@ func updateAnimation():
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
 	print_debug(tile_pos)
+	print(dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y))
+	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y)
+	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates".text = TileCoordinateText
 	#worldMap.set_cell(0, Vector2i(tile_pos.x, tile_pos.y - 1), 0 ,Vector2i(25,14))
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
