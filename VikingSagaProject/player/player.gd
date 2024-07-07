@@ -35,8 +35,6 @@ var walking = false
 var dynamic_array_instance = null
 
 func _ready():
-	
-	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: None"
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
@@ -83,7 +81,18 @@ func updateAnimation():
 		globals.Walking = true
 		
 func _unhandled_input(event):
+	
+	if( globals.Terrain == "Forest" ):
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
+	if( globals.Terrain == "Sand" ):
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Sand"
+	if( globals.Terrain == "Water" ):
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Water"
+	if( globals.Terrain == "Grass" ):
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Grass"
+		
 	var tile_pos = worldMap.local_to_map(position)
+	globals.player_position = tile_pos
 	print_debug(tile_pos)
 	print(dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y))
 	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y)
@@ -107,13 +116,17 @@ func _unhandled_input(event):
 			if( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
-				
+			if( globals.Terrain == "Grass" ):
+				$"../../../InGameCanvasLayer/ProgressBar".show()
+				globals.CollectClay = not globals.CollectClay
+				print("RONG RONG RONG ORNG")
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
-			pass
-		
+			pass		
 		if event.pressed and event.keycode == KEY_4:
 			get_tree().change_scene_to_file("res://src/battle.tscn")
+		if event.pressed and event.keycode == KEY_KP_1:
+			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
 			
 	if event is InputEventMouseButton:
 		if event.is_pressed():

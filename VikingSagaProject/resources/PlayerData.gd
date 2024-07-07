@@ -33,6 +33,7 @@ const save_file_name := "PlayerSave.tres"
 @export var ForestCutting = false
 @export var DigSand = false
 @export var CollectWater = false
+@export var CollectClay = false
 @export var DigClay = false
 @export var Hunting = false
 

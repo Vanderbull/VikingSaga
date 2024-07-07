@@ -114,7 +114,7 @@ func _process(_delta):
 		globals.ForestCutting = false
 	else:
 		tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-		globals.Terrain = "Clay"
+		globals.Terrain = "Grass"
 		globals.ForestCutting = false
 	
 func generate_chunk(position):

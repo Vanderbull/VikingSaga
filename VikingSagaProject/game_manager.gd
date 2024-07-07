@@ -41,19 +41,11 @@ func _ready():
 		game_paused = !game_paused
 		
 func _process(delta):
-	#if(globals.RoadWorks and playerData.PlayerWood > 0):
-		#$InGameCanvasLayer/ProgressBar/Label.text = "Building road"
-		#$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
-		#if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			#playerData.PlayerWood -= 1
-			#$InGameCanvasLayer/ProgressBar.value = 0
-			#globals.RoadWorks = false
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
 	if( globals.Hunt == true):
 		playerData.PlayerFood += 1
-		
 		
 	if(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
@@ -67,11 +59,18 @@ func _process(delta):
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
+			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWater += 1
+			$InGameCanvasLayer/ProgressBar.value = 0
+	elif(globals.CollectClay and globals.Terrain == "Grass"):
+		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
+			playerData.PlayerClay += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
 	else:
 		$InGameCanvasLayer/ProgressBar.hide()
@@ -83,17 +82,12 @@ func _process(delta):
 	$InGameCanvasLayer/Panel/HBoxContainer/Clay.text = "Clay: " + str(playerData.PlayerClay)
 	$InGameCanvasLayer/Panel/HBoxContainer/Food.text = "Food: " + str(playerData.PlayerFood)
 	
-		
 func _input(event : InputEvent):
 	if(event.is_action_pressed("ui_cancel")):
 		game_paused = !game_paused
-	#if(event.is_action_pressed("ui_home")):
-	#	quest_paused = !quest_paused
-
 
 func _on_inventory_gui_closed():
 	get_tree().paused = false
-
 
 func _on_inventory_gui_opened():
 	get_tree().paused = true
