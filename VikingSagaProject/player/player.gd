@@ -81,7 +81,12 @@ func updateAnimation():
 		globals.Walking = true
 		
 func _unhandled_input(event):
-	
+
+	if( globals.Animals == "Rabbit" ):
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
+	else:
+		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: None"
+		
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 	if( globals.Terrain == "Sand" ):
@@ -106,17 +111,20 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_2:
 			# Add some kind of amount for the tile and decrease that until zero and then change the tile type according to some matrix
 			# add some kind of window with all the tile information in
-			if( globals.Terrain == "Sand" ):
+			if( globals.Animals == "Rabbit" ):
+				$"../../../InGameCanvasLayer/ProgressBar".show()
+				globals.Hunting = not globals.Hunting
+			elif( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
-			if( globals.Terrain == "Forest" ):
+			elif( globals.Terrain == "Forest" ):
 				$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
-			if( globals.Terrain == "Water" ):
+			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
-			if( globals.Terrain == "Grass" ):
+			elif( globals.Terrain == "Grass" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
 				print("RONG RONG RONG ORNG")

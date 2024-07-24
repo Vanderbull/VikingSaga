@@ -9,9 +9,10 @@ var ForestCutting = false
 var DigSand = false
 var CollectWater = false
 var CollectClay = false
-var Hunt = false
+var Hunting = false
 
 
 var Terrain = "None"
+var Animals = "None"
 
 var Walking = false
