@@ -61,10 +61,12 @@ func _process(_delta):
 		var custom_data = $"../AnimalMap".get_cell_source_id ( 0, Vector2i(tile_pos.x, tile_pos.y), false )
 		print(custom_data)
 		if( custom_data == 2):
-			globals.Hunting = true
+			#globals.Hunting = true
 			globals.Animals = "Rabbit"
+			$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(globals.Hunting)
 		else:
-			globals.Hunting = false
+			$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(globals.Hunting)
+			#globals.Hunting = false
 			globals.Animals = "None"
 			
 	

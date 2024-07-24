@@ -7,7 +7,6 @@ extends Node2D
 
 const ENEMY_SCENE_PATH : String = "res://city.tscn"
 
-
 var enemy = null
 var PlayerGridPosition = Vector2i(0,0)
 var PlayerCuttingTrees = false
@@ -15,7 +14,7 @@ var CurrentArea
 var file_name = "world.gd"
 
 # Called when the node enters the scene tree for the first time.
-func _ready():	
+func _ready():
 	player.position = Vector2i(0,0)
 	player.global_position = Vector2i(0,0)
 	pass
@@ -61,83 +60,8 @@ func _on_area_2d_body_exited(_body):
 	$HUD/StatusInfo/Label.visible = false
 	$HUD/StatusInfo/EnterButton.visible = false
 
-func _on_sigtuna_area_body_entered(_body):
-	$HUD/StatusInfo/Label.visible = true
-	$HUD/StatusInfo/EnterButton.visible = true
-	$HUD/StatusInfo/RaidButton.visible = true
-	$HUD/StatusInfo/Label.text = $TileMap/SigtunaArea/Identity.text
-	CurrentArea = $TileMap/SigtunaArea/Identity.text
-
-func _on_sigtuna_area_body_exited(_body):
-	$HUD/StatusInfo/Label.visible = false
-	$HUD/StatusInfo/EnterButton.visible = false
-	$HUD/StatusInfo/RaidButton.visible = false
-	CurrentArea = ""
-
-func _on_home_area_body_entered(_body):
-	$HUD/StatusInfo/Label.visible = true
-	$HUD/StatusInfo/EnterButton.visible = true
-	$HUD/StatusInfo/Label.text = $TileMap/HomeArea/Identity.text
-	CurrentArea = $TileMap/HomeArea/Identity.text
-
-func _on_home_area_body_exited(_body):
-	$HUD/StatusInfo/Label.visible = false
-	$HUD/StatusInfo/EnterButton.visible = false
-	$HUD/StatusInfo/RaidButton.visible = false
-	CurrentArea = ""
-
-func _on_birka_body_entered(_body):
-	$HUD/StatusInfo/Label.visible = true
-	$HUD/StatusInfo/EnterButton.visible = true
-	$HUD/StatusInfo/RaidButton.visible = true
-	$HUD/StatusInfo/Label.text = $TileMap/BirkaArea/Identity.text
-	CurrentArea = $TileMap/BirkaArea/Identity.text
-
-func _on_birka_body_exited(_body):
-	$HUD/StatusInfo/Label.visible = false
-	$HUD/StatusInfo/EnterButton.visible = false
-	$HUD/StatusInfo/RaidButton.visible = false
-	CurrentArea = ""
-
-func _on_helgo_body_entered(_body):
-	$HUD/StatusInfo/Label.visible = true
-	$HUD/StatusInfo/EnterButton.visible = true
-	$HUD/StatusInfo/RaidButton.visible = true
-	$HUD/StatusInfo/Label.text = $TileMap/HelgoArea/Identity.text
-	CurrentArea = $TileMap/HelgoArea/Identity.text
-
-func _on_helgo_body_exited(_body):
-	$HUD/StatusInfo/Label.visible = false
-	$HUD/StatusInfo/EnterButton.visible = false
-	$HUD/StatusInfo/RaidButton.visible = false
-	CurrentArea = ""
-
 func _on_forest_body_entered(_body):
 	PlayerCuttingTrees = true
 
 func _on_forest_body_exited(_body):
 	PlayerCuttingTrees = false
-
-func _on_quest_area_body_entered(_body):
-	#$QuestCanvasLayer/Control/ItemList.add_item("FIND A DONKEY")
-	$TileMap/QuestArea.queue_free()
-
-func _on_raid_button_pressed():
-	if CurrentArea == "Sigtuna settlement":
-		$TileMap/SigtunaArea.queue_free()
-	if CurrentArea == "Birka settlement":
-		$TileMap/BirkaArea.queue_free()
-	if CurrentArea == "Helgo settlement":
-		$TileMap/HelgoArea.queue_free()
-	globals.PlayerGold += 1000
-	print("Settlement %s was raided")
-	CurrentArea = ""
-
-func _on_raid_button_button_up():
-	$HUD/StatusInfo/RaidButton.visible = false
-	
-func _on_enter_button_pressed():
-	get_tree().change_scene_to_file("res://city.tscn")
-
-
-

@@ -27,7 +27,7 @@ signal healthChangedVillage
 @onready var thralls = 1000
 @onready var hides = 1000
 
-var walking = false
+#var walking = false
 
 @onready var worldMap = $".."
 
@@ -55,7 +55,6 @@ func _ready():
 
 	$Camera2D.zoom.x = 6.00
 	$Camera2D.zoom.y = 6.00
-	walking = false
 	velocity = Vector2i(0,0)
 	globals.Walking = false
 	effects.play("RESET")
@@ -68,7 +67,6 @@ func updateAnimation():
 	if velocity.length() == 0:
 		if animations.is_playing():
 			animations.stop()
-			walking = false
 			globals.Walking = false
 	else:
 		var direction = "Down"
@@ -77,7 +75,6 @@ func updateAnimation():
 		elif velocity.y < 0: direction = "Up"
 	
 		animations.play("walk" + direction)
-		walking = true
 		globals.Walking = true
 		
 func _unhandled_input(event):
@@ -127,7 +124,6 @@ func _unhandled_input(event):
 			elif( globals.Terrain == "Grass" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
-				print("RONG RONG RONG ORNG")
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass		
@@ -149,7 +145,7 @@ func _unhandled_input(event):
 		
 		
 func _process(_delta):
-	if( game_manager.playerData.PlayerFood < 0 ):
+	if( game_manager.playerData.PlayerFood < 0 || game_manager.playerData.PlayerWater < 0 ):
 		get_tree().reload_current_scene()
 	game_manager.playerData.player_position = position
 	#position.x += 1

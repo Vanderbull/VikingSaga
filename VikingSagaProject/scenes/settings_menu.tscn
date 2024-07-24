@@ -1,8 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2a5rsx5ssgur"]
+[gd_scene load_steps=4 format=3 uid="uid://dsl55rhlti64s"]
 
 [ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="1_h5g4a"]
-[ext_resource type="Script" path="res://scenes/settings_menu.gd" id="1_jka22"]
 [ext_resource type="AudioStream" uid="uid://bd0qudx3dw1yt" path="res://sound/1_Black Moon Tavern by Ean Grimm.mp3" id="3_bnds6"]
+
+[sub_resource type="GDScript" id="GDScript_2la10"]
+script/source = "extends Control
+
+func _ready():
+	$AudioStreamPlayer
+	DisplayServer.window_get_size()
+	get_viewport().get_visible_rect().size
+	$VBoxContainer/Resolution.text = \"Resolution: \" + str(DisplayServer.window_get_size()) #\"Resolution: 1920x1080\"
+	
+	$VBoxContainer/Volume.text = \"Volume: \" + str(db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(\"Master\"))))
+	
+
+
+func _process(delta):
+	$VBoxContainer/Resolution.text = \"Resolution: \" + str(DisplayServer.window_get_size()) #\"Resolution: 1920x1080\"
+	$VBoxContainer/Volume.text = \"Volume: \" + str(db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(\"Master\"))))
+	$VBoxContainer/Mixrate.text = \"Mixrate: \" + str(AudioServer.get_mix_rate())
+		
+
+
+func _on_resume_button_pressed():
+	print(\"PRESSING IT HARD\")
+	var pause_menu_scene = \"res://UI/pause_menu.tscn\"
+	get_tree().change_scene_to_file(pause_menu_scene)
+"
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -11,21 +36,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jka22")
+script = SubResource("GDScript_2la10")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 1200.0
+offset_bottom = 900.0
 texture = ExtResource("1_h5g4a")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 40.0
+offset_top = 39.0
+offset_right = 213.0
+offset_bottom = 151.0
 
 [node name="Resolution" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -77,15 +101,6 @@ layout_mode = 2
 text = "-=SETTINGS=-"
 horizontal_alignment = 1
 
-[node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Save"
-
-[node name="LoadButton" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Load
-"
-
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Resume
@@ -100,3 +115,5 @@ text = "Exit
 stream = ExtResource("3_bnds6")
 volume_db = -40.0
 autoplay = true
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]

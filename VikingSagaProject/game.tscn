@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=33 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
 [ext_resource type="Script" path="res://InGameCanvasLayer.gd" id="12_gr3u4"]
-[ext_resource type="PackedScene" uid="uid://d2a5rsx5ssgur" path="res://scenes/settings_menu.tscn" id="13_a8u56"]
 [ext_resource type="Texture2D" uid="uid://cqlaggcdrlyu0" path="res://assets/RabbitSpriteSheet-Large.png" id="13_ugjh4"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
@@ -4817,11 +4816,7 @@ layer_0/tile_data = PackedInt32Array(65538, 2, 0)
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
 process_mode = 2
-visible = false
 game_manager = NodePath("../..")
-
-[node name="SettingsMenu" parent="CanvasLayer" instance=ExtResource("13_a8u56")]
-visible = false
 
 [node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -4996,6 +4991,10 @@ text = "POSITION: X - Y"
 [node name="TileAnimals" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "ANIMALS: None"
+
+[node name="Hunting" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "NOT HUNTING"
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
