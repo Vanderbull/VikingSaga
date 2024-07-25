@@ -123,7 +123,7 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWater += 1
+			playerData.PlayerWater += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=39 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -17,6 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
 [ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="17_r7hu2"]
 [ext_resource type="Script" path="res://Label.gd" id="19_320qv"]
+[ext_resource type="Texture2D" uid="uid://csj1136wyjpnt" path="res://arts/pixel-viking-1.jpg" id="19_o7wdh"]
+[ext_resource type="Texture2D" uid="uid://dh1agysu5pi4d" path="res://arts/pixel-viking-2.jpg" id="20_75qg2"]
+[ext_resource type="Texture2D" uid="uid://c0lsgd1dnort0" path="res://arts/pixel-viking-3.jpg" id="21_ne0q6"]
+[ext_resource type="Script" path="res://AnimatedFace.gd" id="22_3uftv"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 
@@ -4761,6 +4765,23 @@ seamless = true
 color_ramp = SubResource("Gradient_a8qux")
 noise = SubResource("FastNoiseLite_l3lke")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_u48n1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_o7wdh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_75qg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ne0q6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -4971,10 +4992,10 @@ texture = SubResource("NoiseTexture2D_6mvi7")
 [node name="TileInfoWindow" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="TileInfoWindow"]
-offset_left = 815.0
-offset_top = 395.0
-offset_right = 1091.0
-offset_bottom = 603.0
+offset_left = 864.0
+offset_top = 224.0
+offset_right = 1140.0
+offset_bottom = 635.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TileInfoWindow/PanelContainer"]
 layout_mode = 2
@@ -4999,6 +5020,13 @@ text = "ANIMALS: None"
 layout_mode = 2
 text = "NOT HUNTING"
 
+[node name="AnimatedFace" type="AnimatedSprite2D" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+position = Vector2(150, 320)
+scale = Vector2(0.288333, 0.288333)
+sprite_frames = SubResource("SpriteFrames_u48n1")
+frame_progress = 0.890633
+script = ExtResource("22_3uftv")
+
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -5007,7 +5035,29 @@ offset_left = 828.0
 offset_top = 76.0
 offset_right = 868.0
 offset_bottom = 99.0
+text = "INTERFACE
+EXPERIENCE"
 script = ExtResource("19_320qv")
+
+[node name="Quests" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quests"]
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 202.0
+offset_bottom = 120.0
+
+[node name="Quest1" type="Label" parent="Quests/VBoxContainer"]
+layout_mode = 2
+text = "[ ] Collect water 0 / 10000"
+
+[node name="Quest2" type="Label" parent="Quests/VBoxContainer"]
+layout_mode = 2
+text = "[ ] Collect food 0 / 10000"
+
+[node name="Quest3" type="Label" parent="Quests/VBoxContainer"]
+layout_mode = 2
+text = "[ ] Collect tree 0 / 10000"
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
