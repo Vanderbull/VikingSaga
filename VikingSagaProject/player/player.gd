@@ -117,6 +117,9 @@ func _unhandled_input(event):
 			if( globals.Animals == "Rabbit" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.Hunting = not globals.Hunting
+				var atlas_coords = Vector2i(0, 0)
+				var tilemap = $"../../AnimalMap"
+				tilemap.set_cell(0,tile_pos, -1)
 			elif( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
