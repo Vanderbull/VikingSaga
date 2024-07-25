@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=34 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
 [ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="17_r7hu2"]
+[ext_resource type="Script" path="res://Label.gd" id="19_320qv"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 
@@ -4816,6 +4817,7 @@ layer_0/tile_data = PackedInt32Array(65538, 2, 0)
 
 [node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
 process_mode = 2
+visible = false
 game_manager = NodePath("../..")
 
 [node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
@@ -4995,6 +4997,16 @@ text = "ANIMALS: None"
 [node name="Hunting" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "NOT HUNTING"
+
+[node name="Interface" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="Interface"]
+offset_left = 828.0
+offset_top = 76.0
+offset_right = 868.0
+offset_bottom = 99.0
+script = ExtResource("19_320qv")
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

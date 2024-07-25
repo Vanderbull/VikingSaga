@@ -34,6 +34,12 @@ signal healthChangedVillage
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+func _input(event):
+	if not event.is_action_pressed("ui_accept"):
+		return
+	globals.gain_experience(50)
+	$"../../../Interface/Label".update_text(globals.level, globals.experience, globals.experience_required)
+
 func _ready():
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
