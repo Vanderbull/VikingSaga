@@ -92,14 +92,16 @@ func _process(delta):
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
-	if(globals.Hunting and globals.Animals == "Rabbit"):
+	#if(globals.Hunting and globals.Animals == "Rabbit"):
+	if(globals.Hunting):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerFood += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
-			globals.gain_experience(1)
+			globals.Hunting = not globals.Hunting
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
+			playerData.PlayerFood += 10000
+			globals.gain_experience(1)
 	elif(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
