@@ -4811,7 +4811,7 @@ layer_1/tile_data = PackedInt32Array(262149, 131076, 11, 196613, 131076, 10)
 tile_set = SubResource("TileSet_i3jvc")
 format = 2
 layer_0/name = "ANIMAL_MAP"
-layer_0/tile_data = PackedInt32Array(65538, 2, 0)
+layer_0/tile_data = PackedInt32Array(65538, 2, 0, 393222, 2, 0, 458754, 2, 0, 131078, 2, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -4822,6 +4822,7 @@ game_manager = NodePath("../..")
 
 [node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
+visible = false
 script = ExtResource("12_gr3u4")
 
 [node name="Panel" type="Panel" parent="InGameCanvasLayer"]

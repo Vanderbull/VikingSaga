@@ -23,6 +23,9 @@ var experience = 0
 var experience_total = 0
 var experience_required = get_required_experience(level + 1)
 
+# Dictionary to store item data
+var animals_db = {}
+
 func get_required_experience(level):
 	return round(pow(level, 1.8) + level * 4)
 

@@ -21,6 +21,7 @@ var tile_position_info = []
 static var flockmos = 0
 
 func _ready():
+	randomize()
 	#position = Vector2i(0,0)
 	#player.global_position = Vector2i(0,0)
 	#player.position = Vector2(0.0,0.0)
@@ -145,6 +146,74 @@ func _process(_delta):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
 			globals.ForestCutting = false
+			
+		#get_terrain_type()
+			
+func get_terrain_type(tile_pos_x, tile_pos_y):
+	
+	var tile_pos = local_to_map(player.position)
+	var tile_index = tile_pos.x * width + tile_pos.y
+	
+	#var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
+	#var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	#var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+
+	var moist = moisture.get_noise_2d(tile_pos_x, tile_pos_y) * 10 # -10 to 10
+	var temp = temperature.get_noise_2d(tile_pos_x, tile_pos_y) * 10
+	var alt = altitude.get_noise_2d(tile_pos_x, tile_pos_y) * 10
+	
+	#print(tile_pos)
+	#print(tile_index)
+	#print(moist)
+	#print(temp)
+	#print(alt)
+	
+	if( !globals.Hunting ):
+		if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
+			$"../TileMap2".set_cell(0, Vector2i(tile_pos_x, tile_pos_y), 1 ,Vector2(0,0))
+			game_manager.playerData.PlayerWood -= 1
+			globals.RoadWorks = not globals.RoadWorks
+		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Forest"
+		elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Forest"
+		elif( round((temp+10)/5) == 0 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Snow"
+			globals.ForestCutting = false
+		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			if(globals.ForestCutting):
+				globals.PlayerSand+=1
+			globals.Terrain = "Sand"
+			globals.ForestCutting = false
+		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			if(globals.ForestCutting):
+				globals.PlayerSand+=1
+			globals.Terrain = "Sand"
+			globals.ForestCutting = false
+		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Forest"
+			globals.ForestCutting = false
+		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Water"
+			globals.ForestCutting = false
+		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Water"
+			globals.ForestCutting = false
+		else:
+			tile_position_info[tile_pos_x * width + tile_pos_y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			globals.Terrain = "Grass"
+			globals.ForestCutting = false
+			return globals.Terrain
+	
+	pass
 	
 func generate_chunk(position):
 	var tile_pos = local_to_map(position)
