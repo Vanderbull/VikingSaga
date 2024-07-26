@@ -53,3 +53,4 @@
 29. Cleanup code
 30. Setup the VCS git version plugin
 31. Testing VCS Git plugin commit [x]
+	31.1 Kind of work, just cant push the code to github directly from the editor due to a SSL error
