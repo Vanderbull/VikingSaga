@@ -43,6 +43,10 @@ var dynamic_array_instance = null
 @export var chop_sounds: Array[AudioStream]  # List of wood choping sounds
 @onready var chop_player = $ChopPlayer
 
+# Chopping wood
+@export var digg_sounds: Array[AudioStream]  # List of wood choping sounds
+@onready var digg_player = $DiggPlayer
+
 var time_since_last_step: float = 0.0
 
 func _physics_process(delta: float) -> void:
@@ -70,6 +74,14 @@ func play_chop_sound() -> void:
 		chop_player.play()
 		print("sound ALOT!!!")
 		await chop_player.finished
+		
+func play_digg_sound() -> void:
+	if digg_sounds.size() > 0:
+		var sound = digg_sounds[randi() % digg_sounds.size()]
+		digg_player.stream = sound
+		digg_player.play()
+		print("sound ALOT!!!")
+		await digg_player.finished
 
 func _input(event):
 	if not event.is_action_pressed("ui_accept"):
@@ -175,6 +187,8 @@ func _unhandled_input(event):
 			elif( globals.Terrain == "Grass" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
+				if globals.CollectClay == true:
+					play_digg_sound()
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass		

@@ -46,7 +46,7 @@
 		buttonclick.mp3
 	26.2 Walking sounds [X]
 	26.3 Timber cutting sounds [X]
-	26.4 Clay digging sounds
+	26.4 Clay digging sounds [X]
 	26.5 Fireplace sounds
 27. world map taverns to rest and recouperate
 28. Create trade routes to transport goods
