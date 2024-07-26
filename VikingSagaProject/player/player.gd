@@ -39,6 +39,10 @@ var dynamic_array_instance = null
 
 @onready var footstep_player = $FootstepPlayer
 
+# Chopping wood
+@export var chop_sounds: Array[AudioStream]  # List of wood choping sounds
+@onready var chop_player = $ChopPlayer
+
 var time_since_last_step: float = 0.0
 
 func _physics_process(delta: float) -> void:
@@ -50,12 +54,22 @@ func _physics_process(delta: float) -> void:
 			time_since_last_step = 0.0
 	else:
 		time_since_last_step = footstep_interval  # Reset when not moving
+		
+	
 
 func play_footstep_sound() -> void:
 	if walking_sounds.size() > 0:
 		var sound = walking_sounds[randi() % walking_sounds.size()]
 		footstep_player.stream = sound
 		footstep_player.play()
+		
+func play_chop_sound() -> void:
+	if chop_sounds.size() > 0:
+		var sound = chop_sounds[randi() % chop_sounds.size()]
+		chop_player.stream = sound
+		chop_player.play()
+		print("sound ALOT!!!")
+		await chop_player.finished
 
 func _input(event):
 	if not event.is_action_pressed("ui_accept"):
@@ -153,6 +167,8 @@ func _unhandled_input(event):
 				$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
+				if globals.ForestCutting == true:
+					play_chop_sound()
 			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
