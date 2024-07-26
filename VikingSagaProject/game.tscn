@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=68 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -51,6 +51,7 @@
 [ext_resource type="AudioStream" uid="uid://cxuescb3sc8es" path="res://sound/Floor/Steps_floor-021.ogg" id="31_b1uw3"]
 [ext_resource type="AudioStream" uid="uid://b4vm00220hxuj" path="res://sound/Chopping Wood .wav" id="32_ufh7m"]
 [ext_resource type="AudioStream" uid="uid://dqcmr8wm5jyb2" path="res://sound/digging-v1-27585.mp3" id="33_n0cdj"]
+[ext_resource type="Script" path="res://TileMap2.gd" id="35_pldd7"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -4860,10 +4861,7 @@ tilemap = NodePath("../..")
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
 format = 2
-layer_0/name = "ground"
-layer_1/name = "Buildings"
-layer_1/z_index = 1
-layer_1/tile_data = PackedInt32Array(262149, 131076, 11, 196613, 131076, 10)
+script = ExtResource("35_pldd7")
 
 [node name="AnimalMap" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_i3jvc")

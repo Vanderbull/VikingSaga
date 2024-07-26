@@ -136,6 +136,18 @@ func updateAnimation():
 		globals.Walking = true
 		
 func _unhandled_input(event):
+	
+	if globals.ForestCutting:
+		globals.ForestCutting = not globals.ForestCutting
+	
+	var tile_pos = worldMap.local_to_map(position)
+	globals.player_position = tile_pos
+
+	
+	if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
+		print("Tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")
+	else:
+		print("No tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")	
 
 	if( globals.Animals == "Rabbit" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
@@ -151,8 +163,7 @@ func _unhandled_input(event):
 	if( globals.Terrain == "Grass" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Grass"
 		
-	var tile_pos = worldMap.local_to_map(position)
-	globals.player_position = tile_pos
+
 	#print_debug(tile_pos)
 	#print(dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y))
 	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y)
@@ -177,10 +188,13 @@ func _unhandled_input(event):
 				globals.DigSand = not globals.DigSand
 			elif( globals.Terrain == "Forest" ):
 				$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
-				$"../../../InGameCanvasLayer/ProgressBar".show()
-				globals.ForestCutting = not globals.ForestCutting
-				if globals.ForestCutting == true:
-					play_chop_sound()
+				if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
+					print(" THERE IS NO MORE TREESS")
+				else:
+					$"../../../InGameCanvasLayer/ProgressBar".show()
+					globals.ForestCutting = not globals.ForestCutting
+					if globals.ForestCutting == true:
+						play_chop_sound()
 			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater

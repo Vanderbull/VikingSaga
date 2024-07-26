@@ -60,7 +60,7 @@ func _process(_delta):
 	var tiles = $"../AnimalMap".get_used_cells(0)
 	for cell in tiles:
 		var custom_data = $"../AnimalMap".get_cell_source_id ( 0, Vector2i(tile_pos.x, tile_pos.y), false )
-		print(custom_data)
+		#print(custom_data)
 		if( custom_data == 2):
 			#globals.Hunting = true
 			globals.Animals = "Rabbit"

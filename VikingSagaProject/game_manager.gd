@@ -49,7 +49,7 @@ func _ready():
 	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
 	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
 	
-	$world/TileMap.get_terrain_type(2, 0)
+	#$world/TileMap.get_terrain_type(2, 0)
 	
 	for i in range(5):
 		var tilemap = $world/AnimalMap
