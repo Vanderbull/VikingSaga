@@ -27,25 +27,31 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		#print_debug("MOVE")
 		
 
+# Reference to the AudioStreamPlayer node
+@onready var click_sound = $Panel/VBoxContainer/SaveButton/AudioStreamPlayer
+
 func _on_resume_button_pressed():
+	click_sound.play()
+	await click_sound.finished  # Wait until the sound finishes playing
 	#print_debug("RESUME PRESSED")
 	game_manager.game_paused = false
 	$"../../world".set_visible(true)
 	$"../../InGameCanvasLayer".set_visible(true)
 
-
 func _on_exit_button_pressed():
+	click_sound.play()
+	await click_sound.finished  # Wait until the sound finishes playing
 	get_tree().quit()
 
-
 func _on_save_button_pressed():
+	click_sound.play()
 	print("SAVE PRESSED")
 	print(OS.get_user_data_dir())
 	ResourceSaver.save(game_manager.playerData, game_manager.playerData.save_file_path + game_manager.playerData.save_file_name)
 	game_manager.playerData.save("user://save/tilemap2.tres",$"../../world/TileMap2")
-	
 
 func _on_load_button_pressed():
+	click_sound.play()
 	print("LOAD PRESSED")
 	if ResourceLoader.exists(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name):
 		game_manager.playerData = ResourceLoader.load(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name).duplicate(true)
@@ -60,4 +66,5 @@ func _on_load_button_pressed():
 
 
 func _on_settings_button_pressed():
+	click_sound.play()
 	print("SETTINGS PRESSED")

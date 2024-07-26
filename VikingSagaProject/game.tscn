@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=65 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -10,24 +10,45 @@
 [ext_resource type="Texture2D" uid="uid://b2hri0fdvldbn" path="res://arts/tileset.png" id="8_hj312"]
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
+[ext_resource type="AudioStream" uid="uid://dbpboig2kx8g6" path="res://sound/Floor/Steps_floor-001.ogg" id="11_4hvx7"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
+[ext_resource type="AudioStream" uid="uid://cnjsyf2bbokdu" path="res://sound/Floor/Steps_floor-002.ogg" id="12_a56pd"]
 [ext_resource type="Script" path="res://InGameCanvasLayer.gd" id="12_gr3u4"]
 [ext_resource type="Texture2D" uid="uid://cqlaggcdrlyu0" path="res://assets/RabbitSpriteSheet-Large.png" id="13_ugjh4"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
+[ext_resource type="AudioStream" uid="uid://0wn0ji2j15mg" path="res://sound/Floor/Steps_floor-003.ogg" id="13_xwfwl"]
+[ext_resource type="AudioStream" uid="uid://c6vkced3mupbq" path="res://sound/Floor/Steps_floor-004.ogg" id="14_e8qo5"]
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
+[ext_resource type="AudioStream" uid="uid://bogy0u2t5mc4" path="res://sound/Floor/Steps_floor-005.ogg" id="15_eng4h"]
+[ext_resource type="AudioStream" uid="uid://dajdn4uxcv8hu" path="res://sound/Floor/Steps_floor-006.ogg" id="16_m3xpa"]
+[ext_resource type="AudioStream" uid="uid://c0v0xir8wdmk4" path="res://sound/Floor/Steps_floor-007.ogg" id="17_k26h7"]
 [ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="17_r7hu2"]
+[ext_resource type="AudioStream" uid="uid://bhxmxbbfegpq8" path="res://sound/Floor/Steps_floor-008.ogg" id="18_dat6q"]
 [ext_resource type="Script" path="res://Label.gd" id="19_320qv"]
 [ext_resource type="Texture2D" uid="uid://csj1136wyjpnt" path="res://arts/pixel-viking-1.jpg" id="19_o7wdh"]
+[ext_resource type="AudioStream" uid="uid://co3ng5i3qijoe" path="res://sound/Floor/Steps_floor-009.ogg" id="19_yva1q"]
 [ext_resource type="Texture2D" uid="uid://dh1agysu5pi4d" path="res://arts/pixel-viking-2.jpg" id="20_75qg2"]
+[ext_resource type="AudioStream" uid="uid://ejjbqseu8ijd" path="res://sound/Floor/Steps_floor-010.ogg" id="20_c6ik8"]
 [ext_resource type="Texture2D" uid="uid://c0lsgd1dnort0" path="res://arts/pixel-viking-3.jpg" id="21_ne0q6"]
+[ext_resource type="AudioStream" uid="uid://bsk0fp612mr3l" path="res://sound/Floor/Steps_floor-011.ogg" id="21_sq2y5"]
 [ext_resource type="Script" path="res://AnimatedFace.gd" id="22_3uftv"]
+[ext_resource type="AudioStream" uid="uid://bfb1mkgjfftp1" path="res://sound/Floor/Steps_floor-012.ogg" id="22_un6em"]
+[ext_resource type="AudioStream" uid="uid://d0qmqexh3sydm" path="res://sound/Floor/Steps_floor-013.ogg" id="23_mr7ck"]
 [ext_resource type="Script" path="res://Quest1.gd" id="24_ja7jj"]
+[ext_resource type="AudioStream" uid="uid://4rqcx0ow5ama" path="res://sound/Floor/Steps_floor-014.ogg" id="24_t2qeo"]
 [ext_resource type="Script" path="res://Quest2.gd" id="25_5llqg"]
+[ext_resource type="AudioStream" uid="uid://blpl2bhi6mv18" path="res://sound/Floor/Steps_floor-015.ogg" id="25_cxcur"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
+[ext_resource type="AudioStream" uid="uid://kckdhqxxafw4" path="res://sound/Floor/Steps_floor-016.ogg" id="26_pfmng"]
 [ext_resource type="Script" path="res://Quest3.gd" id="26_rx6gv"]
+[ext_resource type="AudioStream" uid="uid://boltrh2pl1aps" path="res://sound/Floor/Steps_floor-017.ogg" id="27_18irc"]
 [ext_resource type="Script" path="res://Clock.gd" id="27_xgbrb"]
+[ext_resource type="AudioStream" uid="uid://b1rgja8ccflah" path="res://sound/Floor/Steps_floor-018.ogg" id="28_8rqc4"]
 [ext_resource type="Script" path="res://Control.gd" id="28_mrjgw"]
+[ext_resource type="AudioStream" uid="uid://b8n547wlii7a2" path="res://sound/Floor/Steps_floor-019.ogg" id="29_o8mrs"]
+[ext_resource type="AudioStream" uid="uid://57vv7mw34l41" path="res://sound/Floor/Steps_floor-020.ogg" id="30_jelrn"]
+[ext_resource type="AudioStream" uid="uid://cxuescb3sc8es" path="res://sound/Floor/Steps_floor-021.ogg" id="31_b1uw3"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -4815,6 +4836,7 @@ motion_mode = 1
 slide_on_ceiling = false
 platform_on_leave = 2
 speed = 300
+walking_sounds = Array[AudioStream]([ExtResource("11_4hvx7"), ExtResource("12_a56pd"), ExtResource("13_xwfwl"), ExtResource("14_e8qo5"), ExtResource("15_eng4h"), ExtResource("16_m3xpa"), ExtResource("17_k26h7"), ExtResource("18_dat6q"), ExtResource("19_yva1q"), ExtResource("20_c6ik8"), ExtResource("21_sq2y5"), ExtResource("22_un6em"), ExtResource("23_mr7ck"), ExtResource("24_t2qeo"), ExtResource("25_cxcur"), ExtResource("26_pfmng"), ExtResource("27_18irc"), ExtResource("28_8rqc4"), ExtResource("29_o8mrs"), ExtResource("30_jelrn"), ExtResource("31_b1uw3")])
 
 [node name="follow cam" type="Camera2D" parent="world/TileMap/Player" node_paths=PackedStringArray("tilemap")]
 zoom = Vector2(3, 3)
@@ -4824,6 +4846,8 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("9_v7iqx")
 tilemap = NodePath("../..")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
 
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")

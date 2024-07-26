@@ -42,6 +42,12 @@
 24. Recruit people to the army
 25. Create villages and towns as well as farms to generate resources instead of generating them yourself
 26. Music and sound effects
+	26.1 Main menu button clicks [X] # Some issues with delay and clicking multiple buttons
+		buttonclick.mp3
+	26.2 Walking sounds
+	26.3 Timber cutting sounds
+	26.4 Clay digging sounds
+	26.5 Fireplace sounds
 27. world map taverns to rest and recouperate
 28. Create trade routes to transport goods
 29. Cleanup code

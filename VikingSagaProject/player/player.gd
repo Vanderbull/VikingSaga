@@ -34,6 +34,29 @@ signal healthChangedVillage
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+@export var footstep_interval: float = 0.1
+@export var walking_sounds: Array[AudioStream]  # List of footstep sounds
+
+@onready var footstep_player = $FootstepPlayer
+
+var time_since_last_step: float = 0.0
+
+func _physics_process(delta: float) -> void:
+	# Check if the player is moving
+	if velocity.length() > 0:
+		time_since_last_step += delta
+		if time_since_last_step >= footstep_interval:
+			play_footstep_sound()
+			time_since_last_step = 0.0
+	else:
+		time_since_last_step = footstep_interval  # Reset when not moving
+
+func play_footstep_sound() -> void:
+	if walking_sounds.size() > 0:
+		var sound = walking_sounds[randi() % walking_sounds.size()]
+		footstep_player.stream = sound
+		footstep_player.play()
+
 func _input(event):
 	if not event.is_action_pressed("ui_accept"):
 		return
