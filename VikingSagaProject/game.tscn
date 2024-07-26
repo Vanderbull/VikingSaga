@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=70 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bf4jil1d0pjen" path="res://player/player.tscn" id="8_h5l8u"]
 [ext_resource type="Texture2D" uid="uid://b2hri0fdvldbn" path="res://arts/tileset.png" id="8_hj312"]
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
+[ext_resource type="Texture2D" uid="uid://wq4cg62s82wh" path="res://arts/fireplace.png" id="9_lgqr5"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
 [ext_resource type="AudioStream" uid="uid://dbpboig2kx8g6" path="res://sound/Floor/Steps_floor-001.ogg" id="11_4hvx7"]
 [ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
@@ -4604,6 +4605,45 @@ texture = ExtResource("8_hj312")
 12:13/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:13/0/physics_layer_0/angular_velocity = 0.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqt6u"]
+texture = ExtResource("9_lgqr5")
+0:0/size_in_atlas = Vector2i(1, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/size_in_atlas = Vector2i(1, 2)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/size_in_atlas = Vector2i(1, 2)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/size_in_atlas = Vector2i(1, 2)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+4:0/size_in_atlas = Vector2i(1, 2)
+4:0/0 = 0
+4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/size_in_atlas = Vector2i(1, 2)
+5:0/0 = 0
+5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/size_in_atlas = Vector2i(1, 2)
+6:0/0 = 0
+6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:0/0/physics_layer_0/angular_velocity = 0.0
+7:0/size_in_atlas = Vector2i(1, 2)
+7:0/0 = 0
+7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/size_in_atlas = Vector2i(1, 2)
+8:0/0 = 0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_ie527"]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
@@ -4614,6 +4654,7 @@ sources/2 = SubResource("TileSetAtlasSource_nci7c")
 sources/3 = SubResource("TileSetAtlasSource_goli3")
 sources/1 = SubResource("TileSetAtlasSource_758pu")
 sources/4 = SubResource("TileSetAtlasSource_0tbxq")
+sources/5 = SubResource("TileSetAtlasSource_xqt6u")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fm6y1"]
 texture = ExtResource("3_jbup0")
@@ -4861,6 +4902,7 @@ tilemap = NodePath("../..")
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
 format = 2
+layer_0/tile_data = PackedInt32Array(196605, 5, 0, 458749, 65541, 0, 327675, 131077, 0, 196603, 524293, 0)
 script = ExtResource("35_pldd7")
 
 [node name="AnimalMap" type="TileMap" parent="world"]
