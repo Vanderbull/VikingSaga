@@ -52,3 +52,4 @@
 28. Create trade routes to transport goods
 29. Cleanup code
 30. Setup the VCS git version plugin
+31. Testing VCS Git plugin commit [x]
