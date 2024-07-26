@@ -1,6 +1,29 @@
-Todo list
----------
-1. Paint Tilemap sprite water blue
-2. Create new sprite for boat
-3. Shrink panel backgrounds for hp
-4. Change color and layout of gold text in bottom right panel
+1. Remake the menus
+2. Create or find some more animal sprites
+3. Redraw the player sprite in the new viking look with helmet for all directions
+4. Rename TileMap2 to something more understandable
+5. Remake the quest system to something better
+6. Remove errors and warnings in the editor
+7. Rearrange the files in the filesystem
+8. Finish the inventory system
+9. Add boat to the game
+10. Check that the fighting system works
+11. Integrate the fighting system into the game so that you can fight animals and other npcs
+12. Implement a basic crafting system
+	12.1 Make planks from the wood collected
+	12.2 Make bricks from the clay collected
+	12.3 Make Barrels from the planks to collect water in
+	
+13. Implement a basic skill system
+14. Create the beginner tutorial
+	14.1 Collect all the resources in the game
+15. Make the fireplace animated
+16. Make the fireplace buildable from wood or planks and being lit or not
+17. Sleep zzzZZzzzz
+18. Day and night time
+	18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time
+	18.2 Draw the state of the time of day with text DAY or NIGHT
+	18.3 One square of movement could be one hours of travel
+19. Rain and snow
+20. Lightning
+21. Shaders

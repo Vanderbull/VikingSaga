@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=43 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 [ext_resource type="Script" path="res://Quest3.gd" id="26_rx6gv"]
+[ext_resource type="Script" path="res://Clock.gd" id="27_xgbrb"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5064,6 +5065,10 @@ script = ExtResource("25_5llqg")
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
 script = ExtResource("26_rx6gv")
+
+[node name="Clock" type="Label" parent="Quests/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("27_xgbrb")
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

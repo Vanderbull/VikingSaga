@@ -29,6 +29,11 @@ window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[filesystem]
+
+import/blender/enabled=false
+import/fbx/enabled=false
+
 [input]
 
 ui_left={

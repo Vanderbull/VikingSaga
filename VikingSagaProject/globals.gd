@@ -31,12 +31,18 @@ var animals_db = {}
 
 func gain_quest_water(amount):
 	QuestWater += amount
+	if QuestWater > 10000:
+		QuestWater = 10000
 	return QuestWater
 func gain_quest_food(amount):
 	QuestFood += amount
+	if QuestFood > 10000:
+		QuestFood = 10000
 	return QuestFood
 func gain_quest_trees(amount):
 	QuestTrees += amount
+	if QuestTrees > 10000:
+		QuestTrees = 10000
 	return QuestTrees
 	
 func update_quests():
