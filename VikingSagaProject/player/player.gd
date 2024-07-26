@@ -66,9 +66,9 @@ func _ready():
 	effects.play("RESET")
 
 func handleInput():
-	if $"../../../Quests/VBoxContainer/Clock".get_timeofday() == "NIGHT":
-		$"../../../Control"._show_popup()
-	else:
+	#if $"../../../Quests/VBoxContainer/Clock".get_timeofday() == "NIGHT":
+		#$"../../../Control"._show_popup()
+	#else:
 		var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 		velocity = moveDirection*speed
 	
@@ -143,6 +143,8 @@ func _unhandled_input(event):
 			get_tree().change_scene_to_file("res://src/battle.tscn")
 		if event.pressed and event.keycode == KEY_KP_1:
 			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
+		if event.pressed and event.keycode == KEY_KP_2:
+			$"../../../Control"._show_popup_with_typing()
 			
 	if event is InputEventMouseButton:
 		if event.is_pressed():

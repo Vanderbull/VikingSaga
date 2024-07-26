@@ -5071,7 +5071,7 @@ script = ExtResource("26_rx6gv")
 layout_mode = 2
 script = ExtResource("27_xgbrb")
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label")]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label", "typing_timer")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -5079,6 +5079,7 @@ offset_bottom = 40.0
 script = ExtResource("28_mrjgw")
 popup = NodePath("Popup")
 popup_label = NodePath("Popup/PopupLabel")
+typing_timer = NodePath("Popup/Timer")
 
 [node name="Popup" type="PopupPanel" parent="Control"]
 
@@ -5087,6 +5088,8 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 96.0
 offset_bottom = 96.0
+
+[node name="Timer" type="Timer" parent="Control/Popup"]
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
