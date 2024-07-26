@@ -51,3 +51,4 @@
 27. world map taverns to rest and recouperate
 28. Create trade routes to transport goods
 29. Cleanup code
+30. Setup the VCS git version plugin
