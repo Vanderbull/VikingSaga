@@ -45,7 +45,7 @@
 	26.1 Main menu button clicks [X] # Some issues with delay and clicking multiple buttons
 		buttonclick.mp3
 	26.2 Walking sounds [X]
-	26.3 Timber cutting sounds
+	26.3 Timber cutting sounds [X]
 	26.4 Clay digging sounds
 	26.5 Fireplace sounds
 27. world map taverns to rest and recouperate
