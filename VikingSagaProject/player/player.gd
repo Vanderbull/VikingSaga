@@ -66,8 +66,11 @@ func _ready():
 	effects.play("RESET")
 
 func handleInput():
-	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	velocity = moveDirection*speed
+	if $"../../../Quests/VBoxContainer/Clock".get_timeofday() == "NIGHT":
+		$"../../../Control"._show_popup()
+	else:
+		var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+		velocity = moveDirection*speed
 	
 func updateAnimation():
 	if velocity.length() == 0:

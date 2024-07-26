@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=44 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 [ext_resource type="Script" path="res://Quest3.gd" id="26_rx6gv"]
 [ext_resource type="Script" path="res://Clock.gd" id="27_xgbrb"]
+[ext_resource type="Script" path="res://Control.gd" id="28_mrjgw"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5069,6 +5070,23 @@ script = ExtResource("26_rx6gv")
 [node name="Clock" type="Label" parent="Quests/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("27_xgbrb")
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("28_mrjgw")
+popup = NodePath("Popup")
+popup_label = NodePath("Popup/PopupLabel")
+
+[node name="Popup" type="PopupPanel" parent="Control"]
+
+[node name="PopupLabel" type="Label" parent="Control/Popup"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

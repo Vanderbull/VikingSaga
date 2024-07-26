@@ -17,6 +17,8 @@
 13. Implement a basic skill system
 14. Create the beginner tutorial
 	14.1 Collect all the resources in the game
+	14.2 When finishing the tutorial the player gets some experience and is able to found its first village
+	14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
 15. Make the fireplace animated
 16. Make the fireplace buildable from wood or planks and being lit or not
 17. Sleep zzzZZzzzz
@@ -24,6 +26,22 @@
 	18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time
 	18.2 Draw the state of the time of day with text DAY or NIGHT
 	18.3 One square of movement could be one hours of travel
+	18.4 Realtime clock implemented
+	18.5 Base the day and night text on the realtime clock
+	18.6 Create a shader for the day and night cycle
+	18.7 If you have a torch there is a light aura around your character else its simply very dark
+	18.8 Possibly during night the player uses up torches and if there are none then the player cant move and needs to do the resting cycle until daylight
 19. Rain and snow
+	19.1 If it rains it is not possible to use bows and the vision range is lower
+	19.2 If it snows then can get hypothermia and usage of food and possibly water are higher
 20. Lightning
+	20.1 Can create forest fires and burn down things like your buildings
 21. Shaders
+22. Siege warfare i think might simply be a animation of catapult throwing stones at a village or castle and its random if you succeed or not
+23. Traders
+24. Recruit people to the army
+25. Create villages and towns as well as farms to generate resources instead of generating them yourself
+26. Music and sound effects
+27. world map taverns to rest and recouperate
+28. Create trade routes to transport goods
+29. Cleanup code

@@ -21,6 +21,22 @@ func _process(delta: float) -> void:
 	var minutes = "%02d" % time["minute"]
 	var seconds = "%02d" % time["second"]
 	
-	# Update the label text
-	#time_label.text = "%s:%s:%s" % [hours, minutes, seconds]
-	text = "%s:%s:%s" % [hours, minutes, seconds]
+	# Determine day or night
+	var day_or_night = ""
+	if time["hour"] >= 6 and time["hour"] < 18:
+		day_or_night = "DAY"
+	else:
+		day_or_night = "NIGHT"
+		
+	text = "%s:%s:%s %s" % [hours, minutes, seconds, day_or_night]
+	
+func get_timeofday():
+		# Get the current time
+	var time = Time.get_time_dict_from_system()
+	# Determine day or night
+	var day_or_night = ""
+	if time["hour"] >= 6 and time["hour"] < 18:
+		return "DAY"
+	else:
+		return "NIGHT"	
+	pass
