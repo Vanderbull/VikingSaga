@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=42 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -21,8 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://dh1agysu5pi4d" path="res://arts/pixel-viking-2.jpg" id="20_75qg2"]
 [ext_resource type="Texture2D" uid="uid://c0lsgd1dnort0" path="res://arts/pixel-viking-3.jpg" id="21_ne0q6"]
 [ext_resource type="Script" path="res://AnimatedFace.gd" id="22_3uftv"]
+[ext_resource type="Script" path="res://Quest1.gd" id="24_ja7jj"]
+[ext_resource type="Script" path="res://Quest2.gd" id="25_5llqg"]
 [ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
+[ext_resource type="Script" path="res://Quest3.gd" id="26_rx6gv"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -5050,14 +5053,17 @@ offset_bottom = 120.0
 [node name="Quest1" type="Label" parent="Quests/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect water 0 / 10000"
+script = ExtResource("24_ja7jj")
 
 [node name="Quest2" type="Label" parent="Quests/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect food 0 / 10000"
+script = ExtResource("25_5llqg")
 
 [node name="Quest3" type="Label" parent="Quests/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
+script = ExtResource("26_rx6gv")
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

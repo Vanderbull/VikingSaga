@@ -89,6 +89,7 @@ func _ready():
 		game_paused = !game_paused
 		
 func _process(delta):
+	
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
@@ -102,6 +103,8 @@ func _process(delta):
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 			playerData.PlayerFood += 10000
 			globals.gain_experience(1)
+			globals.gain_quest_food(10000)
+			$Quests/VBoxContainer/Quest2.update_text()
 	elif(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
@@ -118,6 +121,8 @@ func _process(delta):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
+			globals.gain_quest_trees(1)
+			$Quests/VBoxContainer/Quest3.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
@@ -126,6 +131,8 @@ func _process(delta):
 			playerData.PlayerWater += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
+			globals.gain_quest_water(1000)
+			$Quests/VBoxContainer/Quest1.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"

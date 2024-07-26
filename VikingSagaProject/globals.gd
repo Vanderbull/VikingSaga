@@ -11,6 +11,9 @@ var CollectWater = false
 var CollectClay = false
 var Hunting = false
 
+var QuestWater = 0
+var QuestFood = 0
+var QuestTrees = 0
 
 var Terrain = "None"
 var Animals = "None"
@@ -26,6 +29,21 @@ var experience_required = get_required_experience(level + 1)
 # Dictionary to store item data
 var animals_db = {}
 
+func gain_quest_water(amount):
+	QuestWater += amount
+	return QuestWater
+func gain_quest_food(amount):
+	QuestFood += amount
+	return QuestFood
+func gain_quest_trees(amount):
+	QuestTrees += amount
+	return QuestTrees
+	
+func update_quests():
+	$Quests/VBoxContainer/Quest1.text = "UPDATE QUEST 1"
+	$Quests/VBoxContainer/Quest2.text = "UPDATE QUEST 1"
+	$Quests/VBoxContainer/Quest3.text = "UPDATE QUEST 1"
+	
 func get_required_experience(level):
 	return round(pow(level, 1.8) + level * 4)
 
