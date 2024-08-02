@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=75 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -39,7 +39,6 @@
 [ext_resource type="AudioStream" uid="uid://4rqcx0ow5ama" path="res://sound/Floor/Steps_floor-014.ogg" id="24_t2qeo"]
 [ext_resource type="Script" path="res://Quest2.gd" id="25_5llqg"]
 [ext_resource type="AudioStream" uid="uid://blpl2bhi6mv18" path="res://sound/Floor/Steps_floor-015.ogg" id="25_cxcur"]
-[ext_resource type="PackedScene" uid="uid://d18xnfsc6gfnx" path="res://UI/quest_menu.tscn" id="25_itlq3"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="25_qikve"]
 [ext_resource type="AudioStream" uid="uid://kckdhqxxafw4" path="res://sound/Floor/Steps_floor-016.ogg" id="26_pfmng"]
 [ext_resource type="Script" path="res://Quest3.gd" id="26_rx6gv"]
@@ -53,6 +52,11 @@
 [ext_resource type="AudioStream" uid="uid://b4vm00220hxuj" path="res://sound/Chopping Wood .wav" id="32_ufh7m"]
 [ext_resource type="AudioStream" uid="uid://dqcmr8wm5jyb2" path="res://sound/digging-v1-27585.mp3" id="33_n0cdj"]
 [ext_resource type="Script" path="res://TileMap2.gd" id="35_pldd7"]
+[ext_resource type="Script" path="res://DiggPlayer.gd" id="36_db1j5"]
+[ext_resource type="AudioStream" uid="uid://h6np3gb5q0ad" path="res://sound/Chopping Wood .mp3" id="36_ft3do"]
+[ext_resource type="Texture2D" uid="uid://yvhiqeks3sn" path="res://arts/mainmenu.png" id="54_0xwtg"]
+[ext_resource type="Script" path="res://MainMenu.gd" id="54_6irwx"]
+[ext_resource type="PackedScene" uid="uid://0xf5cgiejrjx" path="res://settings.tscn" id="56_c23in"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hp3cf"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -4852,6 +4856,9 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_0sw4v"]
+font_size = 141
+
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -4896,8 +4903,11 @@ tilemap = NodePath("../..")
 [node name="FootstepPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
 
 [node name="ChopPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
+stream = ExtResource("36_ft3do")
 
 [node name="DiggPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
+stream = ExtResource("33_n0cdj")
+script = ExtResource("36_db1j5")
 
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
@@ -4994,10 +5004,6 @@ texture = ExtResource("17_r7hu2")
 [node name="Food" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
 layout_mode = 2
 text = "Food: 0"
-
-[node name="QuestMenu" parent="InGameCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_itlq3")]
-visible = false
-game_manager = NodePath("../..")
 
 [node name="PlayerPosition" type="Label" parent="InGameCanvasLayer"]
 visible = false
@@ -5154,6 +5160,7 @@ popup_label = NodePath("Popup/PopupLabel")
 typing_timer = NodePath("Popup/Timer")
 
 [node name="Popup" type="PopupPanel" parent="Control"]
+visible = true
 
 [node name="PopupLabel" type="Label" parent="Control/Popup"]
 offset_left = 4.0
@@ -5163,5 +5170,67 @@ offset_bottom = 96.0
 
 [node name="Timer" type="Timer" parent="Control/Popup"]
 
+[node name="MainMenu" type="CanvasLayer" parent="."]
+script = ExtResource("54_6irwx")
+
+[node name="Control" type="Control" parent="MainMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="TextureRect" parent="MainMenu/Control"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "MainMenu tooltips"
+texture = ExtResource("54_0xwtg")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="MainMenu/Control/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "VIKING SAGA"
+label_settings = SubResource("LabelSettings_0sw4v")
+uppercase = true
+
+[node name="Hide" type="Button" parent="MainMenu/Control/Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -15.5
+offset_right = 86.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LETS PLAY"
+
+[node name="Settings" parent="MainMenu" instance=ExtResource("56_c23in")]
+
+[connection signal="finished" from="world/TileMap/Player/DiggPlayer" to="world/TileMap/Player/DiggPlayer" method="_on_finished"]
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
+[connection signal="pressed" from="MainMenu/Control/Background/Hide" to="MainMenu" method="_on_button_pressed"]

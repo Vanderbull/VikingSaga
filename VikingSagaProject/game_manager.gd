@@ -115,6 +115,8 @@ func _process(delta):
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.ForestCutting and globals.Terrain == "Forest"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
+		if( $InGameCanvasLayer/ProgressBar.value == 0 ):
+			$world/TileMap/Player/ChopPlayer.play()
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
@@ -136,7 +138,10 @@ func _process(delta):
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
+		if( $InGameCanvasLayer/ProgressBar.value == 0 ):
+			$world/TileMap/Player/DiggPlayer.play()
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerClay += 1
 			$InGameCanvasLayer/ProgressBar.value = 0

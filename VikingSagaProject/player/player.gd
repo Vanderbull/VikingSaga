@@ -72,16 +72,18 @@ func play_chop_sound() -> void:
 		var sound = chop_sounds[randi() % chop_sounds.size()]
 		chop_player.stream = sound
 		chop_player.play()
-		print("sound ALOT!!!")
 		await chop_player.finished
 		
 func play_digg_sound() -> void:
-	if digg_sounds.size() > 0:
-		var sound = digg_sounds[randi() % digg_sounds.size()]
-		digg_player.stream = sound
+	print("DIGG SOUND TRIGGER")
+	if(digg_player.is_audio_playing()):
 		digg_player.play()
-		print("sound ALOT!!!")
-		await digg_player.finished
+	#await digg_player.finished
+	#if digg_sounds.size() > 0:
+		#var sound = digg_sounds[randi() % digg_sounds.size()]
+		#digg_player.stream = sound
+		#digg_player.play()
+		#await digg_player.finished
 
 func _input(event):
 	if not event.is_action_pressed("ui_accept"):
@@ -183,6 +185,7 @@ func _unhandled_input(event):
 				var atlas_coords = Vector2i(0, 0)
 				var tilemap = $"../../AnimalMap"
 				tilemap.set_cell(0,tile_pos, -1)
+				globals.ForestCutting = false
 			elif( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
@@ -193,16 +196,16 @@ func _unhandled_input(event):
 				else:
 					$"../../../InGameCanvasLayer/ProgressBar".show()
 					globals.ForestCutting = not globals.ForestCutting
-					if globals.ForestCutting == true:
-						play_chop_sound()
+					#if globals.ForestCutting == true:
+					#	play_chop_sound()
 			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
 			elif( globals.Terrain == "Grass" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
-				if globals.CollectClay == true:
-					play_digg_sound()
+				#if globals.CollectClay == true:
+				#s	play_digg_sound()
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass		
@@ -226,6 +229,8 @@ func _unhandled_input(event):
 		
 		
 func _process(_delta):
+	#if globals.CollectClay == true:
+		#play_digg_sound()
 	if( game_manager.playerData.PlayerFood < 0 || game_manager.playerData.PlayerWater < 0 ):
 		get_tree().reload_current_scene()
 	game_manager.playerData.player_position = position
