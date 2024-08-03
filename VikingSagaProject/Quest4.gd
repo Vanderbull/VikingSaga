@@ -5,6 +5,6 @@ extends Label
 
 func update_text():
 	if globals.QuestClay >= 10000:
-		text = """[X] Collect clay %s / 10000""" % [globals.gain_quest_clay(0)]
+		text = """[X] Collect clay %s / 10000""" % [globals.QuestClay]
 	else:
-		text = """[ ] Collect clay %s / 10000""" % [globals.gain_quest_clay(1000)]
+		text = """[ ] Collect clay %s / 10000""" % [globals.QuestClay]

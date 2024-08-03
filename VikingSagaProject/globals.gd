@@ -1,5 +1,7 @@
 extends Node
 
+@onready var game_manager = $"../../.."
+
 var ForestCuttingMultiplier = 1
 var CollectClayMultiplier = 1
 var CollectWaterMultiplier = 1
@@ -50,10 +52,15 @@ func gain_quest_food(amount):
 		HuntingMultiplier = 2
 	return QuestFood
 func gain_quest_trees(amount):
-	QuestTrees += amount
+	QuestTrees = amount
 	if QuestTrees > 10000:
 		QuestTrees = 10000
 	return QuestTrees
+func gain_quest_clay(amount):
+	QuestClay = amount
+	if QuestClay > 10000:
+		QuestClay = 10000
+	return QuestClay
 	
 func update_quests():
 	$Quests/VBoxContainer/Quest1.text = "UPDATE QUEST 1"

@@ -66,4 +66,6 @@ another scene like the scene sitting by the fire and resting and having a button
 39. Quest hunting rabbits for food
 40. Quest collect water for drinking
 41. When standing on a road tile and moving the movement speed should be increased
+42. spawn 100 tiles of rabbits and then as tmie goes despawn some and respawn them random
+43. other variant is to spawn in a number if rabbits as actual characters and let them move around
 

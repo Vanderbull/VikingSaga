@@ -5,6 +5,6 @@ extends Label
 
 func update_text():
 	if globals.QuestTrees >= 10000:
-		text = """[X] Collect trees %s / 10000""" % [globals.gain_quest_trees(0)]
+		text = """[X] Collect trees %s / 10000""" % [globals.QuestTrees]
 	else:
-		text = """[ ] Collect trees %s / 10000""" % [globals.gain_quest_trees(1000)]
+		text = """[ ] Collect trees %s / 10000""" % [globals.QuestTrees]

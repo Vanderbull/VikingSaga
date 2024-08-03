@@ -51,9 +51,9 @@ func _ready():
 	
 	#$world/TileMap.get_terrain_type(2, 0)
 	
-	for i in range(5):
+	for i in range(500):
 		var tilemap = $world/AnimalMap
-		var cell_position = Vector2i(randi_range(-10, 10), randi_range(-10, 10))
+		var cell_position = Vector2i(randi_range(-50, 50), randi_range(-50, 50))
 		var atlas_coords = Vector2i(0, 0)
 		var tile_id = 1
 	
@@ -119,12 +119,12 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
-			$InGameCanvasLayer/ProgressBar.value = 0
 			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
-			globals.gain_quest_trees(1)
+			globals.gain_quest_trees(playerData.PlayerWood)
 			$Quests/VBoxContainer/Quest3.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
+			$InGameCanvasLayer/ProgressBar.value = 0
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
@@ -137,15 +137,17 @@ func _process(delta):
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
-		if( $InGameCanvasLayer/ProgressBar.value == 0 ):
-			$world/TileMap/Player/DiggPlayer.play()
+		#if( $InGameCanvasLayer/ProgressBar.value == 0 ):
+		#	$world/TileMap/Player/DiggPlayerPlayer.play()
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectClayMultiplier )
-
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerClay += 1
-			$InGameCanvasLayer/ProgressBar.value = 0
+			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
+			globals.gain_quest_clay(playerData.PlayerClay)
+			$Quests/VBoxContainer/Quest4.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
+			$InGameCanvasLayer/ProgressBar.value = 0
 	else:
 		$InGameCanvasLayer/ProgressBar.hide()
 		$InGameCanvasLayer/ProgressBar.value = 0
