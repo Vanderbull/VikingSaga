@@ -1,5 +1,11 @@
 extends Node
 
+var ForestCuttingMultiplier = 1
+var CollectClayMultiplier = 1
+var CollectWaterMultiplier = 1
+var RoadWorksMultiplier = 1
+var HuntingMultiplier = 1
+
 var ready_already = true
 var player_position = Vector2(0,0)
 var cloud_position = Vector2(100,100)
@@ -14,6 +20,8 @@ var Hunting = false
 var QuestWater = 0
 var QuestFood = 0
 var QuestTrees = 0
+var QuestClay = 0
+var QuestHunting = 0
 
 var Terrain = "None"
 var Animals = "None"
@@ -33,11 +41,13 @@ func gain_quest_water(amount):
 	QuestWater += amount
 	if QuestWater > 10000:
 		QuestWater = 10000
+		CollectWaterMultiplier = 2
 	return QuestWater
 func gain_quest_food(amount):
 	QuestFood += amount
 	if QuestFood > 10000:
 		QuestFood = 10000
+		HuntingMultiplier = 2
 	return QuestFood
 func gain_quest_trees(amount):
 	QuestTrees += amount

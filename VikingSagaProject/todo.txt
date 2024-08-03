@@ -47,7 +47,8 @@
 	26.2 Walking sounds [X]
 	26.3 Timber cutting sounds [X]
 	26.4 Clay digging sounds [X]
-	26.5 Fireplace sounds
+	26.5 Fireplace [X] 
+		sounds should be local but is not yet
 27. world map taverns to rest and recouperate
 28. Create trade routes to transport goods
 29. Cleanup code
@@ -59,3 +60,10 @@
 34. Building things should remove resources and place a building icon on the map where you stand and when you walk onto a building the game should switch to
 another scene like the scene sitting by the fire and resting and having a button for leaving the building
 35. RaniShader could be used to hide and unhide to show that there is raining in the game
+36. Tiles around the fireplace should have a tile indicating it is hot and if walking into the fire it hurts
+37. Fireplace animated according to this tutorial https://www.youtube.com/watch?v=IOh6PSACYNU
+38. Breakout trees from tileset.png into its own tileset
+39. Quest hunting rabbits for food
+40. Quest collect water for drinking
+41. When standing on a road tile and moving the movement speed should be increased
+

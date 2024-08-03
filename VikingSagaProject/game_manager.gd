@@ -89,14 +89,13 @@ func _ready():
 		game_paused = !game_paused
 		
 func _process(delta):
-	
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
 	#if(globals.Hunting and globals.Animals == "Rabbit"):
 	if(globals.Hunting):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
-		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.HuntingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.Hunting = not globals.Hunting
@@ -117,7 +116,7 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		if( $InGameCanvasLayer/ProgressBar.value == 0 ):
 			$world/TileMap/Player/ChopPlayer.play()
-		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1
 			$InGameCanvasLayer/ProgressBar.value = 0
@@ -128,19 +127,19 @@ func _process(delta):
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
-		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWater += 1000
+			#playerData.PlayerWater += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
-			globals.gain_experience(1)
-			globals.gain_quest_water(1000)
+			#globals.gain_experience(1)
+			#globals.gain_quest_water(1000)
 			$Quests/VBoxContainer/Quest1.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
 		if( $InGameCanvasLayer/ProgressBar.value == 0 ):
 			$world/TileMap/Player/DiggPlayer.play()
-		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
+		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectClayMultiplier )
 
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerClay += 1
