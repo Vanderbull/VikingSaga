@@ -3,7 +3,6 @@ extends Control
 @export var game_manager : GameManager
 
 func _ready():
-	print("READY PAUSE MENU::::")
 	verify_save_directory(game_manager.playerData.save_file_path)
 	hide()
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
