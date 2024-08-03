@@ -4612,6 +4612,7 @@ texture = ExtResource("8_hj312")
 12:13/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xqt6u"]
+resource_name = "fireplace"
 texture = ExtResource("9_lgqr5")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
@@ -4936,14 +4937,13 @@ script = ExtResource("36_db1j5")
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
 format = 2
-layer_0/tile_data = PackedInt32Array(196605, 5, 0, 458749, 65541, 0, 327675, 131077, 0, 196603, 524293, 0)
+layer_0/tile_data = PackedInt32Array(196605, 5, 0, 196603, 524293, 0)
 script = ExtResource("35_pldd7")
 
 [node name="AnimalMap" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_i3jvc")
 format = 2
 layer_0/name = "ANIMAL_MAP"
-layer_0/tile_data = PackedInt32Array(65538, 2, 0, 393222, 2, 0, 458754, 2, 0, 131078, 2, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -4953,6 +4953,7 @@ visible = false
 game_manager = NodePath("../..")
 
 [node name="RainShader" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_r7pbc")
 anchors_preset = 15
 anchor_right = 1.0
@@ -5195,7 +5196,6 @@ popup_label = NodePath("Popup/PopupLabel")
 typing_timer = NodePath("Popup/Timer")
 
 [node name="Popup" type="PopupPanel" parent="Control"]
-visible = true
 
 [node name="PopupLabel" type="Label" parent="Control/Popup"]
 offset_left = 4.0

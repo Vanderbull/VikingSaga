@@ -1,5 +1,5 @@
 extends TileMap
-
+@onready var globals = get_node("/root/Globals")
 # Function to check if a tile is set at a specific grid position
 func is_tile_set(x: int, y: int) -> bool:
 	var cell_source_id = get_cell_source_id(0,Vector2i(x, y))
@@ -7,9 +7,13 @@ func is_tile_set(x: int, y: int) -> bool:
 
 # Example usage in a script where this TileMap is referenced
 func _ready():
-	var x = 2
-	var y = 3
-	if is_tile_set(x, y):
-		print("Tile is set at position (", x, ", ", y, ")")
+	pass
+	
+func _process(delta):
+	print(globals.player_position)
+	if is_tile_set(globals.player_position.x,globals.player_position.y):
+		print("You feel warm")
+		#print("Tile is set at position (", x, ", ", y, ")")
 	else:
-		print("No tile is set at position (", x, ", ", y, ")")
+		pass
+		#print("No tile is set at position (", x, ", ", y, ")")

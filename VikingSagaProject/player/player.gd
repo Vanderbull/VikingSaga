@@ -93,10 +93,10 @@ func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
 	globals.player_position = tile_pos
 	
-	if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
-		print("Tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")
-	else:
-		print("No tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")	
+	#if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
+		#print("Tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")
+	#else:
+		#print("No tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")	
 
 	if( globals.Animals == "Rabbit" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
