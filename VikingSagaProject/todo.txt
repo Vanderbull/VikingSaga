@@ -58,3 +58,4 @@
 33. first version of battle could be like hunting rabbit a progressbar when walking over a enemy
 34. Building things should remove resources and place a building icon on the map where you stand and when you walk onto a building the game should switch to
 another scene like the scene sitting by the fire and resting and having a button for leaving the building
+35. RaniShader could be used to hide and unhide to show that there is raining in the game

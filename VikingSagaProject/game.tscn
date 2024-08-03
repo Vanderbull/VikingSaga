@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=79 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -54,6 +54,7 @@
 [ext_resource type="Script" path="res://TileMap2.gd" id="35_pldd7"]
 [ext_resource type="Script" path="res://DiggPlayer.gd" id="36_db1j5"]
 [ext_resource type="AudioStream" uid="uid://h6np3gb5q0ad" path="res://sound/Chopping Wood .mp3" id="36_ft3do"]
+[ext_resource type="Shader" path="res://rain.gdshader" id="41_1nijl"]
 [ext_resource type="Script" path="res://MainMenu.gd" id="54_6irwx"]
 [ext_resource type="PackedScene" uid="uid://0xf5cgiejrjx" path="res://settings.tscn" id="56_c23in"]
 [ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="57_tobko"]
@@ -4821,6 +4822,20 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_fm6y1")
 sources/2 = SubResource("TileSetAtlasSource_rrdps")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r7pbc"]
+shader = ExtResource("41_1nijl")
+shader_parameter/rain_amount = 300.0
+shader_parameter/near_rain_length = 0.2
+shader_parameter/far_rain_length = 0.1
+shader_parameter/near_rain_width = 1.0
+shader_parameter/far_rain_width = 0.5
+shader_parameter/near_rain_transparency = 0.972
+shader_parameter/far_rain_transparency = 0.5
+shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 0)
+shader_parameter/base_rain_speed = 0.5
+shader_parameter/additional_rain_speed = 0.5
+shader_parameter/slant = 0.2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lex6n"]
 border_width_left = 4
 border_width_top = 4
@@ -4936,6 +4951,15 @@ layer_0/tile_data = PackedInt32Array(65538, 2, 0, 393222, 2, 0, 458754, 2, 0, 13
 process_mode = 2
 visible = false
 game_manager = NodePath("../..")
+
+[node name="RainShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_r7pbc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.254902)
 
 [node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -5159,6 +5183,7 @@ layout_mode = 2
 script = ExtResource("27_xgbrb")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label", "typing_timer")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -5180,6 +5205,7 @@ offset_bottom = 96.0
 [node name="Timer" type="Timer" parent="Control/Popup"]
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("54_6irwx")
 
 [node name="Control" type="Control" parent="MainMenu"]
