@@ -105,13 +105,13 @@ func _process(_delta):
 			globals.Terrain = "Forest"
 			if(globals.ForestCutting):
 				game_manager.playerData.PlayerWood += 1
-		elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			globals.Terrain = "Forest"
+		#elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
+			#tile_position_info[tile_pos.x * width + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			#globals.Terrain = "Forest"
 			#if(globals.ForestCutting):
 				#game_manager.playerData.PlayerWood += 1
-		elif( round((moist+10)/5) >= 3 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+		#elif( round((moist+10)/5) >= 3 ):
+			#tile_position_info[tile_pos.x * width + tile_pos.y] = " WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 		elif( round((temp+10)/5) == 0 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
