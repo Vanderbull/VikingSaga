@@ -6,14 +6,17 @@ func _ready():
 	verify_save_directory(game_manager.playerData.save_file_path)
 	hide()
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
-	
+	$"../../MainMenu".hide()
+	$"../../Quests".hide()
+	$"../../Interface".hide()
+	$"../../TileInfoWindow".hide()
+	print("Ready pause menu")
 
 func verify_save_directory(path: String):
 	DirAccess.make_dir_absolute(path)
 	
 func _process(_delta):
-	pass
-	
+	pass	
 
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
@@ -28,6 +31,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 
 # Reference to the AudioStreamPlayer node
 @onready var click_sound = $Panel/VBoxContainer/SaveButton/AudioStreamPlayer
+@onready var hover_sound = $HoverSound
 
 func _on_resume_button_pressed():
 	click_sound.play()
@@ -36,6 +40,9 @@ func _on_resume_button_pressed():
 	game_manager.game_paused = false
 	$"../../world".set_visible(true)
 	$"../../InGameCanvasLayer".set_visible(true)
+	$"../../Quests".show()
+	$"../../Interface".show()
+	$"../../TileInfoWindow".show()
 
 func _on_exit_button_pressed():
 	click_sound.play()
@@ -57,13 +64,34 @@ func _on_load_button_pressed():
 		$"../../world/TileMap/Player".position = game_manager.playerData.player_position
 		game_manager.playerData.LoadSaveGame = true
 		game_manager.playerData.load("user://save/tilemap2.tres",$"../../world/TileMap2")
-		#game_manager.playerData.moisture = moisture.seed
-		#game_manager.playerData.temperature = temperature.seed
-		#game_manager.playerData.altitude = altitude.seed
-		#$"../../InGameCanvasLayer/Trees".text = str(game_manager.playerData.health)
 	return null
 
 
 func _on_settings_button_pressed():
 	click_sound.play()
 	print("SETTINGS PRESSED")
+
+
+func _on_exit_button_mouse_entered():
+	hover_sound.play()
+	pass # Replace with function body.
+
+
+func _on_settings_button_mouse_entered():
+	hover_sound.play()
+	pass # Replace with function body.
+
+
+func _on_resume_button_mouse_entered():
+	hover_sound.play()
+	pass # Replace with function body.
+
+
+func _on_load_button_mouse_entered():
+	hover_sound.play()
+	pass # Replace with function body.
+
+
+func _on_save_button_mouse_entered():
+	hover_sound.play()
+	pass # Replace with function body.

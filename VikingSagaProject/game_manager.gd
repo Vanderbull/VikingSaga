@@ -54,11 +54,11 @@ func _ready():
 	for i in range(5):
 		var tilemap = $world/AnimalMap
 		var cell_position = Vector2i(randi_range(-10, 10), randi_range(-10, 10))
-		var atlas_coords = Vector2i(0, 0)
-		var tile_id = 1
+		var atlas_coords = Vector2i(0, 1)
+		#var tile_id = 1
 	
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/AnimalMap.set_cell(0, cell_position, 2 ,atlas_coords)
+			$world/AnimalMap.set_cell(0, cell_position, 9 ,atlas_coords)
 			
 		globals.animals_db["rabbit"] = {
 			"x": cell_position.x,
