@@ -15,6 +15,7 @@ var file_name = "world.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("_ready() world")
 	player.position = Vector2i(0,0)
 	player.global_position = Vector2i(0,0)
 	pass
