@@ -53,6 +53,7 @@ func _ready():
 	
 	for i in range(500):
 		var tilemap = $world/AnimalMap
+
 		var cell_position = Vector2i(randi_range(-10, 10), randi_range(-10, 10))
 		var atlas_coords = Vector2i(0, 1)
 		#var tile_id = 1
