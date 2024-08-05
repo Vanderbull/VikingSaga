@@ -38,9 +38,9 @@ const save_file_name := "PlayerSave.tres"
 @export var Hunting = false
 
 # Functions below here
-func change_playerWood(value: int):
-	PlayerWood += value
-	return PlayerWood
+#func change_playerWood(value: int):
+	#PlayerWood += value
+	#return PlayerWood
 	
 func change_player_position(value: Vector2):
 	player_position = value
@@ -53,7 +53,7 @@ func save(path:String, tile_map:TileMap) -> void:
 	# Resize the array to the number of layers
 	tile_map_layers.resize(layers)
 
-	# Get the tile_data from each layer
+	# Get the tile_data from each layera
 	for layer in layers:
 		tile_map_layers[layer] = tile_map.get("layer_%s/tile_data" % layer)
 

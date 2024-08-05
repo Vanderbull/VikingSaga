@@ -93,11 +93,6 @@ func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
 	globals.player_position = tile_pos
 	
-	#if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
-		#print("Tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")
-	#else:
-		#print("No tile is set at position (", tile_pos.x, ", ", tile_pos.y, ")")	
-
 	if( globals.Animals == "Rabbit" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
 	else:
@@ -163,9 +158,11 @@ func _unhandled_input(event):
 				$Camera2D.zoom.x -= 0.25
 				$Camera2D.zoom.y -= 0.25
 				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
-		
-		
+
 func _process(_delta):
+	if globals.CollectClay:
+		if(!$DiggPlayer.is_audio_playing()):
+			$DiggPlayer.play()
 	if( game_manager.playerData.PlayerFood < 0 || game_manager.playerData.PlayerWater < 0 ):
 		get_tree().reload_current_scene()
 	game_manager.playerData.player_position = position
@@ -173,3 +170,6 @@ func _process(_delta):
 	handleInput()
 	move_and_slide()
 	updateAnimation()
+
+func _on_chop_player_finished():
+	pass # Replace with function body.

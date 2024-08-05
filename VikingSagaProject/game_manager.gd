@@ -51,7 +51,8 @@ func _ready():
 	
 	#$world/TileMap.get_terrain_type(2, 0)
 	
-	for i in range(500):
+	# ADDING ANIMALS TO ANIMALMAP
+	for i in range(50):
 		var tilemap = $world/AnimalMap
 
 		var cell_position = Vector2i(randi_range(-10, 10), randi_range(-10, 10))
@@ -59,7 +60,7 @@ func _ready():
 		#var tile_id = 1
 	
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/AnimalMap.set_cell(0, cell_position, 9 ,atlas_coords)
+			$world/AnimalMap.set_cell(0, cell_position, 1 ,atlas_coords)
 			
 		globals.animals_db["rabbit"] = {
 			"x": cell_position.x,
@@ -109,7 +110,7 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerSand += 1
+			playerData.PlayerSand += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
@@ -119,7 +120,7 @@ func _process(delta):
 			$world/TileMap/Player/ChopPlayer.play()
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWood += 1
+			playerData.PlayerWood += 1000
 			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
 			globals.gain_quest_trees(playerData.PlayerWood)
@@ -130,10 +131,10 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			#playerData.PlayerWater += 1000
+			playerData.PlayerWater += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
-			#globals.gain_experience(1)
-			#globals.gain_quest_water(1000)
+			globals.gain_experience(1)
+			globals.gain_quest_water(1000)
 			$Quests/VBoxContainer/Quest1.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):

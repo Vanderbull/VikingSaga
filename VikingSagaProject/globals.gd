@@ -27,7 +27,7 @@ var Hunting = false
 
 var QuestWater = 0
 var QuestFood = 0
-var QuestTrees = 0
+#var QuestTrees = 0
 var QuestClay = 0
 var QuestHunting = 0
 
@@ -58,10 +58,11 @@ func gain_quest_food(amount):
 		HuntingMultiplier = 2
 	return QuestFood
 func gain_quest_trees(amount):
-	QuestTrees = amount
-	if QuestTrees > 10000:
-		QuestTrees = 10000
-	return QuestTrees
+	pass
+	#QuestTrees = amount
+	#if QuestTrees > 10000:
+		#QuestTrees = 10000
+	#return QuestTrees
 func gain_quest_clay(amount):
 	QuestClay = amount
 	if QuestClay > 10000:
@@ -70,8 +71,8 @@ func gain_quest_clay(amount):
 	
 func update_quests():
 	$Quests/VBoxContainer/Quest1.text = "UPDATE QUEST 1"
-	$Quests/VBoxContainer/Quest2.text = "UPDATE QUEST 1"
-	$Quests/VBoxContainer/Quest3.text = "UPDATE QUEST 1"
+	$Quests/VBoxContainer/Quest2.text = "UPDATE QUEST 2"
+	$Quests/VBoxContainer/Quest3.text = "UPDATE QUEST 3"
 	
 func get_required_experience(level):
 	return round(pow(level, 1.8) + level * 4)

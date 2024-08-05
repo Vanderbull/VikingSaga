@@ -1,8 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=33 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://b22xcgirlfwm5" path="res://arts/player.png" id="1_b63l5"]
+[ext_resource type="AudioStream" uid="uid://dqcmr8wm5jyb2" path="res://sound/digging-v1-27585.mp3" id="4_vtp6p"]
 [ext_resource type="Texture2D" uid="uid://c0r5j3lxabto2" path="res://assets/particle_examples/floaty_64.png" id="5_qevvx"]
+[ext_resource type="Script" path="res://DiggPlayer.gd" id="5_wwnyo"]
+[ext_resource type="AudioStream" uid="uid://h6np3gb5q0ad" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
+[ext_resource type="Script" path="res://player/ChopPlayer.gd" id="7_0tvku"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -298,6 +302,16 @@ lifetime = 6.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="DiggPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vtp6p")
+script = ExtResource("5_wwnyo")
+
+[node name="ChopPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_h85y2")
+script = ExtResource("7_0tvku")
+
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]
 [connection signal="area_exited" from="ShowStatsBox" to="." method="_on_show_stats_box_area_exited"]
+[connection signal="finished" from="DiggPlayer" to="DiggPlayer" method="_on_finished"]
+[connection signal="finished" from="ChopPlayer" to="." method="_on_chop_player_finished"]
