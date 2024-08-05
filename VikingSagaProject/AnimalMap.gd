@@ -1,0 +1,23 @@
+extends TileMap
+@onready var globals = get_node("/root/Globals")
+# Function to check if a tile is set at a specific grid position
+func is_tile_set(x: int, y: int) -> bool:
+	var cell_source_id = get_cell_source_id(0,Vector2i(x, y))
+	return cell_source_id != -1
+
+# Example usage in a script wherWolfe this TileMap is referenced
+func _ready():
+	pass
+	
+func _process(delta):
+	print(globals.player_position)
+	if is_tile_set(globals.player_position.x,globals.player_position.y):
+		var source_id = get_cell_source_id(0,Vector2i(globals.player_position.x, globals.player_position.y))
+		print(source_id)
+		var atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
+		var tile_data = tile_set.get_source(source_id).get_tile_data(Vector2i(0, 1),0)
+		var custom_data = tile_data.get_custom_data("type")
+		
+		print("There is a %s present here." % [custom_data])
+	else:
+		pass

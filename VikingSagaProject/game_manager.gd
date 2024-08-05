@@ -44,7 +44,7 @@ func _ready():
 	
 	#var tile_pos = worldMap.local_to_map($world/TileMap/Player.position)
 	#globals.player_position = tile_pos
-	print_debug(globals.player_position)
+	#print_debug(globals.player_position)
 	#print(dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y))
 	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
 	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
@@ -69,7 +69,7 @@ func _ready():
 		
 		for animal_name in globals.animals_db.keys():
 			var coords = globals.animals_db[animal_name]
-			print("Coordinates of ", animal_name, ": x = ", coords["x"], ", y = ", coords["y"])
+			#print("Coordinates of ", animal_name, ": x = ", coords["x"], ", y = ", coords["y"])
 
 	
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
