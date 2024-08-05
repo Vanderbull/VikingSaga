@@ -93,10 +93,11 @@ func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
 	globals.player_position = tile_pos
 	
-	if( globals.Animals == "Rabbit" ):
-		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
-	else:
-		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: None"
+	#if( globals.Animals == "Rabbit" ):
+		#$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
+	#	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
+	#else:
+	#	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: None"
 		
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
@@ -115,7 +116,7 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_1:
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
-			if( globals.Animals == "Rabbit" ):
+			if( globals.Animals != -1 ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.Hunting = not globals.Hunting
 				var atlas_coords = Vector2i(0, 0)

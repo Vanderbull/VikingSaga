@@ -16,8 +16,11 @@ func _process(delta):
 		print(source_id)
 		var atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
 		var tile_data = tile_set.get_source(source_id).get_tile_data(Vector2i(0, 1),0)
+		if( tile_data == null ):
+			print("NULLE")
+			return
 		var custom_data = tile_data.get_custom_data("type")
-		
+		$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: %s" % [custom_data]
 		print("There is a %s present here." % [custom_data])
 	else:
 		pass

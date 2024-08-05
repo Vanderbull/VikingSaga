@@ -60,7 +60,7 @@ func _ready():
 		#var tile_id = 1
 	
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/AnimalMap.set_cell(0, cell_position, 1 ,atlas_coords)
+			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
 			
 		globals.animals_db["rabbit"] = {
 			"x": cell_position.x,
