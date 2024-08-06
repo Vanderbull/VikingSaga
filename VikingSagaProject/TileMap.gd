@@ -45,21 +45,12 @@ func _process(_delta):
 	for cell in tiles:
 		var custom_data = $"../AnimalMap".get_cell_source_id ( 0, Vector2i(tile_pos.x, tile_pos.y), false )
 		$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(custom_data)
-		globals.Animals = custom_data
-		#print(custom_data)
-		#if( custom_data == 1):
-			#globals.Animals = "Wolf"
-			#$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(globals.Hunting)
-		#else:
-			#$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(globals.Hunting)
-			#globals.Animals = "None"
-			
+		globals.Animals = custom_data			
 	if( !globals.Hunting ):
 		if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
 			$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 			game_manager.playerData.PlayerWood -= 1
 			globals.RoadWorks = not globals.RoadWorks
-
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
@@ -68,19 +59,19 @@ func _process(_delta):
 		elif( round((temp+10)/5) == 0 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			#if(globals.ForestCutting):
 				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			#if(globals.ForestCutting):
 				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
@@ -88,15 +79,15 @@ func _process(_delta):
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 		else:
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
-			globals.ForestCutting = false
+			#globals.ForestCutting = false
 			#if(globals.CollectClay):
 				#game_manager.playerData.PlayerClay += 1
 
@@ -126,14 +117,14 @@ func get_terrain_type(tile_pos_x, tile_pos_y):
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
 			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			if(globals.ForestCutting):
-				globals.PlayerSand+=1
+			#if(globals.ForestCutting):
+				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			if(globals.ForestCutting):
-				globals.PlayerSand+=1
+			#if(globals.ForestCutting):
+				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):

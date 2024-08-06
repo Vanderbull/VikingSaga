@@ -25,11 +25,11 @@ var CollectWater = false
 var CollectClay = false
 var Hunting = false
 
-var QuestWater = 0
-var QuestFood = 0
-#var QuestTrees = 0
-var QuestClay = 0
-var QuestHunting = 0
+var QuestWater = 10000
+var QuestFood = 10000
+var QuestTrees = 10000
+var QuestClay = 10000
+var QuestHunting = 10000
 
 var Terrain = "None"
 var Animals = "None"
@@ -58,13 +58,12 @@ func gain_quest_food(amount):
 		HuntingMultiplier = 2
 	return QuestFood
 func gain_quest_trees(amount):
-	pass
-	#QuestTrees = amount
-	#if QuestTrees > 10000:
-		#QuestTrees = 10000
-	#return QuestTrees
+	QuestTrees += amount
+	if QuestTrees > 10000:
+		QuestTrees = 10000
+	return QuestTrees
 func gain_quest_clay(amount):
-	QuestClay = amount
+	QuestClay += amount
 	if QuestClay > 10000:
 		QuestClay = 10000
 	return QuestClay

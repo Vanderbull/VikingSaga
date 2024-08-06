@@ -1,7 +1,8 @@
-[gd_scene load_steps=86 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=87 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
+[ext_resource type="PackedScene" uid="uid://bk8t0obmxovhi" path="res://quest_finished.tscn" id="2_e1aqf"]
 [ext_resource type="Texture2D" uid="uid://bmiqbdngbk5b0" path="res://assets/tiles2.png" id="3_jbup0"]
 [ext_resource type="PackedScene" uid="uid://bf4jil1d0pjen" path="res://player/player.tscn" id="8_h5l8u"]
 [ext_resource type="Script" path="res://TileMap.gd" id="9_esbca"]
@@ -210,7 +211,7 @@ texture = ExtResource("36_kq7b6")
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0/custom_data_0 = "Wolf"
-0:1/0/custom_data_1 = 10
+0:1/0/custom_data_1 = "Health"
 0:3/size_in_atlas = Vector2i(2, 1)
 0:3/animation_columns = 6
 0:3/animation_frame_0/duration = 1.0
@@ -676,10 +677,12 @@ texture = ExtResource("44_dgtq6")
 [sub_resource type="TileSet" id="TileSet_i3jvc"]
 physics_layer_0/collision_layer = 0
 physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+navigation_layer_0/layers = 1
 custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
-custom_data_layer_1/name = "health"
-custom_data_layer_1/type = 2
+custom_data_layer_1/name = "Health"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_fm6y1")
 sources/1 = SubResource("TileSetAtlasSource_r4bet")
 sources/3 = SubResource("TileSetAtlasSource_mksnn")
@@ -808,7 +811,6 @@ script = ExtResource("35_pldd7")
 tile_set = SubResource("TileSet_i3jvc")
 format = 2
 layer_0/name = "ANIMAL_MAP"
-layer_0/tile_data = PackedInt32Array(131067, 9, 1, 65531, 9, 3, -5, 9, 5, -65541, 9, 7, 131065, 9, 9, 65529, 9, 11, -7, 9, 13, -65543, 9, 15)
 script = ExtResource("42_33oxa")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -1123,6 +1125,10 @@ size_flags_vertical = 4
 text = "LETS PLAY"
 
 [node name="Settings" parent="MainMenu" instance=ExtResource("56_c23in")]
+
+[node name="QuestFinished" type="CanvasLayer" parent="."]
+
+[node name="QuestFinished" parent="QuestFinished" instance=ExtResource("2_e1aqf")]
 
 [connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
 [connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]

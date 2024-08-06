@@ -24,6 +24,18 @@ class_name Player
 var dynamic_array_instance = null
 var time_since_last_step: float = 0.0
 
+func check_if_quest_finished():
+	if(globals.QuestWater >= 10000):
+		print("QuestWater finished")
+		if(globals.QuestFood >= 10000):
+			print("QuestFood finished")
+			if(globals.QuestTrees >= 10000):
+				print("QuestTrees finished")
+				if(globals.QuestClay >= 10000):
+					print("QuestClay finished")
+					$"../../../QuestFinished/QuestFinished".show()
+	pass
+
 func _physics_process(delta: float) -> void:
 	# Check if the player is moving
 	if velocity.length() > 0:
@@ -87,18 +99,12 @@ func updateAnimation():
 		globals.Walking = true
 		
 func _unhandled_input(event):
-	if globals.ForestCutting:
-		globals.ForestCutting = not globals.ForestCutting
+	#if globals.ForestCutting:
+	#	globals.ForestCutting = not globals.ForestCutting
 	
 	var tile_pos = worldMap.local_to_map(position)
 	globals.player_position = tile_pos
 	
-	#if( globals.Animals == "Rabbit" ):
-		#$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
-	#	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: Rabbit"
-	#else:
-	#	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: None"
-		
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 	if( globals.Terrain == "Sand" ):
@@ -122,17 +128,17 @@ func _unhandled_input(event):
 				var atlas_coords = Vector2i(0, 0)
 				var tilemap = $"../../AnimalMap"
 				tilemap.set_cell(0,tile_pos, -1)
-				globals.ForestCutting = false
+				#globals.ForestCutting = false
 			elif( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
 			elif( globals.Terrain == "Forest" ):
-				$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
-				if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
-					print(" THERE IS NO MORE TREESS")
-				else:
-					$"../../../InGameCanvasLayer/ProgressBar".show()
-					globals.ForestCutting = not globals.ForestCutting
+				#$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
+				#if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
+				#	print(" THERE IS NO MORE TREESS")
+				#else:
+				$"../../../InGameCanvasLayer/ProgressBar".show()
+				globals.ForestCutting = not globals.ForestCutting
 			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
@@ -148,6 +154,8 @@ func _unhandled_input(event):
 			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
 		if event.pressed and event.keycode == KEY_KP_2:
 			$"../../../Control"._show_popup_with_typing()
+		if event.pressed and event.keycode == KEY_KP_3:
+			$"../../../QuestFinished/QuestFinished".show()
 			
 	if event is InputEventMouseButton:
 		if event.is_pressed():
@@ -161,6 +169,7 @@ func _unhandled_input(event):
 				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
 
 func _process(_delta):
+	check_if_quest_finished()
 	if globals.CollectClay:
 		if(!$DiggPlayer.is_audio_playing()):
 			$DiggPlayer.play()

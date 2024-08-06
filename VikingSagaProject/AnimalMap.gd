@@ -13,8 +13,16 @@ func _process(delta):
 	print(globals.player_position)
 	if is_tile_set(globals.player_position.x,globals.player_position.y):
 		var source_id = get_cell_source_id(0,Vector2i(globals.player_position.x, globals.player_position.y))
-		print(source_id)
+		if( source_id == null ):
+			print("NULLE")
+			return
 		var atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
+		# SOME STRANGE BUG HERE
+		var tile_source = tile_set.get_source(source_id)
+		print(tile_source)
+		if( tile_source == null ):
+			print("NULLE")
+			return
 		var tile_data = tile_set.get_source(source_id).get_tile_data(Vector2i(0, 1),0)
 		if( tile_data == null ):
 			print("NULLE")
