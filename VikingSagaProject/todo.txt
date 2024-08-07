@@ -68,4 +68,11 @@ another scene like the scene sitting by the fire and resting and having a button
 41. When standing on a road tile and moving the movement speed should be increased
 42. spawn 100 tiles of rabbits and then as tmie goes despawn some and respawn them random
 43. other variant is to spawn in a number if rabbits as actual characters and let them move around
-
+44. Spawn in animals at random intervals with a distance of 100 maybe from the player
+45. Fix progressbar text when hunting that says hunting rabbits
+46. Define a maximum amount of animals spawned into the world
+47. Look into having the animal tiles maybe moving around
+48. Dont show any tiles where the is fog of war
+49. Look into scanning through the animal map and if the tile is set but at a certain distance from the player then hide the tile
+50. Create a timer and whne the timer triggers then print the text "Spawning animals"
+51. Create a people tileset to spawn in characters

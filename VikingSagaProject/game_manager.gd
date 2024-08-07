@@ -29,6 +29,27 @@ var quest_paused : bool = false:
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+func spawnAnimals():
+	# ADDING ANIMALS TO ANIMALMAP
+	for i in range(50):
+		var tilemap = $world/AnimalMap
+
+		var cell_position = Vector2i(randi_range(-100, 100), randi_range(-100, 100))
+		var atlas_coords = Vector2i(0, 1)
+		#var tile_id = 1
+	
+		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
+			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
+			
+		globals.animals_db["rabbit"] = {
+			"x": cell_position.x,
+			"y": cell_position.y
+		}
+		
+		for animal_name in globals.animals_db.keys():
+			var coords = globals.animals_db[animal_name]
+	pass
+
 func _ready():
 	randomize()
 	# Load the DynamicArray script
@@ -52,25 +73,7 @@ func _ready():
 	#$world/TileMap.get_terrain_type(2, 0)
 	
 	# ADDING ANIMALS TO ANIMALMAP
-	for i in range(50):
-		var tilemap = $world/AnimalMap
-
-		var cell_position = Vector2i(randi_range(-10, 10), randi_range(-10, 10))
-		var atlas_coords = Vector2i(0, 1)
-		#var tile_id = 1
-	
-		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
-			
-		globals.animals_db["rabbit"] = {
-			"x": cell_position.x,
-			"y": cell_position.y
-		}
-		
-		for animal_name in globals.animals_db.keys():
-			var coords = globals.animals_db[animal_name]
-			#print("Coordinates of ", animal_name, ": x = ", coords["x"], ", y = ", coords["y"])
-
+	spawnAnimals()
 	
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	#$Interface/Label.text = """Level: %s
