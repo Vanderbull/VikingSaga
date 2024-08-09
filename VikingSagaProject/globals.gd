@@ -44,6 +44,7 @@ var experience_required = get_required_experience(level + 1)
 
 # Dictionary to store item data
 var animals_db = {}
+var npc_db = {}
 
 func gain_quest_water(amount):
 	QuestWater += amount

@@ -29,6 +29,23 @@ var quest_paused : bool = false:
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+func spawnNPC():
+	for i in range(50):
+		var tilemap = $world/Npc
+		
+		var cell_position = Vector2i(randi_range(-50, 50), 1randi_range(-50, 50))
+		var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
+
+		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
+			$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
+		globals.npc_db["npc"] = {
+			"x": cell_position.x,
+			"y": cell_position.y
+		}		
+		for npc_name in globals.npc_db.keys():
+			var coords = globals.npc_db[npc_name]
+	pass
+	
 func spawnAnimals():
 	# ADDING ANIMALS TO ANIMALMAP
 	for i in range(50):
@@ -74,6 +91,8 @@ func _ready():
 	
 	# ADDING ANIMALS TO ANIMALMAP
 	spawnAnimals()
+	# ADDING NPC TO NPC MAP
+	spawnNPC()
 	
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	#$Interface/Label.text = """Level: %s
