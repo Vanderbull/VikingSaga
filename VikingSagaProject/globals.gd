@@ -3,7 +3,7 @@ extends Node
 @onready var game_manager = $"../../.."
 
 
-var Warmth = 100
+var Warmth = 0
 
 # ACTION DATA
 var ForestCuttingAmount = 1000

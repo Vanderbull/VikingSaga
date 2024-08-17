@@ -95,10 +95,7 @@ func _ready():
 	spawnNPC()
 	
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-	#$Interface/Label.text = """Level: %s
-								#Experience: %s
-								#Next level: %s
-								#""" % [globals.level,globals.experience,globals.experience_required]
+	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$world.hide()
 	$InGameCanvasLayer.hide()
 	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
@@ -113,6 +110,7 @@ func _ready():
 		game_paused = !game_paused
 		
 func _process(delta):
+	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1

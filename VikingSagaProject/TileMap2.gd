@@ -12,8 +12,11 @@ func _ready():
 func _process(delta):
 	#print(globals.player_position)
 	if is_tile_set(globals.player_position.x,globals.player_position.y):
-		print("You feel warm")
-		#print("Tile is set at position (", x, ", ", y, ")")
+		print("WARMTH HERE")
+		if globals.Warmth < 100:
+			globals.Warmth += 1
 	else:
+		if( globals.Warmth > 0 ):
+			globals.Warmth -= 1
 		pass
 		#print("No tile is set at position (", x, ", ", y, ")")
