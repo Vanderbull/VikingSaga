@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=91 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -63,6 +63,7 @@
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
 [ext_resource type="Script" path="res://MainMenu.gd" id="54_6irwx"]
+[ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
 [ext_resource type="PackedScene" uid="uid://0xf5cgiejrjx" path="res://settings.tscn" id="56_c23in"]
 [ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="57_tobko"]
 [ext_resource type="Shader" path="res://water.gdshader" id="58_wp5je"]
@@ -1252,7 +1253,6 @@ script = ExtResource("42_33oxa")
 [node name="Npc" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_wkqc7")
 format = 2
-layer_0/tile_data = PackedInt32Array(-65534, 0, 6)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1458,13 +1458,40 @@ script = ExtResource("22_3uftv")
 layer = 2
 
 [node name="Label" type="Label" parent="Interface"]
-offset_left = 828.0
-offset_top = 76.0
-offset_right = 868.0
-offset_bottom = 99.0
-text = "INTERFACE
-EXPERIENCE"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
+offset_bottom = 75.0
+grow_horizontal = 0
+text = "Level: %s
+Experience: %s
+Next level: %s"
 script = ExtResource("19_320qv")
+
+[node name="WarmthBar" type="ProgressBar" parent="Interface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.0
+offset_top = 40.0
+offset_right = 55.0
+offset_bottom = 67.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
+
+[node name="WarmthLabel" type="Label" parent="Interface/WarmthBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "100 / 100"
+script = ExtResource("55_is2nf")
 
 [node name="Quests" type="CanvasLayer" parent="."]
 

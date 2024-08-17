@@ -25,14 +25,10 @@ var dynamic_array_instance = null
 var time_since_last_step: float = 0.0
 
 func check_if_quest_finished():
-	if(globals.QuestWater >= 10000):
-		print("QuestWater finished")
-		if(globals.QuestFood >= 10000):
-			print("QuestFood finished")
-			if(globals.QuestTrees >= 10000):
-				print("QuestTrees finished")
-				if(globals.QuestClay >= 10000):
-					print("QuestClay finished")
+	if globals.QuestWater >= 10000:
+		if globals.QuestFood >= 10000:
+			if globals.QuestTrees >= 10000:
+				if globals.QuestClay >= 10000:
 					$"../../../QuestFinished/QuestFinished".show()
 	pass
 
@@ -162,11 +158,11 @@ func _unhandled_input(event):
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				$Camera2D.zoom.x += 0.25
 				$Camera2D.zoom.y += 0.25
-				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ",  $Camera2D.zoom.y, ")")
+				#print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ",  $Camera2D.zoom.y, ")")
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				$Camera2D.zoom.x -= 0.25
 				$Camera2D.zoom.y -= 0.25
-				print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
+				#print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
 
 func _process(_delta):
 	check_if_quest_finished()

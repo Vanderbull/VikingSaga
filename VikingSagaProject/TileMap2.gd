@@ -10,7 +10,7 @@ func _ready():
 	pass
 	
 func _process(delta):
-	print(globals.player_position)
+	#print(globals.player_position)
 	if is_tile_set(globals.player_position.x,globals.player_position.y):
 		print("You feel warm")
 		#print("Tile is set at position (", x, ", ", y, ")")

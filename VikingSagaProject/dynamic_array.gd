@@ -23,11 +23,11 @@ func _ready():
 	generate_coordinates_with_text()
 	
 	# Example of finding a specific coordinate
-	var result = find_coordinate_with_text(100, 200)
-	print(result)
+	#var result = find_coordinate_with_text(100, 200)
+	#print(result)
 	# Output will be: "Coordinate: (100, 200)"
 
-	var result_not_found = find_coordinate_with_text(2000, 2000)
-	print(result_not_found)
+	#var result_not_found = find_coordinate_with_text(2000, 2000)
+	#print(result_not_found)
 	# Output will be: "Coordinate not found"
 

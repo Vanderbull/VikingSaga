@@ -33,7 +33,7 @@ func spawnNPC():
 	for i in range(50):
 		var tilemap = $world/Npc
 		
-		var cell_position = Vector2i(randi_range(-50, 50), 1randi_range(-50, 50))
+		var cell_position = Vector2i(randi_range(-50, 50), randi_range(-50, 50))
 		var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
 
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
