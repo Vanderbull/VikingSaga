@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=93 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -62,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://ctufv4b7yd5o8" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="44_dgtq6"]
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
+[ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
 [ext_resource type="Script" path="res://MainMenu.gd" id="54_6irwx"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
 [ext_resource type="PackedScene" uid="uid://0xf5cgiejrjx" path="res://settings.tscn" id="56_c23in"]
@@ -1015,6 +1016,9 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
+shader = ExtResource("54_4gppm")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu4wc"]
 shader = ExtResource("58_wp5je")
 shader_parameter/disp_ = Vector2(0.5, 0.5)
@@ -1293,11 +1297,13 @@ script = ExtResource("22_3uftv")
 layer = 2
 
 [node name="Label" type="Label" parent="Interface"]
+material = SubResource("ShaderMaterial_6f0p3")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -115.0
-offset_bottom = 75.0
+offset_top = 2.0
+offset_bottom = 77.0
 grow_horizontal = 0
 text = "Level: %s
 Experience: %s
