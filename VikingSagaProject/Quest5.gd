@@ -8,4 +8,3 @@ func update_text():
 		text = """[X] Collect trees %s / 10000""" % [globals.QuestTrees]
 	else:
 		text = """[ ] Collect trees %s / 10000""" % [globals.QuestTrees]
-

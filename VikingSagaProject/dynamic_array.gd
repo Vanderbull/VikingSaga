@@ -30,4 +30,3 @@ func _ready():
 	#var result_not_found = find_coordinate_with_text(2000, 2000)
 	#print(result_not_found)
 	# Output will be: "Coordinate not found"
-
