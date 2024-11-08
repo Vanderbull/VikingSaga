@@ -29,6 +29,45 @@ var quest_paused : bool = false:
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+func _ready():
+	print("Getting GameManager ready...")
+	$MenuCanvasLayer.show()
+	$world.hide()
+	$InGameCanvasLayer.hide()
+	$TileInfoWindow.hide()
+	$Interface.hide()
+	$Quests.hide()
+	$Control.hide()
+	$QuestFinished.hide()
+	
+	randomize()
+	# Load the DynamicArray script
+	var DynamicArrayScript = preload("res://dynamic_array.gd")
+	# Create an instance of the DynamicArray script
+	dynamic_array_instance = DynamicArrayScript.new()
+	
+	# Manually call _ready() to initialize the instance
+	dynamic_array_instance._ready()
+	
+	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
+	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
+	
+	#$world/TileMap.get_terrain_type(2, 0)
+	
+	# ADDING ANIMALS TO ANIMALMAP
+	spawnAnimals()
+	# ADDING NPC TO NPC MAP
+	spawnNPC()
+	
+	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
+	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+
+	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
+	
+	playerData = PlayerData.new()
+	if OS.is_debug_build():
+		game_paused = !game_paused
+
 func spawnNPC():
 	for i in range(50):
 		var tilemap = $world/Npc
@@ -67,48 +106,6 @@ func spawnAnimals():
 			var coords = globals.animals_db[animal_name]
 	pass
 
-func _ready():
-	randomize()
-	# Load the DynamicArray script
-	var DynamicArrayScript = preload("res://dynamic_array.gd")
-	# Create an instance of the DynamicArray script
-	dynamic_array_instance = DynamicArrayScript.new()
-	
-	# Add the dynamic array node to the scene tree if needed
-	# add_child(dynamic_array_instance)
-	
-	# Manually call _ready() to initialize the instance
-	dynamic_array_instance._ready()
-	
-	#var tile_pos = worldMap.local_to_map($world/TileMap/Player.position)
-	#globals.player_position = tile_pos
-	#print_debug(globals.player_position)
-	#print(dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y))
-	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
-	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
-	
-	#$world/TileMap.get_terrain_type(2, 0)
-	
-	# ADDING ANIMALS TO ANIMALMAP
-	spawnAnimals()
-	# ADDING NPC TO NPC MAP
-	spawnNPC()
-	
-	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	$world.hide()
-	$InGameCanvasLayer.hide()
-	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
-	
-	playerData = PlayerData.new()
-	#playerData = load("res://resources/PlayerData.gd")
-	#ResourceLoader.load_threaded_request(PLAYERDATA_PATH)
-	#playerData = ResourceLoader.load_threaded_get(PLAYERDATA_PATH)
-	if OS.is_debug_build():
-		#print_debug("Debug mode enabled")
-		#print_debug(TEST_CURVE.sample(0.25))
-		game_paused = !game_paused
-		
 func _process(delta):
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	if( globals.Walking == true):
@@ -189,3 +186,19 @@ func _on_inventory_gui_closed():
 
 func _on_inventory_gui_opened():
 	get_tree().paused = true
+	
+func _on_in_game_canvas_layer_tree_entered() -> void:
+	print("Entered the InGameCanvasLayer Tree..")
+
+
+func _on_in_game_canvas_layer_visibility_changed() -> void:
+	if $InGameCanvasLayer.visible:
+		print("InGameCanvasLayer is visible")
+		if $InGameCanvasLayer/Panel.visible:
+			print("InGameCanvasLayer/Panel is visible")
+	else:
+		print("InGameCanvasLayer is hidden")
+		for child in get_children():
+			if child is CanvasItem:
+				print("InGameCanvasLayer is hidden")
+				child.visible = false

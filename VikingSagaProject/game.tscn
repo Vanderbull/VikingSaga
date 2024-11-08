@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=83 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -9,17 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://wq4cg62s82wh" path="res://arts/fireplace.png" id="9_lgqr5"]
 [ext_resource type="Script" path="res://scenes/follow cam.gd" id="9_v7iqx"]
 [ext_resource type="AudioStream" uid="uid://dbpboig2kx8g6" path="res://sound/Floor/Steps_floor-001.ogg" id="11_4hvx7"]
-[ext_resource type="Script" path="res://ProgressBar.gd" id="12_7vrp3"]
 [ext_resource type="AudioStream" uid="uid://cnjsyf2bbokdu" path="res://sound/Floor/Steps_floor-002.ogg" id="12_a56pd"]
-[ext_resource type="Script" path="res://InGameCanvasLayer.gd" id="12_gr3u4"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="13_v05m7"]
 [ext_resource type="AudioStream" uid="uid://0wn0ji2j15mg" path="res://sound/Floor/Steps_floor-003.ogg" id="13_xwfwl"]
 [ext_resource type="AudioStream" uid="uid://c6vkced3mupbq" path="res://sound/Floor/Steps_floor-004.ogg" id="14_e8qo5"]
-[ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="14_ef3pu"]
 [ext_resource type="AudioStream" uid="uid://bogy0u2t5mc4" path="res://sound/Floor/Steps_floor-005.ogg" id="15_eng4h"]
 [ext_resource type="AudioStream" uid="uid://dajdn4uxcv8hu" path="res://sound/Floor/Steps_floor-006.ogg" id="16_m3xpa"]
 [ext_resource type="AudioStream" uid="uid://c0v0xir8wdmk4" path="res://sound/Floor/Steps_floor-007.ogg" id="17_k26h7"]
-[ext_resource type="Texture2D" uid="uid://bqvxruv2f637j" path="res://assets/InventoryRect.png" id="17_r7hu2"]
 [ext_resource type="AudioStream" uid="uid://bhxmxbbfegpq8" path="res://sound/Floor/Steps_floor-008.ogg" id="18_dat6q"]
 [ext_resource type="Script" path="res://Label.gd" id="19_320qv"]
 [ext_resource type="Texture2D" uid="uid://csj1136wyjpnt" path="res://arts/pixel-viking-1.jpg" id="19_o7wdh"]
@@ -60,14 +56,11 @@
 [ext_resource type="Texture2D" uid="uid://f7bh2bj2nys0" path="res://assets/MinifolksForestAnimals/Outline/MiniBird.png" id="43_m88qm"]
 [ext_resource type="Texture2D" uid="uid://d2uaxstkol2cg" path="res://arts/npc.png" id="43_oo4ud"]
 [ext_resource type="Texture2D" uid="uid://ctufv4b7yd5o8" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="44_dgtq6"]
+[ext_resource type="PackedScene" uid="uid://dpluncmaurdph" path="res://in_game_canvas_layer.tscn" id="46_xqupw"]
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
 [ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
-[ext_resource type="Script" path="res://MainMenu.gd" id="54_6irwx"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
-[ext_resource type="PackedScene" uid="uid://0xf5cgiejrjx" path="res://settings.tscn" id="56_c23in"]
-[ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="57_tobko"]
-[ext_resource type="Shader" path="res://water.gdshader" id="58_wp5je"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("3_jbup0")
@@ -980,16 +973,6 @@ shader_parameter/base_rain_speed = 0.5
 shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lex6n"]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="Gradient" id="Gradient_a8qux"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l3lke"]
@@ -1018,17 +1001,6 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
 shader = ExtResource("54_4gppm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu4wc"]
-shader = ExtResource("58_wp5je")
-shader_parameter/disp_ = Vector2(0.5, 0.5)
-shader_parameter/speed = 3.0
-shader_parameter/color1 = Vector3(0.005, 0.045, 0.075)
-shader_parameter/color2 = Vector3(0.033, 0.07, 0.03)
-shader_parameter/m3 = Basis(0.65, 1.12, -1.43, -1.75, 0.65, -0.3, 0.3, 1.4, 1.22)
-
-[sub_resource type="LabelSettings" id="LabelSettings_0sw4v"]
-font_size = 141
 
 [node name="GameManager" type="Node"]
 process_mode = 3
@@ -1093,15 +1065,13 @@ script = ExtResource("42_33oxa")
 tile_set = SubResource("TileSet_wkqc7")
 format = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MenuCanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
+[node name="PauseMenu" parent="MenuCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
 process_mode = 2
-visible = false
 game_manager = NodePath("../..")
 
-[node name="RainShader" type="ColorRect" parent="CanvasLayer"]
-visible = false
+[node name="RainShader" type="ColorRect" parent="MenuCanvasLayer"]
 material = SubResource("ShaderMaterial_r7pbc")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1111,144 +1081,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.254902)
 
-[node name="InGameCanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-visible = false
-script = ExtResource("12_gr3u4")
-
-[node name="Panel" type="Panel" parent="InGameCanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 37.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lex6n")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InGameCanvasLayer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -299.0
-offset_top = -18.5
-offset_right = 300.0
-offset_bottom = 18.5
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_r7hu2")
-
-[node name="Trees" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Trees: 0"
-
-[node name="TextureRect2" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_r7hu2")
-
-[node name="Sand" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Sand: 0"
-
-[node name="TextureRect3" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_r7hu2")
-
-[node name="Water" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Water: 0"
-
-[node name="TextureRect4" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_r7hu2")
-
-[node name="Clay" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Clay: 0"
-
-[node name="TextureRect5" type="TextureRect" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("17_r7hu2")
-
-[node name="Food" type="Label" parent="InGameCanvasLayer/Panel/HBoxContainer"]
-layout_mode = 2
-text = "Food: 0"
-
-[node name="PlayerPosition" type="Label" parent="InGameCanvasLayer"]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="PlayerGlobalPosition" type="Label" parent="InGameCanvasLayer"]
-visible = false
-offset_left = 1.0
-offset_top = 28.0
-offset_right = 41.0
-offset_bottom = 51.0
-text = "Velocity"
-
-[node name="PlayerLocalToMapPosition" type="Label" parent="InGameCanvasLayer"]
-visible = false
-offset_left = 1.0
-offset_top = 77.0
-offset_right = 41.0
-offset_bottom = 100.0
-
-[node name="ProgressBar" type="ProgressBar" parent="InGameCanvasLayer"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -134.0
-offset_top = 64.0
-offset_right = 134.0
-offset_bottom = 91.0
-grow_horizontal = 2
-size_flags_vertical = 4
-value = 100.0
-script = ExtResource("12_7vrp3")
-
-[node name="Label" type="Label" parent="InGameCanvasLayer/ProgressBar"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -51.5
-offset_top = -30.0
-offset_right = 51.5
-offset_bottom = -7.0
-grow_horizontal = 2
-text = "Action"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InventoryGui" parent="InGameCanvasLayer" instance=ExtResource("14_ef3pu")]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -69.0
-offset_top = -45.0
-offset_right = 69.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="InGameCanvasLayer" parent="." instance=ExtResource("46_xqupw")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
@@ -1256,6 +1089,7 @@ energy = 0.69
 texture = SubResource("NoiseTexture2D_6mvi7")
 
 [node name="TileInfoWindow" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="TileInfoWindow"]
 offset_left = 864.0
@@ -1295,6 +1129,7 @@ script = ExtResource("22_3uftv")
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="Label" type="Label" parent="Interface"]
 material = SubResource("ShaderMaterial_6f0p3")
@@ -1335,6 +1170,7 @@ text = "100 / 100"
 script = ExtResource("55_is2nf")
 
 [node name="Quests" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Quests"]
 offset_left = 8.0
@@ -1392,54 +1228,7 @@ offset_bottom = 96.0
 
 [node name="Timer" type="Timer" parent="Control/Popup"]
 
-[node name="MainMenu" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("54_6irwx")
-
-[node name="Control" type="Control" parent="MainMenu"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MainMenu/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu/Control/AspectRatioContainer"]
-material = SubResource("ShaderMaterial_uu4wc")
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("57_tobko")
-
-[node name="Label" type="Label" parent="MainMenu/Control/AspectRatioContainer"]
-layout_mode = 2
-text = "VIKING SAGA"
-label_settings = SubResource("LabelSettings_0sw4v")
-uppercase = true
-
-[node name="Hide" type="Button" parent="MainMenu/Control/AspectRatioContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "LETS PLAY"
-
-[node name="Settings" parent="MainMenu" instance=ExtResource("56_c23in")]
-
 [node name="QuestFinished" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="QuestFinished" parent="QuestFinished" instance=ExtResource("2_e1aqf")]
-
-[connection signal="closed" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
-[connection signal="opened" from="InGameCanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
-[connection signal="pressed" from="MainMenu/Control/AspectRatioContainer/Hide" to="MainMenu" method="_on_button_pressed"]

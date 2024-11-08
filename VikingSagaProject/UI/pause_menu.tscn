@@ -41,7 +41,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-text = "-= PAUSED =-"
+text = "MAIN MENU"
 horizontal_alignment = 1
 
 [node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]
