@@ -37,39 +37,40 @@ func _ready():
 	$TileInfoWindow.hide()
 	$Interface.hide()
 	$Quests.hide()
-	$Control.hide()
+	#$Control.hide()
 	$QuestFinished.hide()
-	
 	randomize()
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
 	dynamic_array_instance = DynamicArrayScript.new()
-	
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
-	
 	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
 	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
-	
-	#$world/TileMap.get_terrain_type(2, 0)
-	
-	# ADDING ANIMALS TO ANIMALMAP
-	spawnAnimals()
-	# ADDING NPC TO NPC MAP
-	spawnNPC()
-	
 	# Initialize Labels
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
-
-	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	
-	playerData = PlayerData.new()
-	if OS.is_debug_build():
-		game_paused = !game_paused
+	if( globals.NewGame ):
+		initialize_gamemanager()
+		globals.NewGame = false
+	else:
+		game_paused = false
 
+func initialize_gamemanager():
+	# ADDING ANIMALS TO ANIMALMAP
+	spawnAnimals()
+	# ADDING NPC TO NPC MAP
+	spawnNPC()
+	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
+	playerData = PlayerData.new()
+	
+	if OS.is_debug_build():
+		game_paused = !game_paused	
+	pass
+	
 func spawnNPC():
 	for i in range(50):
 		var tilemap = $world/Npc
@@ -102,8 +103,7 @@ func spawnAnimals():
 		globals.animals_db["rabbit"] = {
 			"x": cell_position.x,
 			"y": cell_position.y
-		}
-		
+		}		
 		for animal_name in globals.animals_db.keys():
 			var coords = globals.animals_db[animal_name]
 	pass

@@ -27,6 +27,6 @@ func _process(delta):
 		var custom_data = tile_data.get_custom_data("type")
 		$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: %s" % [custom_data]
 		print("There is a %s present here." % [custom_data])
-		get_tree().change_scene_to_file("res://src/battle.tscn")dd
+		get_tree().change_scene_to_file("res://src/battle.tscn")
 	else:
 		pass

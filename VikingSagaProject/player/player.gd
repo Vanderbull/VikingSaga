@@ -136,12 +136,10 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass		
-		#if event.pressed and event.keycode == KEY_4:
-		#	get_tree().change_scene_to_file("res://src/battle.tscn")
 		if event.pressed and event.keycode == KEY_KP_1:
 			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
-		if event.pressed and event.keycode == KEY_KP_2:
-			$"../../../Control"._show_popup_with_typing()
+		#if event.pressed and event.keycode == KEY_KP_2:
+			#$"../../../Control"._show_popup_with_typing()
 		if event.pressed and event.keycode == KEY_KP_3:
 			$"../../../QuestFinished/QuestFinished".show()
 			
@@ -150,11 +148,9 @@ func _unhandled_input(event):
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				$Camera2D.zoom.x += 0.25
 				$Camera2D.zoom.y += 0.25
-				#print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ",  $Camera2D.zoom.y, ")")
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				$Camera2D.zoom.x -= 0.25
 				$Camera2D.zoom.y -= 0.25
-				#print_debug("Zoom (X: ", $Camera2D.zoom.x, " | Y: ", $Camera2D.zoom.y, ")")
 
 func _process(_delta):
 	check_if_quest_finished()

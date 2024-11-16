@@ -1,6 +1,8 @@
 extends Node
 
 @onready var game_manager = $"../../.."
+
+var NewGame: bool = true
 var Warmth: float = 100.0
 var MaxWarmth: float = 100.0
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqov2y62rueom"
-path="res://.godot/imported/battleback8.png-5f660fc9803bfb5990cf036c58b5efe6.ctex"
+uid="uid://c8lmvonr0m5ct"
+path="res://.godot/imported/battleback4.png-d2f68d7145f466019427e8ec2ffde96e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://battleback/battleback8.png"
-dest_files=["res://.godot/imported/battleback8.png-5f660fc9803bfb5990cf036c58b5efe6.ctex"]
+source_file="res://assets/battleback/battleback4.png"
+dest_files=["res://.godot/imported/battleback4.png-d2f68d7145f466019427e8ec2ffde96e.ctex"]
 
 [params]
 
