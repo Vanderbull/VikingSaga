@@ -10,7 +10,6 @@ func _ready():
 	pass
 	
 func _process(delta):
-	#print(globals.player_position)
 	if is_tile_set(globals.player_position.x,globals.player_position.y):
 		var source_id = get_cell_source_id(0,Vector2i(globals.player_position.x, globals.player_position.y))
 		if( source_id == null ):
@@ -28,5 +27,6 @@ func _process(delta):
 		var custom_data = tile_data.get_custom_data("type")
 		$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: %s" % [custom_data]
 		print("There is a %s present here." % [custom_data])
+		get_tree().change_scene_to_file("res://src/battle.tscn")dd
 	else:
 		pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=85 format=3 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -55,8 +55,10 @@
 [ext_resource type="Texture2D" uid="uid://bdv2su3jocdtj" path="res://assets/MinifolksForestAnimals/Outline/MiniBoar.png" id="42_vb76i"]
 [ext_resource type="Texture2D" uid="uid://f7bh2bj2nys0" path="res://assets/MinifolksForestAnimals/Outline/MiniBird.png" id="43_m88qm"]
 [ext_resource type="Texture2D" uid="uid://d2uaxstkol2cg" path="res://arts/npc.png" id="43_oo4ud"]
+[ext_resource type="Script" path="res://npc.gd" id="44_0la6p"]
 [ext_resource type="Texture2D" uid="uid://ctufv4b7yd5o8" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="44_dgtq6"]
 [ext_resource type="PackedScene" uid="uid://dpluncmaurdph" path="res://in_game_canvas_layer.tscn" id="46_xqupw"]
+[ext_resource type="Script" path="res://hp_label.gd" id="47_nioj0"]
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
 [ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
@@ -528,11 +530,17 @@ sources/9 = SubResource("TileSetAtlasSource_28ah6")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3gul"]
 texture = ExtResource("43_oo4ud")
 0:0/0 = 0
+0:0/0/custom_data_0 = "Adam"
 1:0/0 = 0
+1:0/0/custom_data_0 = "Adam"
 2:0/0 = 0
+2:0/0/custom_data_0 = "Adam"
 3:0/0 = 0
+3:0/0/custom_data_0 = "Adam"
 4:0/0 = 0
+4:0/0/custom_data_0 = "Adam"
 5:0/0 = 0
+5:0/0/custom_data_0 = "Adam"
 6:0/0 = 0
 7:0/0 = 0
 8:0/0 = 0
@@ -551,10 +559,15 @@ texture = ExtResource("43_oo4ud")
 25:0/0 = 0
 26:0/0 = 0
 0:1/0 = 0
+0:1/0/custom_data_0 = "Adam"
 1:1/0 = 0
+1:1/0/custom_data_0 = "Adam"
 2:1/0 = 0
+2:1/0/custom_data_0 = "Adam"
 3:1/0 = 0
+3:1/0/custom_data_0 = "Adam"
 4:1/0 = 0
+4:1/0/custom_data_0 = "Adam"
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -574,11 +587,17 @@ texture = ExtResource("43_oo4ud")
 25:1/0 = 0
 26:1/0 = 0
 0:2/0 = 0
+0:2/0/custom_data_0 = "Adam"
 1:2/0 = 0
+1:2/0/custom_data_0 = "Adam"
 2:2/0 = 0
+2:2/0/custom_data_0 = "Adam"
 3:2/0 = 0
+3:2/0/custom_data_0 = "Adam"
 4:2/0 = 0
+4:2/0/custom_data_0 = "Adam"
 5:2/0 = 0
+5:2/0/custom_data_0 = "Adam"
 6:2/0 = 0
 7:2/0 = 0
 8:2/0 = 0
@@ -598,11 +617,17 @@ texture = ExtResource("43_oo4ud")
 25:2/0 = 0
 26:2/0 = 0
 0:3/0 = 0
+0:3/0/custom_data_0 = "Adam"
 1:3/0 = 0
+1:3/0/custom_data_0 = "Adam"
 2:3/0 = 0
+2:3/0/custom_data_0 = "Adam"
 3:3/0 = 0
+3:3/0/custom_data_0 = "Adam"
 4:3/0 = 0
+4:3/0/custom_data_0 = "Adam"
 5:3/0 = 0
+5:3/0/custom_data_0 = "Adam"
 6:3/0 = 0
 7:3/0 = 0
 8:3/0 = 0
@@ -957,6 +982,10 @@ texture = ExtResource("43_oo4ud")
 22:17/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_wkqc7"]
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "Health"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_l3gul")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7pbc"]
@@ -1064,6 +1093,7 @@ script = ExtResource("42_33oxa")
 [node name="Npc" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_wkqc7")
 format = 2
+script = ExtResource("44_0la6p")
 
 [node name="MenuCanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1072,6 +1102,7 @@ process_mode = 2
 game_manager = NodePath("../..")
 
 [node name="RainShader" type="ColorRect" parent="MenuCanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_r7pbc")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1089,7 +1120,6 @@ energy = 0.69
 texture = SubResource("NoiseTexture2D_6mvi7")
 
 [node name="TileInfoWindow" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="TileInfoWindow"]
 offset_left = 864.0
@@ -1120,6 +1150,11 @@ text = "ANIMALS: None"
 layout_mode = 2
 text = "NOT HUNTING"
 
+[node name="HPLabel" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "HP: 10 / 10"
+script = ExtResource("47_nioj0")
+
 [node name="AnimatedFace" type="AnimatedSprite2D" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
 position = Vector2(150, 320)
 scale = Vector2(0.288333, 0.288333)
@@ -1129,7 +1164,6 @@ script = ExtResource("22_3uftv")
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="Label" type="Label" parent="Interface"]
 material = SubResource("ShaderMaterial_6f0p3")
@@ -1149,13 +1183,19 @@ script = ExtResource("19_320qv")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -55.0
-offset_top = 40.0
-offset_right = 55.0
-offset_bottom = 67.0
+offset_left = 460.0
+offset_top = 89.0
+offset_right = 570.0
+offset_bottom = 116.0
 grow_horizontal = 2
 value = 100.0
 show_percentage = false
+
+[node name="Title" type="Label" parent="Interface/WarmthBar"]
+layout_mode = 1
+offset_left = -70.0
+offset_bottom = 23.0
+text = "Warmth"
 
 [node name="WarmthLabel" type="Label" parent="Interface/WarmthBar"]
 layout_mode = 1
@@ -1166,7 +1206,7 @@ offset_left = -35.0
 offset_right = 35.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "100 / 100"
+text = "100.0 / 100.0"
 script = ExtResource("55_is2nf")
 
 [node name="Quests" type="CanvasLayer" parent="."]

@@ -95,9 +95,6 @@ func updateAnimation():
 		globals.Walking = true
 		
 func _unhandled_input(event):
-	#if globals.ForestCutting:
-	#	globals.ForestCutting = not globals.ForestCutting
-	
 	var tile_pos = worldMap.local_to_map(position)
 	globals.player_position = tile_pos
 	
@@ -124,15 +121,10 @@ func _unhandled_input(event):
 				var atlas_coords = Vector2i(0, 0)
 				var tilemap = $"../../AnimalMap"
 				tilemap.set_cell(0,tile_pos, -1)
-				#globals.ForestCutting = false
 			elif( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
 			elif( globals.Terrain == "Forest" ):
-				#$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
-				#if $"../../TileMap2".is_tile_set(tile_pos.x, tile_pos.y):
-				#	print(" THERE IS NO MORE TREESS")
-				#else:
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
 			elif( globals.Terrain == "Water" ):
@@ -144,8 +136,8 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_3:
 			# Burn some wood
 			pass		
-		if event.pressed and event.keycode == KEY_4:
-			get_tree().change_scene_to_file("res://src/battle.tscn")
+		#if event.pressed and event.keycode == KEY_4:
+		#	get_tree().change_scene_to_file("res://src/battle.tscn")
 		if event.pressed and event.keycode == KEY_KP_1:
 			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
 		if event.pressed and event.keycode == KEY_KP_2:

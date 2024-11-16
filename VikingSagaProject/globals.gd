@@ -1,9 +1,11 @@
 extends Node
 
 @onready var game_manager = $"../../.."
+var Warmth: float = 100.0
+var MaxWarmth: float = 100.0
 
-
-var Warmth = 0
+var Health:int = 10
+var MaxHealth:int = 10
 
 # ACTION DATA
 var ForestCuttingAmount = 1000

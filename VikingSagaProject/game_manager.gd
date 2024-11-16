@@ -59,8 +59,10 @@ func _ready():
 	# ADDING NPC TO NPC MAP
 	spawnNPC()
 	
+	# Initialize Labels
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
 
 	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	
@@ -108,10 +110,10 @@ func spawnAnimals():
 
 func _process(delta):
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
-	#if(globals.Hunting and globals.Animals == "Rabbit"):
 	if(globals.Hunting):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.HuntingMultiplier )
@@ -134,10 +136,6 @@ func _process(delta):
 	elif(globals.ForestCutting and globals.Terrain == "Forest"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
-		
-		#if( $InGameCanvasLayer/ProgressBar.value == 0 ):
-		#	$world/TileMap/Player/ChopPlayer.play()
-		
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
