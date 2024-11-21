@@ -12,7 +12,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const labelToAdd = "your-label-name"; // Replace with your label name
+            const labelToAdd = "github actions"; // Replace with your label name
 
             // Fetch all open issues
             const issues = await github.paginate(github.rest.issues.listForRepo, {
