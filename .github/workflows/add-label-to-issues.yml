@@ -1,0 +1,17 @@
+name: Add Label to All Issues
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add_label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add label to the issue
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: "github actions"
