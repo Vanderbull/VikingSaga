@@ -1054,7 +1054,6 @@ script = ExtResource("9_esbca")
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_h5l8u")]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-7.99265, 0)
 motion_mode = 1
 slide_on_ceiling = false
 platform_on_leave = 2
@@ -1091,6 +1090,7 @@ layer_0/name = "ANIMAL_MAP"
 script = ExtResource("42_33oxa")
 
 [node name="Npc" type="TileMap" parent="world"]
+visible = false
 tile_set = SubResource("TileSet_wkqc7")
 format = 2
 script = ExtResource("44_0la6p")
