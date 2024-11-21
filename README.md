@@ -4,6 +4,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/vanderbull/vikingsaga?include_prereleases)
 ![Static Badge](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux-blue)
 [![Add Label to All Issues](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-issues.yml/badge.svg)](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-issues.yml)
+[![Add Label to Existing Issues](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-existing-issues.yml/badge.svg)](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-existing-issues.yml)
 
 ![VIKINGSAGA](https://github.com/Vanderbull/VikingSaga/assets/1743820/579a6736-373b-428f-adc1-4897916ed971)
 
