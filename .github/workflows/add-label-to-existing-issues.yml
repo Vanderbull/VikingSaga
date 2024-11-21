@@ -1,0 +1,35 @@
+name: Add Label to Existing Issues
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow from the Actions tab
+
+jobs:
+  add_labels:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Add Labels to All Issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const labelToAdd = "your-label-name"; // Replace with your label name
+
+            // Fetch all open issues
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+            });
+
+            // Add the label to each issue
+            for (const issue of issues) {
+              if (!issue.pull_request) { // Ignore pull requests
+                console.log(`Adding label "${labelToAdd}" to issue #${issue.number}`);
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: [labelToAdd],
+                });
+              }
+            }
