@@ -3,6 +3,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/vanderbull/vikingsaga)
 ![GitHub Release](https://img.shields.io/github/v/release/vanderbull/vikingsaga?include_prereleases)
 ![Static Badge](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux-blue)
+[![Add Label to All Issues](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-issues.yml/badge.svg)](https://github.com/Vanderbull/VikingSaga/actions/workflows/add-label-to-issues.yml)
 
 ![VIKINGSAGA](https://github.com/Vanderbull/VikingSaga/assets/1743820/579a6736-373b-428f-adc1-4897916ed971)
 
@@ -18,6 +19,8 @@ Small game project we are working on for fun, any feedback or help is appreciate
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/5d123ed1-9839-42ac-a1bb-1f8cc211b6d1)
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/20b70cda-705d-4a44-81ef-ed90f4476abc)
 ![image](https://github.com/user-attachments/assets/4367b3b3-c831-4754-803b-795c76aaf101)
+
+
 
 
 ## Tools
