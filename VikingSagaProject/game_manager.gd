@@ -95,7 +95,6 @@ func spawnAnimals():
 
 		var cell_position = Vector2i(randi_range(-100, 100), randi_range(-100, 100))
 		var atlas_coords = Vector2i(0, 1)
-		#var tile_id = 1
 	
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)

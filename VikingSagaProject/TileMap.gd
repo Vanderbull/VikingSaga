@@ -20,7 +20,11 @@ static var clear_delay = 10
 var tile_position_info = []
 static var flockmos = 0
 
+var grid_size = Vector2(10, 10)  # Tilemap dimensions
+var tile_data = []
+
 func _ready():
+	generate_tilemap()
 	randomize()
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
@@ -28,13 +32,38 @@ func _ready():
 	temperature.seed = game_manager.playerData.temperature
 	altitude.seed = game_manager.playerData.altitude
 
+func generate_tilemap():
+	var tile_pos = local_to_map(player.position)
+	tile_data.clear()
+	for x in range(grid_size.x):
+		tile_data.append([])
+		for y in range(grid_size.y):
+			# Example: Randomly set some tiles as walls (1) or floor (0)
+			var tile = (randf() < 0.8) and true or false  # 80% floor, 20% walls
+			tile_data[x].append(tile)
+			tile_data[x].append(false)
+			if tile == true:  # Floor
+				$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(3,0))
+				#set_cell(x, y, 0)  # Use your floor tile ID here
+			elif tile == false:  # Wall
+				$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(0,0))
+				#set_cell(x, y, 1)  # Use your wall tile ID here
+	#tile_data.resize(256*256)
+	#tile_data.fill("0")
+	pass
+	
 func _process(_delta):
+	generate_chunk(player.position)
 	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
 	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
-	generate_chunk(player.position)
+	#generate_chunk(player.position)
 	
 	var tile_pos = local_to_map(player.position)
+	if tile_data[tile_pos.x][tile_pos.y] == true:
+		print(tile_data[tile_pos.x][tile_pos.y])
+	if tile_data[tile_pos.x][tile_pos.y+1] == false:
+		print("prutt!!")
 	var tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
@@ -54,24 +83,15 @@ func _process(_delta):
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
-			#if(globals.ForestCutting):
-				#game_manager.playerData.PlayerWood += 1
 		elif( round((temp+10)/5) == 0 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
-			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			#if(globals.ForestCutting):
-				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
-			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			#if(globals.ForestCutting):
-				#globals.PlayerSand+=1
 			globals.Terrain = "Sand"
-			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
@@ -79,17 +99,12 @@ func _process(_delta):
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
-			#globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
-			#globals.ForestCutting = false
 		else:
 			tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
-			#globals.ForestCutting = false
-			#if(globals.CollectClay):
-				#game_manager.playerData.PlayerClay += 1
 
 func get_terrain_type(tile_pos_x, tile_pos_y):
 	
