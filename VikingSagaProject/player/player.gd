@@ -63,10 +63,6 @@ func _input(event):
 	pass
 
 func _ready():
-	#position = worldMap.local_to_map(globals.player_position)
-	#position = Vector2(100.0,100.0)
-	#print(position)
-	#print(globals.player_position)
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
@@ -74,8 +70,8 @@ func _ready():
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
 	
-	$Camera2D.zoom.x = globals.ZoomX
-	$Camera2D.zoom.y = globals.ZoomY
+	$Camera2D.zoom.x = 6.00
+	$Camera2D.zoom.y = 6.00
 	velocity = Vector2i(0,0)
 	globals.Walking = false
 	effects.play("RESET")
@@ -100,7 +96,7 @@ func updateAnimation():
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
-	#globals.player_position = tile_pos
+	globals.player_position = tile_pos
 	
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
@@ -150,15 +146,11 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				globals.ZoomX += 0.25
-				globals.ZoomY += 0.25
-				$Camera2D.zoom.x = globals.ZoomX
-				$Camera2D.zoom.y = globals.ZoomY
+				$Camera2D.zoom.x += 0.25
+				$Camera2D.zoom.y += 0.25
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				globals.ZoomX -= 0.25
-				globals.ZoomY -= 0.25
-				$Camera2D.zoom.x = globals.ZoomX
-				$Camera2D.zoom.y = globals.ZoomY
+				$Camera2D.zoom.x -= 0.25
+				$Camera2D.zoom.y -= 0.25
 
 func _process(_delta):
 	check_if_quest_finished()
@@ -172,8 +164,6 @@ func _process(_delta):
 	handleInput()
 	move_and_slide()
 	updateAnimation()
-	print(position)
-	globals.player_position = position
 
 func _on_chop_player_finished():
 	pass # Replace with function body.

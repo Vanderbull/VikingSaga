@@ -14,15 +14,13 @@ var altitude_clouds = FastNoiseLite.new()
 var width = 16
 var height = 16
 
-#@onready var player = $Player
+@onready var player = $Player
 static var clear_delay = 10
 
 var tile_position_info = []
 static var flockmos = 0
 
 func _ready():
-	$Player.position.x = globals.player_position.x
-	$Player.position.y = globals.player_position.y
 	randomize()
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
@@ -31,16 +29,12 @@ func _ready():
 	altitude.seed = game_manager.playerData.altitude
 
 func _process(_delta):
-	$Player.position.x = globals.player_position.x
-	$Player.position.y = globals.player_position.y
-	#print($Player.position.x)
-	#$Player.position.x = 1000.0
-	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map($Player.position))
-	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str($Player.position)
-	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str($Player.position)
-	generate_chunk($Player.position)
+	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
+	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
+	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
+	generate_chunk(player.position)
 	
-	var tile_pos = local_to_map($Player.position)
+	var tile_pos = local_to_map(player.position)
 	var tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
@@ -99,7 +93,7 @@ func _process(_delta):
 
 func get_terrain_type(tile_pos_x, tile_pos_y):
 	
-	var tile_pos = local_to_map($Player.position)
+	var tile_pos = local_to_map(player.position)
 	var tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos_x, tile_pos_y) * 10 # -10 to 10

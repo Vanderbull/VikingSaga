@@ -2,8 +2,6 @@ extends Node
 
 @onready var game_manager = $"../../.."
 
-var ZoomX = 6.0
-var ZoomY = 6.0
 var NewGame: bool = true
 var Warmth: float = 100.0
 var MaxWarmth: float = 100.0
@@ -24,7 +22,7 @@ var RoadWorksMultiplier = 1
 var HuntingMultiplier = 1
 
 var ready_already = true
-var player_position = Vector2(1000,0)
+var player_position = Vector2(0,0)
 var cloud_position = Vector2(100,100)
 
 var RoadWorks = false
