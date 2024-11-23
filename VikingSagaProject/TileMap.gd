@@ -2,29 +2,40 @@ extends TileMap
 
 @onready var globals = get_node("/root/Globals")
 @onready var game_manager = $"../.."
+@onready var player = $Player
 
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
-
 var moisture_clouds = FastNoiseLite.new()
 var temperature_clouds = FastNoiseLite.new()
 var altitude_clouds = FastNoiseLite.new()
-
 var width = 16
 var height = 16
 
-@onready var player = $Player
 static var clear_delay = 10
-
 var tile_position_info = []
 static var flockmos = 0
-
 var grid_size = Vector2(10, 10)  # Tilemap dimensions
 var tile_data = []
 
+func place_character():
+	randomize()
+	print(randi()%1001)
+	#for x in range(randi()%1001):
+	#	for y in range(randi()%1001):
+	#if tile_data[x][y] == 0:  # Check for a valid "floor" tile
+	var world_position = map_to_local(Vector2(randi()%101, randi()%101))
+	#world_position += cell_size / 2  # Center on the tile
+	player.position = world_position
+	print(player.position)
+	return  # Exit after placing the character
+
 func _ready():
 	generate_tilemap()
+	if globals.ResetPlayerPosition:
+		place_character()
+		globals.ResetPlayerPosition = false
 	randomize()
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
@@ -33,6 +44,7 @@ func _ready():
 	altitude.seed = game_manager.playerData.altitude
 
 func generate_tilemap():
+	#print(player.position)
 	var tile_pos = local_to_map(player.position)
 	tile_data.clear()
 	for x in range(grid_size.x):
@@ -43,16 +55,19 @@ func generate_tilemap():
 			tile_data[x].append(tile)
 			tile_data[x].append(false)
 			if tile == true:  # Floor
-				$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(3,0))
+				#$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(3,0))
+				pass
 				#set_cell(x, y, 0)  # Use your floor tile ID here
 			elif tile == false:  # Wall
-				$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(0,0))
+				#$"../TileMap2".set_cell(0, Vector2i(x, y), 1 ,Vector2(0,0))
+				pass
 				#set_cell(x, y, 1)  # Use your wall tile ID here
 	#tile_data.resize(256*256)
 	#tile_data.fill("0")
 	pass
 	
 func _process(_delta):
+	#print(player.position)
 	generate_chunk(player.position)
 	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
@@ -60,10 +75,13 @@ func _process(_delta):
 	#generate_chunk(player.position)
 	
 	var tile_pos = local_to_map(player.position)
-	if tile_data[tile_pos.x][tile_pos.y] == true:
-		print(tile_data[tile_pos.x][tile_pos.y])
-	if tile_data[tile_pos.x][tile_pos.y+1] == false:
-		print("prutt!!")
+	#if tile_pos.x < 10 and tile_pos.y < 10:
+		#if tile_pos.x >= 0 and tile_pos.y >= 10:
+			#if tile_data[tile_pos.x][tile_pos.y] == true:
+				#print(tile_data[tile_pos.x][tile_pos.y])
+			#if tile_data[tile_pos.x][tile_pos.y+1] == false:
+				#print("prutt!!")
+			
 	var tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10

@@ -1,7 +1,10 @@
 extends Node
 
-@onready var game_manager = $"../../.."
+#@onready var game_manager = $"../../.."
+#@onready var player = $world/TileMap/Player
+var character_position: Vector2 = Vector2.ZERO
 
+var ResetPlayerPosition: bool = true
 var NewGame: bool = true
 var Warmth: float = 100.0
 var MaxWarmth: float = 100.0
@@ -22,7 +25,7 @@ var RoadWorksMultiplier = 1
 var HuntingMultiplier = 1
 
 var ready_already = true
-var player_position = Vector2(0,0)
+#var player_position = Vector2(0,0)
 var cloud_position = Vector2(100,100)
 
 var RoadWorks = false
@@ -52,6 +55,17 @@ var experience_required = get_required_experience(level + 1)
 # Dictionary to store item data
 var animals_db = {}
 var npc_db = {}
+
+#func switch_scene(scene_path: String):
+	## Save the character's position
+	#character_position = $CharacterBody2D.position
+	## Change the scene
+	#get_tree().change_scene(scene_path)
+	
+func save_player_positon(character_node: CharacterBody2D):
+	#print("$Player position: %s",$world/TileMap/Player.position)
+	character_position = character_node.position
+	print("character_position %s",character_position)
 
 func gain_quest_water(amount):
 	QuestWater += amount

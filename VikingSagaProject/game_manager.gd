@@ -46,8 +46,8 @@ func _ready():
 	dynamic_array_instance = DynamicArrayScript.new()
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
-	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
-	$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
+	#var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
+	#$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
 	# Initialize Labels
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)

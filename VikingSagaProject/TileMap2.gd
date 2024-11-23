@@ -10,14 +10,15 @@ func _ready():
 	
 func _process(delta):
 	#print(globals.player_position)
-	if is_tile_set(globals.player_position.x,globals.player_position.y):
-		if globals.Warmth < 100:
-			globals.Warmth += 0.1
-			var formatted_value = String("%0.1f" % globals.Warmth)
-			globals.Warmth = formatted_value
-			
-	else:
-		if( globals.Warmth > 0 ):
-			globals.Warmth -= 0.1
-			var formatted_value = String("%0.1f" % globals.Warmth)
-			globals.Warmth = formatted_value
+	#ifd is_tile_set(globals.player_position.x,globals.player_position.y):
+		#if globals.Warmth < 100:
+			#globals.Warmth += 0.1
+			#var formatted_value = String("%0.1f" % globals.Warmth)
+			#globals.Warmth = formatted_value
+			#
+	#else:
+		#if( globals.Warmth > 0 ):
+			#globals.Warmth -= 0.1
+			#var formatted_value = String("%0.1f" % globals.Warmth)
+			#globals.Warmth = formatted_value
+	pass

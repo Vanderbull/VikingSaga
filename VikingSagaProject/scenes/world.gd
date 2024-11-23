@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var globals = get_node("/root/Globals")
-
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
 
@@ -16,13 +15,14 @@ var file_name = "world.gd"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Getting world ready...")
-	player.position = Vector2i(0,0)
-	player.global_position = Vector2i(0,0)
+	#player.position = Vector2i(0,0)
+	#player.global_position = Vector2i(0,0)
 	pass
 	ResourceLoader.load_threaded_request(ENEMY_SCENE_PATH)
 	var enemy_scene = ResourceLoader.load_threaded_get(ENEMY_SCENE_PATH)
 
 func _process(_delta):
+	Globals.save_player_positon(player)
 	var time = Time.get_time_dict_from_system()
 
 func _unhandled_input(event):

@@ -63,6 +63,8 @@ func _input(event):
 	pass
 
 func _ready():
+	if globals.character_position != Vector2.ZERO:
+		position = globals.character_position
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
@@ -96,7 +98,8 @@ func updateAnimation():
 		
 func _unhandled_input(event):
 	var tile_pos = worldMap.local_to_map(position)
-	globals.player_position = tile_pos
+	#globals.player_position = tile_pos
+	#globals.player_position = tile_pos
 	
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
