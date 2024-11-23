@@ -13,6 +13,7 @@ class_name Player
 @onready var footstep_player = $FootstepPlayer
 @onready var chop_player = $ChopPlayer
 @onready var digg_player = $DiggPlayer
+@onready var game_over_scene = $"../../../GameOver"
 @export var speed: int = 16
 @export var footstep_interval: float = 0.1
 @export var walking_sounds: Array[AudioStream]  # List of footstep sounds
@@ -161,7 +162,8 @@ func _process(_delta):
 		if(!$DiggPlayer.is_audio_playing()):
 			$DiggPlayer.play()
 	if( game_manager.playerData.PlayerFood < 0 || game_manager.playerData.PlayerWater < 0 ):
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://game_over.tscn")
+		#get_tree().reload_current_scene()
 	game_manager.playerData.player_position = position
 	_delta = 0.00000000000
 	handleInput()

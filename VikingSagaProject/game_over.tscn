@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://drgko81r4nvke"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_f20g3"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f20g3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GAME OVER!"
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 176.0
+offset_right = 589.0
+offset_bottom = 207.0
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 232.0
+offset_right = 574.0
+offset_bottom = 263.0
+text = "QUIT"

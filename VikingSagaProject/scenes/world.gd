@@ -12,6 +12,11 @@ var PlayerCuttingTrees = false
 var CurrentArea
 var file_name = "world.gd"
 
+func game_over():
+	# Load the Game Over screen scene
+	var game_over_scene = preload("res://game_over.tscn").instantiate()
+	get_tree().root.add_child(game_over_scene)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Getting world ready...")

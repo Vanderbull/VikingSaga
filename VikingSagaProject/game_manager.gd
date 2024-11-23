@@ -187,7 +187,6 @@ func _on_inventory_gui_opened():
 func _on_in_game_canvas_layer_tree_entered() -> void:
 	print("Entered the InGameCanvasLayer Tree..")
 
-
 func _on_in_game_canvas_layer_visibility_changed() -> void:
 	if $InGameCanvasLayer.visible:
 		print("InGameCanvasLayer is visible")

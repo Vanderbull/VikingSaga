@@ -65,7 +65,7 @@ var npc_db = {}
 func save_player_positon(character_node: CharacterBody2D):
 	#print("$Player position: %s",$world/TileMap/Player.position)
 	character_position = character_node.position
-	print("character_position %s",character_position)
+	#print("character_position %s",character_position)
 
 func gain_quest_water(amount):
 	QuestWater += amount
