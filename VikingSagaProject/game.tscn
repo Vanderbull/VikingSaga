@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=88 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -60,10 +60,12 @@
 [ext_resource type="Texture2D" uid="uid://ctufv4b7yd5o8" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="44_dgtq6"]
 [ext_resource type="PackedScene" uid="uid://dpluncmaurdph" path="res://in_game_canvas_layer.tscn" id="46_xqupw"]
 [ext_resource type="Script" path="res://hp_label.gd" id="47_nioj0"]
+[ext_resource type="Script" path="res://godot_version.gd" id="50_sqala"]
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
 [ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
+[ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("3_jbup0")
@@ -1162,6 +1164,10 @@ layout_mode = 2
 text = "HP: 10 / 10"
 script = ExtResource("47_nioj0")
 
+[node name="godot_version" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("50_sqala")
+
 [node name="AnimatedFace" type="AnimatedSprite2D" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
 position = Vector2(150, 320)
 scale = Vector2(0.288333, 0.288333)
@@ -1279,3 +1285,6 @@ offset_bottom = 96.0
 visible = false
 
 [node name="QuestFinished" parent="QuestFinished" instance=ExtResource("2_e1aqf")]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("65_imgqm")

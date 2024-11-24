@@ -1,5 +1,6 @@
 extends Node
 
+var godot_version = "0.0-unstable"
 #@onready var game_manager = $"../../.."
 #@onready var player = $world/TileMap/Player
 var character_position: Vector2 = Vector2.ZERO

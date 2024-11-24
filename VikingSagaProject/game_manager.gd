@@ -28,7 +28,7 @@ var quest_paused : bool = false:
 
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
-
+	
 func _ready():
 	print("Getting GameManager ready...")
 	$MenuCanvasLayer.show()
@@ -108,6 +108,8 @@ func spawnAnimals():
 	pass
 
 func _process(delta):
+	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
+	
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	if( globals.Walking == true):
