@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=91 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -65,6 +65,7 @@
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
 [ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
+[ext_resource type="Script" path="res://panel.gd" id="58_5wptu"]
 [ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
@@ -1014,6 +1015,22 @@ seamless = true
 color_ramp = SubResource("Gradient_a8qux")
 noise = SubResource("FastNoiseLite_l3lke")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4br4k"]
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u48n1"]
 animations = [{
 "frames": [{
@@ -1033,6 +1050,23 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
 shader = ExtResource("54_4gppm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa45r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [node name="GameManager" type="Node"]
 process_mode = 3
@@ -1085,7 +1119,6 @@ tilemap = NodePath("../..")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
 stream = ExtResource("38_jkcp2")
-autoplay = true
 
 [node name="TileMap2" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
@@ -1131,10 +1164,12 @@ texture = SubResource("NoiseTexture2D_6mvi7")
 [node name="TileInfoWindow" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="TileInfoWindow"]
+editor_description = "Resizes to fit its children and probably should be used instead of a panel if the background needs to be dynamically resized"
 offset_left = 864.0
 offset_top = 224.0
 offset_right = 1140.0
 offset_bottom = 635.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4br4k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TileInfoWindow/PanelContainer"]
 layout_mode = 2
@@ -1223,40 +1258,53 @@ text = "100.0 / 100.0"
 script = ExtResource("55_is2nf")
 
 [node name="Quests" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Quests"]
-offset_left = 8.0
-offset_top = 43.0
-offset_right = 202.0
-offset_bottom = 120.0
+[node name="Control" type="Control" parent="Quests"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
 
-[node name="Quest1" type="Label" parent="Quests/VBoxContainer"]
+[node name="Panel" type="Panel" parent="Quests/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pa45r")
+script = ExtResource("58_5wptu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Quests/Control/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quest1" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect water 0 / 10000"
 script = ExtResource("24_ja7jj")
 
-[node name="Quest2" type="Label" parent="Quests/VBoxContainer"]
+[node name="Quest2" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect food 0 / 10000"
 script = ExtResource("25_5llqg")
 
-[node name="Quest3" type="Label" parent="Quests/VBoxContainer"]
+[node name="Quest3" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
 script = ExtResource("26_rx6gv")
 
-[node name="Quest4" type="Label" parent="Quests/VBoxContainer"]
+[node name="Quest4" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Collect clay 0 / 10000"
 script = ExtResource("51_xdwo2")
 
-[node name="Quest5" type="Label" parent="Quests/VBoxContainer"]
+[node name="Quest5" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"
 script = ExtResource("52_uwfsj")
 
-[node name="Clock" type="Label" parent="Quests/VBoxContainer"]
+[node name="Clock" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("27_xgbrb")
 
