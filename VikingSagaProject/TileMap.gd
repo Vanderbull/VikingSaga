@@ -21,30 +21,48 @@ var tile_data = []
 
 func place_character():
 	randomize()
-	print(randi()%1001)
+	var plasket = true
 	#for x in range(randi()%1001):
 	#	for y in range(randi()%1001):
 	#if tile_data[x][y] == 0:  # Check for a valid "floor" tile
 	var world_position = map_to_local(Vector2(randi()%101, randi()%101))
+	var tile_pos = local_to_map(world_position)
 	#world_position += cell_size / 2  # Center on the tile
 	player.position = world_position
 	print(player.position)
+	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
+	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	while plasket:
+		print("reroll")
+		if ( round((moist+10)/5) == 3 and round((temp+10)/5) <= 3 ):
+			print("water")
+			world_position = map_to_local(Vector2(randi()%101, randi()%101))
+			tile_pos = local_to_map(world_position)
+			moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
+			temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+			alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+			player.position = world_position
+		else:
+			print("dry land")
+			plasket = false
+		
 	return  # Exit after placing the character
 
 func _ready():
+	tile_position_info.resize(256*256)
+	tile_position_info.fill("0")
 	generate_tilemap()
 	if globals.ResetPlayerPosition:
 		place_character()
 		globals.ResetPlayerPosition = false
 	randomize()
-	tile_position_info.resize(256*256)
-	tile_position_info.fill("0")
+
 	moisture.seed = game_manager.playerData.moisture
 	temperature.seed = game_manager.playerData.temperature
 	altitude.seed = game_manager.playerData.altitude
 
 func generate_tilemap():
-	#print(player.position)
 	var tile_pos = local_to_map(player.position)
 	tile_data.clear()
 	for x in range(grid_size.x):
@@ -67,7 +85,6 @@ func generate_tilemap():
 	pass
 	
 func _process(_delta):
-	#print(player.position)
 	generate_chunk(player.position)
 	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)

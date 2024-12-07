@@ -51,6 +51,7 @@ func _ready():
 	# Initialize Labels
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
 	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
 	
 	if( globals.NewGame ):
@@ -111,7 +112,7 @@ func _process(delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
 	
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	$Interface/FoodBar/FoodLabel.update_text(playerData.PlayerFood,1000)
 	if( globals.Walking == true):
 		playerData.PlayerFood -= 1
 		playerData.PlayerWater -= 1
@@ -140,10 +141,10 @@ func _process(delta):
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerWood += 1000
 			$InGameCanvasLayer/ProgressBar.value = 0
-			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
+			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
 			globals.gain_quest_trees(1000)
-			$Quests/VBoxContainer/Quest3.update_text()
+			$Quests/Control/Panel/VBoxContainer/Quest3.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
@@ -153,17 +154,17 @@ func _process(delta):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			globals.gain_quest_water(1000)
-			$Quests/VBoxContainer/Quest1.update_text()
+			$Quests/Control/Panel/VBoxContainer/Quest1.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectClayMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.PlayerClay += 1000
-			$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
+			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
 			globals.gain_quest_clay(1000)
-			$Quests/VBoxContainer/Quest4.update_text()
+			$Quests/Control/Panel/VBoxContainer/Quest4.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 			$InGameCanvasLayer/ProgressBar.value = 0
 	else:

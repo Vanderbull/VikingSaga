@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=94 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -66,6 +66,7 @@
 [ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
 [ext_resource type="Script" path="res://panel.gd" id="58_5wptu"]
+[ext_resource type="Script" path="res://food_label.gd" id="58_855w6"]
 [ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
@@ -1051,6 +1052,38 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
 shader = ExtResource("54_4gppm")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai8y1"]
+bg_color = Color(1, 1, 1, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7v3o"]
+bg_color = Color(1, 1, 1, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa45r"]
 bg_color = Color(0.6, 0.6, 0.6, 0.501961)
 border_width_left = 4
@@ -1254,8 +1287,43 @@ offset_left = -35.0
 offset_right = 35.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ai8y1")
 text = "100.0 / 100.0"
 script = ExtResource("55_is2nf")
+
+[node name="FoodBar" type="ProgressBar" parent="Interface"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 459.0
+offset_top = 129.0
+offset_right = 569.0
+offset_bottom = 156.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
+
+[node name="Title" type="Label" parent="Interface/FoodBar"]
+layout_mode = 1
+offset_left = -46.0
+offset_right = 24.0
+offset_bottom = 23.0
+text = "Food"
+
+[node name="FoodLabel" type="Label" parent="Interface/FoodBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = -1.0
+offset_right = 51.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7v3o")
+text = "100.0 / 100.0"
+script = ExtResource("58_855w6")
 
 [node name="Quests" type="CanvasLayer" parent="."]
 
