@@ -110,12 +110,11 @@ func spawnAnimals():
 
 func _process(delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
-	
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/FoodBar/FoodLabel.update_text(playerData.PlayerFood,1000)
 	if( globals.Walking == true):
-		playerData.PlayerFood -= 1
-		playerData.PlayerWater -= 1
+		playerData.PlayerFood -= globals.FoodDeterioration
+		playerData.PlayerWater -= globals.WaterDeterioration
 	if(globals.Hunting):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.HuntingMultiplier )
@@ -123,10 +122,10 @@ func _process(delta):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.Hunting = not globals.Hunting
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-			playerData.PlayerFood += 1000
+			playerData.PlayerFood += globals.CollectingFoodAmount
 			globals.gain_experience(1)
-			globals.gain_quest_food(1000)
-			$Quests/VBoxContainer/Quest2.update_text()
+			globals.gain_quest_food(globals.CollectingFoodAmount)
+			$Quests/Control/Panel/VBoxContainer/Quest2.update_text()
 	elif(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
@@ -139,21 +138,21 @@ func _process(delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWood += 1000
+			playerData.PlayerWood += globals.CollectingWoodAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
-			globals.gain_quest_trees(1000)
+			globals.gain_quest_trees(globals.CollectingWoodAmount)
 			$Quests/Control/Panel/VBoxContainer/Quest3.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWater += 1000
+			playerData.PlayerWater += globals.CollectingWaterAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
-			globals.gain_quest_water(1000)
+			globals.gain_quest_water(globals.CollectingWaterAmount)
 			$Quests/Control/Panel/VBoxContainer/Quest1.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):

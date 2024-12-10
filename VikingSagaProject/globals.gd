@@ -20,6 +20,8 @@ var level = 1
 var experience = 0
 var experience_total = 0
 var experience_required = get_required_experience(level + 1)
+var FoodDeterioration = 1
+var WaterDeterioration = 1
 # Warmth
 var Warmth: float = 100.0
 var MaxWarmth: float = 100.0
@@ -27,10 +29,10 @@ var MaxWarmth: float = 100.0
 var Health:int = 10
 var MaxHealth:int = 10
 # ACTION DATA
-var ForestCuttingAmount = 1000
-var CollectingClayAmount = 1000
-var CollectingWaterAmount = 1000
-var HuntingAmount = 1000
+var CollectingWoodAmount = 100
+var CollectingClayAmount = 100
+var CollectingWaterAmount = 100
+var CollectingFoodAmount = 100
 # MULTIPLIERS
 var ForestCuttingMultiplier = 1
 var CollectClayMultiplier = 1
@@ -38,11 +40,11 @@ var CollectWaterMultiplier = 1
 var RoadWorksMultiplier = 1
 var HuntingMultiplier = 1
 # Quests
-var QuestWater = 10000
-var QuestFood = 10000
-var QuestTrees = 10000
-var QuestClay = 10000
-var QuestHunting = 10000
+var QuestWater = 0
+var QuestFood = 0
+var QuestTrees = 0
+var QuestClay = 0
+var QuestHunting = 0
 # Dictionary to store item data
 var animals_db = {}
 var npc_db = {}
