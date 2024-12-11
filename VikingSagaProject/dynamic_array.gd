@@ -19,6 +19,7 @@ func find_coordinate_with_text(x: int, y: int) -> String:
 	return "Coordinate not found"
 
 func _ready():
+	print("dynamic_array _ready...")
 	# Call the function to generate the coordinates with text
 	generate_coordinates_with_text()
 	

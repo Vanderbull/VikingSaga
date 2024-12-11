@@ -3,8 +3,8 @@ extends AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("ChopPlayer _ready...")
 	pass # Replace with function body.
-
 
 # Function to check if the audio is playing
 func is_audio_playing() -> bool:

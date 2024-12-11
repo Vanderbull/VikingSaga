@@ -7,7 +7,7 @@ extends Control
 @onready var hover_sound = $HoverSound
 
 func _ready():
-	print("Getting the mainmenu ready...")
+	print("Getting the mainmenu _ready...")
 	verify_save_directory(game_manager.playerData.save_file_path)
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
 

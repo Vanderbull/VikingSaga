@@ -31,7 +31,6 @@ func check_if_quest_finished():
 			if globals.QuestTrees >= 10000:
 				if globals.QuestClay >= 10000:
 					$"../../../QuestFinished/QuestFinished".show()
-	pass
 
 func _physics_process(delta: float) -> void:
 	# Check if the player is moving

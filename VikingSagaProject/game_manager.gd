@@ -68,39 +68,38 @@ func initialize_gamemanager():
 	pass
 	
 func spawnNPC():
-	for i in range(50):
+	for i in range(globals.SpawnRadius):
 		#var tilemap = $world/Npc
-		var cell_position = Vector2i(randi_range(-50, 50), randi_range(-50, 50))
+		var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
+		# What NPC images should be used?
 		var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
+		# If grass then spawn NPC
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
-		globals.npc_db["npc"] = {
-			"x": cell_position.x,
-			"y": cell_position.y
-		}		
-		for npc_name in globals.npc_db.keys():
-			pass
+		#globals.npc_db["npc"] = {
+		#	"x": cell_position.x,
+		#	"y": cell_position.y
+		#}		
+		#for npc_name in globals.npc_db.keys():
+		#	pass
 			#var coords = globals.npc_db[npc_name]
 				
 func spawnAnimals():
 	# ADDING ANIMALS TO ANIMALMAP
-	for i in range(50):
+	for i in range(globals.SpawnRadius):
 		#var tilemap = $world/AnimalMap
 
-		var cell_position = Vector2i(randi_range(-100, 100), randi_range(-100, 100))
+		var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
 		var atlas_coords = Vector2i(0, 1)
-	
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
-			
-		globals.animals_db["rabbit"] = {
-			"x": cell_position.x,
-			"y": cell_position.y
-		}		
-		for animal_name in globals.animals_db.keys():
-			pass
+		#globals.animals_db["rabbit"] = {
+		#	"x": cell_position.x,
+		#	"y": cell_position.y
+		#}		
+		#for animal_name in globals.animals_db.keys():
+		#	pass
 			#var coords = globals.animals_db[animal_name]
-	pass
 
 func _process(_delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
@@ -124,7 +123,7 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerSand += 1000
+			playerData.PlayerSand += globals.CollectingSandAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
@@ -153,10 +152,9 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectClayMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerClay += 1000
-			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
+			playerData.PlayerClay += globals.CollectingClayAmount
 			globals.gain_experience(1)
-			globals.gain_quest_clay(1000)
+			globals.gain_quest_clay(globals.CollectingClayAmount)
 			$Quests/Control/Panel/VBoxContainer/Quest4.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 			$InGameCanvasLayer/ProgressBar.value = 0

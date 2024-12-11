@@ -1,9 +1,13 @@
 extends Node
 
+# GENERIC
 var godot_version = "0.0-unstable"
 var NewGame: bool = true
 var ready_already = true
 var cloud_position = Vector2(100,100)
+# NPC / ANIMALS
+var SpawnRadius = 50
+
 # Player
 var character_position: Vector2 = Vector2.ZERO
 var ResetPlayerPosition: bool = true
@@ -29,6 +33,7 @@ var MaxWarmth: float = 100.0
 var Health:int = 10
 var MaxHealth:int = 10
 # ACTION DATA
+var CollectingSandAmount = 100
 var CollectingWoodAmount = 100
 var CollectingClayAmount = 100
 var CollectingWaterAmount = 100

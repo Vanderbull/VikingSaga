@@ -6,8 +6,8 @@ func is_tile_set(x: int, y: int) -> bool:
 	var cell_source_id = get_cell_source_id(0,Vector2i(x, y))
 	return cell_source_id != -1
 
-# Example usage in a script wherWolfe this TileMap is referenced
 func _ready():
+	print("ncp _ready...")
 	pass
 	
 func _process(_delta):
