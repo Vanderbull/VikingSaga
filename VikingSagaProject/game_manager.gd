@@ -37,7 +37,6 @@ func _ready():
 	$TileInfoWindow.hide()
 	$Interface.hide()
 	$Quests.hide()
-	#$Control.hide()
 	$QuestFinished.hide()
 	randomize()
 	# Load the DynamicArray script
@@ -46,14 +45,11 @@ func _ready():
 	dynamic_array_instance = DynamicArrayScript.new()
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
-	#var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(globals.player_position.x,globals.player_position.y)
-	#$TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates.text = TileCoordinateText
 	# Initialize Labels
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
 	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
-	
 	if( globals.NewGame ):
 		initialize_gamemanager()
 		globals.NewGame = false
@@ -65,20 +61,17 @@ func initialize_gamemanager():
 	spawnAnimals()
 	# ADDING NPC TO NPC MAP
 	spawnNPC()
-	var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
+	#var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	playerData = PlayerData.new()
-	
 	if OS.is_debug_build():
 		game_paused = !game_paused	
 	pass
 	
 func spawnNPC():
 	for i in range(50):
-		var tilemap = $world/Npc
-		
+		#var tilemap = $world/Npc
 		var cell_position = Vector2i(randi_range(-50, 50), randi_range(-50, 50))
 		var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
-
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
 		globals.npc_db["npc"] = {
@@ -86,13 +79,13 @@ func spawnNPC():
 			"y": cell_position.y
 		}		
 		for npc_name in globals.npc_db.keys():
-			var coords = globals.npc_db[npc_name]
-	pass
-	
+			pass
+			#var coords = globals.npc_db[npc_name]
+				
 func spawnAnimals():
 	# ADDING ANIMALS TO ANIMALMAP
 	for i in range(50):
-		var tilemap = $world/AnimalMap
+		#var tilemap = $world/AnimalMap
 
 		var cell_position = Vector2i(randi_range(-100, 100), randi_range(-100, 100))
 		var atlas_coords = Vector2i(0, 1)
@@ -105,10 +98,11 @@ func spawnAnimals():
 			"y": cell_position.y
 		}		
 		for animal_name in globals.animals_db.keys():
-			var coords = globals.animals_db[animal_name]
+			pass
+			#var coords = globals.animals_db[animal_name]
 	pass
 
-func _process(delta):
+func _process(_delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/FoodBar/FoodLabel.update_text(playerData.PlayerFood,1000)

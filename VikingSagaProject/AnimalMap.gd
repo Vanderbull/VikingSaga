@@ -9,7 +9,7 @@ func is_tile_set(x: int, y: int) -> bool:
 func _ready():
 	print("AnimalMap _ready()...")
 	
-func _process(delta):
+func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)
 	print(tile_pos)
 	print_debug("processing animal map...")
@@ -19,7 +19,7 @@ func _process(delta):
 		if( source_id == null ):
 			print_debug("source_id is null")
 			return
-		var atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
+		var _atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
 		# SOME STRANGE BUG HERE
 		var tile_source = tile_set.get_source(source_id)
 		#print(tile_source)

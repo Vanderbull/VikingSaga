@@ -40,7 +40,7 @@ func _on_typing_timer_timeout():
 		## Stop the timer when all characters are typed
 		#typing_timer.stop()
 
-func _input(event: InputEvent):
+func _input(_event: InputEvent):
 	pass
 	#if event is InputEventKey:
 		## Check if the event is a key press and matches the trigger key

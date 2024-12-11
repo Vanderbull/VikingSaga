@@ -8,7 +8,7 @@ func is_tile_set(x: int, y: int) -> bool:
 func _ready():
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	#print(globals.player_position)
 	#ifd is_tile_set(globals.player_position.x,globals.player_position.y):
 		#if globals.Warmth < 100:

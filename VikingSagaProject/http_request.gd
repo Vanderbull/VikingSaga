@@ -8,7 +8,7 @@ func _ready():
 	request("https://api.github.com/repos/godotengine/godot/releases/latest")
 	
 
-func _on_request_completed(result, response_code, headers, body):
-	var json = JSON.parse_string(body.get_string_from_utf8())
+func _on_request_completed(_result, _response_code, _headers, _body):
+	var json = JSON.parse_string(_body.get_string_from_utf8())
 	print(json["name"])
 	globals.godot_version = json["name"]

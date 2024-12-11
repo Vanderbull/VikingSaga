@@ -32,7 +32,7 @@ func place_character():
 	print(player.position)
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	var _alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	while plasket:
 		print("reroll")
 		if ( round((moist+10)/5) == 3 and round((temp+10)/5) <= 3 ):
@@ -41,7 +41,7 @@ func place_character():
 			tile_pos = local_to_map(world_position)
 			moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 			temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-			alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+			_alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 			player.position = world_position
 		else:
 			print("dry land")
@@ -63,7 +63,7 @@ func _ready():
 	altitude.seed = game_manager.playerData.altitude
 
 func generate_tilemap():
-	var tile_pos = local_to_map(player.position)
+	var _tile_pos = local_to_map(player.position)
 	tile_data.clear()
 	for x in range(grid_size.x):
 		tile_data.append([])
@@ -99,7 +99,7 @@ func _process(_delta):
 			#if tile_data[tile_pos.x][tile_pos.y+1] == false:
 				#print("prutt!!")
 			
-	var tile_index = tile_pos.x * width + tile_pos.y
+	var _tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
@@ -144,7 +144,7 @@ func _process(_delta):
 func get_terrain_type(tile_pos_x, tile_pos_y):
 	
 	var tile_pos = local_to_map(player.position)
-	var tile_index = tile_pos.x * width + tile_pos.y
+	var _tile_index = tile_pos.x * width + tile_pos.y
 	
 	var moist = moisture.get_noise_2d(tile_pos_x, tile_pos_y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos_x, tile_pos_y) * 10
@@ -197,12 +197,12 @@ func get_terrain_type(tile_pos_x, tile_pos_y):
 	
 	pass
 	
-func generate_chunk(position):
-	var tile_pos = local_to_map(position)
+func generate_chunk(p_position):
+	var tile_pos = local_to_map(p_position)
 	for x in range(width):
 		for y in range(height):
-			var moist = moisture.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10 # -10 to 10
-			var temp = temperature.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10
-			var alt = altitude.get_noise_2d(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y) * 10
+			var moist = moisture.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0 # -10 to 10
+			var temp = temperature.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0
+			var _alt = altitude.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0
 			
-			set_cell(0, Vector2i(tile_pos.x - width/2 + x, tile_pos.y - height/2 + y), 1 ,Vector2(round((moist+10)/5),round((temp+10)/5)))
+			set_cell(0, Vector2i(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y), 1.0 ,Vector2(round((moist+10.0)/5.0),round((temp+10.0)/5.0)))

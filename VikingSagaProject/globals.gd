@@ -81,8 +81,8 @@ func update_quests():
 	$Quests/VBoxContainer/Quest1.text = "UPDATE QUEST 1"
 	$Quests/VBoxContainer/Quest2.text = "UPDATE QUEST 2"
 	$Quests/VBoxContainer/Quest3.text = "UPDATE QUEST 3"
-func get_required_experience(level):
-	return round(pow(level, 1.8) + level * 4)
+func get_required_experience(p_level):
+	return round(pow(p_level, 1.8) + p_level * 4)
 func gain_experience(amount):
 	experience_total += amount
 	experience += amount

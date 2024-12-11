@@ -1,6 +1,6 @@
 extends Panel
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Reset size to match children dynamically
 	if get_child_count() > 0:
 		var content_size = Vector2(0, 0)

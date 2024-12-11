@@ -24,11 +24,11 @@ func _ready():
 	#player.global_position = Vector2i(0,0)
 	pass
 	ResourceLoader.load_threaded_request(ENEMY_SCENE_PATH)
-	var enemy_scene = ResourceLoader.load_threaded_get(ENEMY_SCENE_PATH)
+	#var enemy_scene = ResourceLoader.load_threaded_get(ENEMY_SCENE_PATH)
 
 func _process(_delta):
 	Globals.save_player_positon(player)
-	var time = Time.get_time_dict_from_system()
+	#var time = Time.get_time_dict_from_system()
 
 func _unhandled_input(event):
 	if event is InputEventKey:

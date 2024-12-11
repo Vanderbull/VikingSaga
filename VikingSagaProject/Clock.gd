@@ -7,7 +7,7 @@ func _ready():
 	# Set up the clock to update every second
 	set_process(true)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Get the current time
 	var time = Time.get_time_dict_from_system()
 	
@@ -34,9 +34,8 @@ func get_timeofday():
 		# Get the current time
 	var time = Time.get_time_dict_from_system()
 	# Determine day or night
-	var day_or_night = ""
+	#var day_or_night = ""
 	if time["hour"] >= 6 and time["hour"] < 18:
 		return "DAY"
 	else:
-		return "NIGHT"	
-	pass
+		return "NIGHT"

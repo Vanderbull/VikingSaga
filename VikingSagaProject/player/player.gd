@@ -7,13 +7,13 @@ class_name Player
 @onready var effects = $Effects
 @onready var hurtColor = $Sprite2D/ColorRect
 @onready var hurtTimer = $hurtTimer
-@onready var sound = $AudioStreamPlayer2D
+@onready var sound = $AudioStreamPlayer
 @onready var soundAttack = $AudioStreamPlayer
 @onready var worldMap = $".."
 @onready var footstep_player = $FootstepPlayer
 @onready var chop_player = $ChopPlayer
 @onready var digg_player = $DiggPlayer
-@onready var game_over_scene = $"../../../GameOver"
+#@onready var game_over_scene = $"../../../GameOver"
 @export var speed: int = 16
 @export var footstep_interval: float = 0.1
 @export var walking_sounds: Array[AudioStream]  # List of footstep sounds
@@ -45,14 +45,16 @@ func _physics_process(delta: float) -> void:
 
 func play_footstep_sound() -> void:
 	if walking_sounds.size() > 0:
-		var sound = walking_sounds[randi() % walking_sounds.size()]
-		footstep_player.stream = sound
+		#var sound = walking_sounds[randi() % walking_sounds.size()]
+		#footstep_player.stream = sound
+		footstep_player.stream = walking_sounds[randi() % walking_sounds.size()]
 		footstep_player.play()
 		
 func play_chop_sound() -> void:
 	if chop_sounds.size() > 0:
-		var sound = chop_sounds[randi() % chop_sounds.size()]
-		chop_player.stream = sound
+		#var sound = chop_sounds[randi() % chop_sounds.size()]
+		#chop_player.stream = sound
+		chop_player.stream = chop_sounds[randi() % chop_sounds.size()]
 		chop_player.play()
 		await chop_player.finished
 		
@@ -60,7 +62,7 @@ func play_digg_sound() -> void:
 	if(digg_player.is_audio_playing()):
 		digg_player.play()
 
-func _input(event):
+func _input(_event):
 	pass
 
 func _ready():
@@ -122,7 +124,7 @@ func _unhandled_input(event):
 			if( globals.Animals != -1 ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.Hunting = not globals.Hunting
-				var atlas_coords = Vector2i(0, 0)
+				#var atlas_coords = Vector2i(0, 0)
 				var tilemap = $"../../AnimalMap"
 				tilemap.set_cell(0,tile_pos, -1)
 			elif( globals.Terrain == "Sand" ):
