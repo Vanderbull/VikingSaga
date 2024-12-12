@@ -19,7 +19,7 @@ func game_over():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Getting world ready...")
+	print("Getting world _ready...")
 	#player.position = Vector2i(0,0)
 	#player.global_position = Vector2i(0,0)
 	pass
@@ -28,7 +28,6 @@ func _ready():
 
 func _process(_delta):
 	Globals.save_player_positon(player)
-	#var time = Time.get_time_dict_from_system()
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -42,7 +41,6 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_4:
 			print_debug("Debug: Change scene to file: res://city.tscn")
 			get_tree().change_scene_to_file("res://city.tscn")
-			# FIGHTING SCENE
 		if event.pressed and event.keycode == KEY_5:
 			print_debug("Debug: Change scene to file: res://quest/quest_canvas_layer.tscn")
 			get_tree().change_scene_to_file("res://quest/quest_canvas_layer.tscn")

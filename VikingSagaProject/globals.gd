@@ -1,5 +1,8 @@
 extends Node
 
+# MAP RELATED
+var chunk_size = 16
+
 # GENERIC
 var godot_version = "0.0-unstable"
 var NewGame: bool = true

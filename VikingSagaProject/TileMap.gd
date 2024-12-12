@@ -7,16 +7,14 @@ extends TileMap
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
-var moisture_clouds = FastNoiseLite.new()
-var temperature_clouds = FastNoiseLite.new()
-var altitude_clouds = FastNoiseLite.new()
-var width = 16
-var height = 16
+#var moisture_clouds = FastNoiseLite.new()
+#var temperature_clouds = FastNoiseLite.new()
+#var altitude_clouds = FastNoiseLite.new()
 
-static var clear_delay = 10
+#static var clear_delay = 10
 var tile_position_info = []
-static var flockmos = 0
-var grid_size = Vector2(10, 10)  # Tilemap dimensions
+#static var flockmos = 0
+var grid_size = Vector2(10, 10)  # Tilemap dimensionsw should be globals.chunk_size right?
 var tile_data = []
 
 func place_character():
@@ -46,7 +44,6 @@ func place_character():
 		else:
 			print("dry land")
 			plasket = false
-		
 	return  # Exit after placing the character
 
 func _ready():
@@ -57,7 +54,6 @@ func _ready():
 		place_character()
 		globals.ResetPlayerPosition = false
 	randomize()
-
 	moisture.seed = game_manager.playerData.moisture
 	temperature.seed = game_manager.playerData.temperature
 	altitude.seed = game_manager.playerData.altitude
@@ -90,17 +86,8 @@ func _process(_delta):
 	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
 	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
 	#generate_chunk(player.position)
-	
 	var tile_pos = local_to_map(player.position)
-	#if tile_pos.x < 10 and tile_pos.y < 10:
-		#if tile_pos.x >= 0 and tile_pos.y >= 10:
-			#if tile_data[tile_pos.x][tile_pos.y] == true:
-				#print(tile_data[tile_pos.x][tile_pos.y])
-			#if tile_data[tile_pos.x][tile_pos.y+1] == false:
-				#print("prutt!!")
-			
-	var _tile_index = tile_pos.x * width + tile_pos.y
-	
+	var _tile_index = tile_pos.x * globals.chunk_size + tile_pos.y
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
@@ -116,36 +103,34 @@ func _process(_delta):
 			game_manager.playerData.PlayerWood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
 		elif( round((temp+10)/5) == 0 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
 		else:
-			tile_position_info[tile_pos.x * width + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
 
 func get_terrain_type(tile_pos_x, tile_pos_y):
-	
 	var tile_pos = local_to_map(player.position)
-	var _tile_index = tile_pos.x * width + tile_pos.y
-	
+	var _tile_index = tile_pos.x * globals.chunk_size + tile_pos.y
 	var moist = moisture.get_noise_2d(tile_pos_x, tile_pos_y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos_x, tile_pos_y) * 10
 	var alt = altitude.get_noise_2d(tile_pos_x, tile_pos_y) * 10
@@ -156,53 +141,46 @@ func get_terrain_type(tile_pos_x, tile_pos_y):
 			game_manager.playerData.PlayerWood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) == 1 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
 		elif( round((temp+10)/5) == 0 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			#if(globals.ForestCutting):
-				#globals.PlayerSand+=1
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
-			#if(globals.ForestCutting):
-				#globals.PlayerSand+=1
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
 			globals.ForestCutting = false
 		else:
-			tile_position_info[tile_pos_x * width + tile_pos_y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
+			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
 			globals.ForestCutting = false
 			return globals.Terrain
 	
-	pass
-	
 func generate_chunk(p_position):
 	var tile_pos = local_to_map(p_position)
-	for x in range(width):
-		for y in range(height):
-			var moist = moisture.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0 # -10 to 10
-			var temp = temperature.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0
-			var _alt = altitude.get_noise_2d(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y) * 10.0
-			
-			set_cell(0, Vector2i(tile_pos.x - width/2.0 + x, tile_pos.y - height/2.0 + y), 1.0 ,Vector2(round((moist+10.0)/5.0),round((temp+10.0)/5.0)))
+	for x in range(globals.chunk_size):
+		for y in range(globals.chunk_size):
+			var moist = moisture.get_noise_2d(tile_pos.x - globals.chunk_size/2.0 + x, tile_pos.y - globals.chunk_size/2.0 + y) * 10.0 # -10 to 10
+			var temp = temperature.get_noise_2d(tile_pos.x - globals.chunk_size/2.0 + x, tile_pos.y - globals.chunk_size/2.0 + y) * 10.0
+			var _alt = altitude.get_noise_2d(tile_pos.x - globals.chunk_size/2.0 + x, tile_pos.y - globals.chunk_size/2.0 + y) * 10.0
+			set_cell(0, Vector2i(tile_pos.x - globals.chunk_size/2.0 + x, tile_pos.y - globals.chunk_size/2.0 + y), 1.0 ,Vector2(round((moist+10.0)/5.0),round((temp+10.0)/5.0)))
