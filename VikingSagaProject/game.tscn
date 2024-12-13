@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=96 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sr55i"]
 [ext_resource type="Script" path="res://scenes/world.gd" id="2_868vg"]
@@ -67,6 +67,7 @@
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
 [ext_resource type="Script" path="res://panel.gd" id="58_5wptu"]
 [ext_resource type="Script" path="res://food_label.gd" id="58_855w6"]
+[ext_resource type="Script" path="res://water_label.gd" id="59_tnp12"]
 [ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
@@ -1101,6 +1102,9 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_66mx2"]
+radius = 233.14
+
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sr55i")
@@ -1325,6 +1329,28 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_j7v3o")
 text = "100.0 / 100.0"
 script = ExtResource("58_855w6")
 
+[node name="Title2" type="Label" parent="Interface/FoodBar"]
+offset_left = -53.0
+offset_top = 39.0
+offset_right = 17.0
+offset_bottom = 62.0
+text = "Water"
+
+[node name="WaterLabel" type="Label" parent="Interface/FoodBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 38.0
+offset_right = 51.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7v3o")
+text = "100.0 / 100.0"
+script = ExtResource("59_tnp12")
+
 [node name="Quests" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="Quests"]
@@ -1404,3 +1430,11 @@ visible = false
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("65_imgqm")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_66mx2")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

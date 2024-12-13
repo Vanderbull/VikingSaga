@@ -49,6 +49,7 @@ func _ready():
 	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
+	$Interface/FoodBar/WaterLabel.update_text(globals.QuestWater,100)
 	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
 	if( globals.NewGame ):
 		initialize_gamemanager()
@@ -105,6 +106,7 @@ func _process(_delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
 	$Interface/FoodBar/FoodLabel.update_text(playerData.PlayerFood,1000)
+	$Interface/FoodBar/WaterLabel.update_text(playerData.PlayerWater,1000)
 	if( globals.Walking == true):
 		playerData.PlayerFood -= globals.FoodDeterioration
 		playerData.PlayerWater -= globals.WaterDeterioration
@@ -192,3 +194,8 @@ func _on_in_game_canvas_layer_visibility_changed() -> void:
 			if child is CanvasItem:
 				print("InGameCanvasLayer is hidden")
 				child.visible = false
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("in the zone")
+	playerData.PlayerFood = 1000
+	playerData.PlayerWater = 1000

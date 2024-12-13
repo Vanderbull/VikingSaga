@@ -11,8 +11,8 @@ func _ready():
 	
 func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)
-	print(tile_pos)
-	print_debug("processing animal map...")
+	#print(tile_pos)
+	#print_debug("processing animal map...")
 	#if is_tile_set(globals.player_position.x,globals.player_position.y):
 	if is_tile_set(tile_pos.x,tile_pos.y):
 		var source_id = get_cell_source_id(0,Vector2i(tile_pos.x, tile_pos.y))
