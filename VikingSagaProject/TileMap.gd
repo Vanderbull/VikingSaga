@@ -98,9 +98,9 @@ func _process(_delta):
 		$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(custom_data)
 		globals.Animals = custom_data			
 	if( !globals.Hunting ):
-		if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
+		if( game_manager.playerData.Wood > 0 and globals.RoadWorks):
 			$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
-			game_manager.playerData.PlayerWood -= 1
+			game_manager.playerData.Wood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
@@ -136,9 +136,9 @@ func get_terrain_type(tile_pos_x, tile_pos_y):
 	var alt = altitude.get_noise_2d(tile_pos_x, tile_pos_y) * 10
 	
 	if( !globals.Hunting ):
-		if( game_manager.playerData.PlayerWood > 0 and globals.RoadWorks):
+		if( game_manager.playerData.Wood > 0 and globals.RoadWorks):
 			$"../TileMap2".set_cell(0, Vector2i(tile_pos_x, tile_pos_y), 1 ,Vector2(0,0))
-			game_manager.playerData.PlayerWood -= 1
+			game_manager.playerData.Wood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 			tile_position_info[tile_pos_x * globals.chunk_size + tile_pos_y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)

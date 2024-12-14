@@ -105,11 +105,11 @@ func spawnAnimals():
 func _process(_delta):
 	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
 	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	$Interface/FoodBar/FoodLabel.update_text(playerData.PlayerFood,1000)
-	$Interface/FoodBar/WaterLabel.update_text(playerData.PlayerWater,1000)
+	$Interface/FoodBar/FoodLabel.update_text(playerData.Food,1000)
+	$Interface/FoodBar/WaterLabel.update_text(playerData.Water,1000)
 	if( globals.Walking == true):
-		playerData.PlayerFood -= globals.FoodDeterioration
-		playerData.PlayerWater -= globals.WaterDeterioration
+		playerData.Food -= globals.FoodDeterioration
+		playerData.Water -= globals.WaterDeterioration
 	if(globals.Hunting):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.HuntingMultiplier )
@@ -117,7 +117,7 @@ func _process(_delta):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.Hunting = not globals.Hunting
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-			playerData.PlayerFood += globals.CollectingFoodAmount
+			playerData.Food += globals.CollectingFoodAmount
 			globals.gain_experience(1)
 			globals.gain_quest_food(globals.CollectingFoodAmount)
 			$Quests/Control/Panel/VBoxContainer/Quest2.update_text()
@@ -125,7 +125,7 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerSand += globals.CollectingSandAmount
+			playerData.Sand += globals.CollectingSandAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
@@ -133,7 +133,7 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWood += globals.CollectingWoodAmount
+			playerData.Wood += globals.CollectingWoodAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
@@ -144,7 +144,7 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerWater += globals.CollectingWaterAmount
+			playerData.Water += globals.CollectingWaterAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			globals.gain_quest_water(globals.CollectingWaterAmount)
@@ -154,7 +154,7 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectClayMultiplier )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			playerData.PlayerClay += globals.CollectingClayAmount
+			playerData.Clay += globals.CollectingClayAmount
 			globals.gain_experience(1)
 			globals.gain_quest_clay(globals.CollectingClayAmount)
 			$Quests/Control/Panel/VBoxContainer/Quest4.update_text()
@@ -164,11 +164,11 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar.hide()
 		$InGameCanvasLayer/ProgressBar.value = 0
 		
-	$InGameCanvasLayer/Panel/HBoxContainer/Trees.text = "Trees: " + str(playerData.PlayerWood)
-	$InGameCanvasLayer/Panel/HBoxContainer/Sand.text = "Sand: " + str(playerData.PlayerSand)
-	$InGameCanvasLayer/Panel/HBoxContainer/Water.text = "Water: " + str(playerData.PlayerWater)
-	$InGameCanvasLayer/Panel/HBoxContainer/Clay.text = "Clay: " + str(playerData.PlayerClay)
-	$InGameCanvasLayer/Panel/HBoxContainer/Food.text = "Food: " + str(playerData.PlayerFood)
+	$InGameCanvasLayer/Panel/HBoxContainer/Trees.text = "Trees: " + str(playerData.Wood)
+	$InGameCanvasLayer/Panel/HBoxContainer/Sand.text = "Sand: " + str(playerData.Sand)
+	$InGameCanvasLayer/Panel/HBoxContainer/Water.text = "Water: " + str(playerData.Water)
+	$InGameCanvasLayer/Panel/HBoxContainer/Clay.text = "Clay: " + str(playerData.Clay)
+	$InGameCanvasLayer/Panel/HBoxContainer/Food.text = "Food: " + str(playerData.Food)
 	
 func _input(event : InputEvent):
 	if(event.is_action_pressed("ui_cancel")):
@@ -197,5 +197,5 @@ func _on_in_game_canvas_layer_visibility_changed() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("in the zone")
-	playerData.PlayerFood = 1000
-	playerData.PlayerWater = 1000
+	playerData.Food = 1000
+	playerData.Water = 1000

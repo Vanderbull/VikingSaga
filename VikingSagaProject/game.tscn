@@ -63,7 +63,6 @@
 [ext_resource type="Script" path="res://godot_version.gd" id="50_sqala"]
 [ext_resource type="Script" path="res://Quest4.gd" id="51_xdwo2"]
 [ext_resource type="Script" path="res://Quest5.gd" id="52_uwfsj"]
-[ext_resource type="Shader" uid="uid://b5nnb11cqk4yx" path="res://InterfaceLabel.tres" id="54_4gppm"]
 [ext_resource type="Script" path="res://WarmthLabel.gd" id="55_is2nf"]
 [ext_resource type="Script" path="res://panel.gd" id="58_5wptu"]
 [ext_resource type="Script" path="res://food_label.gd" id="58_855w6"]
@@ -1051,7 +1050,14 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
-shader = ExtResource("54_4gppm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcsit"]
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai8y1"]
 bg_color = Color(1, 1, 1, 0.501961)
@@ -1178,6 +1184,7 @@ script = ExtResource("44_0la6p")
 
 [node name="PauseMenu" parent="MenuCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
 process_mode = 2
+visible = false
 game_manager = NodePath("../..")
 
 [node name="RainShader" type="ColorRect" parent="MenuCanvasLayer"]
@@ -1259,6 +1266,7 @@ offset_left = -115.0
 offset_top = 2.0
 offset_bottom = 77.0
 grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_vcsit")
 text = "Level: %s
 Experience: %s
 Next level: %s"
@@ -1268,18 +1276,20 @@ script = ExtResource("19_320qv")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 460.0
-offset_top = 89.0
-offset_right = 570.0
-offset_bottom = 116.0
+offset_left = 123.0
+offset_top = 602.0
+offset_right = 256.0
+offset_bottom = 642.0
 grow_horizontal = 2
 value = 100.0
 show_percentage = false
 
 [node name="Title" type="Label" parent="Interface/WarmthBar"]
 layout_mode = 1
-offset_left = -70.0
-offset_bottom = 23.0
+offset_left = -69.0
+offset_top = 8.0
+offset_right = 1.0
+offset_bottom = 31.0
 text = "Warmth"
 
 [node name="WarmthLabel" type="Label" parent="Interface/WarmthBar"]
@@ -1287,9 +1297,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 23.0
+offset_left = -59.5
+offset_top = 7.0
+offset_right = 41.5
+offset_bottom = 34.0
 grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ai8y1")
 text = "100.0 / 100.0"
@@ -1299,30 +1310,32 @@ script = ExtResource("55_is2nf")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 459.0
-offset_top = 129.0
-offset_right = 569.0
-offset_bottom = 156.0
+offset_left = -573.0
+offset_top = 610.0
+offset_right = 41.0
+offset_bottom = 645.0
 grow_horizontal = 2
 value = 100.0
 show_percentage = false
 
 [node name="Title" type="Label" parent="Interface/FoodBar"]
 layout_mode = 1
-offset_left = -46.0
-offset_right = 24.0
-offset_bottom = 23.0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 81.0
+offset_bottom = 28.0
 text = "Food"
 
 [node name="FoodLabel" type="Label" parent="Interface/FoodBar"]
+y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
-offset_top = -1.0
-offset_right = 51.0
-offset_bottom = 26.0
+offset_left = -239.0
+offset_top = 4.0
+offset_right = -138.0
+offset_bottom = 31.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7v3o")
@@ -1330,10 +1343,11 @@ text = "100.0 / 100.0"
 script = ExtResource("58_855w6")
 
 [node name="Title2" type="Label" parent="Interface/FoodBar"]
-offset_left = -53.0
-offset_top = 39.0
-offset_right = 17.0
-offset_bottom = 62.0
+layout_mode = 0
+offset_left = 193.0
+offset_top = 6.0
+offset_right = 263.0
+offset_bottom = 29.0
 text = "Water"
 
 [node name="WaterLabel" type="Label" parent="Interface/FoodBar"]
@@ -1342,9 +1356,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -50.0
-offset_top = 38.0
+offset_top = 4.0
 offset_right = 51.0
-offset_bottom = 65.0
+offset_bottom = 31.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7v3o")

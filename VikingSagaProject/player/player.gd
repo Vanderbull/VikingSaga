@@ -162,10 +162,10 @@ func _process(_delta):
 	if globals.CollectClay:
 		if(!$DiggPlayer.is_audio_playing()):
 			$DiggPlayer.play()
-	if( game_manager.playerData.PlayerFood < 0 || game_manager.playerData.PlayerWater < 0 ):
+	if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 		#get_tree().reload_current_scene()
-	game_manager.playerData.player_position = position
+	game_manager.playerData.position = position
 	_delta = 0.00000000000
 	handleInput()
 	move_and_slide()

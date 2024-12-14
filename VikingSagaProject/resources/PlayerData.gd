@@ -6,28 +6,24 @@ class_name PlayerData
 const save_file_path := "user://save/"
 const save_file_name := "PlayerSave.tres"
 
-@export var player_position = Vector2(0,0)
-@export var cloud_position = Vector2(100,100)
-
+@export var position = Vector2(0,0)
 @export var moisture = 0
 @export var temperature = 0
 @export var altitude = 0
-
 @export var LoadSaveGame = false
-
 # Resources
-@export var PlayerWood = 0
-@export var PlayerSand = 0
-@export var PlayerClay = 0
-@export var PlayerCoal = 0
-@export var PlayerWater = 1000
-@export var PlayerFood = 1000
-@export var PlayerGold = 0
-@export var PlayerSilver = 0
-@export var PlayerIron = 0
-@export var PlayerCopper = 0
-@export var PlayerMeat = 0
-@export var PlayerFish = 0
+@export var Wood = 0
+@export var Sand = 0
+@export var Clay = 0
+@export var Coal = 0
+@export var Water = 10000
+@export var Food = 10000
+@export var Gold = 0
+@export var Silver = 0
+@export var Iron = 0
+@export var Copper = 0
+@export var Meat = 0
+@export var Fish = 0
 # Actions
 @export var RoadWorks = false
 @export var ForestCutting = false
@@ -37,14 +33,9 @@ const save_file_name := "PlayerSave.tres"
 @export var DigClay = false
 @export var Hunting = false
 
-# Functions below here
-#func change_playerWood(value: int):
-	#PlayerWood += value
-	#return PlayerWood
-	
 func change_player_position(value: Vector2):
-	player_position = value
-	return player_position
+	position = value
+	return position
 	
 func save(path:String, tile_map:TileMap) -> void:
 	# Get the number of layers
