@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://ctonjdfct5u4q"]
+
+[ext_resource type="Script" path="res://assets/cave-npc/cave_npc.gd" id="1_3hjv2"]
+[ext_resource type="Texture2D" uid="uid://daxjbmrv87f34" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usjva"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(0, 0, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h18bm"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(17, 0, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1jf7"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(34, 0, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4brjn"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(51, 0, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g01lj"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(0, 20, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nk3xw"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(17, 20, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg8ih"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(34, 20, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fc11"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(51, 20, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41sqw"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(0, 40, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uxj0"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(17, 40, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha76r"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(34, 40, 17, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s64ft"]
+atlas = ExtResource("1_78v6i")
+region = Rect2(51, 40, 17, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rcwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usjva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h18bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1jf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4brjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g01lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nk3xw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg8ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fc11")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41sqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uxj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha76r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s64ft")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jol7r"]
+radius = 3.0
+
+[node name="cave-npc" type="CharacterBody2D"]
+position = Vector2(80, 54)
+script = ExtResource("1_3hjv2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -7)
+sprite_frames = SubResource("SpriteFrames_0rcwh")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_jol7r")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
