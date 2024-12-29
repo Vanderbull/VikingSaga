@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://bx3l4m11fvtxu"]
+
+[ext_resource type="Script" path="res://assets/cave-npc/cave_npc.gd" id="1_uxfb2"]
+[ext_resource type="Texture2D" uid="uid://dkao7uts5ixik" path="res://assets/fox-npc/MiniFox.png" id="2_uucpf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6rtv"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg6ga"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhda2"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4p6s"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjogt"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(0, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p24ks"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(32, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6i7hl"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(64, 48, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lvvy"]
+atlas = ExtResource("2_uucpf")
+region = Rect2(96, 48, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rcwh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6rtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg6ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhda2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4p6s")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjogt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p24ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6i7hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lvvy")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jol7r"]
+radius = 3.0
+
+[sub_resource type="Curve2D" id="Curve2D_0irhr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 27)
+}
+point_count = 2
+
+[node name="fox-npc" type="CharacterBody2D"]
+position = Vector2(80, 54)
+script = ExtResource("1_uxfb2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -7)
+sprite_frames = SubResource("SpriteFrames_0rcwh")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_jol7r")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0irhr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 0.478914
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

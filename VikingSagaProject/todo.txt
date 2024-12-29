@@ -1,78 +1,79 @@
-1. Remake the menus
-2. Create or find some more animal sprites
-3. Redraw the player sprite in the new viking look with helmet for all directions
-4. Rename TileMap2 to something more understandable
-5. Remake the quest system to something better
-6. Remove errors and warnings in the editor
-7. Rearrange the files in the filesystem
-8. Finish the inventory system
-9. Add boat to the game
-10. Check that the fighting system works
-11. Integrate the fighting system into the game so that you can fight animals and other npcs
-12. Implement a basic crafting system
+[DONE]1. Remake the menus
+[DONE]2. Create or find some more animal sprites
+[IN PROGRESS]3. Redraw the player sprite in the new viking look with helmet for all directions
+[TODO]4. Rename TileMap2 to something more understandable
+[REMOVED]5. Remake the quest system to something better
+[DONE]6. Remove errors and warnings in the editor
+[IN PROGRESS]7. Rearrange the files in the filesystem
+[REMOVED]8. Finish the inventory system
+[REMOVED]9. Add boat to the game
+[DONE]10. Check that the fighting system works
+[IN PROGRESS]11. Integrate the fighting system into the game so that you can fight animals and other npcs
+[REMOVED]12. Implement a basic crafting system
 	12.1 Make planks from the wood collected
 	12.2 Make bricks from the clay collected
 	12.3 Make Barrels from the planks to collect water in
 	
-13. Implement a basic skill system
-14. Create the beginner tutorial
-	14.1 Collect all the resources in the game
-	14.2 When finishing the tutorial the player gets some experience and is able to found its first village
-	14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
-15. Make the fireplace animated
-16. Make the fireplace buildable from wood or planks and being lit or not
-17. Sleep zzzZZzzzz
-18. Day and night time
-	18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time
-	18.2 Draw the state of the time of day with text DAY or NIGHT
-	18.3 One square of movement could be one hours of travel
-	18.4 Realtime clock implemented
-	18.5 Base the day and night text on the realtime clock
-	18.6 Create a shader for the day and night cycle
-	18.7 If you have a torch there is a light aura around your character else its simply very dark
-	18.8 Possibly during night the player uses up torches and if there are none then the player cant move and needs to do the resting cycle until daylight
-19. Rain and snow
-	19.1 If it rains it is not possible to use bows and the vision range is lower
-	19.2 If it snows then can get hypothermia and usage of food and possibly water are higher
-20. Lightning
-	20.1 Can create forest fires and burn down things like your buildings
-21. Shaders
-22. Siege warfare i think might simply be a animation of catapult throwing stones at a village or castle and its random if you succeed or not
-23. Traders
-24. Recruit people to the army
-25. Create villages and towns as well as farms to generate resources instead of generating them yourself
-26. Music and sound effects
-	26.1 Main menu button clicks [X] # Some issues with delay and clicking multiple buttons
+[REMOVED]13. Implement a basic skill system
+[IN PROGRESS]14. Create the beginner tutorial
+	[DONE]14.1 Collect all the resources in the game
+	[TODO]14.2 When finishing the tutorial the player gets some experience and is able to found its first village
+	[TODO]14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
+[DONE]15. Make the fireplace animated
+[TODO]16. Make the fireplace buildable from wood or planks and being lit or not
+[TODO]17. Sleep zzzZZzzzz
+[TODO]18. Day and night time
+	[]18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time
+	[]18.2 Draw the state of the time of day with text DAY or NIGHT
+	[]18.3 One square of movement could be one hours of travel
+	[]18.4 Realtime clock implemented
+	[]18.5 Base the day and night text on the realtime clock
+	[]18.6 Create a shader for the day and night cycle
+	[]18.7 If you have a torch there is a light aura around your character else its simply very dark
+	[]18.8 Possibly during night the player uses up torches and if there are none then the player cant move and needs to do the resting cycle until daylight
+[]19. Rain and snow
+	[]19.1 If it rains it is not possible to use bows and the vision range is lower
+	[]19.2 If it snows then can get hypothermia and usage of food and possibly water are higher
+[]20. Lightning
+	[]20.1 Can create forest fires and burn down things like your buildings
+[]21. Shaders
+[]22. Siege warfare i think might simply be a animation of catapult throwing stones at a village or castle and its random if you succeed or not
+[]23. Traders
+[]24. Recruit people to the army
+[]25. Create villages and towns as well as farms to generate resources instead of generating them yourself
+[]26. Music and sound effects
+	[]26.1 Main menu button clicks [X] # Some issues with delay and clicking multiple buttons
 		buttonclick.mp3
-	26.2 Walking sounds [X]
-	26.3 Timber cutting sounds [X]
-	26.4 Clay digging sounds [X]
-	26.5 Fireplace [X] 
+	[]26.2 Walking sounds [X]
+	[]26.3 Timber cutting sounds [X]
+	[]26.4 Clay digging sounds [X]
+	[]26.5 Fireplace [X] 
 		sounds should be local but is not yet
-27. world map taverns to rest and recouperate
-28. Create trade routes to transport goods
-29. Cleanup code
-30. Setup the VCS git version plugin
-31. Testing VCS Git plugin commit [x]
-	31.1 Kind of work, just cant push the code to github directly from the editor due to a SSL error
-32. When leveling up the increment counter for the action progressbar should be increased so that it will take lesser time to do the action
-33. first version of battle could be like hunting rabbit a progressbar when walking over a enemy
-34. Building things should remove resources and place a building icon on the map where you stand and when you walk onto a building the game should switch to
+[IN PROGRESS]27. world map taverns to rest and recouperate
+[TODO]28. Create trade routes to transport goods
+[TODO]29. Cleanup code
+[TODO]30. Setup the VCS git version plugin
+[TODO]31. Testing VCS Git plugin commit [x]
+	[]31.1 Kind of work, just cant push the code to github directly from the editor due to a SSL error
+[]32. When leveling up the increment counter for the action progressbar should be increased so that it will take lesser time to do the action
+[]33. first version of battle could be like hunting rabbit a progressbar when walking over a enemy
+[]34. Building things should remove resources and place a building icon on the map where you stand and when you walk onto a building the game should switch to
 another scene like the scene sitting by the fire and resting and having a button for leaving the building
-35. RaniShader could be used to hide and unhide to show that there is raining in the game
-36. Tiles around the fireplace should have a tile indicating it is hot and if walking into the fire it hurts
-37. Fireplace animated according to this tutorial https://www.youtube.com/watch?v=IOh6PSACYNU
-38. Breakout trees from tileset.png into its own tileset
-39. Quest hunting rabbits for food
-40. Quest collect water for drinking
-41. When standing on a road tile and moving the movement speed should be increased
-42. spawn 100 tiles of rabbits and then as tmie goes despawn some and respawn them random
-43. other variant is to spawn in a number if rabbits as actual characters and let them move around
-44. Spawn in animals at random intervals with a distance of 100 maybe from the player
-45. Fix progressbar text when hunting that says hunting rabbits
-46. Define a maximum amount of animals spawned into the world
-47. Look into having the animal tiles maybe moving around
-48. Dont show any tiles where the is fog of war
-49. Look into scanning through the animal map and if the tile is set but at a certain distance from the player then hide the tile
-50. Create a timer and whne the timer triggers then print the text "Spawning animals"
-51. Create a people tileset to spawn in characters
+[]35. RaniShader could be used to hide and unhide to show that there is raining in the game
+[]36. Tiles around the fireplace should have a tile indicating it is hot and if walking into the fire it hurts
+[]37. Fireplace animated according to this tutorial https://www.youtube.com/watch?v=IOh6PSACYNU
+[TODO]38. Breakout trees from tileset.png into its own tileset
+[]39. Quest hunting rabbits for food
+[]40. Quest collect water for drinking
+[TODO]41. When standing on a road tile and moving the movement speed should be increased
+[REMOVED]42. spawn 100 tiles of rabbits and then as tmie goes despawn some and respawn them random
+[]43. other variant is to spawn in a number if rabbits as actual characters and let them move around
+[]44. Spawn in animals at random intervals with a distance of 100 maybe from the player
+[DONE]45. Fix progressbar text when hunting that says hunting rabbits
+[TODO]46. Define a maximum amount of animals spawned into the world
+[IN PROGRESS]47. Look into having the animal tiles maybe moving around
+[TODO]48. Dont show any tiles where the is fog of war
+[]49. Look into scanning through the animal map and if the tile is set but at a certain distance from the player then hide the tile
+[]50. Create a timer and whne the timer triggers then print the text "Spawning animals"
+[]51. Create a people tileset to spawn in characters
+[]52. Add fox dens and other creature homes where the animals can spawn from and the player can hunt them in the dens as a mini adventure maybe

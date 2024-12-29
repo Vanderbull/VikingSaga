@@ -58,7 +58,6 @@
 [ext_resource type="Texture2D" uid="uid://d2uaxstkol2cg" path="res://arts/npc.png" id="43_oo4ud"]
 [ext_resource type="Script" path="res://npc.gd" id="44_0la6p"]
 [ext_resource type="Texture2D" uid="uid://ctufv4b7yd5o8" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="44_dgtq6"]
-[ext_resource type="PackedScene" uid="uid://ctonjdfct5u4q" path="res://assets/cave-npc/cave_npc.tscn" id="46_fua3h"]
 [ext_resource type="PackedScene" uid="uid://dpluncmaurdph" path="res://in_game_canvas_layer.tscn" id="46_xqupw"]
 [ext_resource type="Script" path="res://hp_label.gd" id="47_nioj0"]
 [ext_resource type="Script" path="res://godot_version.gd" id="50_sqala"]
@@ -69,6 +68,7 @@
 [ext_resource type="Script" path="res://food_label.gd" id="58_855w6"]
 [ext_resource type="Script" path="res://water_label.gd" id="59_tnp12"]
 [ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
+[ext_resource type="PackedScene" uid="uid://bx3l4m11fvtxu" path="res://assets/fox-npc/fox_npc.tscn" id="69_e4fp8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("3_jbup0")
@@ -1266,12 +1266,6 @@ tile_set = SubResource("TileSet_wkqc7")
 format = 2
 script = ExtResource("44_0la6p")
 
-[node name="cave-npc" parent="world" instance=ExtResource("46_fua3h")]
-position = Vector2(-92.841, 112)
-
-[node name="cave-npc2" parent="world" instance=ExtResource("46_fua3h")]
-position = Vector2(0, 112)
-
 [node name="MenuCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="MenuCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]
@@ -1549,5 +1543,7 @@ shape = SubResource("CircleShape2D_66mx2")
 simplify_path = true
 avoidance_enabled = true
 debug_enabled = true
+
+[node name="fox-npc" parent="Node2D" instance=ExtResource("69_e4fp8")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

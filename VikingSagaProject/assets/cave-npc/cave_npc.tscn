@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctonjdfct5u4q"]
+[gd_scene load_steps=18 format=3 uid="uid://ctonjdfct5u4q"]
 
 [ext_resource type="Script" path="res://assets/cave-npc/cave_npc.gd" id="1_3hjv2"]
 [ext_resource type="Texture2D" uid="uid://daxjbmrv87f34" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
@@ -103,6 +103,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_jol7r"]
 radius = 3.0
 
+[sub_resource type="Curve2D" id="Curve2D_0irhr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 27)
+}
+point_count = 2
+
 [node name="cave-npc" type="CharacterBody2D"]
 position = Vector2(80, 54)
 script = ExtResource("1_3hjv2")
@@ -118,5 +124,11 @@ shape = SubResource("CircleShape2D_jol7r")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0irhr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotation = 0.478914
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
