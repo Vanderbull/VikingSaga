@@ -1269,6 +1269,9 @@ script = ExtResource("44_0la6p")
 [node name="cave-npc" parent="world" instance=ExtResource("46_fua3h")]
 position = Vector2(-92.841, 112)
 
+[node name="cave-npc2" parent="world" instance=ExtResource("46_fua3h")]
+position = Vector2(0, 112)
+
 [node name="MenuCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="MenuCanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("25_qikve")]

@@ -2,6 +2,9 @@ extends Node
 
 class_name GameManager
 
+# Preload the scene for better performance
+@onready var my_scene = preload("res://assets/cave-npc/cave_npc.tscn")
+
 @onready var globals = get_node("/root/Globals")
 const TEST_CURVE = preload("res://data/curves/test_curve.tres")
 
@@ -28,8 +31,22 @@ var quest_paused : bool = false:
 
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
-	
+
+func spawn_scene():
+	# Create an instance of the loaded scene
+	var instance = my_scene.instantiate()
+	# Optionally, set its position or other properties if it's a 2D/3D node
+	if instance is Node2D:
+		# Generate random position within a range
+		var random_x = randi_range(0, 800)  # Adjust range based on your game's resolution
+		var random_y = randi_range(0, 600)
+		instance.position = Vector2(random_x, random_y)
+	# Add the instance to the scene tree
+	add_child(instance)
+
 func _ready():
+	for i in range(globals.SpawnRadius):
+		spawn_scene()
 	print("Getting GameManager ready...")
 	$MenuCanvasLayer.show()
 	$world.hide()

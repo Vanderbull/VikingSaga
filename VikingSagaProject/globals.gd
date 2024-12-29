@@ -1,8 +1,6 @@
 extends Node
-
 # MAP RELATED
 var chunk_size = 16
-
 # GENERIC
 var godot_version = "0.0-unstable"
 var NewGame: bool = true
@@ -10,7 +8,6 @@ var ready_already = true
 var cloud_position = Vector2(100,100)
 # NPC / ANIMALS
 var SpawnRadius = 50
-
 # Player
 var character_position: Vector2 = Vector2.ZERO
 var ResetPlayerPosition: bool = true
