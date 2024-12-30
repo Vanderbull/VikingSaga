@@ -75,5 +75,5 @@ another scene like the scene sitting by the fire and resting and having a button
 [TODO]48. Dont show any tiles where the is fog of war
 []49. Look into scanning through the animal map and if the tile is set but at a certain distance from the player then hide the tile
 []50. Create a timer and whne the timer triggers then print the text "Spawning animals"
-[]51. Create a people tileset to spawn in characters
+[DONE]51. Create a people tileset to spawn in characters
 []52. Add fox dens and other creature homes where the animals can spawn from and the player can hunt them in the dens as a mini adventure maybe
