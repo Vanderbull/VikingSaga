@@ -87,7 +87,7 @@ func _ready():
 
 func initialize_gamemanager():
 	# ADDING ANIMALS TO ANIMALMAP
-	spawnAnimals()
+	#spawnAnimals()
 	# ADDING NPC TO NPC MAP
 	#spawnNPC()
 	#var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"

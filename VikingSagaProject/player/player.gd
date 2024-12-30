@@ -25,6 +25,9 @@ class_name Player
 var dynamic_array_instance = null
 var time_since_last_step: float = 0.0
 
+var warmth: float = 10000.0 # Player's warmth level
+var near_fire: bool = false
+
 func check_if_quest_finished():
 	if globals.QuestWater >= 10000:
 		if globals.QuestFood >= 10000:
@@ -157,7 +160,7 @@ func _unhandled_input(event):
 				$Camera2D.zoom.x -= 0.25
 				$Camera2D.zoom.y -= 0.25
 
-func _process(_delta):
+func _process(delta):
 	check_if_quest_finished()
 	if globals.CollectClay:
 		if(!$DiggPlayer.is_audio_playing()):
@@ -166,10 +169,28 @@ func _process(_delta):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 		#get_tree().reload_current_scene()
 	game_manager.playerData.position = position
-	_delta = 0.00000000000
+	#delta = 0.00000000000
 	handleInput()
 	move_and_slide()
 	updateAnimation()
+	
+	if near_fire:
+		globals.Warmth += 10.0 * delta  # Increase warmth while near fire
+		#warmth = max(warmth, 10000.0)  # Cap warmth
+		#warmth = randi()%1001
+		#globals.Warmth = warmth
+	else:
+		globals.Warmth -= 5.0 * delta  # Decrease warmth when away from fire
+		#warmth = min(warmth, 0.0)  # Prevent it from going below zero
+		#warmth = randi()%1001
+		#globals.Warmth = warmth
+	print(globals.Warmth)
 
 func _on_chop_player_finished():
 	pass # Replace with function body.
+	
+func _on_animatedfire_warmth_effected(player: Variant) -> void:
+	if player == self:
+		near_fire = true
+	else:
+		near_fire = false

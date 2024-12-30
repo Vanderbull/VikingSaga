@@ -68,7 +68,7 @@
 [ext_resource type="Script" path="res://food_label.gd" id="58_855w6"]
 [ext_resource type="Script" path="res://water_label.gd" id="59_tnp12"]
 [ext_resource type="Script" path="res://http_request.gd" id="65_imgqm"]
-[ext_resource type="PackedScene" uid="uid://bx3l4m11fvtxu" path="res://assets/fox-npc/fox_npc.tscn" id="69_e4fp8"]
+[ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_brhij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("3_jbup0")
@@ -1334,6 +1334,7 @@ layout_mode = 2
 script = ExtResource("50_sqala")
 
 [node name="AnimatedFace" type="AnimatedSprite2D" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+visible = false
 position = Vector2(150, 320)
 scale = Vector2(0.288333, 0.288333)
 sprite_frames = SubResource("SpriteFrames_u48n1")
@@ -1537,13 +1538,8 @@ collision_mask = 255
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_66mx2")
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D"]
-simplify_path = true
-avoidance_enabled = true
-debug_enabled = true
-
-[node name="fox-npc" parent="Node2D" instance=ExtResource("69_e4fp8")]
+[node name="animated-fire" parent="." instance=ExtResource("69_brhij")]
+position = Vector2(116, -51)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]

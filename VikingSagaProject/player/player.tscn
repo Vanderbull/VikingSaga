@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=39 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://b22xcgirlfwm5" path="res://arts/player.png" id="1_b63l5"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" path="res://DiggPlayer.gd" id="5_wwnyo"]
 [ext_resource type="AudioStream" uid="uid://h6np3gb5q0ad" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
 [ext_resource type="Script" path="res://player/ChopPlayer.gd" id="7_0tvku"]
+[ext_resource type="Texture2D" uid="uid://csj1136wyjpnt" path="res://arts/pixel-viking-1.jpg" id="8_snomj"]
+[ext_resource type="Texture2D" uid="uid://dh1agysu5pi4d" path="res://arts/pixel-viking-2.jpg" id="9_uo6co"]
+[ext_resource type="Texture2D" uid="uid://c0lsgd1dnort0" path="res://arts/pixel-viking-3.jpg" id="10_1q6hr"]
+[ext_resource type="Script" path="res://AnimatedFace.gd" id="11_mfvas"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -219,6 +223,25 @@ gravity = Vector3(0, -98, 0)
 anim_speed_max = 0.21
 anim_speed_curve = SubResource("CurveTexture_1viqd")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_71amf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alqk5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_snomj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uo6co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1q6hr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_b0x02")
 
@@ -309,6 +332,25 @@ script = ExtResource("5_wwnyo")
 [node name="ChopPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_h85y2")
 script = ExtResource("7_0tvku")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AnimatedFace" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+material = SubResource("CanvasItemMaterial_71amf")
+position = Vector2(-140, -100)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_alqk5")
+script = ExtResource("11_mfvas")
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]
