@@ -54,7 +54,7 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_9:
 			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_0:
-			print_debug("Debug: This is coming from file: ", file_name)
+			$"..".spawn_animate_fire()
 
 func _on_area_2d_body_entered(_body):
 	$HUD/StatusInfo/Label.visible = true

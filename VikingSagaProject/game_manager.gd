@@ -5,6 +5,7 @@ class_name GameManager
 # Preload the scene for better performance
 @onready var my_scene = preload("res://assets/cave-npc/cave_npc.tscn")
 @onready var fox_npc_scene = preload("res://assets/fox-npc/fox_npc.tscn")
+@onready var animate_fire_scene = preload("res://assets/animated-fire/animated_fire.tscn")
 
 @onready var globals = get_node("/root/Globals")
 const TEST_CURVE = preload("res://data/curves/test_curve.tres")
@@ -33,6 +34,14 @@ var quest_paused : bool = false:
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+func spawn_animate_fire():
+	var animate_fire_instance = animate_fire_scene.instantiate()
+	if animate_fire_instance is Node2D:
+		var animate_fire_random_x = randi_range(0, 0)  # Adjust range based on your game's resolution
+		var animate_fire_random_y = randi_range(0, 0)
+		animate_fire_instance.position = Vector2(globals.character_position.x, globals.character_position.y)
+		add_child(animate_fire_instance)
+		
 func spawn_scene():
 	# Create an instance of the loaded scene
 	var fox_instance = fox_npc_scene.instantiate()
