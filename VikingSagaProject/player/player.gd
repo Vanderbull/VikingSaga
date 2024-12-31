@@ -176,15 +176,12 @@ func _process(delta):
 	
 	if near_fire:
 		globals.Warmth += 10.0 * delta  # Increase warmth while near fire
-		#warmth = max(warmth, 10000.0)  # Cap warmth
-		#warmth = randi()%1001
-		#globals.Warmth = warmth
+		globals.Warmth = min(globals.Warmth, 100)  # Cap warmth
 	else:
-		globals.Warmth -= 5.0 * delta  # Decrease warmth when away from fire
-		#warmth = min(warmth, 0.0)  # Prevent it from going below zero
-		#warmth = randi()%1001
-		#globals.Warmth = warmth
-	print(globals.Warmth)
+		if velocity == Vector2(0,0):
+			globals.Warmth -= 5.0 * delta  # Decrease warmth when away from fire
+		globals.Warmth = max(globals.Warmth, 0)  # Prevent it from going below zero
+	print(velocity)
 
 func _on_chop_player_finished():
 	pass # Replace with function body.

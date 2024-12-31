@@ -93,7 +93,7 @@ func initialize_gamemanager():
 	#var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	playerData = PlayerData.new()
 	if OS.is_debug_build():
-		game_paused = !game_paused	
+		game_paused = !game_paused
 	pass
 	
 func spawnNPC():

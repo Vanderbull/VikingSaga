@@ -18,7 +18,9 @@ signal warmth_effected(player)
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		emit_signal("warmth_effected", body)
+		$AnimatedSprite2D.play("fire_burning")
 		
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		emit_signal("warmth_effected", null)
+		$AnimatedSprite2D.play("fire_out")
