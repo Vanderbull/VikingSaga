@@ -8,7 +8,7 @@
 
 ![VIKINGSAGA](https://github.com/Vanderbull/VikingSaga/assets/1743820/579a6736-373b-428f-adc1-4897916ed971)
 
-## Introduction
+# Introduction
 Small game project we are working on for fun, any feedback or help is appreciated.
 
 # Contributing to VikingSaga
@@ -20,12 +20,12 @@ We love your input! We want to make contributing to this project as easy and tra
 - Submitting a fix
 - Proposing new features
 
-## Supported OS
+# Supported OS
 - Windows [V]
 - Linux [V]
 - Mac [X]
 
-## Tools
+# Tools
 
 Tools used for this project are
 * Godot Engine 4 + Plugins
@@ -34,7 +34,7 @@ Tools used for this project are
 # Setup
 Zapier
 
-## Screenshots
+# Screenshots
 
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/ff612a9f-c273-4089-9cbf-a45c5f9f22b3)
 ![Screenshot from 2024-02-11 10-03-15](https://github.com/Vanderbull/VikingSaga/assets/1743820/71446b3e-6604-42dd-bff2-63c1fb40ee42)
