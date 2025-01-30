@@ -20,6 +20,8 @@ Small game project we are working on for fun, any feedback or help is appreciate
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/5d123ed1-9839-42ac-a1bb-1f8cc211b6d1)
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/20b70cda-705d-4a44-81ef-ed90f4476abc)
 ![image](https://github.com/user-attachments/assets/4367b3b3-c831-4754-803b-795c76aaf101)
+![image](https://github.com/user-attachments/assets/b5216255-0b66-42e4-ae45-ef0913e78adc)
+
 
 
 
