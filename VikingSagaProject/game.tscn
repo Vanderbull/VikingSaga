@@ -1541,5 +1541,35 @@ shape = SubResource("CircleShape2D_66mx2")
 [node name="animated-fire" parent="." instance=ExtResource("69_brhij")]
 position = Vector2(116, -51)
 
+[node name="HelpMenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HelpMenuLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="HelpMenuLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0, 0, 0, 1)
+text = "event.keycode == KEY_1: HELP MENU
+event.keycode == KEY_2: <NOT SET>
+event.keycode == KEY_3: CHANGE SCENE WORLD
+event.keycode == KEY_4: CHANGE SCENE CITY
+event.keycode == KEY_5: CHANGE SCENE QUEST
+event.keycode == KEY_6: <NOT SET>
+event.keycode == KEY_7: RELOAD CURRENT SCENE
+event.keycode == KEY_8: <NOT SET>
+event.keycode == KEY_9: <NOT SET>
+event.keycode == KEY_0: PLACE FIREPLACE
+"
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]
