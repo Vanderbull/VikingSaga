@@ -11,6 +11,20 @@
 ## Introduction
 Small game project we are working on for fun, any feedback or help is appreciated.
 
+## Supported OS
+- Windows [V]
+- Linux [V]
+- Mac [X]
+
+## Tools
+
+Tools used for this project are
+* Godot Engine 4 + Plugins
+* Git
+
+# Setup
+Zapier
+
 ## Screenshots
 
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/ff612a9f-c273-4089-9cbf-a45c5f9f22b3)
@@ -26,13 +40,6 @@ Small game project we are working on for fun, any feedback or help is appreciate
 
 
 
-## Tools
 
-Tools used for this project are
-* Godot Engine 4
-* Git
-
-# Setup
-Zapier
 
                                                                                                                         
