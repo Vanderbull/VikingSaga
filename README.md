@@ -11,6 +11,15 @@
 ## Introduction
 Small game project we are working on for fun, any feedback or help is appreciated.
 
+# Contributing to VikingSaga
+
+We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+
 ## Supported OS
 - Windows [V]
 - Linux [V]
