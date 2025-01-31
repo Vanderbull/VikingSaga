@@ -1,4 +1,4 @@
 - [x] #26
 - [ ] https://github.com/Vanderbull/VikingSaga/issues/26
 - [ ] Add delight to the experience when all tasks are complete :tada:
-- [ ] #1
+- [ ] https://github.com/octo-org/octo-repo/issues/740
