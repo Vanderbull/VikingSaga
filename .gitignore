@@ -6,6 +6,7 @@
 export.cfg
 export_presets.cfg
 
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
@@ -16,3 +17,13 @@ mono_crash.*.json
 70/New Game Project/New Game Project.x86_64
 70/Godot_v4.1-stable_linux.x86_64
 70/New Game Project/assets/Nordic Fantasy Music – Stalli _ Magical, Instrumental--u04tso_uNE.webm
+
+# Godot import files
+*.import
+
+# Godot metadata
+.import/
+
+# Other recommended exclusions
+*.tmp
+*.log
