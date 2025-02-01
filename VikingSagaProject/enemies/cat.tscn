@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cab1f1po631ly"]
 
 [ext_resource type="Shader" path="res://enemies/cat.gdshader" id="1_81uty"]
-[ext_resource type="Texture2D" uid="uid://dyllcmfyrxvkd" path="res://assets/Actor/Animals/Cat/PixelCatsFree_2.png" id="1_v23an"]
+[ext_resource type="Texture2D" uid="uid://dbuirs8yo72al" path="res://assets/Actor/Animals/Cat/PixelCatsFree_2.png" id="1_v23an"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35lpt"]
 resource_local_to_scene = true

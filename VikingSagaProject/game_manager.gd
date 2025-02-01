@@ -37,8 +37,8 @@ var dynamic_array_instance = null
 func spawn_animate_fire():
 	var animate_fire_instance = animate_fire_scene.instantiate()
 	if animate_fire_instance is Node2D:
-		var animate_fire_random_x = randi_range(0, 0)  # Adjust range based on your game's resolution
-		var animate_fire_random_y = randi_range(0, 0)
+		#var animate_fire_random_x = randi_range(0, 0)  # Adjust range based on your game's resolution
+		#var animate_fire_random_y = randi_range(0, 0)
 		animate_fire_instance.position = Vector2(globals.character_position.x, globals.character_position.y)
 		add_child(animate_fire_instance)
 		

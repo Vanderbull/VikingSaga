@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3kw53yl7pgj2"]
 
-[ext_resource type="ArrayMesh" uid="uid://uqtasn6d6oy1" path="res://test.obj" id="1_14gxq"]
+[ext_resource type="ArrayMesh" uid="uid://c48mnbtrpwgqj" path="res://test.obj" id="1_14gxq"]
 
 [sub_resource type="Environment" id="Environment_i5mwc"]
 background_mode = 1

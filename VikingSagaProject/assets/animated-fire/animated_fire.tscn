@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://btenw6y1oqqj0"]
 
 [ext_resource type="Script" path="res://assets/animated-fire/animated_fire.gd" id="1_a4h4w"]
-[ext_resource type="Texture2D" uid="uid://cpcrrnt6m86xj" path="res://assets/animated-fire/fireplace.png" id="2_v8a1p"]
+[ext_resource type="Texture2D" uid="uid://sfa2ay2novq6" path="res://assets/animated-fire/fireplace.png" id="2_v8a1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_164if"]
 atlas = ExtResource("2_v8a1p")

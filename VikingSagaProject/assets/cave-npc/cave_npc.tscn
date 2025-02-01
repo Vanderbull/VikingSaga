@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://ctonjdfct5u4q"]
 
 [ext_resource type="Script" path="res://assets/cave-npc/cave_npc.gd" id="1_3hjv2"]
-[ext_resource type="Texture2D" uid="uid://daxjbmrv87f34" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
+[ext_resource type="Texture2D" uid="uid://dgk2hkn6ysu7a" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usjva"]
 atlas = ExtResource("1_78v6i")

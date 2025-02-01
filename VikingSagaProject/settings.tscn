@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0xf5cgiejrjx"]
 
 [ext_resource type="Script" path="res://settings.gd" id="1_j1led"]
-[ext_resource type="Texture2D" uid="uid://yvhiqeks3sn" path="res://arts/mainmenu.png" id="2_nxgd7"]
+[ext_resource type="Texture2D" uid="uid://cyx5bwva6hahf" path="res://arts/mainmenu.png" id="2_nxgd7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lm54m"]
 

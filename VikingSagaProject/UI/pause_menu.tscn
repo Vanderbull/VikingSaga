@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://w37clktmv21o"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_exvrm"]
-[ext_resource type="AudioStream" uid="uid://kxim1gsuf0km" path="res://sound/buttonclick.mp3" id="3_6frx1"]
-[ext_resource type="AudioStream" uid="uid://de5432gvv1cdj" path="res://sound/sound_coin.wav" id="3_l8fx3"]
+[ext_resource type="AudioStream" uid="uid://bxpj5dc2kpddn" path="res://sound/buttonclick.mp3" id="3_6frx1"]
+[ext_resource type="AudioStream" uid="uid://cqw53xpvystru" path="res://sound/sound_coin.wav" id="3_l8fx3"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3

@@ -4,7 +4,7 @@ extends Node2D
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
 
-const ENEMY_SCENE_PATH : String = "res://city.tscn"
+const ENEMY_SCENE_PATH : String = "res://scenes/city.tscn"
 
 var enemy = null
 var PlayerGridPosition = Vector2i(0,0)
@@ -14,7 +14,7 @@ var file_name = "world.gd"
 
 func game_over():
 	# Load the Game Over screen scene
-	var game_over_scene = preload("res://game_over.tscn").instantiate()
+	var game_over_scene = preload("res://scenes/gameover/game_over.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene)
 
 # Called when the node enters the scene tree for the first time.
@@ -44,8 +44,8 @@ func _unhandled_input(event):
 			print_debug("Debug: Change scene to file: res://scenes/world.tscn")
 			get_tree().change_scene_to_file("res://scenes/world.tscn")
 		if event.pressed and event.keycode == KEY_4:
-			print_debug("Debug: Change scene to file: res://city.tscn")
-			get_tree().change_scene_to_file("res://city.tscn")
+			print_debug("Debug: Change scene to file: res://scenes/city.tscn")
+			get_tree().change_scene_to_file("res://scenes/city.tscn")
 		if event.pressed and event.keycode == KEY_5:
 			print_debug("Debug: Change scene to file: res://quest/quest_canvas_layer.tscn")
 			get_tree().change_scene_to_file("res://quest/quest_canvas_layer.tscn")

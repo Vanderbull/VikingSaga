@@ -8,7 +8,7 @@ extends Node2D
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	# Optional: Logic to reduce warmth radius over time (e.g., fire burning out)
 	pass
 

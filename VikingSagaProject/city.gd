@@ -43,7 +43,7 @@ func _ready():
 		
 func _on_exit_button_pressed():
 	#globals.player_position.x -= 100
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func _on_buy_hide_pressed():
 	if globals.PlayerGold > 0:
