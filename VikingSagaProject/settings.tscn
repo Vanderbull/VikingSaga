@@ -1,43 +1,50 @@
 [gd_scene load_steps=4 format=3 uid="uid://0xf5cgiejrjx"]
 
+# External resources used in this scene:
 [ext_resource type="Script" path="res://settings.gd" id="1_j1led"]
 [ext_resource type="Texture2D" uid="uid://cyx5bwva6hahf" path="res://arts/mainmenu.png" id="2_nxgd7"]
 
+# A sub-resource defining shared Label settings
 [sub_resource type="LabelSettings" id="LabelSettings_lm54m"]
 
+# Root node for the settings scene.
 [node name="Settings" type="Node"]
-script = ExtResource("1_j1led")
+script = ExtResource("1_j1led")  # Attach the settings script to manage global settings.
 
+# Control node that serves as a container for the UI.
 [node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+visible = false                  # Initially hidden; will be shown when needed.
+layout_mode = 3                  # Custom layout mode.
+anchors_preset = 15              # Preset anchors (full stretch).
+anchor_right = 1.0               # Right anchor at 100%.
+anchor_bottom = 1.0              # Bottom anchor at 100%.
+grow_horizontal = 2              # Grow horizontally to fill space.
+grow_vertical = 2                # Grow vertically to fill space.
 
+# Background image for the settings UI.
 [node name="Background" type="TextureRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_nxgd7")
-expand_mode = 2
+layout_mode = 1                  # Custom layout mode.
+anchors_preset = 15              # Full stretch.
+anchor_right = 1.0               # Right anchor 100%.
+anchor_bottom = 1.0              # Bottom anchor 100%.
+grow_horizontal = 2              # Expand horizontally.
+grow_vertical = 2                # Expand vertically.
+texture = ExtResource("2_nxgd7") # Assign the preloaded main menu texture.
+expand_mode = 2                  # Mode to determine how texture fills the rect.
 
+# Title label displaying "SETTINGS".
 [node name="Title" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 64.0
-offset_right = 320.0
-offset_bottom = 64.0
-text = "SETTINGS"
-label_settings = SubResource("LabelSettings_lm54m")
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+layout_mode = 0                  # Manual layout.
+offset_left = 64.0               # Left offset.
+offset_right = 320.0             # Right offset.
+offset_bottom = 64.0             # Bottom offset.
+text = "SETTINGS"                # The text content.
+label_settings = SubResource("LabelSettings_lm54m")  # Use shared label settings.
+horizontal_alignment = 1         # Center horizontally.
+vertical_alignment = 1           # Center vertically.
+uppercase = true                 # Display text in uppercase.
 
+# Label for "Display Resolution" title.
 [node name="Display Resolution Title" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 312.0
@@ -50,6 +57,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+# Label for "Resolution Scale" title.
 [node name="Resolution Scale Title" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 304.0
@@ -62,6 +70,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+# Label for "FPS Limit" title.
 [node name="FPS Limit Title" type="Label" parent="Control"]
 layout_mode = 0
 offset_left = 264.0
@@ -69,25 +78,27 @@ offset_top = 352.0
 offset_right = 520.0
 offset_bottom = 416.0
 text = "FPS Limit
-"
+"  # Note: The newline at the end is preserved.
 label_settings = SubResource("LabelSettings_lm54m")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+# OptionButton for choosing the display resolution.
 [node name="DisplayResolution" type="OptionButton" parent="Control"]
 layout_mode = 0
 offset_left = 576.0
 offset_top = 240.0
 offset_right = 768.0
 offset_bottom = 271.0
-selected = 0
-fit_to_longest_item = false
-item_count = 2
-popup/item_0/text = "1920x1080"
-popup/item_1/text = "640x480"
-popup/item_1/id = 1
+selected = 0                   # Default selected index.
+fit_to_longest_item = false    # Do not auto-fit to the longest item.
+item_count = 2                 # Total number of items.
+popup/item_0/text = "1920x1080"  # First option.
+popup/item_1/text = "640x480"    # Second option.
+popup/item_1/id = 1             # Unique identifier for the second option.
 
+# OptionButton for choosing the resolution scale.
 [node name="Resolution Scale" type="OptionButton" parent="Control"]
 layout_mode = 0
 offset_left = 576.0
@@ -105,6 +116,7 @@ popup/item_2/id = 2
 popup/item_3/text = "25%"
 popup/item_3/id = 3
 
+# OptionButton for choosing the FPS limit.
 [node name="FPS Limit" type="OptionButton" parent="Control"]
 layout_mode = 0
 offset_left = 576.0
@@ -120,6 +132,7 @@ popup/item_1/id = 1
 popup/item_2/text = "60"
 popup/item_2/id = 2
 
+# Button for "Save & Exit" action.
 [node name="Save & Exit" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 456.0
@@ -128,6 +141,7 @@ offset_right = 549.0
 offset_bottom = 519.0
 text = "Save & Exit"
 
+# Button for "Cancel" action.
 [node name="Cancel" type="Button" parent="Control"]
 layout_mode = 0
 offset_left = 648.0
@@ -136,6 +150,7 @@ offset_right = 708.0
 offset_bottom = 519.0
 text = "Cancel"
 
+# CheckButton to toggle fullscreen mode.
 [node name="Fullscreen" type="CheckButton" parent="Control"]
 layout_mode = 0
 offset_left = 344.0
@@ -144,6 +159,7 @@ offset_right = 471.0
 offset_bottom = 463.0
 text = "Fullscreen"
 
+# Signal connections to handle user interactions.
 [connection signal="item_selected" from="Control/DisplayResolution" to="." method="_on_display_resolution_item_selected"]
 [connection signal="pressed" from="Control/Save & Exit" to="." method="_on_save__exit_pressed"]
 [connection signal="pressed" from="Control/Cancel" to="." method="_on_cancel_pressed"]
