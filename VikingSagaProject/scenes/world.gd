@@ -20,7 +20,7 @@ func game_over():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Getting world _ready...")
-	$"../HelpMenuLayer".hide()
+	$"../HelpMenu".hide()
 	#player.position = Vector2i(0,0)
 	#player.global_position = Vector2i(0,0)
 	pass
@@ -32,11 +32,11 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_1:
-			if $"../HelpMenuLayer".visible:
-				$"../HelpMenuLayer".hide()
+		if event.pressed and event.keycode == KEY_F1:
+			if $"../HelpMenu".visible:
+				$"../HelpMenu".hide()
 			else:
-				$"../HelpMenuLayer".show()
+				$"../HelpMenu".show()
 			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_2:
 			print_debug("Debug: This is coming from file: ", file_name)

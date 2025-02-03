@@ -65,6 +65,8 @@ func spawn_scene():
 	add_child(instance)
 
 func _ready():
+	%HelpMenu.hide()
+	#$HelpMenu.hide()
 	for i in range(globals.SpawnRadius):
 		spawn_scene()
 	print("Getting GameManager ready...")
@@ -83,11 +85,17 @@ func _ready():
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
 	# Initialize Labels
-	$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
-	$Interface/FoodBar/WaterLabel.update_text(globals.QuestWater,100)
-	$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
+	%Label.update_text(globals.level, globals.experience, globals.experience_required)
+	%WarmthLabel.update_text(globals.Warmth,100)
+	%FoodLabel.update_text(globals.QuestFood,100)
+	%WaterLabel.update_text(globals.QuestWater,100)
+	%HPLabel.update_text(0,0)
+	
+	#$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
+	#$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	#$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
+	#$Interface/FoodBar/WaterLabel.update_text(globals.QuestWater,100)
+	#$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
 	if( globals.NewGame ):
 		initialize_gamemanager()
 		globals.NewGame = false
@@ -140,10 +148,15 @@ func spawnAnimals():
 			#var coords = globals.animals_db[animal_name]
 
 func _process(_delta):
-	$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
-	$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	$Interface/FoodBar/FoodLabel.update_text(playerData.Food,1000)
-	$Interface/FoodBar/WaterLabel.update_text(playerData.Water,1000)
+	%godot_version.update_text()
+	#$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
+	%WarmthLabel.update_text(globals.Warmth,100)
+	%FoodLabel.update_text(playerData.Food,1000)
+	%WaterLabel.update_text(playerData.Water,1000)
+	
+	#$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
+	#$Interface/FoodBar/FoodLabel.update_text(playerData.Food,1000)
+	#$Interface/FoodBar/WaterLabel.update_text(playerData.Water,1000)
 	if( globals.Walking == true):
 		playerData.Food -= globals.FoodDeterioration
 		playerData.Water -= globals.WaterDeterioration
@@ -236,3 +249,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("in the zone")
 	playerData.Food = 1000
 	playerData.Water = 1000
+
+
+func _on_quest_1_ready() -> void:
+	pass # Replace with function body.
