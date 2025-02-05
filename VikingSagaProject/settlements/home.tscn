@@ -1,37 +1,100 @@
-[gd_scene load_steps=3 format=3 uid="uid://cla0hh2x5afue"]
-# This header declares the scene file format (version 3) and that it loads in 3 steps.
-# The uid attribute uniquely identifies this scene in the project.
+[gd_scene load_steps=8 format=3 uid="uid://enhanced_house_scene"]
 
+; External resources: texture and audio files.
 [ext_resource type="Texture2D" uid="uid://cgjqn4gb111i8" path="res://arts/TilesetHouse.png" id="1_m55ni"]
-# External resource: A Texture2D loaded from the specified path. 
-# It is assigned an id "1_m55ni" so that it can be referenced later.
+[ext_resource type="AudioStream" uid="uid://ambient_audio" path="res://audio/ambient.ogg" id="2_ambient"]
+[ext_resource type="AudioStream" uid="uid://door_sound" path="res://audio/door_creak.ogg" id="3_doorsound"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeduq"]
+; Sub-resources for collision shapes and door animation.
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_main"]
 size = Vector2(160, 160)
-# Sub-resource: Defines a RectangleShape2D used for collision detection.
-# The size is set to a 160x160 rectangle.
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(64, 80)
+
+[sub_resource type="Animation" id="Animation_DoorOpen"]
+resource_name = "DoorOpen"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Door/DoorSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/keys = {
+    "times": PackedFloat32Array(0.0, 0.5),
+    "values": [ 0, 90 ]
+}
+
+; Root node is an Area2D (now renamed “HouseArea”) for clarity.
+[node name="HouseArea" type="Area2D"]
 position = Vector2(552, 488)
-# The root node of the scene is an Area2D positioned at (552, 488) in the game world.
-# Area2D is used for detecting overlaps and area-based events.
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_m55ni")
-region_enabled = true
-region_rect = Rect2(400, 226, 64, 78)
-# Child node of Area2D: A Sprite2D that displays part of the texture.
-# - texture: references the preloaded texture.
-# - region_enabled: true, so only a part of the texture is drawn.
-# - region_rect: defines the rectangle (x: 400, y: 226, width: 64, height: 78) to use from the texture.
+    ; The main visual representation of the house using a region of the texture.
+    [node name="HouseSprite" type="Sprite2D" parent="HouseArea"]
+    texture = ExtResource("1_m55ni")
+    region_enabled = true
+    region_rect = Rect2(400, 226, 64, 78)
+    
+    ; Collision shape for the area using a defined rectangle.
+    [node name="Collision" type="CollisionShape2D" parent="HouseArea"]
+    shape = SubResource("RectangleShape2D_main")
+    
+    ; A Label to display the house identity.
+    [node name="Identity" type="Label" parent="HouseArea"]
+    offset_right = 40.0
+    offset_bottom = 23.0
+    text = "House"
+    
+    ; A Light2D node to add ambient illumination (ideally using a radial gradient texture).
+    [node name="AmbientLight" type="Light2D" parent="HouseArea"]
+    texture = ExtResource("1_m55ni")  ; (Replace with a dedicated light texture if available)
+    color = Color(1, 1, 1, 0.5)
+    energy = 0.8
+    offset = Vector2(0, -80)
+    
+    ; An interactive Door element.
+    [node name="Door" type="Node2D" parent="HouseArea"]
+    position = Vector2(600, 488)
+    
+        ; Door visual: uses a different texture region from the same tileset.
+        [node name="DoorSprite" type="Sprite2D" parent="Door"]
+        texture = ExtResource("1_m55ni")
+        region_enabled = true
+        region_rect = Rect2(100, 50, 64, 80)
+        
+        ; Collision shape for the door.
+        [node name="DoorCollision" type="CollisionShape2D" parent="Door"]
+        shape = SubResource("RectangleShape2D_door")
+        
+        ; AnimationPlayer for the door to “open” via rotation.
+        [node name="DoorAnimation" type="AnimationPlayer" parent="Door"]
+        animations/DoorOpen = SubResource("Animation_DoorOpen")
+        
+        ; Sound effect for the door.
+        [node name="DoorSound" type="AudioStreamPlayer2D" parent="Door"]
+        stream = ExtResource("3_doorsound")
+        autoplay = false
+    
+    ; Ambient audio playing in the background.
+    [node name="AmbientAudio" type="AudioStreamPlayer2D" parent="HouseArea"]
+    stream = ExtResource("2_ambient")
+    autoplay = true
+    volume_db = -10
+    
+    ; UI layer for displaying interactive prompts.
+    [node name="UI" type="CanvasLayer" parent="HouseArea"]
+        [node name="PromptLabel" type="Label" parent="UI"]
+        text = "Press [E] to Enter"
+        visible = false
+        anchor_right = 1.0
+        anchor_bottom = 1.0
+        margin_right = -50
+        margin_bottom = -50
+    
+    ; Timer to handle delayed actions (e.g., door auto-close).
+    [node name="DoorTimer" type="Timer" parent="HouseArea"]
+    wait_time = 2.0
+    one_shot = true
+    autostart = false
 
-[node name="Home" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_eeduq")
-# Child node of Area2D: A CollisionShape2D named "Home".
-# It uses the RectangleShape2D defined earlier to determine collision boundaries.
-
-[node name="Identity" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-# Child node of Area2D: A Label named "Identity".
-# The offsets position the label relative to its parent (or container) for display purposes.
+; Signal connections (to be handled by an attached script or the scene’s logic):
+[connection signal="body_entered" from="HouseArea" to="HouseArea" method="_on_body_entered"]
+[connection signal="timeout" from="DoorTimer" to="Door" method="_on_DoorTimer_timeout"]
