@@ -1,21 +1,37 @@
 [gd_scene load_steps=3 format=3 uid="uid://cla0hh2x5afue"]
+# This header declares the scene file format (version 3) and that it loads in 3 steps.
+# The uid attribute uniquely identifies this scene in the project.
 
 [ext_resource type="Texture2D" uid="uid://cgjqn4gb111i8" path="res://arts/TilesetHouse.png" id="1_m55ni"]
+# External resource: A Texture2D loaded from the specified path. 
+# It is assigned an id "1_m55ni" so that it can be referenced later.
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eeduq"]
 size = Vector2(160, 160)
+# Sub-resource: Defines a RectangleShape2D used for collision detection.
+# The size is set to a 160x160 rectangle.
 
 [node name="Area2D" type="Area2D"]
 position = Vector2(552, 488)
+# The root node of the scene is an Area2D positioned at (552, 488) in the game world.
+# Area2D is used for detecting overlaps and area-based events.
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m55ni")
 region_enabled = true
 region_rect = Rect2(400, 226, 64, 78)
+# Child node of Area2D: A Sprite2D that displays part of the texture.
+# - texture: references the preloaded texture.
+# - region_enabled: true, so only a part of the texture is drawn.
+# - region_rect: defines the rectangle (x: 400, y: 226, width: 64, height: 78) to use from the texture.
 
 [node name="Home" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_eeduq")
+# Child node of Area2D: A CollisionShape2D named "Home".
+# It uses the RectangleShape2D defined earlier to determine collision boundaries.
 
 [node name="Identity" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+# Child node of Area2D: A Label named "Identity".
+# The offsets position the label relative to its parent (or container) for display purposes.

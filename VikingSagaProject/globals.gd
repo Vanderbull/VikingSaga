@@ -77,15 +77,38 @@ func gain_quest_trees(amount):
 	if QuestTrees > 10000:
 		QuestTrees = 10000
 	return QuestTrees
-func gain_quest_clay(amount):
+func gain_quest_clay(amount) -> int:
 	QuestClay += amount
 	if QuestClay > 10000:
 		QuestClay = 10000
+		
+	# Check if the quest is completed
+	if QuestClay >= 5000:  # Example threshold for completing the quest
+		complete_quest("Clay")
 	return QuestClay
-func update_quests():
-	$Quests/VBoxContainer/Quest1.text = "UPDATE QUEST 1"
-	$Quests/VBoxContainer/Quest2.text = "UPDATE QUEST 2"
-	$Quests/VBoxContainer/Quest3.text = "UPDATE QUEST 3"
+	
+func complete_quest(quest_type: String):
+	match quest_type:
+		"Water":
+			print("Quest for Water Completed!")
+			# Perform actions related to completing the water quest
+		"Food":
+			print("Quest for Food Completed!")
+			# Perform actions related to completing the food quest
+		"Trees":
+			print("Quest for Trees Completed!")
+			# Perform actions related to completing the trees quest
+		"Clay":
+			print("Quest for Clay Completed!")
+			# Perform actions related to completing the clay quest
+		"Hunting":
+			print("Quest for Hunting Completed!")
+			# Perform actions related to completing the hunting quest
+	# Reset the quest amount after completion
+	QuestClay = 0
+	
+	# Update UI or perform other actions as needed
+	
 func get_required_experience(p_level):
 	return round(pow(p_level, 1.8) + p_level * 4)
 func gain_experience(amount):

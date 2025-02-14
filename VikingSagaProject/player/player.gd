@@ -28,6 +28,10 @@ var time_since_last_step: float = 0.0
 var warmth: float = 10000.0 # Player's warmth level
 var near_fire: bool = false
 
+@export var zoom_speed: float = 0.1
+@export var min_zoom: float = 0.5
+@export var max_zoom: float = 3.0
+
 func check_if_quest_finished():
 	if globals.QuestWater >= 10000:
 		if globals.QuestFood >= 10000:
@@ -126,13 +130,13 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_1:
 			globals.RoadWorks = not globals.RoadWorks
 		if event.pressed and event.keycode == KEY_2:
-			if( globals.Animals != -1 ):
-				$"../../../InGameCanvasLayer/ProgressBar".show()
-				globals.Hunting = not globals.Hunting
-				#var atlas_coords = Vector2i(0, 0)
-				var tilemap = $"../../AnimalMap"
-				tilemap.set_cell(0,tile_pos, -1)
-			elif( globals.Terrain == "Sand" ):
+			#if( globals.Animals != -1 ):
+				#$"../../../InGameCanvasLayer/ProgressBar".show()
+				#globals.Hunting = not globals.Hunting
+				##var atlas_coords = Vector2i(0, 0)
+				#var tilemap = $"../../AnimalMap"
+				#tilemap.set_cell(0,tile_pos, -1)
+			if( globals.Terrain == "Sand" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.DigSand = not globals.DigSand
 			elif( globals.Terrain == "Forest" ):
@@ -157,11 +161,14 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				$Camera2D.zoom.x += 0.25
-				$Camera2D.zoom.y += 0.25
+				$Camera2D.zoom += Vector2(zoom_speed, zoom_speed)
+				#$Camera2D.zoom.x += 0.25
+				#$Camera2D.zoom.y += 0.25
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				$Camera2D.zoom.x -= 0.25
-				$Camera2D.zoom.y -= 0.25
+				$Camera2D.zoom -= Vector2(zoom_speed, zoom_speed)
+				#$Camera2D.zoom.x -= 0.25
+				#$Camera2D.zoom.y -= 0.25
+			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
 func _process(delta):
 	check_if_quest_finished()

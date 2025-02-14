@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=98 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
@@ -69,6 +69,7 @@
 [ext_resource type="PackedScene" uid="uid://bk8t0obmxovhi" path="res://quest_finished.tscn" id="67_gr1mp"]
 [ext_resource type="Script" path="res://http_request.gd" id="68_wvglm"]
 [ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_obvfi"]
+[ext_resource type="PackedScene" uid="uid://um0wu28oq78x" path="res://scenes/help_menu/help_menu.tscn" id="70_lcryn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("4_kqt3c")
@@ -1324,11 +1325,13 @@ layout_mode = 2
 text = "NOT HUNTING"
 
 [node name="HPLabel" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "HP: 10 / 10"
 script = ExtResource("49_ylode")
 
 [node name="godot_version" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 script = ExtResource("50_0sb5j")
 
@@ -1344,6 +1347,7 @@ script = ExtResource("54_yf7og")
 layer = 2
 
 [node name="Label" type="Label" parent="Interface"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_6f0p3")
 anchors_preset = 1
 anchor_left = 1.0
@@ -1379,6 +1383,7 @@ offset_bottom = 31.0
 text = "Warmth"
 
 [node name="WarmthLabel" type="Label" parent="Interface/WarmthBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1413,6 +1418,7 @@ offset_bottom = 28.0
 text = "Food"
 
 [node name="FoodLabel" type="Label" parent="Interface/FoodBar"]
+unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 5
@@ -1437,6 +1443,7 @@ offset_bottom = 29.0
 text = "Water"
 
 [node name="WaterLabel" type="Label" parent="Interface/FoodBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1540,35 +1547,9 @@ shape = SubResource("CircleShape2D_66mx2")
 [node name="animated-fire" parent="." instance=ExtResource("69_obvfi")]
 position = Vector2(116, -51)
 
-[node name="HelpMenuLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="HelpMenuLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CodeEdit" type="CodeEdit" parent="HelpMenuLayer/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/background_color = Color(0, 0, 0, 1)
-text = "event.keycode == KEY_1: HELP MENU
-event.keycode == KEY_2: <NOT SET>
-event.keycode == KEY_3: CHANGE SCENE WORLD
-event.keycode == KEY_4: CHANGE SCENE CITY
-event.keycode == KEY_5: CHANGE SCENE QUEST
-event.keycode == KEY_6: <NOT SET>
-event.keycode == KEY_7: RELOAD CURRENT SCENE
-event.keycode == KEY_8: <NOT SET>
-event.keycode == KEY_9: <NOT SET>
-event.keycode == KEY_0: PLACE FIREPLACE
-"
+[node name="HelpMenu" parent="." instance=ExtResource("70_lcryn")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]

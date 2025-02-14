@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://um0wu28oq78x"]
+
+[node name="HelpMenu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0, 0, 0, 1)
+text = "event.keycode == KEY_F1: HELP MENU
+event.keycode == KEY_2: <NOT SET>
+event.keycode == KEY_3: CHANGE SCENE WORLD
+event.keycode == KEY_4: CHANGE SCENE CITY
+event.keycode == KEY_5: CHANGE SCENE QUEST
+event.keycode == KEY_6: <NOT SET>
+event.keycode == KEY_7: RELOAD CURRENT SCENE
+event.keycode == KEY_8: <NOT SET>
+event.keycode == KEY_9: <NOT SET>
+event.keycode == KEY_0: PLACE FIREPLACE
+"

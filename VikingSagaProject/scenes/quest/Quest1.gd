@@ -7,3 +7,7 @@ func update_text():
 		text = """[X] Collect water %s / 10000""" % [globals.QuestWater]
 	else:
 		text = """[ ] Collect water %s / 10000""" % [globals.QuestWater]
+
+func _ready():
+	pass
+	# Connect the update_text function to a signal if needed, e.g., for updating every frame or on specific events.
