@@ -24,12 +24,20 @@ jobs:
 
             // Remove existing status labels (important!)
             const labelsToRemove = ['status:open', 'status:in progress', 'status:closed'];
-            await github.rest.issues.removeLabel({
-              issue_number: issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: labelsToRemove
-            });
+            for (const label of labelsToRemove) {
+              try {
+                await github.rest.issues.removeLabel({
+                  issue_number: issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label
+                });
+              } catch (error) {
+                if (error.status !== 404) {
+                  throw error;
+                }
+              }
+            }
 
             // Add the correct status label
             const labelToAdd = isClosed ? 'status:closed' : 'status:open'; // Or 'status:in progress' based on other logic
@@ -39,3 +47,4 @@ jobs:
               repo: context.repo.repo,
               labels: [labelToAdd]
             });
+            
