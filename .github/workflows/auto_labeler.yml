@@ -1,0 +1,40 @@
+name: Auto-Labeler
+
+on:
+  issues:
+    opened: true
+    closed: true
+    reopened: true
+  pull_request:
+    opened: true
+    closed: true
+    reopened: true
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.issue;
+            const isClosed = issue.state === 'closed';
+
+            // Remove existing status labels (important!)
+            const labelsToRemove = ['status:open', 'status:in progress', 'status:closed'];
+            await github.rest.issues.removeLabel({
+              issue_number: issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: labelsToRemove
+            });
+
+            // Add the correct status label
+            const labelToAdd = isClosed ? 'status:closed' : 'status:open'; // Or 'status:in progress' based on other logic
+            await github.rest.issues.addLabels({
+              issue_number: issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: [labelToAdd]
+            });
