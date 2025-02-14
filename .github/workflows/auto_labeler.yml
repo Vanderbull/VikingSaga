@@ -9,6 +9,7 @@ on:
     opened: true
     closed: true
     reopened: true
+  workflow_dispatch: # Allows manual triggering of the workflow from the Actions tab
 
 jobs:
   labeler:
