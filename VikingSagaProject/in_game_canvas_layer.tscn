@@ -50,6 +50,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_lem7x")
 
 [node name="Trees" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Trees: 0"
 
@@ -60,6 +61,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_lem7x")
 
 [node name="Sand" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Sand: 0"
 
@@ -70,6 +72,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_lem7x")
 
 [node name="Water" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Water: 0"
 
@@ -80,6 +83,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_lem7x")
 
 [node name="Clay" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Clay: 0"
 
@@ -90,6 +94,7 @@ size_flags_vertical = 4
 texture = ExtResource("2_lem7x")
 
 [node name="Food" type="Label" parent="Panel/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Food: 0"
 

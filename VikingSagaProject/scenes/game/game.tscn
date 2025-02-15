@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=100 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
@@ -1136,6 +1136,13 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lvbih"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3i5fc"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_lvbih")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcsit"]
@@ -1345,6 +1352,15 @@ script = ExtResource("54_yf7og")
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="Interface"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+texture = SubResource("NoiseTexture2D_3i5fc")
 
 [node name="Label" type="Label" parent="Interface"]
 unique_name_in_owner = true

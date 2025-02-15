@@ -7,46 +7,12 @@ extends TileMap
 var moisture = FastNoiseLite.new()
 var temperature = FastNoiseLite.new()
 var altitude = FastNoiseLite.new()
-#var moisture_clouds = FastNoiseLite.new()
-#var temperature_clouds = FastNoiseLite.new()
-#var altitude_clouds = FastNoiseLite.new()
-
-#static var clear_delay = 10
 var tile_position_info = []
-#static var flockmos = 0
 var grid_size = Vector2(10, 10)  # Tilemap dimensionsw should be globals.chunk_size right?
 var tile_data = []
 
-func place_character():
-	randomize()
-	var plasket = true
-	#for x in range(randi()%1001):
-	#	for y in range(randi()%1001):
-	#if tile_data[x][y] == 0:  # Check for a valid "floor" tile
-	var world_position = map_to_local(Vector2(randi()%101, randi()%101))
-	var tile_pos = local_to_map(world_position)
-	#world_position += cell_size / 2  # Center on the tile
-	player.position = world_position
-	print(player.position)
-	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
-	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-	var _alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-	while plasket:
-		print("reroll")
-		if ( round((moist+10)/5) == 3 and round((temp+10)/5) <= 3 ):
-			print("water")
-			world_position = map_to_local(Vector2(randi()%101, randi()%101))
-			tile_pos = local_to_map(world_position)
-			moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
-			temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-			_alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
-			player.position = world_position
-		else:
-			print("dry land")
-			plasket = false
-	return  # Exit after placing the character
-
 func _ready():
+	randomize_player_position()
 	tile_position_info.resize(256*256)
 	tile_position_info.fill("0")
 	generate_tilemap()
@@ -57,6 +23,39 @@ func _ready():
 	moisture.seed = game_manager.playerData.moisture
 	temperature.seed = game_manager.playerData.temperature
 	altitude.seed = game_manager.playerData.altitude
+	
+func randomize_player_position():
+	randomize()
+
+func get_random_tile():
+	var world_pos = map_to_local(Vector2(randi() % 101, randi() % 101))
+	var tile_pos = local_to_map(world_pos)
+	return [world_pos, tile_pos]
+
+func get_noise_values(tile_pos):
+	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
+	return [moist, temp, alt]
+
+# Function to find a tile thats not water to place the character on when spawning
+func place_character():
+	var attempts = 100  # Limit attempts to avoid infinite loop
+	var world_position = Vector2()
+
+	for i in range(attempts):
+		var result = get_random_tile()
+		world_position = result[0]
+		var tile_pos = result[1]
+		var noise = get_noise_values(tile_pos)
+		var moist = noise[0]
+		var temp = noise[1]
+
+		if not (round((moist + 10) / 5) == 3 and round((temp + 10) / 5) <= 3):
+			player.position = world_position
+			return
+
+	push_error("Failed to find a valid spawn position")
 
 func generate_tilemap():
 	var _tile_pos = local_to_map(player.position)

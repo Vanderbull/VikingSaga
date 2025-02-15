@@ -34,6 +34,8 @@ var quest_paused : bool = false:
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
 
+var noise = FastNoiseLite.new()
+
 func spawn_animate_fire():
 	var animate_fire_instance = animate_fire_scene.instantiate()
 	if animate_fire_instance is Node2D:
@@ -64,20 +66,60 @@ func spawn_scene():
 	# Add the instance to the scene tree
 	add_child(instance)
 
+func generate_minimap(size: int, margin: int) -> ImageTexture:
+	var noise = FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise.frequency = 0.02
+	noise.seed = randi()  # Set a random seed each time
+
+	var image = Image.create(size, size, false, Image.FORMAT_RGB8)
+	# Fill with a border color (optional)
+	var border_color = Color(0, 0, 0)  # Black border (change as needed)
+
+	for x in range(size):
+		for y in range(size):
+			if x < margin or y < margin or x >= size - margin or y >= size - margin:
+				# Set the margin area to a solid color (e.g., black)
+				image.set_pixel(x, y, border_color)
+			else:
+				# Apply noise inside the margin
+				var val = noise.get_noise_2d(x, y)
+				val = (val + 1) / 2.0  # Normalize the noise value
+				var color = Color(val, val, val, 1.0)  # Greyscale based on noise
+				if val < 0.3:
+					color = Color(0, 0, 1)  # Water
+				elif val < 0.6:
+					color = Color(0, 1, 0)  # Grass
+				else:
+					color = Color(0.5, 0.25, 0)  # Mountain
+				image.set_pixel(x, y, color)
+
+	var texture = ImageTexture.new()
+	texture.set_image(image)
+	return texture
+
+@onready var minimap_rect = $Interface/TextureRect  # Reference to the TextureRect node
+
 func _ready():
-	%HelpMenu.hide()
-	#$HelpMenu.hide()
-	for i in range(globals.SpawnRadius):
-		spawn_scene()
 	print("Getting GameManager ready...")
-	$MenuCanvasLayer.show()
+	randomize()
+
+	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
+	minimap_rect.texture = minimap_texture  # Assign the texture
+	
+	# Hide things initially
+	%HelpMenu.hide()
 	$world.hide()
 	$InGameCanvasLayer.hide()
 	$TileInfoWindow.hide()
 	$Interface.hide()
 	$Quests.hide()
 	$QuestFinished.hide()
-	randomize()
+	
+	for i in range(globals.SpawnRadius):
+		spawn_scene()
+	$MenuCanvasLayer.show()
+
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
@@ -90,12 +132,7 @@ func _ready():
 	%FoodLabel.update_text(globals.QuestFood,100)
 	%WaterLabel.update_text(globals.QuestWater,100)
 	%HPLabel.update_text(0,0)
-	
-	#$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-	#$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	#$Interface/FoodBar/FoodLabel.update_text(globals.QuestFood,100)
-	#$Interface/FoodBar/WaterLabel.update_text(globals.QuestWater,100)
-	#$TileInfoWindow/PanelContainer/VBoxContainer/HPLabel.update_text(0,0)
+
 	if( globals.NewGame ):
 		initialize_gamemanager()
 		globals.NewGame = false
@@ -103,16 +140,11 @@ func _ready():
 		game_paused = false
 
 func initialize_gamemanager():
-	# ADDING ANIMALS TO ANIMALMAP
-	#spawnAnimals()
-	# ADDING NPC TO NPC MAP
-	#spawnNPC()
-	#var PLAYERDATA_PATH : String = "res://resources/PlayerData.gd"
 	playerData = PlayerData.new()
 	if OS.is_debug_build():
 		game_paused = !game_paused
 	pass
-	
+
 func spawnNPC():
 	for i in range(globals.SpawnRadius):
 		#var tilemap = $world/Npc
@@ -122,41 +154,21 @@ func spawnNPC():
 		# If grass then spawn NPC
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
-		#globals.npc_db["npc"] = {
-		#	"x": cell_position.x,
-		#	"y": cell_position.y
-		#}		
-		#for npc_name in globals.npc_db.keys():
-		#	pass
-			#var coords = globals.npc_db[npc_name]
-				
+
 func spawnAnimals():
 	# ADDING ANIMALS TO ANIMALMAP
 	for i in range(globals.SpawnRadius):
-		#var tilemap = $world/AnimalMap
-
 		var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
 		var atlas_coords = Vector2i(0, 1)
 		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
 			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
-		#globals.animals_db["rabbit"] = {
-		#	"x": cell_position.x,
-		#	"y": cell_position.y
-		#}		
-		#for animal_name in globals.animals_db.keys():
-		#	pass
-			#var coords = globals.animals_db[animal_name]
 
 func _process(_delta):
 	%godot_version.update_text()
-	#$TileInfoWindow/PanelContainer/VBoxContainer/godot_version.update_text()
 	%WarmthLabel.update_text(globals.Warmth,100)
 	%FoodLabel.update_text(playerData.Food,1000)
 	%WaterLabel.update_text(playerData.Water,1000)
 	
-	#$Interface/WarmthBar/WarmthLabel.update_text(globals.Warmth,100)
-	#$Interface/FoodBar/FoodLabel.update_text(playerData.Food,1000)
-	#$Interface/FoodBar/WaterLabel.update_text(playerData.Water,1000)
 	if( globals.Walking == true):
 		playerData.Food -= globals.FoodDeterioration
 		playerData.Water -= globals.WaterDeterioration
@@ -214,11 +226,11 @@ func _process(_delta):
 		$InGameCanvasLayer/ProgressBar.hide()
 		$InGameCanvasLayer/ProgressBar.value = 0
 		
-	$InGameCanvasLayer/Panel/HBoxContainer/Trees.text = "Trees: " + str(playerData.Wood)
-	$InGameCanvasLayer/Panel/HBoxContainer/Sand.text = "Sand: " + str(playerData.Sand)
-	$InGameCanvasLayer/Panel/HBoxContainer/Water.text = "Water: " + str(playerData.Water)
-	$InGameCanvasLayer/Panel/HBoxContainer/Clay.text = "Clay: " + str(playerData.Clay)
-	$InGameCanvasLayer/Panel/HBoxContainer/Food.text = "Food: " + str(playerData.Food)
+	$InGameCanvasLayer/%Trees.text = "Trees: " + str(playerData.Wood)
+	$InGameCanvasLayer/%Sand.text = "Sand: " + str(playerData.Sand)
+	$InGameCanvasLayer/%Water.text = "Water: " + str(playerData.Water)
+	$InGameCanvasLayer/%Clay.text = "Clay: " + str(playerData.Clay)
+	$InGameCanvasLayer/%Food.text = "Food: " + str(playerData.Food)
 	
 func _input(event : InputEvent):
 	if(event.is_action_pressed("ui_cancel")):
@@ -249,7 +261,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("in the zone")
 	playerData.Food = 1000
 	playerData.Water = 1000
-
 
 func _on_quest_1_ready() -> void:
 	pass # Replace with function body.
