@@ -2,6 +2,8 @@ extends Node
 
 class_name GameManager
 
+# Reference to the PatchManager node
+@onready var patch_manager = $PatchManager
 # Preload the scene for better performance
 @onready var my_scene = preload("res://assets/cave-npc/cave_npc.tscn")
 @onready var fox_npc_scene = preload("res://assets/fox-npc/fox_npc.tscn")
@@ -101,6 +103,8 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 @onready var minimap_rect = $Interface/TextureRect  # Reference to the TextureRect node
 
 func _ready():
+	patch_manager.apply_patch("res://patch_manager/patch_1.json")
+	
 	print("Getting GameManager ready...")
 	randomize()
 
