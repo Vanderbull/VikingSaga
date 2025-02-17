@@ -1,7 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 [gd_scene load_steps=4 format=3 uid="uid://b70osvalqleu2"]
 
+;------------------------------------------------------------------
+; External Resources
+;------------------------------------------------------------------
 [ext_resource type="Texture2D" uid="uid://dg12cdojqr4io" path="res://assets/TilesetHouse.png" id="1_0s3ax"]
 
+;------------------------------------------------------------------
+; Sub-Resources: Collision Shapes
+;------------------------------------------------------------------
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jevw3"]
 radius = 80.0
 height = 160.0
@@ -9,32 +16,53 @@ height = 160.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_5sf0l"]
 radius = 24.0
 
+;------------------------------------------------------------------
+; Main Node: Village (StaticBody2D)
+;------------------------------------------------------------------
 [node name="world_village" type="StaticBody2D"]
 z_index = 1
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CapsuleShape2D_jevw3")
-
-[node name="sprite" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(0, -15)
-texture = ExtResource("1_0s3ax")
-region_enabled = true
-region_rect = Rect2(0, 0, 48, 46)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="villageHitbox" type="Area2D" parent="."]
-position = Vector2(0, -24)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="villageHitbox"]
-position = Vector2(0, 8)
-shape = SubResource("CircleShape2D_5sf0l")
-
-[node name="Identity" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Village"
+    ;--------------------------------------------------------------
+    ; Collision Shape for the village using a capsule shape.
+    ;--------------------------------------------------------------
+    [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+    visible = false
+    shape = SubResource("CapsuleShape2D_jevw3")
+    
+    ;--------------------------------------------------------------
+    ; Sprite for the village visual. Uses a region of the Tileset.
+    ;--------------------------------------------------------------
+    [node name="sprite" type="Sprite2D" parent="."]
+    texture_filter = 1
+    position = Vector2(0, -15)
+    texture = ExtResource("1_0s3ax")
+    region_enabled = true
+    region_rect = Rect2(0, 0, 48, 46)
+    
+    ;--------------------------------------------------------------
+    ; AnimationPlayer for future animations.
+    ;--------------------------------------------------------------
+    [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+    
+    ;--------------------------------------------------------------
+    ; Village Hitbox for detecting interactions.
+    ;--------------------------------------------------------------
+    [node name="villageHitbox" type="Area2D" parent="."]
+    position = Vector2(0, -24)
+    
+        ;----------------------------------------------------------
+        ; Collision shape for the hitbox using a circle shape.
+        ;----------------------------------------------------------
+        [node name="CollisionShape2D" type="CollisionShape2D" parent="villageHitbox"]
+        position = Vector2(0, 8)
+        shape = SubResource("CircleShape2D_5sf0l")
+    
+    ;--------------------------------------------------------------
+    ; Label for displaying the village identity.
+    ;--------------------------------------------------------------
+    [node name="Identity" type="Label" parent="."]
+    offset_right = 40.0
+    offset_bottom = 23.0
+    text = "Village"
