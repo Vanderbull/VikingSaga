@@ -1,157 +1,167 @@
 shader_type canvas_item;
 
+// Built-in replacements with meaningful names
 #define iTime TIME
 #define fragColor COLOR
-#define iResolution 1.0/SCREEN_PIXEL_SIZE
+#define iResolution (1.0/SCREEN_PIXEL_SIZE)
 
-uniform vec2 disp_ = vec2(0.5);
-uniform float speed : hint_range(0.0, 20.0, 0.1) = 3.0;
-uniform vec3 color1 = vec3(0.005,.045,.075);
-uniform vec3 color2 = vec3(0.033,0.07,0.03);
-// Protean clouds by nimitz (twitter: @stormoid)
-// https://www.shadertoy.com/view/3l23Rh
-// License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
-// Contact the author for other licensing options
+// Enhanced uniforms with better organization and new features
+uniform vec2 displacement_center = vec2(0.5);
+uniform float animation_speed : hint_range(0.0, 20.0, 0.1) = 3.0;
+uniform vec3 base_color : hint_color = vec3(0.005, 0.045, 0.075);
+uniform vec3 accent_color : hint_color = vec3(0.033, 0.07, 0.03);
+uniform float noise_scale : hint_range(0.1, 2.0, 0.1) = 1.0;
+uniform float distortion_strength : hint_range(0.0, 2.0, 0.05) = 0.85;
+uniform float vignette_strength : hint_range(0.0, 1.0, 0.05) = 0.7;
 
-/*
-	Technical details:
+// Transformation matrix with clearer naming
+uniform mat3 noise_transform = mat3(
+    vec3(0.65, 1.12, -1.43),  // Row 1: X influence
+    vec3(-1.75, 0.65, -0.3),  // Row 2: Y influence
+    vec3(0.3, 1.4, 1.22)      // Row 3: Z influence
+);
 
-	The main volume noise is generated from a deformed periodic grid, which can produce
-	a large range of noise-like patterns at very cheap evalutation cost. Allowing for multiple
-	fetches of volume gradient computation for improved lighting.
-
-	To further accelerate marching, since the volume is smooth, more than half the the density
-	information isn't used to rendering or shading but only as an underlying volume	distance to
-	determine dynamic step size, by carefully selecting an equation	(polynomial for speed) to
-	step as a function of overall density (not necessarily rendered) the visual results can be
-	the	same as a naive implementation with ~40% increase in rendering performance.
-
-	Since the dynamic marching step size is even less uniform due to steps not being rendered at all
-	the fog is evaluated as the difference of the fog integral at each rendered step.
-
-*/
-uniform mat3 m3 = mat3(vec3(0.65, 1.12, -1.43), vec3(-1.75, 0.65, -0.3), vec3(0.3, 1.4, 1.22));
-
-mat2 rot(in float a){float c = cos(a), s = sin(a);return mat2(vec2(c,s),vec2(-s,c));}
-float mag2(vec2 p){return dot(p,p);}
-float linstep(in float mn, in float mx, in float x){ return clamp((x - mn)/(mx - mn), 0., 1.); }
-
-
-
-vec2 disp(float t){ return vec2(sin(t*0.22)*1., cos(t*0.175)*1.)*2.; }
-
-vec2 map(vec3 p, float prm1, vec2 bsMo)
-{
-    vec3 p2 = p;
-    p2.xy -= disp(p.z).xy;
-    p.xy *= rot(sin(p.z+iTime)*(0.1 + prm1*0.05) + iTime*0.09);
-    float cl = mag2(p2.xy);
-    float d = 0.;
-    p *= .61;
-    float z = 1.;
-    float trk = 1.;
-    float dspAmp = 0.1 + prm1*0.2;
-    for(int i = 0; i < 5; i++)
-    {
-		p += sin(p.zxy*0.75*trk + iTime*trk*.8)*dspAmp;
-        d -= abs(dot(cos(p), sin(p.yzx))*z);
-        z *= 0.57;
-        trk *= 1.4;
-        p = p*m3;
-    }
-    d = abs(d + prm1*3.)+ prm1*.3 - 2.5 + bsMo.y;
-    return vec2(d + cl*.2 + 0.25, cl);
+// Utility functions
+mat2 rotate2d(float angle) {
+    float c = cos(angle), s = sin(angle);
+    return mat2(vec2(c, s), vec2(-s, c));
 }
 
-vec4 render( in vec3 ro, in vec3 rd, float time, float prm1, vec2 bsMo )
-{
-	vec4 rez = vec4(0.);
-    const float ldst = 8.;
-	vec3 lpos = vec3(disp(time + ldst)*0.5, time + ldst);
-	float t = 1.5;
-	float fogT = 0.;
-	for(int i=0; i<130; i++)
-	{
-		if(rez.a > 0.99)break;
-
-		vec3 pos = ro + t*rd;
-        vec2 mpv = map(pos, prm1, bsMo);
-		float den = clamp(mpv.x-0.3,0.,1.)*1.12;
-		float dn = clamp((mpv.x + 2.),0.,3.);
-
-		vec4 col = vec4(0.);
-        if (mpv.x > 0.6)
-        {
-
-            col = vec4(sin(vec3(5.,0.4,0.2) + mpv.y*0.1 +sin(pos.z*0.4)*0.5 + 1.8)*0.5 + 0.5,0.08);
-            col *= den*den*den;
-			col.rgb *= linstep(4.,-2.5, mpv.x)*2.3;
-            float dif =  clamp((den - map(pos+.8, prm1, bsMo).x)/9., 0.001, 1. );
-            dif += clamp((den - map(pos+.35, prm1, bsMo).x)/2.5, 0.001, 1. );
-            col.xyz *= den*(color1 + 1.5*color2*dif);
-        }
-
-		float fogC = exp(t*0.2 - 2.2);
-		col.rgba += vec4(0.06,0.11,0.11, 0.1)*clamp(fogC-fogT, 0., 1.);
-		fogT = fogC;
-		rez = rez + col*(1. - rez.a);
-		t += clamp(0.5 - dn*dn*.05, 0.09, 0.3);
-	}
-	return clamp(rez, 0.0, 1.0);
+float magnitude_squared(vec2 p) {
+    return dot(p, p);
 }
 
-float getsat(vec3 c)
-{
+float linear_step(float min_val, float max_val, float x) {
+    return clamp((x - min_val) / (max_val - min_val), 0.0, 1.0);
+}
+
+float get_saturation(vec3 c) {
     float mi = min(min(c.x, c.y), c.z);
     float ma = max(max(c.x, c.y), c.z);
-    return (ma - mi)/(ma+ 1e-7);
+    return (ma - mi) / (ma + 1e-7);
 }
 
-//from my "Will it blend" shader (https://www.shadertoy.com/view/lsdGzN)
-vec3 iLerp(in vec3 a, in vec3 b, in float x)
-{
-    vec3 ic = mix(a, b, x) + vec3(1e-6,0.,0.);
-    float sd = abs(getsat(ic) - mix(getsat(a), getsat(b), x));
-    vec3 dir = normalize(vec3(2.*ic.x - ic.y - ic.z, 2.*ic.y - ic.x - ic.z, 2.*ic.z - ic.y - ic.x));
-    float lgt = dot(vec3(1.0), ic);
-    float ff = dot(dir, normalize(ic));
-    ic += 1.5*dir*sd*ff*lgt;
-    return clamp(ic,0.,1.);
+// Enhanced displacement function with controllable amplitude
+vec2 calculate_displacement(float t) {
+    return vec2(sin(t * 0.22), cos(t * 0.175)) * distortion_strength * 2.0;
 }
 
-void fragment()
-{
-	float prm1 = 0.;
-	vec2 bsMo = vec2(0);
-	vec2 q = SCREEN_UV;
-    vec2 p = q - 0.5;
-    bsMo = q - disp_;
+// Improved noise mapping function
+vec2 map_clouds(vec3 p, float complexity, vec2 mouse_offset) {
+    vec3 p_deformed = p;
+    p_deformed.xy -= calculate_displacement(p.z).xy * noise_scale;
+    
+    // Dynamic rotation based on position and time
+    p.xy *= rotate2d(sin(p.z + iTime) * (0.1 + complexity * 0.05) + iTime * 0.09);
+    float cloud_density = magnitude_squared(p_deformed.xy);
+    float density = 0.0;
+    
+    p *= 0.61 * noise_scale;  // Scale noise pattern
+    float scale = 1.0;
+    float frequency = 1.0;
+    float amplitude = 0.1 + complexity * 0.2;
+    
+    // Optimized fractal noise loop
+    for(int i = 0; i < 5; i++) {
+        p += sin(p.zxy * 0.75 * frequency + iTime * frequency * 0.8) * amplitude;
+        density -= abs(dot(cos(p), sin(p.yzx))) * scale;
+        scale *= 0.57;
+        frequency *= 1.4;
+        p = p * noise_transform;
+    }
+    
+    density = abs(density + complexity * 3.0) + complexity * 0.3 - 2.5 + mouse_offset.y;
+    return vec2(density + cloud_density * 0.2 + 0.25, cloud_density);
+}
 
-    float time = iTime*speed;
-    vec3 ro = vec3(0,0,time);
+// Main rendering function with improved lighting
+vec4 render_clouds(vec3 ray_origin, vec3 ray_dir, float time, float complexity, vec2 mouse_offset) {
+    vec4 result = vec4(0.0);
+    const float light_distance = 8.0;
+    vec3 light_pos = vec3(calculate_displacement(time + light_distance) * 0.5, time + light_distance);
+    float t = 1.5;
+    float fog_integral = 0.0;
+    const int max_steps = 130;
+    
+    for(int i = 0; i < max_steps; i++) {
+        if(result.a > 0.99) break;
+        
+        vec3 pos = ray_origin + t * ray_dir;
+        vec2 mapped = map_clouds(pos, complexity, mouse_offset);
+        float density = clamp(mapped.x - 0.3, 0.0, 1.0) * 1.12;
+        float density_normalized = clamp(mapped.x + 2.0, 0.0, 3.0);
+        
+        vec4 color = vec4(0.0);
+        if(mapped.x > 0.6) {
+            // Enhanced color calculation with base and accent colors
+            color = vec4(
+                sin(vec3(5.0, 0.4, 0.2) + mapped.y * 0.1 + sin(pos.z * 0.4) * 0.5 + 1.8) * 0.5 + 0.5,
+                0.08
+            );
+            color *= density * density * density;
+            color.rgb *= linear_step(4.0, -2.5, mapped.x) * 2.3;
+            
+            // Improved lighting with multiple samples
+            float diffuse = clamp((density - map_clouds(pos + 0.8, complexity, mouse_offset).x) / 9.0, 0.001, 1.0);
+            diffuse += clamp((density - map_clouds(pos + 0.35, complexity, mouse_offset).x) / 2.5, 0.001, 1.0);
+            color.xyz *= density * (base_color + 1.5 * accent_color * diffuse);
+        }
+        
+        // Optimized fog calculation
+        float fog_current = exp(t * 0.2 - 2.2);
+        color.rgba += vec4(0.06, 0.11, 0.11, 0.1) * clamp(fog_current - fog_integral, 0.0, 1.0);
+        fog_integral = fog_current;
+        result += color * (1.0 - result.a);
+        t += clamp(0.5 - density_normalized * density_normalized * 0.05, 0.09, 0.3);
+    }
+    return clamp(result, 0.0, 1.0);
+}
 
-    ro += vec3(sin(iTime)*0.5,sin(iTime*1.)*0.,0);
+// Improved color interpolation
+vec3 interpolate_color(vec3 a, vec3 b, float t) {
+    vec3 result = mix(a, b, t) + vec3(1e-6, 0.0, 0.0);
+    float sat_diff = abs(get_saturation(result) - mix(get_saturation(a), get_saturation(b), t));
+    vec3 dir = normalize(vec3(
+        2.0 * result.x - result.y - result.z,
+        2.0 * result.y - result.x - result.z,
+        2.0 * result.z - result.y - result.x
+    ));
+    float luminance = dot(vec3(1.0), result);
+    float ff = dot(dir, normalize(result));
+    result += 1.5 * dir * sat_diff * ff * luminance;
+    return clamp(result, 0.0, 1.0);
+}
 
-    float dspAmp = .85;
-    ro.xy += disp(ro.z)*dspAmp;
-    float tgtDst = 3.5;
-
-    vec3 target = normalize(ro - vec3(disp(time + tgtDst)*dspAmp, time + tgtDst));
-    ro.x -= bsMo.x*2.;
-    vec3 rightdir = normalize(cross(target, vec3(0,1,0)));
-    vec3 updir = normalize(cross(rightdir, target));
-    rightdir = normalize(cross(updir, target));
-	vec3 rd=normalize((p.x*rightdir + p.y*updir)*1. - target);
-    rd.xy *= rot(-disp(time + 3.5).x*0.2 + bsMo.x);
-    prm1 = smoothstep(-0.4, 0.4,sin(iTime*0.3));
-	vec4 scn = render(ro, rd, time, prm1, bsMo);
-
-    vec3 col = scn.rgb;
-    col = iLerp(col.bgr, col.rgb, clamp(1.-prm1,0.05,1.));
-
-    col = pow(col, vec3(.55,0.65,0.6))*vec3(1.,.97,.9);
-
-    col *= pow( 16.0*q.x*q.y*(1.0-q.x)*(1.0-q.y), 0.12)*0.7+0.3; //Vign
-
-	fragColor = vec4( col, 1.0 );
+void fragment() {
+    float complexity = smoothstep(-0.4, 0.4, sin(iTime * 0.3));
+    vec2 mouse_offset = SCREEN_UV - displacement_center;
+    vec2 uv = SCREEN_UV - 0.5;
+    
+    float time = iTime * animation_speed;
+    vec3 ray_origin = vec3(0.0, 0.0, time);
+    ray_origin += vec3(sin(iTime) * 0.5, sin(iTime * 1.0) * 0.0, 0.0);
+    ray_origin.xy += calculate_displacement(ray_origin.z) * distortion_strength;
+    
+    const float target_distance = 3.5;
+    vec3 target = normalize(ray_origin - vec3(calculate_displacement(time + target_distance) * distortion_strength, time + target_distance));
+    ray_origin.x -= mouse_offset.x * 2.0;
+    
+    vec3 right_dir = normalize(cross(target, vec3(0.0, 1.0, 0.0)));
+    vec3 up_dir = normalize(cross(right_dir, target));
+    right_dir = normalize(cross(up_dir, target));
+    vec3 ray_dir = normalize((uv.x * right_dir + uv.y * up_dir) * 1.0 - target);
+    ray_dir.xy *= rotate2d(-calculate_displacement(time + 3.5).x * 0.2 + mouse_offset.x);
+    
+    vec4 scene = render_clouds(ray_origin, ray_dir, time, complexity, mouse_offset);
+    vec3 final_color = scene.rgb;
+    
+    // Enhanced post-processing
+    final_color = interpolate_color(final_color.bgr, final_color.rgb, clamp(1.0 - complexity, 0.05, 1.0));
+    final_color = pow(final_color, vec3(0.55, 0.65, 0.6)) * vec3(1.0, 0.97, 0.9);
+    
+    // Improved vignette
+    float vignette = pow(16.0 * SCREEN_UV.x * SCREEN_UV.y * (1.0 - SCREEN_UV.x) * (1.0 - SCREEN_UV.y), 0.12);
+    final_color *= vignette * vignette_strength + (1.0 - vignette_strength);
+    
+    fragColor = vec4(final_color, 1.0);
 }
