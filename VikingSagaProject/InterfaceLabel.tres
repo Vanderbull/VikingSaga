@@ -10,29 +10,21 @@ constant = 0.5
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
-
-
+// Uniform to drive pulsation animation
+uniform float u_time : hint_range(0, 10);
 
 void vertex() {
-// FloatConstant:2
-	float n_out2p0 = 0.500000;
-
-
-// Output:0
-	COLOR.a = n_out2p0;
-
-
+    // Compute a pulsating alpha value based on time.
+    float pulsate = 0.5 + 0.25 * sin(u_time);
+    COLOR.a = pulsate;
 }
 
 void fragment() {
-// ColorConstant:6
-	vec4 n_out6p0 = vec4(1.000000, 0.211765, 1.000000, 1.000000);
-
-
-// Output:0
-	COLOR.rgb = vec3(n_out6p0.xyz);
-
-
+    // Base color constant (from VisualShaderNodeColorConstant)
+    vec4 base_color = vec4(1.000000, 0.211765, 1.000000, 1.000000);
+    // Modulate brightness using time-based pulsation
+    float pulse = 0.75 + 0.25 * sin(u_time);
+    COLOR.rgb = base_color.rgb * pulse;
 }
 "
 mode = 1
