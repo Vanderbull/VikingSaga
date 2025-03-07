@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dj1qky0yey7i2"]
 
-[ext_resource type="Script" path="res://city.gd" id="1_v6qag"]
-[ext_resource type="Texture2D" uid="uid://d1ap424xtuhjq" path="res://arts/village_background.png" id="2_fs0xu"]
+[ext_resource type="Script" uid="uid://c8vmna81y8yye" path="res://city.gd" id="1_v6qag"]
+[ext_resource type="Texture2D" uid="uid://bm421bfqic8x6" path="res://arts/village_background.png" id="2_fs0xu"]
 
 [node name="City" type="CanvasLayer"]
 script = ExtResource("1_v6qag")

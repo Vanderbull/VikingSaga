@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://l1cvid332el6"]
 
-[ext_resource type="Texture2D" uid="uid://cbhndbcd5qcx6" path="res://arts/Slime.png" id="1_r04nu"]
-[ext_resource type="AudioStream" uid="uid://cd137lpvfp4j4" path="res://arts/EasternKingbirdCal PE913002.mp3" id="2_j8mef"]
+[ext_resource type="Texture2D" uid="uid://prlbro3gxn" path="res://arts/Slime.png" id="1_r04nu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kvux8"]
 height = 36.0
@@ -215,11 +214,11 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gqudc"]
 _data = {
-"RESET": SubResource("Animation_w1l7l"),
-"walkDown": SubResource("Animation_53ous"),
-"walkLeft": SubResource("Animation_3l4fn"),
-"walkRight": SubResource("Animation_5x54l"),
-"walkUp": SubResource("Animation_umy76")
+&"RESET": SubResource("Animation_w1l7l"),
+&"walkDown": SubResource("Animation_53ous"),
+&"walkLeft": SubResource("Animation_3l4fn"),
+&"walkRight": SubResource("Animation_5x54l"),
+&"walkUp": SubResource("Animation_umy76")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwyno"]
@@ -228,6 +227,9 @@ height = 14.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wbb4d"]
 polygon = PackedVector2Array(-3, -9, 3, -9, 8, -4, 8, -2, 4, 0, -5, 0, -8, -2, -8, -4)
+
+[sub_resource type="Resource" id="Resource_6ftag"]
+metadata/__load_path__ = "res://arts/EasternKingbirdCal PE913002.mp3"
 
 [node name="slime" type="CharacterBody2D"]
 z_index = 1
@@ -263,7 +265,7 @@ visible = false
 occluder = SubResource("OccluderPolygon2D_wbb4d")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_j8mef")
+stream = SubResource("Resource_6ftag")
 pitch_scale = 0.55
 autoplay = true
 max_distance = 250.0

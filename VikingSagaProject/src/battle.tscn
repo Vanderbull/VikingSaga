@@ -1,9 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://b2akoxu275fes"]
 
-[ext_resource type="Script" path="res://src/battle.gd" id="1_ckmuf"]
-[ext_resource type="Texture2D" uid="uid://i206c3d3ljw7" path="res://battleback/battleback1.png" id="1_flp4i"]
-[ext_resource type="Texture2D" uid="uid://c560lujjeqqit" path="res://battleback/05.png" id="2_7anms"]
+[ext_resource type="Script" uid="uid://chv5e0b7loyca" path="res://src/battle.gd" id="1_ckmuf"]
 [ext_resource type="Resource" uid="uid://bb6nb4cu0bpb2" path="res://src/Dragon.tres" id="2_hk84q"]
+
+[sub_resource type="Resource" id="Resource_38vvt"]
+metadata/__load_path__ = "res://battleback/battleback1.png"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5j0q"]
 bg_color = Color(1, 0, 0, 1)
@@ -19,6 +20,9 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxdux"]
 bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_fluly"]
+metadata/__load_path__ = "res://battleback/05.png"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsyn"]
 bg_color = Color(1, 1, 1, 1)
@@ -69,7 +73,7 @@ enemy = ExtResource("2_hk84q")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_flp4i")
+texture = SubResource("Resource_38vvt")
 
 [node name="EnemyContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -109,7 +113,7 @@ vertical_alignment = 1
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
 layout_mode = 2
-texture = ExtResource("2_7anms")
+texture = SubResource("Resource_fluly")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="EnemyContainer"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2ydq1av5aq5f"]
 
-[ext_resource type="Script" path="res://data/proc_gen_world.gd" id="1_jy2ux"]
+[ext_resource type="Script" uid="uid://wtmfglcpi4mo" path="res://data/proc_gen_world.gd" id="1_jy2ux"]
 [ext_resource type="Texture2D" uid="uid://bj4q7tsvaqio1" path="res://assets/tilemap1.png" id="2_fs5fc"]
 [ext_resource type="Texture2D" uid="uid://cqrki44ym0n66" path="res://arts/Cloud Canopy.png" id="3_t235f"]
 

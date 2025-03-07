@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://yk5m3h7ehfw7"]
 
-[ext_resource type="Script" path="res://3d/Node3D.gd" id="1_cx6hl"]
-[ext_resource type="Texture2D" uid="uid://c71v7oyj7680d" path="res://arts/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_rjhhu"]
+[ext_resource type="Script" uid="uid://b4vlm4jfnp5qp" path="res://3d/Node3D.gd" id="1_cx6hl"]
+[ext_resource type="Texture2D" uid="uid://bhjwcdwhbc1nf" path="res://arts/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_rjhhu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1qxwr"]
 ground_bottom_color = Color(0.14902, 0.227451, 0.117647, 1)

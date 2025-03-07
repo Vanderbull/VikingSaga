@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b2foy53frpcbj"]
 
-[ext_resource type="Script" path="res://UISounds.gd" id="1_wpt3r"]
+[ext_resource type="Script" uid="uid://7hfyu3ih4bwj" path="res://UISounds.gd" id="1_wpt3r"]
 
 [node name="UISounds" type="Node"]
 script = ExtResource("1_wpt3r")

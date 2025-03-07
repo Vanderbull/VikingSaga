@@ -1,9 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbgjmlyo5mjbc"]
 
-[ext_resource type="Texture2D" uid="uid://dg12cdojqr4io" path="res://assets/TilesetHouse.png" id="1_n3pbh"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_0omnx"]
 radius = 24.0
+
+[sub_resource type="Resource" id="Resource_ih24s"]
+metadata/__load_path__ = "res://assets/TilesetHouse.png"
 
 [node name="village" type="StaticBody2D"]
 
@@ -12,6 +13,6 @@ shape = SubResource("CircleShape2D_0omnx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_n3pbh")
+texture = SubResource("Resource_ih24s")
 region_enabled = true
 region_rect = Rect2(0, 0, 48, 46)

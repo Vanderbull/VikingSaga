@@ -14,7 +14,7 @@ config/name="ForbiddenLands"
 config/description="Gamess"
 config/version="0"
 run/main_scene="res://scenes/game/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 

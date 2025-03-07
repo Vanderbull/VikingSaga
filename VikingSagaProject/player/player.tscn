@@ -1,16 +1,16 @@
 [gd_scene load_steps=39 format=3 uid="uid://bf4jil1d0pjen"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_b0x02"]
+[ext_resource type="Script" uid="uid://d2hkwg20n04pp" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://b04j2fn3muan3" path="res://arts/player.png" id="1_b63l5"]
 [ext_resource type="AudioStream" uid="uid://cbogiwhvcgd5d" path="res://sound/digging-v1-27585.mp3" id="4_vtp6p"]
 [ext_resource type="Texture2D" uid="uid://nd0vbyo1smja" path="res://assets/particle_examples/floaty_64.png" id="5_qevvx"]
-[ext_resource type="Script" path="res://DiggPlayer.gd" id="5_wwnyo"]
+[ext_resource type="Script" uid="uid://deiw28uljmsqv" path="res://DiggPlayer.gd" id="5_wwnyo"]
 [ext_resource type="AudioStream" uid="uid://bax8ulqh8ti8k" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
-[ext_resource type="Script" path="res://player/ChopPlayer.gd" id="7_0tvku"]
+[ext_resource type="Script" uid="uid://dtkwretf787h3" path="res://player/ChopPlayer.gd" id="7_0tvku"]
 [ext_resource type="Texture2D" uid="uid://bcb7g1bybhea3" path="res://arts/pixel-viking-1.jpg" id="8_snomj"]
 [ext_resource type="Texture2D" uid="uid://cystpoa88d7f0" path="res://arts/pixel-viking-2.jpg" id="9_uo6co"]
 [ext_resource type="Texture2D" uid="uid://cymskw1plmsiv" path="res://arts/pixel-viking-3.jpg" id="10_1q6hr"]
-[ext_resource type="Script" path="res://AnimatedFace.gd" id="11_mfvas"]
+[ext_resource type="Script" uid="uid://gw1h7i65agwm" path="res://AnimatedFace.gd" id="11_mfvas"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -101,11 +101,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sty48"]
 _data = {
-"RESET": SubResource("Animation_1di4i"),
-"walkDown": SubResource("Animation_04fdv"),
-"walkLeft": SubResource("Animation_rfdbj"),
-"walkRight": SubResource("Animation_rghk0"),
-"walkUp": SubResource("Animation_0cfn5")
+&"RESET": SubResource("Animation_1di4i"),
+&"walkDown": SubResource("Animation_04fdv"),
+&"walkLeft": SubResource("Animation_rfdbj"),
+&"walkRight": SubResource("Animation_rghk0"),
+&"walkUp": SubResource("Animation_0cfn5")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582m7"]
@@ -150,8 +150,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sy8eo"]
 _data = {
-"RESET": SubResource("Animation_vxlpq"),
-"hurtBlink": SubResource("Animation_bkqq3")
+&"RESET": SubResource("Animation_vxlpq"),
+&"hurtBlink": SubResource("Animation_bkqq3")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ib25o"]
@@ -182,8 +182,7 @@ particles_anim_v_frames = 7
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_qnxds"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -191,8 +190,7 @@ point_count = 2
 curve = SubResource("Curve_qnxds")
 
 [sub_resource type="Curve" id="Curve_8mco5"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -200,7 +198,7 @@ point_count = 2
 curve = SubResource("Curve_8mco5")
 
 [sub_resource type="Curve" id="Curve_q48s2"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -262,7 +260,7 @@ color = Color(1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_sty48")
+&"": SubResource("AnimationLibrary_sty48")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -279,7 +277,7 @@ shape = SubResource("CapsuleShape2D_c2vid")
 
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_sy8eo")
+&"": SubResource("AnimationLibrary_sy8eo")
 }
 
 [node name="hurtTimer" type="Timer" parent="."]
@@ -319,9 +317,9 @@ text = "Player"
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
 material = SubResource("CanvasItemMaterial_2dkp0")
-process_material = SubResource("ParticleProcessMaterial_760yx")
 texture = ExtResource("5_qevvx")
 lifetime = 6.0
+process_material = SubResource("ParticleProcessMaterial_760yx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

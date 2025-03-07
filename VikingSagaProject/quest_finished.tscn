@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk8t0obmxovhi"]
 
-[ext_resource type="Script" path="res://QuestFinished.gd" id="1_ysgwm"]
-[ext_resource type="Texture2D" uid="uid://cqxp14aw0cab5" path="res://assets/battleback/battleback3.png" id="2_x0q4v"]
+[ext_resource type="Script" uid="uid://cabxcyem64fu2" path="res://QuestFinished.gd" id="1_ysgwm"]
+[ext_resource type="Texture2D" uid="uid://fq1dcehthm0d" path="res://assets/battleback/battleback3.png" id="2_x0q4v"]
 
 [node name="QuestFinished" type="Control"]
 layout_mode = 3

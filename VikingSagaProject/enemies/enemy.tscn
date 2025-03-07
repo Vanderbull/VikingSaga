@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dr2yvenwrsrsx"]
 
-[ext_resource type="Texture2D" uid="uid://o7uh7txucp7v" path="res://arts/enemy.png" id="1_utptp"]
-[ext_resource type="AudioStream" uid="uid://b1jov5hv6cjhy" path="res://arts/giant-walking-fast-99752.mp3" id="2_mwtk5"]
+[ext_resource type="Texture2D" uid="uid://da8nloprl8x3c" path="res://arts/enemy.png" id="1_utptp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jhjg"]
 size = Vector2(16.7623, 19.9727)
@@ -140,17 +139,20 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wu6mx"]
 _data = {
-"RESET": SubResource("Animation_jo2f4"),
-"walkDown": SubResource("Animation_8dd2k"),
-"walkLeft": SubResource("Animation_5kasy"),
-"walkRight": SubResource("Animation_khiad"),
-"walkUp": SubResource("Animation_dp7y2")
+&"RESET": SubResource("Animation_jo2f4"),
+&"walkDown": SubResource("Animation_8dd2k"),
+&"walkLeft": SubResource("Animation_5kasy"),
+&"walkRight": SubResource("Animation_khiad"),
+&"walkUp": SubResource("Animation_dp7y2")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwf3"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qip84"]
 polygon = PackedVector2Array(8, 0, 8, -16, -8, -16, -8, 0)
+
+[sub_resource type="Resource" id="Resource_fw1ev"]
+metadata/__load_path__ = "res://arts/giant-walking-fast-99752.mp3"
 
 [node name="enemy" type="CharacterBody2D"]
 
@@ -182,7 +184,7 @@ visible = false
 occluder = SubResource("OccluderPolygon2D_qip84")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_mwtk5")
+stream = SubResource("Resource_fw1ev")
 max_distance = 100.0
 attenuation = 3.73213
 

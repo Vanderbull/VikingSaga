@@ -1,17 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhmlqeopnf20b"]
+[gd_scene load_steps=16 format=3 uid="uid://dhmlqeopnf20b"]
 
-[ext_resource type="Script" path="res://Menu.gd" id="1_7w6vc"]
-[ext_resource type="Texture2D" uid="uid://yvhiqeks3sn" path="res://arts/mainmenu.png" id="2_tmiws"]
-[ext_resource type="AudioStream" uid="uid://7xmejgof7hdy" path="res://assets/buttonclick.mp3" id="3_4ly8j"]
-[ext_resource type="AudioStream" uid="uid://bu4rdyua56vcj" path="res://assets/Nordic Folk Music – Jafnan _ Fantasy, Magical, Beautiful.mp3" id="4_tpkcm"]
-[ext_resource type="VideoStream" path="res://arts/Blazing Cube Logo_free.ogv" id="5_r06ob"]
-[ext_resource type="Texture2D" uid="uid://vmq4afkymq1e" path="res://arts/sprite_effects_fire_sprite_fx_0062.png" id="6_1cubx"]
+[ext_resource type="Script" uid="uid://dwl1k2tls2fq6" path="res://Menu.gd" id="1_7w6vc"]
+[ext_resource type="Texture2D" uid="uid://cyx5bwva6hahf" path="res://arts/mainmenu.png" id="2_tmiws"]
+[ext_resource type="VideoStream" uid="uid://c4qwuyltrrs8h" path="res://arts/Blazing Cube Logo_free.ogv" id="5_r06ob"]
+[ext_resource type="Texture2D" uid="uid://bd6bxfqaf4jrh" path="res://arts/sprite_effects_fire_sprite_fx_0062.png" id="6_1cubx"]
+
+[sub_resource type="Resource" id="Resource_4hy44"]
+metadata/__load_path__ = "res://assets/buttonclick.mp3"
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lws1k"]
 polygon = PackedVector2Array(0, 0, 80, 0, 80, 32, 0, 32)
 
+[sub_resource type="Resource" id="Resource_ytr4m"]
+metadata/__load_path__ = "res://assets/buttonclick.mp3"
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7j4mj"]
 polygon = PackedVector2Array(0, 0, 80, 0, 80, 32, 0, 32)
+
+[sub_resource type="Resource" id="Resource_l48gv"]
+metadata/__load_path__ = "res://assets/buttonclick.mp3"
+
+[sub_resource type="Resource" id="Resource_ecwwl"]
+metadata/__load_path__ = "res://assets/Nordic Folk Music – Jafnan _ Fantasy, Magical, Beautiful.mp3"
 
 [sub_resource type="Environment" id="Environment_sucyh"]
 background_mode = 3
@@ -63,7 +73,7 @@ action_mode = 0
 text = "PLAY"
 
 [node name="Click" type="AudioStreamPlayer" parent="Play"]
-stream = ExtResource("3_4ly8j")
+stream = SubResource("Resource_4hy44")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Play"]
 visible = false
@@ -78,7 +88,7 @@ offset_bottom = 335.0
 text = "OPTIONS"
 
 [node name="Click" type="AudioStreamPlayer" parent="Options"]
-stream = ExtResource("3_4ly8j")
+stream = SubResource("Resource_ytr4m")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Options"]
 occluder = SubResource("OccluderPolygon2D_7j4mj")
@@ -92,10 +102,10 @@ offset_bottom = 375.0
 text = "QUIT"
 
 [node name="Click" type="AudioStreamPlayer" parent="Quit"]
-stream = ExtResource("3_4ly8j")
+stream = SubResource("Resource_l48gv")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_tpkcm")
+stream = SubResource("Resource_ecwwl")
 volume_db = -20.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

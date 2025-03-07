@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bs4yurdwg2vup"]
 
-[ext_resource type="Texture2D" uid="uid://c71v7oyj7680d" path="res://arts/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_0ci8s"]
+[ext_resource type="Texture2D" uid="uid://bhjwcdwhbc1nf" path="res://arts/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_0ci8s"]
 
 [node name="Gameover" type="Control"]
 layout_mode = 3
