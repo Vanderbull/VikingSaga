@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dr2yvenwrsrsx"]
+[gd_scene load_steps=11 format=3 uid="uid://dr2yvenwrsrsx"]
 
 [ext_resource type="Texture2D" uid="uid://da8nloprl8x3c" path="res://arts/enemy.png" id="1_utptp"]
 
@@ -151,9 +151,6 @@ _data = {
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qip84"]
 polygon = PackedVector2Array(8, 0, 8, -16, -8, -16, -8, 0)
 
-[sub_resource type="Resource" id="Resource_fw1ev"]
-metadata/__load_path__ = "res://arts/giant-walking-fast-99752.mp3"
-
 [node name="enemy" type="CharacterBody2D"]
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
@@ -168,10 +165,10 @@ hframes = 4
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
 libraries = {
-"": SubResource("AnimationLibrary_wu6mx")
+&"": SubResource("AnimationLibrary_wu6mx")
 }
+autoplay = "RESET"
 
 [node name="hitBox" type="Area2D" parent="."]
 
@@ -184,7 +181,6 @@ visible = false
 occluder = SubResource("OccluderPolygon2D_qip84")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("Resource_fw1ev")
 max_distance = 100.0
 attenuation = 3.73213
 

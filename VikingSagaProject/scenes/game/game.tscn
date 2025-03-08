@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://6qr7pad6dpby" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://cystpoa88d7f0" path="res://arts/pixel-viking-2.jpg" id="52_u8tfn"]
 [ext_resource type="Texture2D" uid="uid://cymskw1plmsiv" path="res://arts/pixel-viking-3.jpg" id="53_fkv5y"]
 [ext_resource type="Script" uid="uid://gw1h7i65agwm" path="res://AnimatedFace.gd" id="54_yf7og"]
+[ext_resource type="Script" uid="uid://jkcyy8av0axp" path="res://scenes/game/control.gd" id="55_5dkr6"]
 [ext_resource type="Script" uid="uid://dv5hrmtd5dqcy" path="res://Label.gd" id="55_cd3h7"]
 [ext_resource type="Script" uid="uid://dawl85dulhm0m" path="res://WarmthLabel.gd" id="56_pw8nd"]
 [ext_resource type="Script" uid="uid://dfbfnm5p7bvaw" path="res://food_label.gd" id="57_yuym4"]
@@ -1144,6 +1145,13 @@ width = 256
 height = 256
 noise = SubResource("FastNoiseLite_lvbih")
 
+[sub_resource type="Gradient" id="Gradient_5dkr6"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bjk8q"]
+gradient = SubResource("Gradient_5dkr6")
+width = 5
+height = 5
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6f0p3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcsit"]
@@ -1370,17 +1378,34 @@ script = ExtResource("54_yf7og")
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="TextureRect" type="TextureRect" parent="Interface"]
+[node name="Control" type="Control" parent="Interface"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("55_5dkr6")
+
+[node name="Minimap" type="TextureRect" parent="Interface/Control"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -128.0
-offset_bottom = 128.0
+offset_left = 856.0
+offset_right = 1112.0
+offset_bottom = 256.0
 grow_horizontal = 0
 texture = SubResource("NoiseTexture2D_3i5fc")
 
+[node name="Marker" type="Sprite2D" parent="Interface/Control/Minimap"]
+texture = SubResource("GradientTexture2D_bjk8q")
+
+[node name="SubViewport" type="SubViewport" parent="Interface/Control/Minimap"]
+
+[node name="Camera2D" type="Camera2D" parent="Interface/Control/Minimap/SubViewport"]
+
 [node name="Label" type="Label" parent="Interface"]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_6f0p3")
 anchors_preset = 1
 anchor_left = 1.0

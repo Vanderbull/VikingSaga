@@ -100,7 +100,7 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 	texture.set_image(image)
 	return texture
 
-@onready var minimap_rect = $Interface/TextureRect  # Reference to the TextureRect node
+@onready var minimap_rect = $Interface/Control/Minimap
 
 func _ready():
 	patch_manager.apply_patch("res://patch_manager/patch_1.json")
