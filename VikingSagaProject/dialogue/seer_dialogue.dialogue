@@ -1,0 +1,20 @@
+~ start  
+Astrid Stormsight: [[The winds whisper|The runes shift|I see many paths]], traveler. What fate do ye seek?  
+
+Astrid Stormsight: The gods speak in riddles, but I listen. Ask, and I shall answer.  
+
+- What do the gods say of me?  
+	Astrid Stormsight: *Hmmm...* I see fire in yer path, the clash o’ steel, and a name sung in the halls of the mighty. But beware—the gods bless and curse alike.  
+
+- Tell me my future.  
+	Astrid Stormsight: *Heed my words, for the threads o’ fate are not kind to those who ignore ‘em.* I see stormclouds on yer horizon, but whether they bring doom or triumph… that is for ye to decide.  
+
+- Can fate be changed?  
+	Astrid Stormsight: *Some say fate is a river that cannot be stopped, but a wise warrior learns to steer the current.* Make yer choices well, and perhaps ye shall shape yer own saga.  
+
+- Start again => start  
+- End the conversation => END  
+
+Astrid Stormsight: The gods’ whispers fade, but their eyes remain upon ye. Tread wisely, traveler.  
+
+=> END

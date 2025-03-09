@@ -19,7 +19,6 @@ func game_over():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Getting world _ready...")
 	$"../HelpMenu".hide()
 	#player.position = Vector2i(0,0)
 	#player.global_position = Vector2i(0,0)

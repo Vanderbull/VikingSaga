@@ -1,0 +1,20 @@
+~ start  
+Gunnar Ravenshield: [[Hail, traveler|Come, let’s talk trade|What do ye seek?]] Gold and goods flow like the tides, and I have both in plenty.  
+
+Gunnar Ravenshield: Have ye coin to spend, or do ye come merely to look?  
+
+- What do you sell?  
+	Gunnar Ravenshield: Blades from the south, furs from the north, even a few trinkets said to bear magic. If it has worth, I trade it.  
+
+- Do you buy as well?  
+	Gunnar Ravenshield: Aye, if ye’ve got somethin’ of value. But I won’t be givin’ charity—if ye want silver, ye’d best have goods worth the weight.  
+
+- Tell me of distant lands.  
+	Gunnar Ravenshield: The world is vast, filled with gold, war, and strange gods. I’ve seen desert kings, ice-clad mountains, and cities that never sleep. But remember this—nowhere is safe for the fool or the weak.  
+
+- Start again => start  
+- End the conversation => END  
+
+Gunnar Ravenshield: If ye need goods, come find me again. If ye need advice, well… that’ll cost extra.  
+
+=> END

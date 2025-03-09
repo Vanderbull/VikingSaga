@@ -107,7 +107,8 @@ func updateAnimation():
 		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_accept"):
-		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/dialogue.dialogue"),"start")
+		#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/dialogue.dialogue"),"start")
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/viking_dialogue.dialogue"),"start")
 		return
 	var tile_pos = worldMap.local_to_map(position)
 	#globals.player_position = tile_pos
@@ -170,6 +171,39 @@ func _unhandled_input(event):
 				#$Camera2D.zoom.y -= 0.25
 			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
+func check_for_water():
+	var left = -16
+	var right = 16
+	var up = -16
+	var down = 16
+	
+	var position_temp = globals.character_position
+	print(position_temp)
+	var tile_position = worldMap.local_to_map(position_temp)
+	print(tile_position)
+	var tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
+	print(tile_pos_modified)
+		
+	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
+	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	print(globals.Terrain)
+	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(right,0))
+	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	print(globals.Terrain)
+	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(up,0))
+	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	print(globals.Terrain)
+	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(down,0))
+	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	print(globals.Terrain)
+		
+	#print(tile_pos)
+	#if( $"..".get_terrain_type(tile_pos.x, tile_pos.y) == "Water"):
+		#print("WATER")
+	#else:
+		#print("LAND")
+	return
+
 func _process(delta):
 	check_if_quest_finished()
 	if globals.CollectClay:
@@ -180,10 +214,17 @@ func _process(delta):
 		#get_tree().reload_current_scene()
 	game_manager.playerData.position = position
 	#delta = 0.00000000000
+
 	handleInput()
+	position = globals.character_position
+	var tile_pos = worldMap.local_to_map(position)
+	#print(tile_pos)
+	# velocity 300 needs to be changed to tile positions
+	#print(velocity)
 	move_and_slide()
 	updateAnimation()
-	
+		
+	check_for_water()
 	if near_fire:
 		globals.Warmth += 10.0 * delta  # Increase warmth while near fire
 		globals.Warmth = min(globals.Warmth, 100)  # Cap warmth

@@ -1,0 +1,20 @@
+~ start  
+Torvald Ironfist: [[Hail|Greetings|Well met]], traveler. What brings ye to these lands?  
+
+Torvald Ironfist: Be it shelter ye seek, or somethin’ more?  
+
+- I seek shelter.  
+	Torvald Ironfist: A wise choice. The North be harsh, and only fools challenge the storm without rest. Sit by the fire, warm yer bones.  
+
+- I seek glory.  
+	Torvald Ironfist: *Hah!* Glory, ye say? Then ye must prove yerself in battle! A blade grows dull without blood to whet it!  
+
+- Tell me of this land.  
+	Torvald Ironfist: These lands be old, shaped by war and winter. The strong thrive, the weak perish. If ye wish to survive, steel yer heart and sharpen yer axe.  
+
+- Start again => start  
+- End the conversation => END  
+
+Torvald Ironfist: If ye have more questions, then ask—but be quick, for battle waits for no man.  
+
+=> END

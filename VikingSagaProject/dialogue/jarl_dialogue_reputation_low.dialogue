@@ -1,0 +1,18 @@
+~ start  
+Jarl Eirik Shadowfang: [[Who stands before me?|What business have ye?|Speak quickly, I have matters to attend.]]  
+
+~ reputation_low  
+Jarl Eirik Shadowfang: *Hah!* I know of ye—nothing but trouble. Why should I not have ye thrown to the wolves?  
+
+- I seek redemption.  
+	Jarl Eirik Shadowfang: Redemption? *Hah!* Words are wind. If ye truly wish to change, prove it with blood and sweat. Perhaps there’s work suited for the likes of ye.  
+
+- I am no enemy to you.  
+	Jarl Eirik Shadowfang: That remains to be seen. Keep to yer own, and we’ll have no quarrel. But cross me again, and it’ll be the last thing ye do.  
+
+- Start again => start  
+- End the conversation => END  
+
+Jarl Eirik Shadowfang: I’ll be watching ye, so mind yer steps.  
+
+=> END

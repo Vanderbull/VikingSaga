@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=106 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://6qr7pad6dpby" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
@@ -72,6 +72,8 @@
 [ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_obvfi"]
 [ext_resource type="PackedScene" uid="uid://um0wu28oq78x" path="res://scenes/help_menu/help_menu.tscn" id="70_lcryn"]
 [ext_resource type="Script" uid="uid://bslwqgx2fms1h" path="res://patch_manager/patch_manager.gd" id="71_elrr2"]
+[ext_resource type="VideoStream" path="res://Blazing-Cube-Logo_free.ogv" id="73_bjk8q"]
+[ext_resource type="Script" uid="uid://ctvunuebwx34r" path="res://scenes/game/video_stream_player.gd" id="74_bf22m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
 texture = ExtResource("4_kqt3c")
@@ -1379,6 +1381,7 @@ script = ExtResource("54_yf7og")
 layer = 2
 
 [node name="Control" type="Control" parent="Interface"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1611,6 +1614,23 @@ visible = false
 
 [node name="PatchManager" type="Node" parent="."]
 script = ExtResource("71_elrr2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -36.0
+offset_right = 64.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("73_bjk8q")
+autoplay = true
+script = ExtResource("74_bf22m")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]

@@ -103,7 +103,7 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 @onready var minimap_rect = $Interface/Control/Minimap
 
 func _ready():
-	patch_manager.apply_patch("res://patch_manager/patch_1.json")
+	#patch_manager.apply_patch("res://patch_manager/patch_1.json")
 	
 	print("Getting GameManager ready...")
 	randomize()

@@ -1,0 +1,18 @@
+~ start  
+Eydis Ironhand: [[What do you want?|Ye want something forged?|Who’s bothering me now?]]  
+
+~ reputation_low  
+Eydis Ironhand: *Tch.* I've no time for wasters and thieves. If ye came to steal, turn around 'fore I break yer fingers.  
+
+- I'm here to work, not steal.  
+	Eydis Ironhand: Hah! Work, ye say? We'll see if ye can swing a hammer worth a damn.  
+
+- Just looking around.  
+	Eydis Ironhand: Then look fast and leave faster.  
+
+- Start again => start  
+- End the conversation => END  
+
+Eydis Ironhand: Now, if ye ain't buyin', get out of my forge. Work waits for no one.  
+
+=> END  

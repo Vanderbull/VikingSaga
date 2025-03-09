@@ -8,8 +8,8 @@ func is_tile_set(x: int, y: int) -> bool:
 	return cell_source_id != -1
 
 func get_tile_info(tilemap: TileMap, cell_position: Vector2i):
-	print("CELL X %i",cell_position.x)
-	print("CELL Y %i",cell_position.y)
+	#print("CELL X %i",cell_position.x)
+	#print("CELL Y %i",cell_position.y)
 	# Get the TileSet resource from the TileMap
 	var tileset = tilemap.tile_set
 	if not tileset:

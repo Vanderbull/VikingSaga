@@ -1,7 +1,12 @@
-## Registered plugin class for script-ide.
-## This plugin mainly 'modifies' the outline code that is inside 'script_editor_plugin.cpp'.
-## The internals of the C++ code are therefore important in order to make this plugin work
-## without interfering with the Engine.
+## The editor plugin entrypoint for Script-IDE. Made by Marius Hanl.
+##
+## This plugin mainly 'modifies' the script and outline code
+## that is inside 'script_editor_plugin.cpp'. The internals of the C++ code are therefore important
+## in order to make this plugin work without interfering with the Engine.
+##
+## All Script-IDE code does not use global class_names in order to not clutter projects using it.
+## Especially since this is a editor only plugin that is not needed in the final game.
+## So some code is untyped for this reason.
 @tool
 extends EditorPlugin
 
@@ -24,6 +29,10 @@ const HIDE_PRIVATE_MEMBERS: StringName = SCRIPT_IDE + &"hide_private_members"
 const AUTO_NAVIGATE_IN_FS: StringName = SCRIPT_IDE + &"auto_navigate_in_filesystem_dock"
 ## Editor setting to control whether the script list should be visible or not
 const SCRIPT_LIST_VISIBLE: StringName = SCRIPT_IDE + &"script_list_visible"
+## Editor setting to control whether the script tabs should be visible or not.
+const SCRIPT_TABS_VISIBLE: StringName = SCRIPT_IDE + &"script_tabs_visible"
+## Editor setting to control where the script tabs should be.
+const SCRIPT_TAB_POSITION_TOP: StringName = SCRIPT_IDE + &"script_tab_position_top"
 
 ## Editor setting for the 'Open Outline Popup' shortcut
 const OPEN_OUTLINE_POPUP: StringName = SCRIPT_IDE + &"open_outline_popup"
@@ -54,6 +63,8 @@ var is_outline_right: bool = true
 var is_script_list_visible: bool = false
 var hide_private_members: bool = false
 var is_auto_navigate_in_fs: bool = true
+var is_script_tabs_visible: bool = true
+var is_script_tabs_top: bool = true
 
 var open_outline_popup_shc: Shortcut
 var open_scripts_popup_shc: Shortcut
@@ -104,6 +115,7 @@ var old_script_type: StringName
 var selected_tab: int = -1
 var last_tab_hovered: int = -1
 var sync_script_list: bool = false
+var file_to_navigate: String = &""
 var suppress_settings_sync: bool = false
 
 const SHORTCUT_INTERVAL: int = 400
@@ -147,9 +159,10 @@ func _enter_tree() -> void:
 	create_set_scripts_popup()
 
 	# Configure tab container and bar.
-	scripts_tab_container.tabs_visible = true
+	scripts_tab_container.tabs_visible = is_script_tabs_visible
 	scripts_tab_container.drag_to_rearrange_enabled = true
 	scripts_tab_container.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	update_tabs_position()
 
 	scripts_tab_bar.tab_close_display_policy = TabBar.CLOSE_BUTTON_SHOW_ACTIVE_ONLY
 	scripts_tab_bar.drag_to_rearrange_enabled = true
@@ -349,30 +362,27 @@ func init_icons():
 	class_icon = create_editor_texture(load(script_path.path_join("icon/class.svg")))
 
 ## Initializes all settings.
-## Every settings can be changed while this plugin is active, which will override this setting.
+## Every setting can be changed while this plugin is active, which will override them.
 func init_settings():
 	is_outline_right = get_setting(OUTLINE_POSITION_RIGHT, is_outline_right)
 	hide_private_members = get_setting(HIDE_PRIVATE_MEMBERS, hide_private_members)
 	is_script_list_visible = get_setting(SCRIPT_LIST_VISIBLE, is_script_list_visible)
 	is_auto_navigate_in_fs = get_setting(AUTO_NAVIGATE_IN_FS, is_auto_navigate_in_fs)
+	is_script_tabs_visible = get_setting(SCRIPT_TABS_VISIBLE, is_script_tabs_visible)
+	is_script_tabs_top = get_setting(SCRIPT_TAB_POSITION_TOP, is_script_tabs_top)
 
 ## Initializes all shortcuts.
-## Every shortcut can be changed while plugin is active, which will override them.
+## Every shortcut can be changed while this plugin is active, which will override them.
 func init_shortcuts():
 	var editor_settings: EditorSettings = get_editor_settings()
 	if (!editor_settings.has_setting(OPEN_OUTLINE_POPUP)):
 		var shortcut: Shortcut = Shortcut.new()
 		var event: InputEventKey = InputEventKey.new()
 		event.device = -1
-		event.ctrl_pressed = true
+		event.command_or_control_autoremap = true
 		event.keycode = KEY_O
 
-		var event2: InputEventKey = InputEventKey.new()
-		event2.device = -1
-		event2.meta_pressed = true
-		event2.keycode = KEY_O
-
-		shortcut.events = [ event, event2 ]
+		shortcut.events = [ event ]
 		editor_settings.set_setting(OPEN_OUTLINE_POPUP, shortcut)
 		editor_settings.set_initial_value(OPEN_OUTLINE_POPUP, shortcut, false)
 
@@ -380,15 +390,10 @@ func init_shortcuts():
 		var shortcut: Shortcut = Shortcut.new()
 		var event: InputEventKey = InputEventKey.new()
 		event.device = -1
-		event.ctrl_pressed = true
+		event.command_or_control_autoremap = true
 		event.keycode = KEY_U
 
-		var event2: InputEventKey = InputEventKey.new()
-		event2.device = -1
-		event2.meta_pressed = true
-		event2.keycode = KEY_U
-
-		shortcut.events = [ event, event2 ]
+		shortcut.events = [ event ]
 		editor_settings.set_setting(OPEN_SCRIPTS_POPUP, shortcut)
 		editor_settings.set_initial_value(OPEN_SCRIPTS_POPUP, shortcut, false)
 
@@ -441,6 +446,10 @@ func update_editor():
 	update_script_text_filter()
 
 	if (sync_script_list):
+		if (file_to_navigate != &""):
+			EditorInterface.get_file_system_dock().navigate_to_path(file_to_navigate)
+			file_to_navigate = &""
+
 		sync_tab_with_script_list()
 		sync_script_list = false
 
@@ -452,6 +461,7 @@ func open_quick_search():
 	if (quick_open_popup == null):
 		var script_path: String = get_script().get_path().get_base_dir()
 		quick_open_popup = load(script_path.path_join("quickopen/quick_open_panel.tscn")).instantiate()
+		quick_open_popup.plugin = self
 
 	if (quick_open_popup.get_parent() != null):
 		quick_open_popup.get_parent().remove_child(quick_open_popup)
@@ -484,7 +494,7 @@ func prepare_scripts_popup():
 	script_filter_txt.grab_focus()
 
 func restore_scripts_list():
-	script_filter_txt.text = ""
+	script_filter_txt.text = &""
 
 	update_script_list_visibility()
 
@@ -569,7 +579,7 @@ func open_outline_popup():
 		btn.set_pressed_no_signal(true)
 
 	var old_text: String = outline_filter_txt.text
-	outline_filter_txt.text = ""
+	outline_filter_txt.text = &""
 
 	if (outline_popup == null):
 		outline_popup = PopupPanel.new()
@@ -586,9 +596,8 @@ func open_outline_popup():
 		outline_popup.get_parent().remove_child(outline_popup)
 	outline_popup.popup_exclusive_on_parent(EditorInterface.get_script_editor(), get_center_editor_rect())
 
-	outline_filter_txt.grab_focus()
-
 	update_outline()
+	outline_filter_txt.grab_focus()
 
 func on_outline_popup_hidden(outline_initially_closed: bool, old_text: String, button_flags: Array[bool]):
 	outline_popup.popup_hide.disconnect(on_outline_popup_hidden)
@@ -620,12 +629,12 @@ func open_scripts_popup():
 
 	script_filter_txt.grab_focus()
 
-## Removes the script filter text and emits the signal so that the Tabs stay
+## Removes the script filter text and emits the signal so that the tabs stay
 ## and we do not break anything there.
 func update_script_text_filter():
-	if (script_filter_txt.text != ""):
-		script_filter_txt.text = ""
-		script_filter_txt.text_changed.emit("")
+	if (script_filter_txt.text != &""):
+		script_filter_txt.text = &""
+		script_filter_txt.text_changed.emit(&"")
 
 func get_current_script() -> Script:
 	var script_editor: ScriptEditor = EditorInterface.get_script_editor()
@@ -688,9 +697,11 @@ func goto_line(index: int):
 
 	var code_edit: CodeEdit = script_editor.get_current_editor().get_base_editor()
 	code_edit.set_caret_line(index)
-	code_edit.set_caret_column(0)
 	code_edit.set_v_scroll(index)
+	code_edit.set_caret_column(code_edit.get_line(index).length())
 	code_edit.set_h_scroll(0)
+
+	code_edit.grab_focus()
 
 func create_filter_btn(icon: ImageTexture, title: String) -> Button:
 	var btn: Button = Button.new()
@@ -731,7 +742,6 @@ func on_right_click(event: InputEvent, btn: Button):
 	if (!mouse_event.is_pressed() || mouse_event.button_index != MOUSE_BUTTON_RIGHT):
 		return
 
-	btn.grab_focus()
 	btn.button_pressed = true
 
 	var pressed_state: bool = false
@@ -747,10 +757,13 @@ func on_right_click(event: InputEvent, btn: Button):
 		if (btn != other_btn):
 			other_btn.button_pressed = !pressed_state
 
+	outline_filter_txt.grab_focus()
+
 func on_filter_button_pressed(pressed: bool, btn: Button):
 	set_setting(btn.get_meta(&"property"), pressed)
 
 	update_outline()
+	outline_filter_txt.grab_focus()
 
 func update_outline_position():
 	if (is_outline_right):
@@ -809,6 +822,18 @@ func sync_settings():
 				is_script_list_visible = new_script_list_visible
 
 				update_script_list_visibility()
+		elif (setting == SCRIPT_TABS_VISIBLE):
+			var new_script_tabs_visible: bool = get_setting(SCRIPT_TABS_VISIBLE, is_script_tabs_visible)
+			if (new_script_tabs_visible != is_script_tabs_visible):
+				is_script_tabs_visible = new_script_tabs_visible
+
+				scripts_tab_container.tabs_visible = is_script_tabs_visible
+		elif (setting == SCRIPT_TAB_POSITION_TOP):
+			var new_script_tabs_top: bool = get_setting(SCRIPT_TAB_POSITION_TOP, is_script_tabs_top)
+			if (new_script_tabs_top != is_script_tabs_top):
+				is_script_tabs_top = new_script_tabs_top
+
+				update_tabs_position()
 		elif (setting == AUTO_NAVIGATE_IN_FS):
 			is_auto_navigate_in_fs = get_setting(AUTO_NAVIGATE_IN_FS, is_auto_navigate_in_fs)
 		elif (setting == OPEN_OUTLINE_POPUP):
@@ -865,7 +890,6 @@ func on_tab_changed(index: int):
 		old_script_editor_base = script_editor_base
 
 	sync_script_list = true
-	schedule_update()
 
 	if (is_auto_navigate_in_fs && script_editor.get_current_script() != null):
 		var file: String = script_editor.get_current_script().get_path()
@@ -874,7 +898,11 @@ func on_tab_changed(index: int):
 			# We navigate to the scene in case of a built-in script.
 			file = file.get_slice(BUILT_IN_SCRIPT, 0)
 
-		EditorInterface.get_file_system_dock().navigate_to_path(file)
+		file_to_navigate = file
+	else:
+		file_to_navigate = &""
+
+	schedule_update()
 
 func update_selected_tab():
 	if (selected_tab == -1):
@@ -883,13 +911,22 @@ func update_selected_tab():
 	if (scripts_item_list.item_count == 0):
 		return
 
-	scripts_tab_container.set_tab_title(selected_tab, scripts_item_list.get_item_text(selected_tab))
-	scripts_tab_container.set_tab_icon(selected_tab, scripts_item_list.get_item_icon(selected_tab))
+	update_tab(selected_tab)
 
 func update_tabs():
 	for index: int in scripts_tab_container.get_tab_count():
-		scripts_tab_container.set_tab_title(index, scripts_item_list.get_item_text(index))
-		scripts_tab_container.set_tab_icon(index, scripts_item_list.get_item_icon(index))
+		update_tab(index)
+
+func update_tab(index: int):
+	scripts_tab_container.set_tab_title(index, scripts_item_list.get_item_text(index))
+	scripts_tab_container.set_tab_icon(index, scripts_item_list.get_item_icon(index))
+	scripts_tab_container.set_tab_tooltip(index, scripts_item_list.get_item_tooltip(index))
+
+func update_tabs_position():
+	if (is_script_tabs_top):
+		scripts_tab_container.tabs_position = TabContainer.POSITION_TOP
+	else:
+		scripts_tab_container.tabs_position = TabContainer.POSITION_BOTTOM
 
 #region Outline (cache) update
 func update_keywords(script: Script):
@@ -1089,16 +1126,16 @@ func on_tab_hovered(idx: int):
 	last_tab_hovered = idx
 
 func on_tab_bar_gui_input(event: InputEvent):
-	if last_tab_hovered == -1:
+	if (last_tab_hovered == -1):
 		return
 
-	if event is InputEventMouseMotion:
-		scripts_tab_bar.tooltip_text = get_res_path(last_tab_hovered)
-
-	if event is InputEventMouseButton:
+	if (event is InputEventMouseButton):
 		if event.is_pressed() and event.button_index == MOUSE_BUTTON_MIDDLE:
 			update_script_text_filter()
 			simulate_item_clicked(last_tab_hovered, MOUSE_BUTTON_MIDDLE)
+
+			if (last_tab_hovered >= scripts_tab_bar.tab_count - 1):
+				last_tab_hovered = -1
 
 func on_active_tab_rearranged(idx_to: int):
 	var control: Control = scripts_tab_container.get_tab_control(selected_tab)
@@ -1121,6 +1158,7 @@ func get_res_path(idx: int) -> String:
 	return path_var
 
 func on_tab_rmb(tab_idx: int):
+	update_script_text_filter()
 	simulate_item_clicked(tab_idx, MOUSE_BUTTON_RIGHT)
 
 func on_tab_close(tab_idx: int):
@@ -1128,8 +1166,6 @@ func on_tab_close(tab_idx: int):
 	simulate_item_clicked(tab_idx, MOUSE_BUTTON_MIDDLE)
 
 func simulate_item_clicked(tab_idx: int, mouse_idx: int):
-	script_filter_txt.text = ""
-
 	scripts_item_list.item_clicked.emit(tab_idx, scripts_item_list.get_local_mouse_position(), mouse_idx)
 #endregion
 
