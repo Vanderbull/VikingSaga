@@ -1,0 +1,20 @@
+~ start  
+Vagn Blackhammer: [[Hail|Well met|What do ye need?]], traveler. If it's steel ye seek, ye’ve come to the right place.  
+
+Vagn Blackhammer: I forge weapons and armor fit for warriors. What be yer need?  
+
+- I need a weapon.  
+	Vagn Blackhammer: Aye, a warrior after me own heart! Tell me, do ye seek a blade swift as the wind, or an axe that splits shields like driftwood?  
+
+- I need armor.  
+	Vagn Blackhammer: Good choice! No sense in rushin’ to Valhalla if ye can stand and fight longer. I’ve got mail strong as a bear’s hide and plate that laughs at spearheads.  
+
+- Tell me of your craft.  
+	Vagn Blackhammer: Ha! A true warrior respects the forge. Steel is born o’ fire and toil, just like a warrior’s spirit. A weak hand makes brittle steel, and brittle steel gets men killed.  
+
+- Start again => start  
+- End the conversation => END  
+
+Vagn Blackhammer: If ye’ve coin and need, I’ll forge ye somethin’ worthy of the sagas. Elsewise, be off with ye—I’ve work to do.  
+
+=> END 
