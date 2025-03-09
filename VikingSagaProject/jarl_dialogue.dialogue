@@ -1,0 +1,20 @@
+~ start  
+Jarl Eirik Shadowfang: [[Who stands before me?|What business have ye?|Speak quickly, I have matters to attend.]]  
+
+Jarl Eirik Shadowfang: I rule these lands with iron and wisdom. If ye’ve come to waste me time, turn back now.  
+
+- I seek work.  
+	Jarl Eirik Shadowfang: Hah! A strong arm and a quick blade always find purpose here. There’s coin for those who know how to take it… and blood for those who don’t.  
+
+- I bring news.  
+	Jarl Eirik Shadowfang: *Hmm…* Speak then, and speak true. Lies in my hall are paid for in steel.  
+
+- What must one do to earn your favor?  
+	Jarl Eirik Shadowfang: Strength, loyalty, and a will that bends to no man. Prove yerself in battle, serve me well, and ye shall find a place in my hall.  
+
+- Start again => start  
+- End the conversation => END  
+
+Jarl Eirik Shadowfang: If ye wish to stand among the strong, do not disappoint me.  
+
+=> END

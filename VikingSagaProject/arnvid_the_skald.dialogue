@@ -1,0 +1,18 @@
+~ start  
+Arnvid the Skald: [[Ah, a wanderer comes my way!|Who seeks the skald’s song?|What brings ye to my fire?]]  
+
+~ reputation_low  
+Arnvid the Skald: *Oh ho!* I’ve heard tales of ye… none of ‘em good. Why should I waste my voice on a scoundrel?  
+
+- I’m not as bad as they say.  
+	Arnvid the Skald: Words are cheap. Deeds, now those I remember.  
+
+- Every villain has a tale worth telling.  
+	Arnvid the Skald: *Hah!* Ye think so? Then tell me, what legend shall ye leave behind?  
+
+- Start again => start  
+- End the conversation => END  
+
+Arnvid the Skald: Be gone, and do something worth singing about!  
+
+=> END

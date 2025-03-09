@@ -1,0 +1,18 @@
+~ reputation_neutral  
+Jarl Eirik Shadowfang: *Hmm…* Ye are known, but not well enough. What brings ye to my hall?  
+
+- I seek work.  
+	Jarl Eirik Shadowfang: There’s always work for those with strong arms and sharp wits. Prove yerself, and perhaps ye’ll earn more than just coin.  
+
+- I bring news.  
+	Jarl Eirik Shadowfang: *Speak then, and speak true.* A Jarl has no time for falsehoods.  
+
+- How does one earn your favor?  
+	Jarl Eirik Shadowfang: Strength, loyalty, and wisdom. A warrior with none is a dead man walkin’. Show me ye have them, and I may call ye ally.  
+
+- Start again => start  
+- End the conversation => END  
+
+Jarl Eirik Shadowfang: If ye wish to stand among the strong, do not disappoint me.  
+
+=> END
