@@ -107,7 +107,8 @@ func updateAnimation():
 		
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_accept"):
-		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/dialogue.dialogue"),"start")
+		#DialogueManager.show_example_dialogue_balloon(load("res://dialogue/dialogue.dialogue"),"start")
+		DialogueManager.show_example_dialogue_balloon(load("res://dialogue/viking_dialogue.dialogue"),"start")
 		return
 	var tile_pos = worldMap.local_to_map(position)
 	#globals.player_position = tile_pos
