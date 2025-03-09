@@ -1379,6 +1379,7 @@ script = ExtResource("54_yf7og")
 layer = 2
 
 [node name="Control" type="Control" parent="Interface"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
