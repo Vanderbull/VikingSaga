@@ -46,6 +46,32 @@ func spawn_animate_fire():
 		#var animate_fire_random_y = randi_range(0, 0)
 		animate_fire_instance.position = Vector2(globals.character_position.x, globals.character_position.y)
 		add_child(animate_fire_instance)
+
+var occupied_positions = []
+
+func is_position_valid(new_pos: Vector2, min_distance: float) -> bool:
+	for pos in occupied_positions:
+		if pos.distance_to(new_pos) < min_distance:
+			return false
+	return true
+
+func place_city(city_instance: Node2D, min_distance: float = 200.0):
+	if city_instance is Node2D:
+		var attempts = 100  # Avoid infinite loops by limiting attempts
+		while attempts > 0:
+			var random_x = randi_range(-2500, 2500)
+			var random_y = randi_range(-2500, 2500)
+			var new_position = Vector2(random_x, random_y)
+			
+			if is_position_valid(new_position, min_distance):
+				city_instance.position = new_position
+				occupied_positions.append(new_position)
+				add_child(city_instance)
+				return  # Exit after placing
+
+			attempts -= 1
+		
+		print("Warning: Could not find a valid position for city instance.")
 		
 func spawn_scene():
 	# Create an instance of the loaded scene
@@ -71,14 +97,16 @@ func spawn_scene():
 	# -------------------------------------------------------------------
 		# Create an instance of the loaded scene
 	var city_instance = city_1_scene.instantiate()
-	# Optionally, set its position or other properties if it's a 2D/3D node
-	if city_instance is Node2D:
-		# Generate random position within a range
-		var random_x = randi_range(-2500, 2500)  # Adjust range based on your game's resolution
-		var random_y = randi_range(-2500, 2500)
-		city_instance.position = Vector2(random_x, random_y)
-	# Add the instance to the scene tree
-	add_child(city_instance)
+	
+	place_city(city_instance,100)
+	## Optionally, set its position or other properties if it's a 2D/3D node
+	#if city_instance is Node2D:
+		## Generate random position within a range
+		#var random_x = randi_range(-2500, 2500)  # Adjust range based on your game's resolution
+		#var random_y = randi_range(-2500, 2500)
+		#city_instance.position = Vector2(random_x, random_y)
+	## Add the instance to the scene tree
+	#add_child(city_instance)
 
 func generate_minimap(size: int, margin: int) -> ImageTexture:
 	var noise = FastNoiseLite.new()

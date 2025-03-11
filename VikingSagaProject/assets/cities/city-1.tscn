@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd77ae3om5rpc"]
+[gd_scene load_steps=4 format=3 uid="uid://dd77ae3om5rpc"]
 
+[ext_resource type="Script" uid="uid://dqn6xn02ko8kj" path="res://assets/cities/city-1.gd" id="1_cy4j6"]
 [ext_resource type="Texture2D" uid="uid://723d511476x" path="res://assets/city.png" id="1_svvup"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy4j6"]
-size = Vector2(120, 120)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_cy4j6"]
+points = PackedVector2Array(-39, -63, -91, -23, -90, 16, -82, 64, -20, 95, 60, 91, 111, 52, 104, -35, 42, -69)
 
 [node name="City-1" type="Node2D"]
+script = ExtResource("1_cy4j6")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_svvup")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cy4j6")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(1, 1)
+shape = SubResource("ConvexPolygonShape2D_cy4j6")
