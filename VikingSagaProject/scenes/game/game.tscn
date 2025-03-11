@@ -1,58 +1,57 @@
-[gd_scene load_steps=106 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
 
-[ext_resource type="Script" uid="uid://6qr7pad6dpby" path="res://game_manager.gd" id="1_4jurc"]
+[ext_resource type="Script" uid="uid://8al711073ufh" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
-[ext_resource type="Script" uid="uid://be8fi4yud137j" path="res://scenes/world.gd" id="3_ur7m5"]
-[ext_resource type="Texture2D" uid="uid://cjcrjort8qn05" path="res://assets/tiles2.png" id="4_kqt3c"]
-[ext_resource type="Texture2D" uid="uid://bu8nh61bup0cl" path="res://arts/fireplace.png" id="5_x5ltl"]
+[ext_resource type="Script" uid="uid://qretjuuq67yj" path="res://scenes/world.gd" id="3_ur7m5"]
+[ext_resource type="Texture2D" uid="uid://cp4bayitvsdfq" path="res://assets/tiles2.png" id="4_kqt3c"]
+[ext_resource type="Texture2D" uid="uid://dhb8civxd7wa2" path="res://arts/fireplace.png" id="5_x5ltl"]
 [ext_resource type="Script" uid="uid://d37jt2dxe6dx3" path="res://TileMap.gd" id="6_yo1j3"]
 [ext_resource type="TileSet" uid="uid://dg6peakmvtadd" path="res://tilesets/water_tile_set.tres" id="7_fm2c5"]
 [ext_resource type="PackedScene" uid="uid://bf4jil1d0pjen" path="res://player/player.tscn" id="8_bf7mr"]
-[ext_resource type="AudioStream" uid="uid://hqfh0886k737" path="res://sound/Floor/Steps_floor-001.ogg" id="9_auo81"]
-[ext_resource type="AudioStream" uid="uid://vp08g138fhrh" path="res://sound/Floor/Steps_floor-002.ogg" id="10_ia7ds"]
-[ext_resource type="AudioStream" uid="uid://dljty2xeoyhni" path="res://sound/Floor/Steps_floor-003.ogg" id="11_wfvv1"]
-[ext_resource type="AudioStream" uid="uid://dmrdvth8g7wge" path="res://sound/Floor/Steps_floor-004.ogg" id="12_hdqtt"]
-[ext_resource type="AudioStream" uid="uid://d3txvorrsn0ys" path="res://sound/Floor/Steps_floor-005.ogg" id="13_7e1oa"]
-[ext_resource type="AudioStream" uid="uid://kehrn6r2r4np" path="res://sound/Floor/Steps_floor-006.ogg" id="14_2cn8o"]
-[ext_resource type="AudioStream" uid="uid://61u5y1tdv7fe" path="res://sound/Floor/Steps_floor-007.ogg" id="15_ojdxo"]
-[ext_resource type="AudioStream" uid="uid://cfhsc4ghbcqft" path="res://sound/Floor/Steps_floor-008.ogg" id="16_u8umn"]
-[ext_resource type="AudioStream" uid="uid://c8otg6y4rlgfo" path="res://sound/Floor/Steps_floor-009.ogg" id="17_k0smf"]
-[ext_resource type="AudioStream" uid="uid://c1q12hj38bkpc" path="res://sound/Floor/Steps_floor-010.ogg" id="18_p6wm2"]
-[ext_resource type="AudioStream" uid="uid://cnai3mpih3w4e" path="res://sound/Floor/Steps_floor-011.ogg" id="19_fu64s"]
-[ext_resource type="AudioStream" uid="uid://bfbhaonav7xtg" path="res://sound/Floor/Steps_floor-012.ogg" id="20_scqnj"]
-[ext_resource type="AudioStream" uid="uid://bpivh2oy61iw5" path="res://sound/Floor/Steps_floor-013.ogg" id="21_w2b86"]
-[ext_resource type="AudioStream" uid="uid://bkgt4ff7ib0h6" path="res://sound/Floor/Steps_floor-014.ogg" id="22_o5t8j"]
-[ext_resource type="AudioStream" uid="uid://dpq0oomp7wbwr" path="res://sound/Floor/Steps_floor-015.ogg" id="23_6ykay"]
-[ext_resource type="AudioStream" uid="uid://bcnik4j7qba5t" path="res://sound/Floor/Steps_floor-016.ogg" id="24_b1ajv"]
-[ext_resource type="AudioStream" uid="uid://d4matnu0dp01a" path="res://sound/Floor/Steps_floor-017.ogg" id="25_2or2g"]
-[ext_resource type="AudioStream" uid="uid://d3hpgei483hjw" path="res://sound/Floor/Steps_floor-018.ogg" id="26_hcxug"]
-[ext_resource type="AudioStream" uid="uid://dtn8gmc04p5px" path="res://sound/Floor/Steps_floor-019.ogg" id="27_54kpr"]
-[ext_resource type="AudioStream" uid="uid://dyqkgufmblpus" path="res://sound/Floor/Steps_floor-020.ogg" id="28_eo0bp"]
-[ext_resource type="AudioStream" uid="uid://paqu7ogltbj8" path="res://sound/Floor/Steps_floor-021.ogg" id="29_mgpfi"]
-[ext_resource type="AudioStream" uid="uid://c3i52jybf7thl" path="res://sound/Chopping Wood .wav" id="30_y1c8g"]
-[ext_resource type="AudioStream" uid="uid://5noid17mg0km" path="res://sound/digging-v1-27585.mp3" id="31_pox4k"]
+[ext_resource type="AudioStream" uid="uid://bk8p18nh8q76c" path="res://sound/Floor/Steps_floor-001.ogg" id="9_auo81"]
+[ext_resource type="AudioStream" uid="uid://ulvl701mxnxx" path="res://sound/Floor/Steps_floor-002.ogg" id="10_ia7ds"]
+[ext_resource type="AudioStream" uid="uid://bh448achllst8" path="res://sound/Floor/Steps_floor-003.ogg" id="11_wfvv1"]
+[ext_resource type="AudioStream" uid="uid://bekw3p46dlmaj" path="res://sound/Floor/Steps_floor-004.ogg" id="12_hdqtt"]
+[ext_resource type="AudioStream" uid="uid://c2rl1i5xtrd0p" path="res://sound/Floor/Steps_floor-005.ogg" id="13_7e1oa"]
+[ext_resource type="AudioStream" uid="uid://d1d7t3jkstxmj" path="res://sound/Floor/Steps_floor-006.ogg" id="14_2cn8o"]
+[ext_resource type="AudioStream" uid="uid://doenwgd8kk01y" path="res://sound/Floor/Steps_floor-007.ogg" id="15_ojdxo"]
+[ext_resource type="AudioStream" uid="uid://djrgijgtiltxa" path="res://sound/Floor/Steps_floor-008.ogg" id="16_u8umn"]
+[ext_resource type="AudioStream" uid="uid://bltvyapuii1vt" path="res://sound/Floor/Steps_floor-009.ogg" id="17_k0smf"]
+[ext_resource type="AudioStream" uid="uid://dl6jhiq66k4j7" path="res://sound/Floor/Steps_floor-010.ogg" id="18_p6wm2"]
+[ext_resource type="AudioStream" uid="uid://hvmpo6deefj7" path="res://sound/Floor/Steps_floor-011.ogg" id="19_fu64s"]
+[ext_resource type="AudioStream" uid="uid://cxljq4pm5qwjo" path="res://sound/Floor/Steps_floor-012.ogg" id="20_scqnj"]
+[ext_resource type="AudioStream" uid="uid://bt3y1ce1p1f3j" path="res://sound/Floor/Steps_floor-013.ogg" id="21_w2b86"]
+[ext_resource type="AudioStream" uid="uid://c2u5agd4u8vxh" path="res://sound/Floor/Steps_floor-014.ogg" id="22_o5t8j"]
+[ext_resource type="AudioStream" uid="uid://badpiuscq7och" path="res://sound/Floor/Steps_floor-015.ogg" id="23_6ykay"]
+[ext_resource type="AudioStream" uid="uid://dlovuuv3u03e1" path="res://sound/Floor/Steps_floor-016.ogg" id="24_b1ajv"]
+[ext_resource type="AudioStream" uid="uid://d25j2blwni8pr" path="res://sound/Floor/Steps_floor-017.ogg" id="25_2or2g"]
+[ext_resource type="AudioStream" uid="uid://bw6xjo3an73gu" path="res://sound/Floor/Steps_floor-018.ogg" id="26_hcxug"]
+[ext_resource type="AudioStream" uid="uid://b33g63y08kp1v" path="res://sound/Floor/Steps_floor-019.ogg" id="27_54kpr"]
+[ext_resource type="AudioStream" uid="uid://cgcerb4t133p5" path="res://sound/Floor/Steps_floor-020.ogg" id="28_eo0bp"]
+[ext_resource type="AudioStream" uid="uid://3srrgug2nm5i" path="res://sound/Floor/Steps_floor-021.ogg" id="29_mgpfi"]
+[ext_resource type="AudioStream" uid="uid://cs8p62hl5lu4n" path="res://sound/Chopping Wood .wav" id="30_y1c8g"]
+[ext_resource type="AudioStream" uid="uid://cbogiwhvcgd5d" path="res://sound/digging-v1-27585.mp3" id="31_pox4k"]
 [ext_resource type="Script" uid="uid://h8gyec2llufk" path="res://scenes/follow cam.gd" id="32_qn1h5"]
-[ext_resource type="AudioStream" uid="uid://djs21omuakvi4" path="res://sound/aachen_burning-fireplace-crackling-fire-soundswav-14561.mp3" id="33_u2325"]
+[ext_resource type="AudioStream" uid="uid://ci6f3e08yu4lm" path="res://sound/aachen_burning-fireplace-crackling-fire-soundswav-14561.mp3" id="33_u2325"]
 [ext_resource type="Script" uid="uid://civlcr546yvka" path="res://TileMap2.gd" id="34_v1nyk"]
-[ext_resource type="Texture2D" uid="uid://dm0g8yhi10lev" path="res://assets/MinifolksForestAnimals/Outline/MiniWolf.png" id="35_ll28t"]
-[ext_resource type="Texture2D" uid="uid://ca0fja144eg8u" path="res://assets/MinifolksForestAnimals/Outline/MiniFox.png" id="36_6vrqx"]
-[ext_resource type="Texture2D" uid="uid://c16p1qshrinvi" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer2.png" id="37_jhuw1"]
-[ext_resource type="Texture2D" uid="uid://dlapui3ulblcs" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer1.png" id="38_hs875"]
-[ext_resource type="Texture2D" uid="uid://cgkymhugrl8wg" path="res://assets/MinifolksForestAnimals/Outline/MiniBunny.png" id="39_tfrsd"]
-[ext_resource type="Texture2D" uid="uid://dxgb75lnoym6s" path="res://assets/MinifolksForestAnimals/Outline/MiniBoar.png" id="40_2ad58"]
-[ext_resource type="Texture2D" uid="uid://05806t077jrv" path="res://assets/MinifolksForestAnimals/Outline/MiniBird.png" id="41_eae5g"]
-[ext_resource type="Texture2D" uid="uid://c1hfk248cyy0f" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="42_h3rcq"]
-[ext_resource type="Script" uid="uid://bculqgtkkpkly" path="res://AnimalMap.gd" id="43_fgl5k"]
-[ext_resource type="Texture2D" uid="uid://cl32jkg25o3m4" path="res://arts/npc.png" id="44_eqkuh"]
+[ext_resource type="Texture2D" uid="uid://c1jul5ccxjvcq" path="res://assets/MinifolksForestAnimals/Outline/MiniWolf.png" id="35_ll28t"]
+[ext_resource type="Texture2D" uid="uid://c1fj2x7ecw5vy" path="res://assets/MinifolksForestAnimals/Outline/MiniFox.png" id="36_6vrqx"]
+[ext_resource type="Texture2D" uid="uid://cady507b35po7" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer2.png" id="37_jhuw1"]
+[ext_resource type="Texture2D" uid="uid://bm7w3gkqrjwit" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer1.png" id="38_hs875"]
+[ext_resource type="Texture2D" uid="uid://1hnmjcxekjmo" path="res://assets/MinifolksForestAnimals/Outline/MiniBunny.png" id="39_tfrsd"]
+[ext_resource type="Texture2D" uid="uid://swuv3owu7w3i" path="res://assets/MinifolksForestAnimals/Outline/MiniBoar.png" id="40_2ad58"]
+[ext_resource type="Texture2D" uid="uid://c3b5u1jvcta13" path="res://assets/MinifolksForestAnimals/Outline/MiniBird.png" id="41_eae5g"]
+[ext_resource type="Texture2D" uid="uid://c85esmes3n7se" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="42_h3rcq"]
+[ext_resource type="Script" uid="uid://d3n5h3noaooqh" path="res://AnimalMap.gd" id="43_fgl5k"]
 [ext_resource type="Script" uid="uid://dxdc2d1laoye5" path="res://npc.gd" id="45_ba03u"]
 [ext_resource type="PackedScene" uid="uid://w37clktmv21o" path="res://UI/pause_menu.tscn" id="46_5mvky"]
 [ext_resource type="Shader" uid="uid://deyadgncjahhm" path="res://shaders/rain.gdshader" id="47_05skk"]
 [ext_resource type="PackedScene" uid="uid://dpluncmaurdph" path="res://in_game_canvas_layer.tscn" id="48_uewhu"]
 [ext_resource type="Script" uid="uid://bov7l41pdqanp" path="res://hp_label.gd" id="49_ylode"]
 [ext_resource type="Script" uid="uid://cjdk552sefsdv" path="res://godot_version.gd" id="50_0sb5j"]
-[ext_resource type="Texture2D" uid="uid://cnijn3fiv6f7p" path="res://arts/pixel-viking-1.jpg" id="51_jckcw"]
-[ext_resource type="Texture2D" uid="uid://d3hc16anso1w3" path="res://arts/pixel-viking-2.jpg" id="52_u8tfn"]
-[ext_resource type="Texture2D" uid="uid://cdqg26uo2u5dh" path="res://arts/pixel-viking-3.jpg" id="53_fkv5y"]
+[ext_resource type="Texture2D" uid="uid://bcb7g1bybhea3" path="res://arts/pixel-viking-1.jpg" id="51_jckcw"]
+[ext_resource type="Texture2D" uid="uid://cystpoa88d7f0" path="res://arts/pixel-viking-2.jpg" id="52_u8tfn"]
+[ext_resource type="Texture2D" uid="uid://cymskw1plmsiv" path="res://arts/pixel-viking-3.jpg" id="53_fkv5y"]
 [ext_resource type="Script" uid="uid://gw1h7i65agwm" path="res://AnimatedFace.gd" id="54_yf7og"]
 [ext_resource type="Script" uid="uid://jkcyy8av0axp" path="res://scenes/game/control.gd" id="55_5dkr6"]
 [ext_resource type="Script" uid="uid://dv5hrmtd5dqcy" path="res://Label.gd" id="55_cd3h7"]
@@ -72,7 +71,7 @@
 [ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_obvfi"]
 [ext_resource type="PackedScene" uid="uid://um0wu28oq78x" path="res://scenes/help_menu/help_menu.tscn" id="70_lcryn"]
 [ext_resource type="Script" uid="uid://bslwqgx2fms1h" path="res://patch_manager/patch_manager.gd" id="71_elrr2"]
-[ext_resource type="VideoStream" uid="uid://cu4rfuk05datj" path="res://Blazing-Cube-Logo_free.ogv" id="73_bjk8q"]
+[ext_resource type="VideoStream" uid="uid://b4wdp0mlackas" path="res://Blazing-Cube-Logo_free.ogv" id="73_bjk8q"]
 [ext_resource type="Script" uid="uid://ctvunuebwx34r" path="res://scenes/game/video_stream_player.gd" id="74_bf22m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_758pu"]
@@ -538,551 +537,11 @@ sources/7 = SubResource("TileSetAtlasSource_2yd1f")
 sources/8 = SubResource("TileSetAtlasSource_uw3ul")
 sources/9 = SubResource("TileSetAtlasSource_28ah6")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3gul"]
-texture = ExtResource("44_eqkuh")
-0:0/0 = 0
-0:0/0/custom_data_0 = "Adam"
-1:0/0 = 0
-1:0/0/custom_data_0 = "Adam"
-2:0/0 = 0
-2:0/0/custom_data_0 = "Adam"
-3:0/0 = 0
-3:0/0/custom_data_0 = "Adam"
-4:0/0 = 0
-4:0/0/custom_data_0 = "Adam"
-5:0/0 = 0
-5:0/0/custom_data_0 = "Adam"
-6:0/0 = 0
-6:0/0/custom_data_0 = "Tomenisse"
-7:0/0 = 0
-7:0/0/custom_data_0 = "Tomenisse"
-8:0/0 = 0
-8:0/0/custom_data_0 = "Tomenisse"
-9:0/0 = 0
-9:0/0/custom_data_0 = "Tomenisse"
-10:0/0 = 0
-10:0/0/custom_data_0 = "Tomenisse"
-11:0/0 = 0
-11:0/0/custom_data_0 = "Tomenisse"
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-18:0/0 = 0
-23:0/0 = 0
-24:0/0 = 0
-25:0/0 = 0
-26:0/0 = 0
-0:1/0 = 0
-0:1/0/custom_data_0 = "Bertil"
-1:1/0 = 0
-1:1/0/custom_data_0 = "Bertil"
-2:1/0 = 0
-2:1/0/custom_data_0 = "Bertil"
-3:1/0 = 0
-3:1/0/custom_data_0 = "Bertil"
-4:1/0 = 0
-4:1/0/custom_data_0 = "Bertil"
-5:1/0 = 0
-5:1/0/custom_data_0 = "Bertil"
-6:1/0 = 0
-6:1/0/custom_data_0 = "Kinesblå"
-7:1/0 = 0
-7:1/0/custom_data_0 = "Kinesblå"
-8:1/0 = 0
-8:1/0/custom_data_0 = "Kinesblå"
-9:1/0 = 0
-9:1/0/custom_data_0 = "Kinesblå"
-10:1/0 = 0
-10:1/0/custom_data_0 = "Kinesblå"
-11:1/0 = 0
-11:1/0/custom_data_0 = "Kinesblå"
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-15:1/0 = 0
-16:1/0 = 0
-17:1/0 = 0
-18:1/0 = 0
-23:1/0 = 0
-24:1/0 = 0
-25:1/0 = 0
-26:1/0 = 0
-0:2/0 = 0
-0:2/0/custom_data_0 = "Ceasar"
-1:2/0 = 0
-1:2/0/custom_data_0 = "Ceasar"
-2:2/0 = 0
-2:2/0/custom_data_0 = "Ceasar"
-3:2/0 = 0
-3:2/0/custom_data_0 = "Ceasar"
-4:2/0 = 0
-4:2/0/custom_data_0 = "Ceasar"
-5:2/0 = 0
-5:2/0/custom_data_0 = "Ceasar"
-6:2/0 = 0
-6:2/0/custom_data_0 = "White nija"
-7:2/0 = 0
-7:2/0/custom_data_0 = "White nija"
-8:2/0 = 0
-8:2/0/custom_data_0 = "White nija"
-9:2/0 = 0
-9:2/0/custom_data_0 = "White nija"
-10:2/0 = 0
-10:2/0/custom_data_0 = "White nija"
-11:2/0 = 0
-11:2/0/custom_data_0 = "White nija"
-12:2/0 = 0
-13:2/0 = 0
-14:2/0 = 0
-15:2/0 = 0
-16:2/0 = 0
-17:2/0 = 0
-18:2/0 = 0
-19:2/0 = 0
-23:2/0 = 0
-24:2/0 = 0
-25:2/0 = 0
-26:2/0 = 0
-0:3/0 = 0
-0:3/0/custom_data_0 = "David"
-1:3/0 = 0
-1:3/0/custom_data_0 = "David"
-2:3/0 = 0
-2:3/0/custom_data_0 = "David"
-3:3/0 = 0
-3:3/0/custom_data_0 = "David"
-4:3/0 = 0
-4:3/0/custom_data_0 = "David"
-5:3/0 = 0
-5:3/0/custom_data_0 = "David"
-6:3/0 = 0
-6:3/0/custom_data_0 = "Old foogy"
-7:3/0 = 0
-7:3/0/custom_data_0 = "Old foogy"
-8:3/0 = 0
-8:3/0/custom_data_0 = "Old foogy"
-9:3/0 = 0
-9:3/0/custom_data_0 = "Old foogy"
-10:3/0 = 0
-10:3/0/custom_data_0 = "Old foogy"
-11:3/0 = 0
-11:3/0/custom_data_0 = "Old foogy"
-12:3/0 = 0
-13:3/0 = 0
-14:3/0 = 0
-15:3/0 = 0
-16:3/0 = 0
-17:3/0 = 0
-18:3/0 = 0
-19:3/0 = 0
-23:3/0 = 0
-24:3/0 = 0
-25:3/0 = 0
-0:4/0 = 0
-0:4/0/custom_data_0 = "Einar"
-1:4/0 = 0
-1:4/0/custom_data_0 = "Einar"
-2:4/0 = 0
-2:4/0/custom_data_0 = "Einar"
-3:4/0 = 0
-3:4/0/custom_data_0 = "Einar"
-4:4/0 = 0
-4:4/0/custom_data_0 = "Einar"
-5:4/0 = 0
-5:4/0/custom_data_0 = "Einar"
-6:4/0 = 0
-6:4/0/custom_data_0 = "Flygis"
-7:4/0 = 0
-7:4/0/custom_data_0 = "Flygis"
-8:4/0 = 0
-8:4/0/custom_data_0 = "Flygis"
-9:4/0 = 0
-9:4/0/custom_data_0 = "Flygis"
-10:4/0 = 0
-10:4/0/custom_data_0 = "Flygis"
-11:4/0 = 0
-11:4/0/custom_data_0 = "Flygis"
-12:4/0 = 0
-13:4/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-16:4/0 = 0
-17:4/0 = 0
-18:4/0 = 0
-19:4/0 = 0
-23:4/0 = 0
-24:4/0 = 0
-25:4/0 = 0
-26:4/0 = 0
-0:5/0 = 0
-0:5/0/custom_data_0 = "Frankina"
-1:5/0 = 0
-1:5/0/custom_data_0 = "Frankina"
-2:5/0 = 0
-2:5/0/custom_data_0 = "Frankina"
-3:5/0 = 0
-3:5/0/custom_data_0 = "Frankina"
-4:5/0 = 0
-4:5/0/custom_data_0 = "Frankina"
-5:5/0 = 0
-5:5/0/custom_data_0 = "Frankina"
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-16:5/0 = 0
-17:5/0 = 0
-18:5/0 = 0
-19:5/0 = 0
-20:5/0 = 0
-21:5/0 = 0
-0:6/0 = 0
-0:6/0/custom_data_0 = "Gooli"
-1:6/0 = 0
-1:6/0/custom_data_0 = "Gooli"
-2:6/0 = 0
-2:6/0/custom_data_0 = "Gooli"
-3:6/0 = 0
-3:6/0/custom_data_0 = "Gooli"
-4:6/0 = 0
-4:6/0/custom_data_0 = "Gooli"
-5:6/0 = 0
-5:6/0/custom_data_0 = "Gooli"
-6:6/0 = 0
-7:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-14:6/0 = 0
-15:6/0 = 0
-16:6/0 = 0
-17:6/0 = 0
-18:6/0 = 0
-19:6/0 = 0
-20:6/0 = 0
-21:6/0 = 0
-22:6/0 = 0
-0:7/0 = 0
-0:7/0/custom_data_0 = "Hildur"
-1:7/0 = 0
-1:7/0/custom_data_0 = "Hildur"
-2:7/0 = 0
-2:7/0/custom_data_0 = "Hildur"
-3:7/0 = 0
-3:7/0/custom_data_0 = "Hildur"
-4:7/0 = 0
-4:7/0/custom_data_0 = "Hildur"
-5:7/0 = 0
-5:7/0/custom_data_0 = "Hildur"
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-9:7/0 = 0
-10:7/0 = 0
-11:7/0 = 0
-12:7/0 = 0
-13:7/0 = 0
-14:7/0 = 0
-15:7/0 = 0
-16:7/0 = 0
-17:7/0 = 0
-18:7/0 = 0
-19:7/0 = 0
-20:7/0 = 0
-21:7/0 = 0
-22:7/0 = 0
-23:7/0 = 0
-24:7/0 = 0
-0:8/0 = 0
-0:8/0/custom_data_0 = "Batus"
-1:8/0 = 0
-1:8/0/custom_data_0 = "Batus"
-2:8/0 = 0
-2:8/0/custom_data_0 = "Batus"
-3:8/0 = 0
-3:8/0/custom_data_0 = "Batus"
-4:8/0 = 0
-4:8/0/custom_data_0 = "Batus"
-5:8/0 = 0
-5:8/0/custom_data_0 = "Batus"
-6:8/0 = 0
-7:8/0 = 0
-8:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-14:8/0 = 0
-15:8/0 = 0
-16:8/0 = 0
-17:8/0 = 0
-18:8/0 = 0
-19:8/0 = 0
-20:8/0 = 0
-21:8/0 = 0
-22:8/0 = 0
-23:8/0 = 0
-24:8/0 = 0
-0:9/0 = 0
-0:9/0/custom_data_0 = "Kinese"
-1:9/0 = 0
-1:9/0/custom_data_0 = "Kinese"
-2:9/0 = 0
-2:9/0/custom_data_0 = "Kinese"
-3:9/0 = 0
-3:9/0/custom_data_0 = "Kinese"
-4:9/0 = 0
-4:9/0/custom_data_0 = "Kinese"
-5:9/0 = 0
-5:9/0/custom_data_0 = "Kinese"
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-12:9/0 = 0
-13:9/0 = 0
-14:9/0 = 0
-15:9/0 = 0
-16:9/0 = 0
-17:9/0 = 0
-18:9/0 = 0
-19:9/0 = 0
-20:9/0 = 0
-21:9/0 = 0
-22:9/0 = 0
-23:9/0 = 0
-24:9/0 = 0
-0:10/0 = 0
-0:10/0/custom_data_0 = "Fladder"
-1:10/0 = 0
-1:10/0/custom_data_0 = "Fladder"
-2:10/0 = 0
-2:10/0/custom_data_0 = "Fladder"
-3:10/0 = 0
-3:10/0/custom_data_0 = "Fladder"
-4:10/0 = 0
-4:10/0/custom_data_0 = "Fladder"
-5:10/0 = 0
-5:10/0/custom_data_0 = "Fladder"
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-9:10/0 = 0
-10:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-13:10/0 = 0
-14:10/0 = 0
-15:10/0 = 0
-16:10/0 = 0
-17:10/0 = 0
-18:10/0 = 0
-19:10/0 = 0
-20:10/0 = 0
-21:10/0 = 0
-22:10/0 = 0
-23:10/0 = 0
-24:10/0 = 0
-0:11/0 = 0
-0:11/0/custom_data_0 = "Grönis"
-1:11/0 = 0
-1:11/0/custom_data_0 = "Grönis"
-2:11/0 = 0
-2:11/0/custom_data_0 = "Grönis"
-3:11/0 = 0
-3:11/0/custom_data_0 = "Grönis"
-4:11/0 = 0
-4:11/0/custom_data_0 = "Grönis"
-5:11/0 = 0
-5:11/0/custom_data_0 = "Grönis"
-6:11/0 = 0
-7:11/0 = 0
-8:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
-13:11/0 = 0
-14:11/0 = 0
-15:11/0 = 0
-16:11/0 = 0
-17:11/0 = 0
-18:11/0 = 0
-19:11/0 = 0
-20:11/0 = 0
-21:11/0 = 0
-22:11/0 = 0
-23:11/0 = 0
-24:11/0 = 0
-25:11/0 = 0
-0:12/0 = 0
-0:12/0/custom_data_0 = "Blåsan"
-1:12/0 = 0
-1:12/0/custom_data_0 = "Blåsan"
-2:12/0 = 0
-2:12/0/custom_data_0 = "Blåsan"
-3:12/0 = 0
-3:12/0/custom_data_0 = "Blåsan"
-4:12/0 = 0
-4:12/0/custom_data_0 = "Blåsan"
-5:12/0 = 0
-5:12/0/custom_data_0 = "Blåsan"
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-14:12/0 = 0
-15:12/0 = 0
-16:12/0 = 0
-17:12/0 = 0
-18:12/0 = 0
-19:12/0 = 0
-20:12/0 = 0
-21:12/0 = 0
-22:12/0 = 0
-23:12/0 = 0
-24:12/0 = 0
-25:12/0 = 0
-26:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
-10:13/0 = 0
-11:13/0 = 0
-12:13/0 = 0
-13:13/0 = 0
-14:13/0 = 0
-15:13/0 = 0
-16:13/0 = 0
-17:13/0 = 0
-18:13/0 = 0
-19:13/0 = 0
-20:13/0 = 0
-21:13/0 = 0
-22:13/0 = 0
-23:13/0 = 0
-24:13/0 = 0
-25:13/0 = 0
-26:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-3:14/0 = 0
-4:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-7:14/0 = 0
-8:14/0 = 0
-9:14/0 = 0
-10:14/0 = 0
-11:14/0 = 0
-12:14/0 = 0
-13:14/0 = 0
-14:14/0 = 0
-15:14/0 = 0
-16:14/0 = 0
-17:14/0 = 0
-18:14/0 = 0
-19:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-3:15/0 = 0
-4:15/0 = 0
-5:15/0 = 0
-6:15/0 = 0
-7:15/0 = 0
-8:15/0 = 0
-9:15/0 = 0
-10:15/0 = 0
-11:15/0 = 0
-12:15/0 = 0
-13:15/0 = 0
-14:15/0 = 0
-15:15/0 = 0
-16:15/0 = 0
-17:15/0 = 0
-18:15/0 = 0
-19:15/0 = 0
-0:16/0 = 0
-1:16/0 = 0
-2:16/0 = 0
-3:16/0 = 0
-4:16/0 = 0
-5:16/0 = 0
-6:16/0 = 0
-7:16/0 = 0
-8:16/0 = 0
-9:16/0 = 0
-10:16/0 = 0
-11:16/0 = 0
-12:16/0 = 0
-13:16/0 = 0
-14:16/0 = 0
-15:16/0 = 0
-16:16/0 = 0
-17:16/0 = 0
-18:16/0 = 0
-19:16/0 = 0
-20:16/0 = 0
-21:16/0 = 0
-22:16/0 = 0
-0:17/0 = 0
-1:17/0 = 0
-2:17/0 = 0
-3:17/0 = 0
-4:17/0 = 0
-5:17/0 = 0
-6:17/0 = 0
-7:17/0 = 0
-8:17/0 = 0
-9:17/0 = 0
-10:17/0 = 0
-11:17/0 = 0
-12:17/0 = 0
-13:17/0 = 0
-14:17/0 = 0
-15:17/0 = 0
-16:17/0 = 0
-17:17/0 = 0
-18:17/0 = 0
-19:17/0 = 0
-20:17/0 = 0
-21:17/0 = 0
-22:17/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_wkqc7"]
 custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 custom_data_layer_1/name = "Health"
 custom_data_layer_1/type = 4
-sources/0 = SubResource("TileSetAtlasSource_l3gul")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7pbc"]
 shader = ExtResource("47_05skk")
@@ -1629,6 +1088,7 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 stream = ExtResource("73_bjk8q")
+volume_db = -20.0
 autoplay = true
 script = ExtResource("74_bf22m")
 

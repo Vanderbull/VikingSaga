@@ -7,6 +7,7 @@ class_name GameManager
 # Preload the scene for better performance
 @onready var my_scene = preload("res://assets/cave-npc/cave_npc.tscn")
 @onready var fox_npc_scene = preload("res://assets/fox-npc/fox_npc.tscn")
+@onready var city_1_scene = preload("res://assets/cities/city-1.tscn")
 @onready var animate_fire_scene = preload("res://assets/animated-fire/animated_fire.tscn")
 
 @onready var globals = get_node("/root/Globals")
@@ -67,6 +68,17 @@ func spawn_scene():
 		instance.position = Vector2(random_x, random_y)
 	# Add the instance to the scene tree
 	add_child(instance)
+	# -------------------------------------------------------------------
+		# Create an instance of the loaded scene
+	var city_instance = city_1_scene.instantiate()
+	# Optionally, set its position or other properties if it's a 2D/3D node
+	if city_instance is Node2D:
+		# Generate random position within a range
+		var random_x = randi_range(-2500, 2500)  # Adjust range based on your game's resolution
+		var random_y = randi_range(-2500, 2500)
+		city_instance.position = Vector2(random_x, random_y)
+	# Add the instance to the scene tree
+	add_child(city_instance)
 
 func generate_minimap(size: int, margin: int) -> ImageTexture:
 	var noise = FastNoiseLite.new()
@@ -149,23 +161,23 @@ func initialize_gamemanager():
 		game_paused = !game_paused
 	pass
 
-func spawnNPC():
-	for i in range(globals.SpawnRadius):
-		#var tilemap = $world/Npc
-		var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
-		# What NPC images should be used?
-		var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
-		# If grass then spawn NPC
-		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
-
-func spawnAnimals():
-	# ADDING ANIMALS TO ANIMALMAP
-	for i in range(globals.SpawnRadius):
-		var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
-		var atlas_coords = Vector2i(0, 1)
-		if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
+#func spawnNPC():
+	#for i in range(globals.SpawnRadius):
+		##var tilemap = $world/Npc
+		#var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
+		## What NPC images should be used?
+		#var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
+		## If grass then spawn NPC
+		#if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
+			#$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
+#
+#func spawnAnimals():
+	## ADDING ANIMALS TO ANIMALMAP
+	#for i in range(globals.SpawnRadius):
+		#var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
+		#var atlas_coords = Vector2i(0, 1)
+		#if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
+			#$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
 
 func _process(_delta):
 	%godot_version.update_text()

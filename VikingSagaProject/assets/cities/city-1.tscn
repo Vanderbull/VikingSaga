@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd77ae3om5rpc"]
+
+[ext_resource type="Texture2D" uid="uid://723d511476x" path="res://assets/city.png" id="1_svvup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cy4j6"]
+size = Vector2(120, 120)
+
+[node name="City-1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_svvup")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cy4j6")
