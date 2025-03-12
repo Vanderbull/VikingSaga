@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ForbiddenLands"
-config/description="Gamess"
+config/description="Games"
 config/version="0"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")

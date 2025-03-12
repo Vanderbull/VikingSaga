@@ -55,18 +55,19 @@ func is_position_valid(new_pos: Vector2, min_distance: float) -> bool:
 			return false
 	return true
 
-func place_city(city_instance: Node2D, min_distance: float = 200.0):
+func place_city(city_instance: Node2D, min_distance: float = 2000.0):
 	if city_instance is Node2D:
 		var attempts = 100  # Avoid infinite loops by limiting attempts
 		while attempts > 0:
-			var random_x = randi_range(-2500, 2500)
-			var random_y = randi_range(-2500, 2500)
+			var random_x = randi_range(-10000, 10000)
+			var random_y = randi_range(-10000, 10000)
 			var new_position = Vector2(random_x, random_y)
 			
 			if is_position_valid(new_position, min_distance):
 				city_instance.position = new_position
 				occupied_positions.append(new_position)
 				add_child(city_instance)
+				print(new_position )
 				return  # Exit after placing
 
 			attempts -= 1
@@ -97,8 +98,8 @@ func spawn_scene():
 	# -------------------------------------------------------------------
 		# Create an instance of the loaded scene
 	var city_instance = city_1_scene.instantiate()
-	
 	place_city(city_instance,100)
+	
 	## Optionally, set its position or other properties if it's a 2D/3D node
 	#if city_instance is Node2D:
 		## Generate random position within a range
