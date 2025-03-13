@@ -1,4 +1,0 @@
-[gd_scene format=3 uid="uid://whal4h4lrk3t"]
-
-[node name="World" type="Node2D"]
-process_mode = 1
