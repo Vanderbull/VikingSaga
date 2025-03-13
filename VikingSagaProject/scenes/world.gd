@@ -4,7 +4,7 @@ extends Node2D
 @onready var player = $TileMap/Player
 @onready var camera = $"TileMap/Player/follow cam"
 
-const ENEMY_SCENE_PATH : String = "res://scenes/city.tscn"
+const ENEMY_SCENE_PATH : String = "res://scenes/city/city.tscn"
 
 var enemy = null
 var PlayerGridPosition = Vector2i(0,0)
@@ -43,8 +43,8 @@ func _unhandled_input(event):
 			print_debug("Debug: Change scene to file: res://scenes/world.tscn")
 			get_tree().change_scene_to_file("res://scenes/world.tscn")
 		if event.pressed and event.keycode == KEY_4:
-			print_debug("Debug: Change scene to file: res://scenes/city.tscn")
-			get_tree().change_scene_to_file("res://scenes/city.tscn")
+			print_debug("Debug: Change scene to file: res://scenes/city/city.tscn")
+			get_tree().change_scene_to_file("res://scenes/city/city.tscn")
 		if event.pressed and event.keycode == KEY_5:
 			print_debug("Debug: Change scene to file: res://quest/quest_canvas_layer.tscn")
 			get_tree().change_scene_to_file("res://quest/quest_canvas_layer.tscn")
