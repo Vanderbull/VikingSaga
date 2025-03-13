@@ -46,8 +46,7 @@ func _unhandled_input(event):
 			print_debug("Debug: Change scene to file: res://scenes/city/city.tscn")
 			get_tree().change_scene_to_file("res://scenes/city/city.tscn")
 		if event.pressed and event.keycode == KEY_5:
-			print_debug("Debug: Change scene to file: res://quest/quest_canvas_layer.tscn")
-			get_tree().change_scene_to_file("res://quest/quest_canvas_layer.tscn")
+			pass
 		if event.pressed and event.keycode == KEY_6:
 			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_7:
