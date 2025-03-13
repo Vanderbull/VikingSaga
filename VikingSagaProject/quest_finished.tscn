@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk8t0obmxovhi"]
+[gd_scene load_steps=3 format=3 uid="uid://bk8t0obmxovhi"]
 
 [ext_resource type="Script" uid="uid://cabxcyem64fu2" path="res://QuestFinished.gd" id="1_ysgwm"]
 [ext_resource type="Texture2D" uid="uid://fq1dcehthm0d" path="res://assets/battleback/battleback3.png" id="2_x0q4v"]
-[ext_resource type="Theme" uid="uid://ui_theme" path="res://ui/theme_default.tres" id="3"]
-[ext_resource type="AudioStream" uid="uid://quest_sound" path="res://audio/quest_complete.ogg" id="4"]
 
 [node name="QuestFinished" type="Control"]
 layout_mode = 3
@@ -13,9 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ysgwm")
-metadata/_edit_group_ = true
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,70 +20,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_x0q4v")
-expand_mode = 1
-stretch_mode = 6  # Scale to fit while preserving aspect
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+offset_left = -45.5
+offset_top = -15.5
+offset_right = 45.5
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3")
-theme_override_styles/panel = SubResource("StyleBoxTexture_abcde")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3")
-
-[node name="Title" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Quest Completed!"
-horizontal_alignment = 1
-vertical_alignment = 1
-theme_override_font_sizes/font_size = 24
-
-[node name="Description" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Congratulations on finishing the quest!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ContinueButton" type="Button" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-size_flags_horizontal = 4  # Center
 text = "CONTINUE"
-theme = ExtResource("3")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4")
-autoplay = true
-bus = "UI"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_abcde"]
-texture = ExtResource("2_x0q4v")
-texture_margin_left = 10.0
-texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
-modulate_color = Color(0.8, 0.8, 0.8, 0.9)
-
-[connection signal="pressed" from="Panel/VBoxContainer/ContinueButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
