@@ -2,14 +2,10 @@ name: Auto-Labeler
 
 on:
   issues:
-    opened: true
-    closed: true
-    reopened: true
+    types: [opened, closed, reopened, labeled, unlabeled]
   pull_request:
-    opened: true
-    closed: true
-    reopened: true
-  workflow_dispatch: # Allows manual triggering of the workflow from the Actions tab
+    types: [opened, closed, reopened, labeled, unlabeled]
+  workflow_dispatch: # Allows manual triggering from the Actions tab
 
 jobs:
   labeler:
@@ -19,32 +15,77 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issue = context.issue;
+            const issue = context.payload.issue || context.payload.pull_request;
             const isClosed = issue.state === 'closed';
+            const isPR = context.payload.pull_request !== undefined;
 
-            // Remove existing status labels (important!)
-            const labelsToRemove = ['status:open', 'status:in progress', 'status:closed'];
+            // Define status labels
+            const statusLabels = {
+              open: 'status:open',
+              inProgress: 'status:in progress',
+              closed: 'status:closed'
+            };
+
+            // Determine current status
+            let currentStatus;
+            if (isClosed) {
+              currentStatus = statusLabels.closed;
+            } else if (isPR && issue.draft) {
+              currentStatus = statusLabels.inProgress;
+            } else {
+              currentStatus = statusLabels.open;
+            }
+
+            // Get current labels
+            const currentLabels = issue.labels.map(label => label.name);
+
+            // Remove existing status labels
+            const labelsToRemove = Object.values(statusLabels).filter(label => label !== currentStatus);
             for (const label of labelsToRemove) {
-              try {
-                await github.rest.issues.removeLabel({
-                  issue_number: issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  name: label
-                });
-              } catch (error) {
-                if (error.status !== 404) {
-                  throw error;
+              if (currentLabels.includes(label)) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    issue_number: issue.number,
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: label
+                  });
+                } catch (error) {
+                  if (error.status !== 404) {
+                    console.error(`Error removing label ${label}:`, error);
+                  }
                 }
               }
             }
 
-            // Add the correct status label
-            const labelToAdd = isClosed ? 'status:closed' : 'status:open'; // Or 'status:in progress' based on other logic
-            await github.rest.issues.addLabels({
-              issue_number: issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: [labelToAdd]
-            });
-            
+            // Add the correct status label if not already present
+            if (!currentLabels.includes(currentStatus)) {
+              await github.rest.issues.addLabels({
+                issue_number: issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: [currentStatus]
+              });
+            }
+
+            // Add 'needs review' label for open PRs
+            if (isPR && !isClosed && !currentLabels.includes('needs review')) {
+              await github.rest.issues.addLabels({
+                issue_number: issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['needs review']
+              });
+            }
+
+            // Priority labeling based on keywords
+            const title = issue.title.toLowerCase();
+            const body = issue.body ? issue.body.toLowerCase() : '';
+            if ((title.includes('urgent') || body.includes('urgent')) && !currentLabels.includes('priority:high')) {
+              await github.rest.issues.addLabels({
+                issue_number: issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['priority:high']
+              });
+            }
