@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b04j2fn3muan3" path="res://arts/player.png" id="1_b63l5"]
 [ext_resource type="AudioStream" uid="uid://cbogiwhvcgd5d" path="res://sound/digging-v1-27585.mp3" id="4_vtp6p"]
 [ext_resource type="Texture2D" uid="uid://nd0vbyo1smja" path="res://assets/particle_examples/floaty_64.png" id="5_qevvx"]
-[ext_resource type="Script" uid="uid://deiw28uljmsqv" path="res://DiggPlayer.gd" id="5_wwnyo"]
+[ext_resource type="Script" uid="uid://deiw28uljmsqv" path="res://player/DiggPlayer.gd" id="5_wwnyo"]
 [ext_resource type="AudioStream" uid="uid://bax8ulqh8ti8k" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
 [ext_resource type="Script" uid="uid://dtkwretf787h3" path="res://player/ChopPlayer.gd" id="7_0tvku"]
 [ext_resource type="Texture2D" uid="uid://bcb7g1bybhea3" path="res://arts/pixel-viking-1.jpg" id="8_snomj"]
