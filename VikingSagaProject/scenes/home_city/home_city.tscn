@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj1qky0yey7i2"]
+[gd_scene load_steps=3 format=3 uid="uid://ofnyulyqjk07"]
 
-[ext_resource type="Script" uid="uid://c8vmna81y8yye" path="res://city.gd" id="1_v6qag"]
+[ext_resource type="Script" uid="uid://c8vmna81y8yye" path="res://scenes/city/city.gd" id="1_8u8ys"]
 [ext_resource type="Texture2D" uid="uid://bm421bfqic8x6" path="res://arts/village_background.png" id="2_fs0xu"]
 
 [node name="City" type="CanvasLayer"]
-script = ExtResource("1_v6qag")
+script = ExtResource("1_8u8ys")
 
 [node name="VillageBackground" type="Sprite2D" parent="."]
 texture = ExtResource("2_fs0xu")

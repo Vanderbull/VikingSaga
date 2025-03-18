@@ -1,7 +1,6 @@
-[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=103 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://8al711073ufh" path="res://game_manager.gd" id="1_4jurc"]
-[ext_resource type="PackedScene" uid="uid://b3kw53yl7pgj2" path="res://mesh_instance_3d.tscn" id="2_4lpwe"]
 [ext_resource type="Script" uid="uid://qretjuuq67yj" path="res://scenes/world.gd" id="3_ur7m5"]
 [ext_resource type="Texture2D" uid="uid://cp4bayitvsdfq" path="res://assets/tiles2.png" id="4_kqt3c"]
 [ext_resource type="Texture2D" uid="uid://dhb8civxd7wa2" path="res://arts/fireplace.png" id="5_x5ltl"]
@@ -678,9 +677,6 @@ radius = 233.14
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_4jurc")
-
-[node name="MeshInstance3D" parent="." instance=ExtResource("2_4lpwe")]
-visible = false
 
 [node name="world" type="Node2D" parent="."]
 process_mode = 1
