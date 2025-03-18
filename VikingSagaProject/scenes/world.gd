@@ -40,6 +40,7 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_2:
 			print_debug("Debug: This is coming from file: ", file_name)
 		if event.pressed and event.keycode == KEY_3:
+			get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
 			pass
 		if event.pressed and event.keycode == KEY_4:
 			print_debug("Debug: Change scene to file: res://scenes/city/city.tscn")

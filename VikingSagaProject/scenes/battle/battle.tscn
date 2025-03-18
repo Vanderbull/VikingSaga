@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2akoxu275fes"]
+[gd_scene load_steps=11 format=3 uid="uid://b2akoxu275fes"]
 
-[ext_resource type="Script" uid="uid://chv5e0b7loyca" path="res://src/battle.gd" id="1_ckmuf"]
-[ext_resource type="Resource" uid="uid://bb6nb4cu0bpb2" path="res://src/Dragon.tres" id="2_hk84q"]
-
-[sub_resource type="Resource" id="Resource_38vvt"]
-metadata/__load_path__ = "res://battleback/battleback1.png"
+[ext_resource type="Script" uid="uid://chv5e0b7loyca" path="res://scenes/battle/battle.gd" id="1_ckmuf"]
+[ext_resource type="Resource" uid="uid://bb6nb4cu0bpb2" path="res://scenes/battle/Dragon.tres" id="2_hk84q"]
+[ext_resource type="Texture2D" uid="uid://cqtl37ylww7eg" path="res://assets/battleback/battleback1.png" id="3_xd4uy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5j0q"]
 bg_color = Color(1, 0, 0, 1)
@@ -20,9 +18,6 @@ expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxdux"]
 bg_color = Color(0, 1, 0, 1)
-
-[sub_resource type="Resource" id="Resource_fluly"]
-metadata/__load_path__ = "res://battleback/05.png"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsyn"]
 bg_color = Color(1, 1, 1, 1)
@@ -40,6 +35,9 @@ corner_radius_bottom_left = 1
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dt7a"]
 bg_color = Color(0, 0, 0, 0.603922)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8ivk"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1i2o"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 1
@@ -47,9 +45,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8ivk"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvbci"]
 bg_color = Color(0, 0, 0, 1)
@@ -73,7 +68,7 @@ enemy = ExtResource("2_hk84q")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = SubResource("Resource_38vvt")
+texture = ExtResource("3_xd4uy")
 
 [node name="EnemyContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -113,7 +108,6 @@ vertical_alignment = 1
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
 layout_mode = 2
-texture = SubResource("Resource_fluly")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="EnemyContainer"]
@@ -208,36 +202,36 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 text = "Attack"
 
 [node name="Defend" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 text = "Defend"
 
 [node name="Run" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q8ivk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_q8ivk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1i2o")
 text = "Run"
 
 [node name="MarginTextbox" type="MarginContainer" parent="."]
@@ -271,8 +265,6 @@ offset_top = 125.0
 offset_right = 1127.0
 offset_bottom = 148.0
 text = ">"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Defend" to="." method="_on_defend_pressed"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://bb6nb4cu0bpb2"]
 
-[ext_resource type="Script" uid="uid://bsdfd503apsnj" path="res://src/BaseEnemy.gd" id="1_hbsgb"]
+[ext_resource type="Script" uid="uid://bsdfd503apsnj" path="res://scenes/battle/BaseEnemy.gd" id="1_hbsgb"]
 [ext_resource type="Texture2D" uid="uid://bc4g5adfdesra" path="res://assets/battleback/05.png" id="2_xrl5m"]
 
 [resource]
