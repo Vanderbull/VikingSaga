@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=102 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://8al711073ufh" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="Script" uid="uid://qretjuuq67yj" path="res://scenes/world.gd" id="3_ur7m5"]
@@ -63,7 +63,6 @@
 [ext_resource type="Script" uid="uid://c1rjxd3obq4d1" path="res://scenes/quest/Quest3.gd" id="62_ufjyl"]
 [ext_resource type="Script" uid="uid://bu0wh5dd8rwtd" path="res://scenes/quest/Quest4.gd" id="63_ro3um"]
 [ext_resource type="Script" uid="uid://d4diqhc3argek" path="res://scenes/quest/Quest5.gd" id="64_8l5fl"]
-[ext_resource type="Script" uid="uid://davitjd3syvbb" path="res://Clock.gd" id="65_ykiho"]
 [ext_resource type="Script" uid="uid://b46280xqqjn55" path="res://Control.gd" id="66_3pms8"]
 [ext_resource type="PackedScene" uid="uid://bk8t0obmxovhi" path="res://quest_finished.tscn" id="67_gr1mp"]
 [ext_resource type="Script" uid="uid://b8xylmjb7toc7" path="res://http_request.gd" id="68_wvglm"]
@@ -719,8 +718,10 @@ script = ExtResource("32_qn1h5")
 tilemap = NodePath("../..")
 
 [node name="FootstepPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
+unique_name_in_owner = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="world/TileMap/Player"]
+unique_name_in_owner = true
 stream = ExtResource("33_u2325")
 
 [node name="TileMap2" type="TileMap" parent="world"]
@@ -759,22 +760,6 @@ color = Color(1, 1, 1, 0.254902)
 
 [node name="InGameCanvasLayer" parent="." instance=ExtResource("48_uewhu")]
 
-[node name="Label" type="Label" parent="InGameCanvasLayer"]
-top_level = true
-z_index = 20
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.5
-offset_top = -11.5
-offset_right = 48.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Original text"
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
 energy = 0.69
@@ -810,6 +795,7 @@ layout_mode = 2
 text = "ANIMALS: None"
 
 [node name="Hunting" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "NOT HUNTING"
 
@@ -975,6 +961,7 @@ text = "100.0 / 100.0"
 script = ExtResource("58_4e8es")
 
 [node name="Quests" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 
 [node name="Control" type="Control" parent="Quests"]
 layout_mode = 3
@@ -997,33 +984,34 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Quest1" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect water 0 / 10000"
 script = ExtResource("60_tprwl")
 
 [node name="Quest2" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect food 0 / 10000"
 script = ExtResource("61_7qr0p")
 
 [node name="Quest3" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
 script = ExtResource("62_ufjyl")
 
 [node name="Quest4" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect clay 0 / 10000"
 script = ExtResource("63_ro3um")
 
 [node name="Quest5" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"
 script = ExtResource("64_8l5fl")
-
-[node name="Clock" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
-layout_mode = 2
-script = ExtResource("65_ykiho")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label", "typing_timer")]
 visible = false
@@ -1050,6 +1038,7 @@ offset_bottom = 96.0
 visible = false
 
 [node name="QuestFinished" parent="QuestFinished" instance=ExtResource("67_gr1mp")]
+unique_name_in_owner = true
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("68_wvglm")
