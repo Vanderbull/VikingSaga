@@ -7,10 +7,10 @@ class_name Player
 @onready var effects = $Effects
 @onready var hurtColor = $Sprite2D/ColorRect
 @onready var hurtTimer = $hurtTimer
-@onready var sound = $AudioStreamPlayer
-@onready var soundAttack = $AudioStreamPlayer
+@onready var sound = %AudioStreamPlayer #$AudioStreamPlayer
+@onready var soundAttack = %AudioStreamPlayer #$AudioStreamPlayer
 @onready var worldMap = $".."
-@onready var footstep_player = $FootstepPlayer
+@onready var footstep_player = %FootstepPlayer #$FootstepPlayer
 @onready var chop_player = $ChopPlayer
 @onready var digg_player = $DiggPlayer
 #@onready var game_over_scene = $"../../../GameOver"
@@ -37,7 +37,7 @@ func check_if_quest_finished():
 		if globals.QuestFood >= 10000:
 			if globals.QuestTrees >= 10000:
 				if globals.QuestClay >= 10000:
-					$"../../../QuestFinished/QuestFinished".show()
+					%QuestFinished.show() #$"../../../QuestFinished/QuestFinished".show()
 
 func _physics_process(delta: float) -> void:
 	# Check if the player is moving
@@ -157,7 +157,7 @@ func _unhandled_input(event):
 		#if event.pressed and event.keycode == KEY_KP_2:
 			#$"../../../Control"._show_popup_with_typing()
 		if event.pressed and event.keycode == KEY_KP_3:
-			$"../../../QuestFinished/QuestFinished".show()
+			%QuestFinished.show() #$"../../../QuestFinished/QuestFinished".show()
 			
 	if event is InputEventMouseButton:
 		if event.is_pressed():

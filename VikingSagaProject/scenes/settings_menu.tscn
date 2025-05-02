@@ -62,6 +62,7 @@ layout_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "Window"
+popup/item_0/id = 0
 popup/item_1/text = "Fullscreen"
 popup/item_1/id = 1
 popup/item_2/text = "3"

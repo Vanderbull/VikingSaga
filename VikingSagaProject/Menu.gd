@@ -1,7 +1,7 @@
 extends Control
 
 @onready var VideoStreamer = $VideoStreamPlayer
-@onready var AudioStreamer = $AudioStreamPlayer
+@onready var AudioStreamer = %AudioStreamPlayer #$AudioStreamPlayer
 
 func _ready():
 	VideoStreamer.z_index = 1

@@ -74,5 +74,3 @@ func _process(_delta):
 		#print("There is a %s present here." % [custom_data])
 	else:
 		return
-		
-#		get_tree().change_scene_to_file("res://src/battle.tscn")

@@ -49,7 +49,7 @@ func enemy_turn():
 func _on_run_pressed():
 	display_text("you run away like a coward")
 	await textbox_closed
-	get_tree().change_scene_to_file("res://game.tscn")
+	get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 
 func _on_attack_pressed():
 	display_text("you swing your cute paws")
@@ -59,7 +59,7 @@ func _on_attack_pressed():
 	if current_enemy_health == 0:
 		display_text("%s was defeated" % enemy.name)
 		await textbox_closed
-		get_tree().change_scene_to_file("res://game.tscn")
+		get_tree().change_scene_to_file("res://scenes/game/game.tscn")
 	enemy_turn()
 
 func _on_defend_pressed():
