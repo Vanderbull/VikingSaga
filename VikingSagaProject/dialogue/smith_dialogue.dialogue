@@ -1,20 +1,165 @@
-~ start  
-Vagn Blackhammer: [[Hail|Well met|What do ye need?]], traveler. If it's steel ye seek, ye’ve come to the right place.  
+~ start
+Vagn Blackhammer: (Wipes soot from his brow with a leather-bound forearm, hammer resting on the anvil) [[Hail, traveler.|Well met.|Hmph. Another one. What d'ye need?]] If it's honest steel ye seek, ye’ve come to the right forge. Blackhammer's name is known from the Frostfell Peaks to the Sunken Cities. So, what can I do for ye?
 
-Vagn Blackhammer: I forge weapons and armor fit for warriors. What be yer need?  
+- I'm looking for a new weapon. => weapons_menu
+- I need some sturdy armor. => armor_menu
+- Tell me about Blackhammer Forge. => about_forge_menu
+- Do you offer other services? => other_services_menu
+- Just looking around for now.
+    Vagn Blackhammer: Suit yerself. The forge fire waits for no one, but me wares ain't growin' legs. Shout if somethin' catches yer eye. (Turns back to his work for a moment, then glances back)
+    - Actually, I do have a question. => start
+    - I'll be on my way. => END
+- [Never mind|I should be going]. => END
 
-- I need a weapon.  
-	Vagn Blackhammer: Aye, a warrior after me own heart! Tell me, do ye seek a blade swift as the wind, or an axe that splits shields like driftwood?  
-
-- I need armor.  
-	Vagn Blackhammer: Good choice! No sense in rushin’ to Valhalla if ye can stand and fight longer. I’ve got mail strong as a bear’s hide and plate that laughs at spearheads.  
-
-- Tell me of your craft.  
-	Vagn Blackhammer: Ha! A true warrior respects the forge. Steel is born o’ fire and toil, just like a warrior’s spirit. A weak hand makes brittle steel, and brittle steel gets men killed.  
-
-- Start again => start  
-- End the conversation => END  
-
-Vagn Blackhammer: If ye’ve coin and need, I’ll forge ye somethin’ worthy of the sagas. Elsewise, be off with ye—I’ve work to do.  
+Vagn Blackhammer: If ye've the coin and the need, I'll forge ye somethin' worthy of the sagas. Elsewise, be off with ye – this steel won't hammer itself!
 
 => END
+
+# WEAPONS SECTION
+~ weapons_menu
+Vagn Blackhammer: Aye, a warrior after me own heart! A fine weapon is an extension of yer will. What sort of argument are ye lookin' to settle?
+
+- I need a blade, swift and true. => blades_submenu
+- I'm looking for something with more... impact. => impact_submenu
+- Perhaps something specialized? => specialized_weapons_submenu
+- Tell me about your weapon-smithing philosophy.
+    Vagn Blackhammer: (Leans on his hammer) A weapon ain't just a tool, it's a life-taker and a life-saver. Balance is key – too heavy, ye tire; too light, it won't bite. But more than that, it needs spirit. I pour a bit o' my own fire into every piece. A Blackhammer blade *sings* when it tastes battle, it does.
+    - Interesting. What kind of weapons do you have? => weapons_menu
+    - Back to the main questions. => start
+- I was thinking more about armor. => armor_menu
+- Let me reconsider. => start
+
+~ blades_submenu
+Vagn Blackhammer: Blades, eh? From a quick shiv to a warlord's grand sword, I've patterns for 'em all.
+- Show me your longswords.
+    Vagn Blackhammer: The classic knight's companion. Balanced for cut and thrust. I've got a new 'Spine of the Mountain' design, if ye've the coin. Strong, sharp, and rings like a damn choir bell.
+    - What else in blades? => blades_submenu
+    - Tell me about other weapons. => weapons_menu
+- What about shortswords or daggers?
+    Vagn Blackhammer: For close work, or when subtlety is yer ally. My 'Shadow's Kiss' daggers are favored by scouts... and less savory types. Heh. Shortswords, I make 'em sturdy, good for a parry or a quick stab.
+    - What else in blades? => blades_submenu
+    - Tell me about other weapons. => weapons_menu
+- I'm interested in greatswords.
+    Vagn Blackhammer: Ah, a two-hander! For cleaving through ranks and sendin' foes flyin'. Takes a strong arm and a stronger heart. My 'Giant's Toothpick' model is... unsubtle.
+    - What else in blades? => blades_submenu
+    - Tell me about other weapons. => weapons_menu
+- Back to weapon types. => weapons_menu
+
+~ impact_submenu
+Vagn Blackhammer: Ha! Sometimes a good, solid CRUNCH is more satisfyin' than a clean slice, eh?
+- I favor the axe.
+    Vagn Blackhammer: An honest choice! Battle axes that can split a shield or a skull with equal ease. Or perhaps a throwing axe? Nasty surprise for an overconfident foe. My 'Beard-Splitter' battle axe is a popular one.
+    - What else for impact? => impact_submenu
+    - Tell me about other weapons. => weapons_menu
+- How about a warhammer or mace?
+    Vagn Blackhammer: Excellent against armored brutes! A mace'll crush plate where a blade might glance off. My 'Bone-Breaker' warhammers live up to their name. Heavy, but they deliver a message.
+    - What else for impact? => impact_submenu
+    - Tell me about other weapons. => weapons_menu
+- Back to weapon types. => weapons_menu
+
+~ specialized_weapons_submenu
+Vagn Blackhammer: Somethin' a bit different, ye say?
+- Do you forge polearms?
+    Vagn Blackhammer: Spears, halberds, glaives... aye. Good for keepin' foes at bay, or for reachin' over a shield wall. My 'Dragon's Reach' spear is tempered for flexibility and strength.
+    - Any other specialized gear? => specialized_weapons_submenu
+    - Tell me about other weapons. => weapons_menu
+- What about bows or crossbows?
+    Vagn Blackhammer: (Scoffs good-naturedly) Wood and string? Not my main trade, lad/lass. But I do forge exceptional arrowheads and quarrel tips. And the metal components for master bowyers, sometimes. If ye need a full bow, seek out Elara Willow-whisper in the Greenwold. But if it's the pointy bits, I'm yer dwarf.
+    - What about melee weapons? => weapons_menu
+    - Interesting. Thanks for the tip. => start
+- Back to weapon types. => weapons_menu
+
+# ARMOR SECTION
+~ armor_menu
+Vagn Blackhammer: Good choice! No sense in rushin’ to Valhalla or the Halls of Mandos if ye can stand and fight longer. What kind of protection are ye after?
+
+- I need mail, flexible and strong. => mail_armor_submenu
+- Plate, to turn the heaviest blows. => plate_armor_submenu
+- What about shields? => shields_submenu
+- How do you ensure your armor's quality?
+    Vagn Blackhammer: (Taps a half-finished cuirass) It's in the folding, the quenching, the temperin'. Each ring in a mail shirt, each plate in a harness, must be perfect. Weakness in one spot is weakness in all. I treat every piece as if me own kin would wear it into battle.
+    - Impressive. Let's look at armor. => armor_menu
+    - Back to the main questions. => start
+- I was thinking more about weapons. => weapons_menu
+- Let me reconsider. => start
+
+~ mail_armor_submenu
+Vagn Blackhammer: Mail, eh? Good all-round protection, doesn't hinder ye like full plate can.
+- Show me your hauberks.
+    Vagn Blackhammer: A full shirt of mail, reaching to the knees. Riveted links, strong as a troll's hide. My 'Serpent Scale' pattern is known for its flexibility.
+    - What else in mail? => mail_armor_submenu
+    - Tell me about other armor. => armor_menu
+- What about coifs or mail leggings?
+    Vagn Blackhammer: Protectin' the head and legs, vital spots. A well-made coif can turn a glancing blow. Leggings stop those low cuts. Every bit helps.
+    - What else in mail? => mail_armor_submenu
+    - Tell me about other armor. => armor_menu
+- Back to armor types. => armor_menu
+
+~ plate_armor_submenu
+Vagn Blackhammer: Ah, for the knight who expects a proper scrap! Nothin' says 'come at me' like a full harness of gleaming plate.
+- I'm interested in a cuirass or breastplate.
+    Vagn Blackhammer: The heart of yer defense. My 'Mountain Heart' cuirasses are forged thick, angled to deflect. Can add a backplate for full torso coverage.
+    - What else in plate? => plate_armor_submenu
+    - Tell me about other armor. => armor_menu
+- Gauntlets and greaves?
+    Vagn Blackhammer: Can't fight if ye can't hold yer weapon or stand on yer feet! Articulated joints, hardened steel. My 'Iron Grip' gauntlets are a warrior's best friend.
+    - What else in plate? => plate_armor_submenu
+    - Tell me about other armor. => armor_menu
+- What about a full harness?
+    Vagn Blackhammer: (Grins, showing strong teeth) Now yer talkin'! A masterpiece of smithing. Custom-fitted, takes weeks to make. Cost ye a king's ransom, but ye'll be a walkin' fortress. Interested in a commission?
+    - Perhaps one day. What are the components? => plate_armor_submenu
+    - Tell me about other armor. => armor_menu
+- Back to armor types. => armor_menu
+
+~ shields_submenu
+Vagn Blackhammer: A shield is a warrior's steadfast companion. The difference between a nasty scar and a story to tell yer grandkids.
+- Do you make bucklers or other small shields?
+    Vagn Blackhammer: Aye, for skirmishers or duelists. Light, quick to maneuver. Good for deflecting, not so much for takin' a troll's club head-on.
+    - What other shields? => shields_submenu
+    - Tell me about other armor. => armor_menu
+- I need a proper war shield.
+    Vagn Blackhammer: Kite shields, round shields, tower shields... depends on yer fightin' style. Reinforced with steel bands, boss in the center as hard as a dragon's skull. My 'Bulwark' shields have stopped orcish charges.
+    - What other shields? => shields_submenu
+    - Tell me about other armor. => armor_menu
+- Back to armor types. => armor_menu
+
+# ABOUT THE FORGE SECTION
+~ about_forge_menu
+Vagn Blackhammer: Ha! A true warrior respects the forge. Steel is born o’ fire and toil, just like a warrior’s spirit. What d'ye want to know about my life's work?
+
+- Tell me about your history as a smith.
+    Vagn Blackhammer: (Strokes his beard) Blackhammer Forge has stood in this spot for five generations. My great-great-grandsire, Borin Stonebeard, first struck sparks here. I learned at my father's knee, just as he learned from his. The secrets of the steel, the rhythm of the hammer... it's in our blood.
+    - Fascinating. What else about the forge? => about_forge_menu
+    - Back to the main questions. => start
+- What materials do you use?
+    Vagn Blackhammer: Only the finest mountain iron, smelted with secret fluxes passed down through my line. Sometimes, if a client has the coin and the courage to find it, I'll work with star-metal or volcanic ore. Each has its own temper, its own song.
+    - Interesting. What else about the forge? => about_forge_menu
+    - Back to the main questions. => start
+- What makes Blackhammer steel so special?
+    Vagn Blackhammer: (Smirks) If I told ye all me secrets, it wouldn't be special, now would it? But it's more than just good ore. It's the heat of the forge, the quench in blessed water, the countless hammer blows that drive out impurities and align the grain. It's knowing the steel, feeling its life. Brittle steel gets men killed. Blackhammer steel *endures*.
+    - I understand. What else about the forge? => about_forge_menu
+    - Back to the main questions. => start
+- Any legendary items you've forged?
+    Vagn Blackhammer: (His eyes gleam with pride) Heh. A few. There was 'Storm-Caller', the axe I made for Jarl Firebeard – they say it could split the thunderclouds. And 'Sunstone', a shield for Lady Arwyn that blazed with light in the Gloomwood. Each one a saga in itself. Maybe one day, I'll forge one for *you*, eh?
+    - Inspiring! What else about the forge? => about_forge_menu
+    - Back to the main questions. => start
+- That's all I wanted to know. => start
+
+# OTHER SERVICES SECTION
+~ other_services_menu
+Vagn Blackhammer: Beyond forging anew? Aye, a good smith is more than just a creator.
+- Can you repair damaged equipment?
+    Vagn Blackhammer: Certainly. Bring me your dented helms, your notched blades, your broken shields. If it's made of metal, I can likely mend it. A repair's often cheaper than a new piece, and a familiar weapon is a trusted friend.
+    - (If player has repairable gear, this could lead to an interface)
+    - What other services? => other_services_menu
+    - Back to main questions. => start
+- Do you offer enchantments or enhancements?
+    Vagn Blackhammer: Basic enhancements, aye. I can add masterwork quality, improve balance, sharpen an edge to legendary keenness. As for true enchantments... I know the runes of power, the bindings of old. If ye bring me the components and the knowledge of the enchantment ye seek, I can imbue items. But that's rare and costly work. Some say I can even work with magical metals, if they're brought to me.
+    - (This could lead to an enchanting/upgrading interface)
+    - What other services? => other_services_menu
+    - Back to main questions. => start
+- Can you appraise items?
+    Vagn Blackhammer: (Raises an eyebrow) If it's metalwork, I can tell ye its make, its quality, and likely its worth. Might cost ye a small fee for my time, unless yer buyin' somethin' too.
+    - What other services? => other_services_menu
+    - Back to main questions. => start
+- That's all for now. => start
