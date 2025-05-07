@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1a2s3d4e5f6_moving_entity"]
+
+[ext_resource type="Script" path="res://MovingEntity.gd" id="1_abcde"]
+[ext_resource type="Texture2D" path="res://assets/entity_sprite.png" id="2_fghij"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_collider"]
+radius = 8.0 # Adjust radius based on your sprite size
+
+[sub_resource type="Animation" id="Animation_idle_pulse"]
+resource_name = "idle_pulse"
+length = 1.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame") # Assumes your Sprite2D texture is a spritesheet
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1, # Discrete updates for frame changes
+"values": [0, 1, 2, 3] # Example: 4 frames for walking
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes") # Set hframes if not already set on Sprite2D node
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4] # Assuming 4 horizontal frames in your spritesheet
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_entity_anims"]
+_data = {
+"idle_pulse": SubResource("Animation_idle_pulse"),
+"walk": SubResource("Animation_walk")
+}
+
+[node name="MovingEntity" type="CharacterBody2D"] # Changed to CharacterBody2D
+script = ExtResource("1_abcde")
+# Optional: define collision layers/masks if needed
+# collision_layer = 1
+# collision_mask = 1
+# motion_mode = 1 # 0 for GROUNDED, 1 for FLOATING
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fghij")
+# If your sprite isn't centered by default, you might want:
+# centered = true
+# Or adjust offset:
+# offset = Vector2(0, -8) # Example: if origin should be at feet
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_collider")
+
+[node name="NameLabel" type="Label" parent="."] # Renamed for clarity
+offset_left = -25.0
+offset_top = -25.0 # Adjusted to be above a typical small sprite
+offset_right = 25.0
+offset_bottom = -12.0
+text = "Entity" # Generic placeholder, set by script
+horizontal_alignment = 1 # Center alignment
+vertical_alignment = 1   # Middle alignment (if you add more height)
+# For better readability, you might want to add theme overrides in the inspector
+# or via code, e.g., for font size, outline.
+# theme_override_font_sizes/font_size = 8
+# theme_override_colors/font_color = Color(1, 1, 1, 1)
+# theme_override_constants/outline_size = 1
+# theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_entity_anims")
+}
+autoplay = "idle_pulse" # Optional: play an animation by default
