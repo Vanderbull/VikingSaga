@@ -1,16 +1,15 @@
-[gd_scene load_steps=39 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=27 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" uid="uid://d2hkwg20n04pp" path="res://player/player.gd" id="1_b0x02"]
-[ext_resource type="Texture2D" uid="uid://b04j2fn3muan3" path="res://arts/player.png" id="1_b63l5"]
-[ext_resource type="AudioStream" uid="uid://cbogiwhvcgd5d" path="res://sound/digging-v1-27585.mp3" id="4_vtp6p"]
-[ext_resource type="Texture2D" uid="uid://nd0vbyo1smja" path="res://assets/particle_examples/floaty_64.png" id="5_qevvx"]
-[ext_resource type="Script" uid="uid://deiw28uljmsqv" path="res://player/DiggPlayer.gd" id="5_wwnyo"]
-[ext_resource type="AudioStream" uid="uid://bax8ulqh8ti8k" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
+[ext_resource type="Texture2D" uid="uid://mscd0rf1x2wc" path="res://arts/player.png" id="1_b63l5"]
+[ext_resource type="AudioStream" uid="uid://bphkcwcvfui5v" path="res://sound/digging-v1-27585.mp3" id="4_vtp6p"]
+[ext_resource type="Script" uid="uid://dhv1ouf6hxsyy" path="res://player/DiggPlayer.gd" id="5_wwnyo"]
+[ext_resource type="AudioStream" uid="uid://bililbxykyrfk" path="res://sound/Chopping Wood .mp3" id="6_h85y2"]
 [ext_resource type="Script" uid="uid://dtkwretf787h3" path="res://player/ChopPlayer.gd" id="7_0tvku"]
-[ext_resource type="Texture2D" uid="uid://bcb7g1bybhea3" path="res://arts/pixel-viking-1.jpg" id="8_snomj"]
-[ext_resource type="Texture2D" uid="uid://cystpoa88d7f0" path="res://arts/pixel-viking-2.jpg" id="9_uo6co"]
-[ext_resource type="Texture2D" uid="uid://cymskw1plmsiv" path="res://arts/pixel-viking-3.jpg" id="10_1q6hr"]
-[ext_resource type="Script" uid="uid://gw1h7i65agwm" path="res://AnimatedFace.gd" id="11_mfvas"]
+[ext_resource type="Texture2D" uid="uid://cxuk8y2w7fc0d" path="res://arts/pixel-viking-1.jpg" id="8_snomj"]
+[ext_resource type="Texture2D" uid="uid://b28mjablv0mxo" path="res://arts/pixel-viking-2.jpg" id="9_uo6co"]
+[ext_resource type="Texture2D" uid="uid://dm215l4h5f1pv" path="res://arts/pixel-viking-3.jpg" id="10_1q6hr"]
+[ext_resource type="Script" uid="uid://bb8rxhne6lhy1" path="res://scenes/AnimatedFace.gd" id="10_8t03j"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -162,65 +161,6 @@ radius = 28.0179
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xwlvb"]
 gradient = SubResource("Gradient_16kgw")
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0b3iy"]
-polygon = PackedVector2Array(-8, 0, -8, -9, -2, -16, 3, -16, 8, -9, 8, 0, -8, 0)
-
-[sub_resource type="Gradient" id="Gradient_gatnj"]
-offsets = PackedFloat32Array(0, 0.688259)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p4d6c"]
-gradient = SubResource("Gradient_gatnj")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2dkp0"]
-blend_mode = 1
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 7
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_qnxds"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_es1to"]
-curve = SubResource("Curve_qnxds")
-
-[sub_resource type="Curve" id="Curve_8mco5"]
-_limits = [-360.0, 360.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_la5x6"]
-curve = SubResource("Curve_8mco5")
-
-[sub_resource type="Curve" id="Curve_q48s2"]
-_limits = [0.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_1viqd"]
-curve = SubResource("Curve_q48s2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_760yx"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 16.0
-angle_max = 360.0
-angle_curve = SubResource("CurveTexture_es1to")
-spread = 180.0
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-angular_velocity_max = 300.0
-angular_velocity_curve = SubResource("CurveTexture_la5x6")
-gravity = Vector3(0, -98, 0)
-anim_speed_max = 0.21
-anim_speed_curve = SubResource("CurveTexture_1viqd")
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_71amf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_alqk5"]
@@ -296,30 +236,11 @@ position = Vector2(0, -6)
 scale = Vector2(0.87788, 0.87172)
 texture = SubResource("GradientTexture2D_xwlvb")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-scale = Vector2(0.5, 0.5)
-occluder = SubResource("OccluderPolygon2D_0b3iy")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-shadow_enabled = true
-shadow_filter = 2
-shadow_filter_smooth = 50.0
-texture = SubResource("GradientTexture2D_p4d6c")
-
 [node name="Identity" type="Label" parent="."]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Player"
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-material = SubResource("CanvasItemMaterial_2dkp0")
-texture = ExtResource("5_qevvx")
-lifetime = 6.0
-process_material = SubResource("ParticleProcessMaterial_760yx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -348,7 +269,9 @@ material = SubResource("CanvasItemMaterial_71amf")
 position = Vector2(-140, -100)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_alqk5")
-script = ExtResource("11_mfvas")
+frame = 1
+frame_progress = 0.26821
+script = ExtResource("10_8t03j")
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]

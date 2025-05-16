@@ -110,7 +110,7 @@ func spawn_scene():
 	#add_child(city_instance)
 
 func generate_minimap(size: int, margin: int) -> ImageTexture:
-	var noise = FastNoiseLite.new()
+	#var noise = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.frequency = 0.02
 	noise.seed = randi()  # Set a random seed each time
