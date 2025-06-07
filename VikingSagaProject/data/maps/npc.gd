@@ -44,8 +44,8 @@ func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)
 	var datan
 	datan = get_tile_info($".",tile_pos)
-	if datan != null:
-		print(datan)
+	#if datan != null:
+		#print(datan)
 	#print(tile_pos)
 	#print_debug("processing animal map...")
 	#if is_tile_set(globals.player_position.x,globals.player_position.y):

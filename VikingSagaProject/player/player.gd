@@ -32,6 +32,21 @@ var near_fire: bool = false
 @export var min_zoom: float = 0.5
 @export var max_zoom: float = 3.0
 
+# Warmth settings
+var current_warmth: float = 100.0 # Max 100
+var min_warmth: float = 0.0
+var max_warmth: float = 100.0
+
+# Rates of change (units per second)
+var warmth_loss_rate: float = 5.0
+var warmth_gain_rate: float = 10.0
+
+# Environmental influence
+var ambient_temperature: float = 5.0 # Celsius
+var freezing_point: float = 0.0
+# Player clothing (affects insulation)
+var insulation_factor: float = 1.0 # 0 = no clothes, 2 = heavy coat
+
 func check_if_quest_finished():
 	if globals.QuestWater >= 10000:
 		if globals.QuestFood >= 10000:
@@ -72,6 +87,8 @@ func _input(_event):
 	pass
 
 func _ready():
+	Warmth.set_insulation(1.5) # Player has medium clothing
+	Warmth.set_ambient_temperature(5.0) # Cold biome
 	if globals.character_position != Vector2.ZERO:
 		position = globals.character_position
 	# Load the DynamicArray script
@@ -171,68 +188,63 @@ func _unhandled_input(event):
 				#$Camera2D.zoom.y -= 0.25
 			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
-func check_for_water():
-	var left = -16
-	var right = 16
-	var up = -16
-	var down = 16
-	
-	var position_temp = globals.character_position
-	print(position_temp)
-	var tile_position = worldMap.local_to_map(position_temp)
-	print(tile_position)
-	var tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
-	print(tile_pos_modified)
-		
-	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
-	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	print(globals.Terrain)
-	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(right,0))
-	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	print(globals.Terrain)
-	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(up,0))
-	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	print(globals.Terrain)
-	tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(down,0))
-	$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	print(globals.Terrain)
-		
-	#print(tile_pos)
-	#if( $"..".get_terrain_type(tile_pos.x, tile_pos.y) == "Water"):
-		#print("WATER")
-	#else:
-		#print("LAND")
-	return
+#func check_for_water():
+	#var left = -16
+	#var right = 16
+	#var up = -16
+	#var down = 16
+	#var position_temp = globals.character_position
+	#var tile_position = worldMap.local_to_map(position_temp)
+	#var tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
+#
+	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
+	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(right,0))
+	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(up,0))
+	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(down,0))
+	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
+	#return
 
 func _process(delta):
+	if( globals.Terrain == "Water" ):
+		ambient_temperature = -5.0
+	else:
+		ambient_temperature = 20.0
 	check_if_quest_finished()
 	if globals.CollectClay:
 		if(!$DiggPlayer.is_audio_playing()):
 			$DiggPlayer.play()
 	if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
 		get_tree().change_scene_to_file("res://game_over.tscn")
-		#get_tree().reload_current_scene()
 	game_manager.playerData.position = position
-	#delta = 0.00000000000
 
 	handleInput()
 	position = globals.character_position
 	var tile_pos = worldMap.local_to_map(position)
-	#print(tile_pos)
-	# velocity 300 needs to be changed to tile positions
-	#print(velocity)
 	move_and_slide()
 	updateAnimation()
-		
-	check_for_water()
+	#check_for_water()
+	
+	var temperature_effect = ambient_temperature - freezing_point
+	# Base warmth change
+	var warmth_change = 0.0
+	
 	if near_fire:
-		globals.Warmth += 10.0 * delta  # Increase warmth while near fire
-		globals.Warmth = min(globals.Warmth, 100)  # Cap warmth
+		#current_warmth += warmth_gain_rate * delta  # Increase warmth while near fire
+		warmth_change += warmth_gain_rate * delta
+		#current_warmth = min(globals.Warmth, max_warmth)  # Cap warmth
+	elif temperature_effect < 0.0:
+		#current_warmth -= warmth_loss_rate * delta  # Decrease warmth when away from fire
+		#current_warmth = max(globals.Warmth, min_warmth)  # Prevent it from going below zero
+			warmth_change -= (abs(temperature_effect) / 10.0) * warmth_loss_rate * (1.0 / insulation_factor) * delta
 	else:
-		if velocity == Vector2(0,0):
-			globals.Warmth -= 5.0 * delta  # Decrease warmth when away from fire
-		globals.Warmth = max(globals.Warmth, 0)  # Prevent it from going below zero
-	print(velocity)
+		# Slight warmth gain in warm areas
+		warmth_change += (temperature_effect / 30.0) * warmth_gain_rate * delta
+	
+	current_warmth = clamp(current_warmth + warmth_change, min_warmth, max_warmth)
+	globals.Warmth = current_warmth
 
 func _on_chop_player_finished():
 	pass # Replace with function body.
