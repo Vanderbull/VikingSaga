@@ -176,8 +176,50 @@ animations = [{
 "texture": ExtResource("10_1q6hr")
 }],
 "loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_snomj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uo6co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1q6hr")
+}],
+"loop": true,
 "name": &"default",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_snomj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uo6co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1q6hr")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_snomj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uo6co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1q6hr")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -269,8 +311,7 @@ material = SubResource("CanvasItemMaterial_71amf")
 position = Vector2(-140, -100)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_alqk5")
-frame = 1
-frame_progress = 0.26821
+animation = &"sad"
 script = ExtResource("10_8t03j")
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
