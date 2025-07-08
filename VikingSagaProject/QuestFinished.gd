@@ -5,11 +5,9 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-
 
 func _on_button_pressed():
 	hide()
@@ -18,5 +16,5 @@ func _on_button_pressed():
 	globals.QuestFood = 0
 	globals.QuestTrees = 0
 	globals.QuestClay = 0
-	globals.QuestHunting = 0
+	globals.QuestRoads = 0
 	pass # Replace with function body.

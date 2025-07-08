@@ -1,13 +1,12 @@
 extends Label
 
+@export var finished: bool = false                # If quest is finished
+@export var amount: int = 10000                # If quest is finished
+
 @onready var globals = get_node("/root/Globals")
 
 func update_text():
-	if globals.QuestWater >= 10000:
-		text = """[X] Collect water %s / 10000""" % [globals.QuestWater]
+	if globals.QuestWater >= amount:
+		text = """[X] Collect water %s / %s""" % [globals.QuestWater][amount]
 	else:
-		text = """[ ] Collect water %s / 10000""" % [globals.QuestWater]
-
-func _ready():
-	pass
-	# Connect the update_text function to a signal if needed, e.g., for updating every frame or on specific events.
+		text = """[ ] Collect water %s / %s""" % [globals.QuestWater][amount]

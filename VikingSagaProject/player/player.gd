@@ -48,11 +48,11 @@ var freezing_point: float = 0.0
 var insulation_factor: float = 1.0 # 0 = no clothes, 2 = heavy coat
 
 func check_if_quest_finished():
-	if globals.QuestWater >= 10000:
-		if globals.QuestFood >= 10000:
-			if globals.QuestTrees >= 10000:
-				if globals.QuestClay >= 10000:
-					%QuestFinished.show() #$"../../../QuestFinished/QuestFinished".show()
+	if globals.QuestWater >= %QuestWater.amount:
+		if globals.QuestFood >= %QuestFood.amount:
+			if globals.QuestTrees >= %QuestTrees.amount:
+				if globals.QuestClay >= %QuestClay.amount:
+					%QuestFinished.show()
 
 func _physics_process(delta: float) -> void:
 	# Check if the player is moving

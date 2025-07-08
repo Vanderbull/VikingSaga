@@ -954,31 +954,31 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Quest1" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestWater" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect water 0 / 10000"
 script = ExtResource("60_tprwl")
 
-[node name="Quest2" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestFood" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect food 0 / 10000"
 script = ExtResource("61_7qr0p")
 
-[node name="Quest3" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestTrees" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
 script = ExtResource("62_ufjyl")
 
-[node name="Quest4" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestClay" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect clay 0 / 10000"
 script = ExtResource("63_ro3um")
 
-[node name="Quest5" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestRoads" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"

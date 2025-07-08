@@ -227,7 +227,7 @@ func _process(_delta):
 			playerData.Food += globals.CollectingFoodAmount
 			globals.gain_experience(1)
 			globals.gain_quest_food(globals.CollectingFoodAmount)
-			%Quest2.update_text() #$Quests/Control/Panel/VBoxContainer/Quest2.update_text()
+			%QuestFood.update_text()
 	elif(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
@@ -245,7 +245,7 @@ func _process(_delta):
 			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
 			globals.gain_experience(1)
 			globals.gain_quest_trees(globals.CollectingWoodAmount)
-			%Quest3.update_text() #$Quests/Control/Panel/VBoxContainer/Quest3.update_text()
+			%QuestTrees.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
@@ -255,7 +255,7 @@ func _process(_delta):
 			$InGameCanvasLayer/ProgressBar.value = 0
 			globals.gain_experience(1)
 			globals.gain_quest_water(globals.CollectingWaterAmount)
-			%Quest1.update_text() #$Quests/Control/Panel/VBoxContainer/Quest1.update_text()
+			%QuestWater.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectClay and globals.Terrain == "Grass"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting Clay"
@@ -264,7 +264,7 @@ func _process(_delta):
 			playerData.Clay += globals.CollectingClayAmount
 			globals.gain_experience(1)
 			globals.gain_quest_clay(globals.CollectingClayAmount)
-			%Quest4.update_text() #$Quests/Control/Panel/VBoxContainer/Quest4.update_text()
+			%QuestClay.update_text()
 			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 			$InGameCanvasLayer/ProgressBar.value = 0
 	else:

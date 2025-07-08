@@ -44,11 +44,22 @@ var CollectClayMultiplier = 1
 var CollectWaterMultiplier = 1
 var RoadWorksMultiplier = 1
 var HuntingMultiplier = 1
-# Quests
+# Carried items and there amount
+var CarriedWater = 0
+var CarriedFood = 0
+var CarriedTrees = 0
+var CarriedClay = 0
+# Stored items and there amount
+var StoredWater = 0
+var StoredFood = 0
+var StoredTrees = 0
+var StoredClay = 0
+# Quests ( Should be replaced with carried and stored variables )
 var QuestWater = 0
 var QuestFood = 0
 var QuestTrees = 0
 var QuestClay = 0
+var QuestRoads = 0
 var QuestHunting = 0
 # Dictionary to store item data
 var animals_db = {}
