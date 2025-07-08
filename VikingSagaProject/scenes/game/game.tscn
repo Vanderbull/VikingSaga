@@ -676,6 +676,7 @@ tile_map_data = PackedByteArray("AADb/+z/AAADAAAAAADb/+3/AAADAAAAAADb/+7/AAADAAA
 tile_set = ExtResource("7_fm2c5")
 
 [node name="Player" parent="world/TileMap" instance=ExtResource("8_bf7mr")]
+unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
 position = Vector2(-7.99265, 0)
@@ -704,11 +705,13 @@ unique_name_in_owner = true
 stream = ExtResource("33_u2325")
 
 [node name="TileMap2" type="TileMap" parent="world"]
+unique_name_in_owner = true
 tile_set = SubResource("TileSet_ie527")
 format = 2
 script = ExtResource("34_v1nyk")
 
 [node name="AnimalMap" type="TileMap" parent="world"]
+unique_name_in_owner = true
 tile_set = SubResource("TileSet_i3jvc")
 format = 2
 layer_0/name = "ANIMAL_MAP"

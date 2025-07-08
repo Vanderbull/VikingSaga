@@ -52,7 +52,8 @@ func place_character():
 		var temp = noise[1]
 
 		if not (round((moist + 10) / 5) == 3 and round((temp + 10) / 5) <= 3):
-			player.position = world_position
+			#player.position = world_position
+			%Player.position = world_position
 			return
 
 	push_error("Failed to find a valid spawn position")
@@ -80,26 +81,29 @@ func generate_tilemap():
 	pass
 	
 func _process(_delta):
-	generate_chunk(player.position)
-	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
-	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
-	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
 	#generate_chunk(player.position)
+	generate_chunk(%Player.position)
+#	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(player.position))
+#	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(player.global_position)
+#	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(player.position)
+	$"../../InGameCanvasLayer/PlayerLocalToMapPosition".text = "LocalToMap " + str(local_to_map(%Player.position))
+	$"../../InGameCanvasLayer/PlayerGlobalPosition".text = "GlobalPosition " + str(%Player.global_position)
+	$"../../InGameCanvasLayer/PlayerPosition".text = "Position " + str(%Player.position)
+
 	var tile_pos = local_to_map(player.position)
 	var _tile_index = tile_pos.x * globals.chunk_size + tile_pos.y
 	var moist = moisture.get_noise_2d(tile_pos.x, tile_pos.y) * 10 # -10 to 10
 	var temp = temperature.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	var alt = altitude.get_noise_2d(tile_pos.x, tile_pos.y) * 10
 	
-	var tiles = $"../AnimalMap".get_used_cells(0)
+	var tiles = %AnimalMap.get_used_cells(0) #$"../AnimalMap".get_used_cells(0)
 	for cell in tiles:
-		var custom_data = $"../AnimalMap".get_cell_source_id ( 0, Vector2i(tile_pos.x, tile_pos.y), false )
-		#$"../../TileInfoWindow/PanelContainer/VBoxContainer/Hunting".text = str(custom_data)
+		var custom_data = %AnimalMap.get_cell_source_id( 0, Vector2i(tile_pos.x, tile_pos.y), false ) #$"../AnimalMap".get_cell_source_id ( 0, Vector2i(tile_pos.x, tile_pos.y), false )
 		%Hunting.text = str(custom_data)
 		globals.Animals = custom_data			
 	if( !globals.Hunting ):
 		if( game_manager.playerData.Wood > 0 and globals.RoadWorks):
-			$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
+			%TileMap2.set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0)) #$"../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(0,0))
 			game_manager.playerData.Wood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
@@ -137,7 +141,7 @@ func get_terrain_type(tile_pos_x, tile_pos_y):
 	
 	if( !globals.Hunting ):
 		if( game_manager.playerData.Wood > 0 and globals.RoadWorks):
-			$"../TileMap2".set_cell(0, Vector2i(tile_pos_x, tile_pos_y), 1 ,Vector2(0,0))
+			%TileMap2.set_cell(0, Vector2i(tile_pos_x, tile_pos_y), 1 ,Vector2(0,0)) #$"../TileMap2".set_cell(0, Vector2i(tile_pos_x, tile_pos_y), 1 ,Vector2(0,0))
 			game_manager.playerData.Wood -= 1
 			globals.RoadWorks = not globals.RoadWorks
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):

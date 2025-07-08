@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dpluncmaurdph"]
 
-[ext_resource type="Script" uid="uid://c61v6qmdvn0g7" path="res://InGameCanvasLayer.gd" id="1_h8of4"]
-[ext_resource type="Texture2D" uid="uid://cjbh3kml3wkxc" path="res://assets/InventoryRect.png" id="2_lem7x"]
-[ext_resource type="Script" uid="uid://dsrm8uxvyasxe" path="res://ProgressBar.gd" id="3_6vgv2"]
+[ext_resource type="Script" uid="uid://3fc0p04cv0dd" path="res://InGameCanvasLayer.gd" id="1_h8of4"]
+[ext_resource type="Texture2D" uid="uid://bo4iprcuigtmq" path="res://assets/InventoryRect.png" id="2_lem7x"]
+[ext_resource type="Script" uid="uid://jcnny8tx405w" path="res://ProgressBar.gd" id="3_6vgv2"]
 [ext_resource type="PackedScene" uid="uid://cee5idrywffoe" path="res://inventory_gui.tscn" id="4_65c0s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lex6n"]
@@ -99,11 +99,13 @@ layout_mode = 2
 text = "Food: 0"
 
 [node name="PlayerPosition" type="Label" parent="."]
+unique_name_in_owner = true
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="PlayerGlobalPosition" type="Label" parent="."]
+unique_name_in_owner = true
 visible = false
 offset_left = 1.0
 offset_top = 28.0
@@ -112,6 +114,7 @@ offset_bottom = 51.0
 text = "Velocity"
 
 [node name="PlayerLocalToMapPosition" type="Label" parent="."]
+unique_name_in_owner = true
 visible = false
 offset_left = 1.0
 offset_top = 77.0
