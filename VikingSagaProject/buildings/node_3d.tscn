@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6ch1b8v2uwvo"]
+[gd_scene load_steps=8 format=3 uid="uid://b6ch1b8v2uwvo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1qxwr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sun_angle_max = 45.0
 
 [sub_resource type="Sky" id="Sky_n2mar"]
 sky_material = SubResource("ProceduralSkyMaterial_1qxwr")
@@ -8,35 +11,100 @@ sky_material = SubResource("ProceduralSkyMaterial_1qxwr")
 [sub_resource type="Environment" id="Environment_rn8ff"]
 background_mode = 2
 sky = SubResource("Sky_n2mar")
+ambient_light_source = 3
+ambient_light_color = Color(0.8, 0.8, 0.8, 1)
+glow_enabled = true
+glow_intensity = 0.8
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bxi61"]
+radius = 0.5
+height = 2.0
+radial_segments = 32
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xk7p2"]
+albedo_color = Color(0.2, 0.6, 0.8, 1)
+metallic = 0.3
+roughness = 0.5
 
 [node name="RootCanvas" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="RootCanvas"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="RootCanvas/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -15.5
+offset_right = 110.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Click Me!"
+script = SubResource("GDScript_button")
 
 [node name="Root3D" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Root3D"]
 environment = SubResource("Environment_rn8ff")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Root3D"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 0)
+shadow_enabled = true
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Root3D"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Root3D/SubViewportContainer"]
-size = Vector2i(1152, 658)
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override_stretch = true
 
 [node name="Camera3D" type="Camera3D" parent="Root3D/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.51714)
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 2, 4)
+fov = 70.0
 
 [node name="Node3D" type="Node3D" parent="Root3D"]
+script = SubResource("GDScript_rotation")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Root3D/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.73867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 mesh = SubResource("CapsuleMesh_bxi61")
+material_override = SubResource("StandardMaterial3D_xk7p2")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 464.0
-offset_top = 232.0
-offset_right = 685.0
-offset_bottom = 263.0
-text = "CLICK ME MTOHER FIUCKER"
+[sub_resource type="GDScript" id="GDScript_rotation"]
+script/source = "extends Node3D
+
+@export var rotation_speed: float = 1.0
+
+func _process(delta: float) -> void:
+    rotate_y(rotation_speed * delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_button"]
+script/source = "extends Button
+
+signal button_clicked
+
+func _ready() -> void:
+    pressed.connect(_on_button_pressed)
+    
+func _on_button_pressed() -> void:
+    print(\"Button clicked!\")
+    button_clicked.emit()
+"
