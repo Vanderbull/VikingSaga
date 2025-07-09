@@ -109,28 +109,44 @@ func _process(_delta):
 		if( round((moist+10)/5) == 1 and round((temp+10)/5) == 1 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " FOREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
+			var my_tile_type = globals.TerrainType.FOREST
+			print(globals.TerrainType.keys()[my_tile_type])  # Outputs "FOREST"
 		elif( round((temp+10)/5) == 0 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " SNOW OR DEEP WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Snow"
+			var my_tile_type = globals.TerrainType.SNOW
+			print(globals.TerrainType.keys()[my_tile_type])
 		elif( round((moist+10)/5) == 0 and round((temp+10)/5) >= 2 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
+			var my_tile_type = globals.TerrainType.SAND
+			print(globals.TerrainType.keys()[my_tile_type])
 		elif( round((moist+10)/5) == 1 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " DESERT Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Sand"
+			var my_tile_type = globals.TerrainType.SAND
+			print(globals.TerrainType.keys()[my_tile_type])
 		elif( round((moist+10)/5) == 2 and round((temp+10)/5) >= 3 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " LIGHT FORREST Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Forest"
+			var my_tile_type = globals.TerrainType.FOREST
+			print(globals.TerrainType.keys()[my_tile_type])
 			globals.ForestCutting = false
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) == 3 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " VERY SHALLOW WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
+			var my_tile_type = globals.TerrainType.WATER
+			print(globals.TerrainType.keys()[my_tile_type])
 		elif( round((moist+10)/5) == 3 and round((temp+10)/5) <= 2 ):
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " NORMAL DEPTH WATER Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Water"
+			var my_tile_type = globals.TerrainType.WATER
+			print(globals.TerrainType.keys()[my_tile_type])
 		else:
 			tile_position_info[tile_pos.x * globals.chunk_size + tile_pos.y] = " GRASS Moist: " + str(round((moist+10)/5)) + ", Temp: " + str(round((temp+10)/5)) + ", Alt: " + str(alt)
 			globals.Terrain = "Grass"
+			var my_tile_type = globals.TerrainType.GRASS
+			print(globals.TerrainType.keys()[my_tile_type])
 
 func get_terrain_type(tile_pos_x, tile_pos_y):
 	var tile_pos = local_to_map(player.position)

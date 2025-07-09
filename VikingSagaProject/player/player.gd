@@ -188,25 +188,6 @@ func _unhandled_input(event):
 				#$Camera2D.zoom.y -= 0.25
 			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
-#func check_for_water():
-	#var left = -16
-	#var right = 16
-	#var up = -16
-	#var down = 16
-	#var position_temp = globals.character_position
-	#var tile_position = worldMap.local_to_map(position_temp)
-	#var tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
-#
-	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(left,0))
-	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(right,0))
-	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(up,0))
-	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	#tile_pos_modified = worldMap.local_to_map(position_temp + Vector2(down,0))
-	#$"..".get_terrain_type(tile_pos_modified.x, tile_pos_modified.y)
-	#return
-
 func _process(delta):
 	if( globals.Terrain == "Water" ):
 		ambient_temperature = -5.0
@@ -223,9 +204,20 @@ func _process(delta):
 	handleInput()
 	position = globals.character_position
 	var tile_pos = worldMap.local_to_map(position)
-	move_and_slide()
-	updateAnimation()
-	#check_for_water()
+	# Assume tilemap is your TileMap node, and world_pos is a Vector2 world position
+	var cell = $"..".local_to_map(position)
+	var layer = 0
+
+	var tile_data: TileData = $"..".get_cell_tile_data(layer, cell)
+	if tile_data:
+		var terrain_type = tile_data.get_custom_data("terrain_type")
+		print("Terrain type:", terrain_type)
+		var movement_cost = tile_data.get_custom_data("movement_cost")
+		print("Movement cost:", movement_cost)
+
+		if(terrain_type != "water"):
+			move_and_slide()
+			updateAnimation()
 	
 	var temperature_effect = ambient_temperature - freezing_point
 	# Base warmth change

@@ -64,6 +64,15 @@ var QuestHunting = 0
 # Dictionary to store item data
 var animals_db = {}
 var npc_db = {}
+# ENUMS
+enum TerrainType {
+	GRASS,
+	WATER,
+	SAND,
+	MOUNTAIN,
+	FOREST,
+	SNOW
+}
 func switch_scene(scene_path: String):
 	## Save the character's position
 	character_position = $CharacterBody2D.position
@@ -97,7 +106,6 @@ func gain_quest_clay(amount) -> int:
 	if QuestClay >= 5000:  # Example threshold for completing the quest
 		complete_quest("Clay")
 	return QuestClay
-	
 func complete_quest(quest_type: String):
 	match quest_type:
 		"Water":
@@ -117,9 +125,6 @@ func complete_quest(quest_type: String):
 			# Perform actions related to completing the hunting quest
 	# Reset the quest amount after completion
 	QuestClay = 0
-	
-	# Update UI or perform other actions as needed
-	
 func get_required_experience(p_level):
 	return round(pow(p_level, 1.8) + p_level * 4)
 func gain_experience(amount):
