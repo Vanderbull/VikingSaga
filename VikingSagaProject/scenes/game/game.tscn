@@ -1006,8 +1006,8 @@ script = ExtResource("59_idxdx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Quests/Control/Panel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 292.0
+offset_bottom = 310.0
 
 [node name="QuestWater" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
@@ -1039,14 +1039,33 @@ layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"
 script = ExtResource("64_8l5fl")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="fetch_water" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="Quests/Control/Panel/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+size_flags_vertical = 6
 theme = SubResource("Theme_1s0gc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
-text = "[✓] collect donkeys 0 / 6"
+text = "[✓] fetch water 0 / 1"
+
+[node name="fetch_food" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = SubResource("Theme_1s0gc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
+text = "[✓] fetch food 0 / 1"
+
+[node name="fetch_trees" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = SubResource("Theme_1s0gc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
+text = "[✓] fetch trees 0 / 1"
+
+[node name="fetch_clay" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = SubResource("Theme_1s0gc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
+text = "[✓] fetch clay 0 / 1"
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label", "typing_timer")]
 visible = false

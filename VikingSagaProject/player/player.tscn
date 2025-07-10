@@ -318,6 +318,7 @@ animation = &"sad"
 script = ExtResource("10_8t03j")
 
 [node name="ActionButtons" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="action_control" type="Control" parent="ActionButtons"]
 layout_mode = 3

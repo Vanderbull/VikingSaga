@@ -4,7 +4,6 @@ extends Control
 @onready var click_sound = $Panel/VBoxContainer/SaveButton/AudioStreamPlayer
 @onready var hover_sound = $HoverSound
 func _ready():
-	print("Getting the mainmenu _ready...")
 	verify_save_directory(game_manager.playerData.save_file_path)
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
 func verify_save_directory(path: String):
@@ -12,7 +11,11 @@ func verify_save_directory(path: String):
 # Show or hides the main menu	
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
-		print("show")
+		#print("show")
+		var action_buttons = %Player.find_child("ActionButtons")
+		print("action_buttons: %i", action_buttons.get_index())
+		action_buttons = %Player.get_child(12)
+		action_buttons.hide()
 		$"../../world".hide()
 		$"../../InGameCanvasLayer".hide()
 		%Quests.hide() #$"../../Quests".hide()
@@ -20,7 +23,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		$"../../TileInfoWindow".hide()
 		show()
 	else:
-		print("hide")
+		#print("hide")
 		$"../../world".show()
 		$"../../InGameCanvasLayer".show()
 		%Quests.show() #$"../../Quests".show()
