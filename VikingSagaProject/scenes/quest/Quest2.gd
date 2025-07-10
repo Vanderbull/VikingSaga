@@ -7,6 +7,6 @@ extends Label
 
 func update_text():
 	if globals.QuestFood >= amount:
-		text = "[X] Collect food %s / %d" % [globals.QuestFood, amount]
+		text = "[✓] Collect food %s / %d" % [globals.QuestFood, amount]
 	else:
 		text = "[ ] Collect food %s / %d" % [globals.QuestFood, amount]
