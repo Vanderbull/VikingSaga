@@ -54,19 +54,19 @@ func update_labels(value: int):
 		if label.name == "QuestWater" and globals.Terrain == "Water":
 			globals.QuestWater += value
 			if globals.QuestWater >= 10000:
-				label.text = "[X] Collect water %s / %d" % [globals.QuestWater, 10000]
+				label.text = "[✓] Collect water %s / %d" % [globals.QuestWater, 10000]
 			else:
 				label.text = "[ ] Collect water %s / %d" % [globals.QuestWater, 10000]
 		if label.name == "QuestTrees" and globals.Terrain == "Forest":
 			globals.QuestTrees += value
 			if globals.QuestTrees >= 10000:
-				label.text = "[X] Collect trees %s / %d" % [globals.QuestTrees, 10000]
+				label.text = "[✓] Collect trees %s / %d" % [globals.QuestTrees, 10000]
 			else:
 				label.text = "[ ] Collect trees %s / %d" % [globals.QuestTrees, 10000]
 		if label.name == "QuestClay" and globals.Terrain == "Grass":
 			globals.QuestClay += value
 			if globals.QuestClay >= 10000:
-				label.text = "[X] Collect clay %s / %d" % [globals.QuestClay, 10000]
+				label.text = "[✓] Collect clay %s / %d" % [globals.QuestClay, 10000]
 			else:
 				label.text = "[ ] Collect clay %s / %d" % [globals.QuestClay, 10000]
 func _on_collect_water_pressed() -> void:
