@@ -40,6 +40,10 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 import/blender/enabled=false
 import/fbx/enabled=false
 
+[global_group]
+
+updatable_labels=""
+
 [input]
 
 ui_left={

@@ -1,4 +1,5 @@
 extends ProgressBar
 
 func _ready():
-	hide()
+	pass
+#	hide()

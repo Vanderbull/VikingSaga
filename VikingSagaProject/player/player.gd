@@ -194,9 +194,9 @@ func _process(delta):
 	else:
 		ambient_temperature = 20.0
 	check_if_quest_finished()
-	if globals.CollectClay:
-		if(!$DiggPlayer.is_audio_playing()):
-			$DiggPlayer.play()
+	#if globals.CollectClay:
+		#if(!$DiggPlayer.is_audio_playing()):
+			#$DiggPlayer.play()
 	if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
 		get_tree().change_scene_to_file("res://game_over.tscn")
 	game_manager.playerData.position = position

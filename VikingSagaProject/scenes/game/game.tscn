@@ -1009,7 +1009,7 @@ layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
 script = ExtResource("62_ufjyl")
 
-[node name="QuestClay" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestClay" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect clay 0 / 10000"
