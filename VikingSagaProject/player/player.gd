@@ -216,10 +216,8 @@ func _process(delta):
 		print("Terrain type:", terrain_type)
 		var movement_cost = tile_data.get_custom_data("movement_cost")
 		print("Movement cost:", movement_cost)
-
-		if(terrain_type != "water"):
-			move_and_slide()
-			updateAnimation()
+		move_and_slide()
+		updateAnimation()
 	
 	var temperature_effect = ambient_temperature - freezing_point
 	# Base warmth change

@@ -36,7 +36,6 @@ var quest_paused : bool = false:
 
 # Reference to the DynamicArray script
 var dynamic_array_instance = null
-
 var noise = FastNoiseLite.new()
 
 func spawn_animate_fire():
@@ -145,13 +144,9 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 
 func _ready():
 	#patch_manager.apply_patch("res://patch_manager/patch_1.json")
-	
-	print("Getting GameManager ready...")
 	randomize()
-
 	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
 	minimap_rect.texture = minimap_texture  # Assign the texture
-	
 	# Hide things initially
 	%HelpMenu.hide()
 	$world.hide()
@@ -160,11 +155,9 @@ func _ready():
 	$Interface.hide()
 	%Quests.hide() #$Quests.hide()
 	%QuestFinished.hide() #$QuestFinished.hide()
-	
 	for i in range(globals.SpawnRadius):
 		spawn_scene()
 	$MenuCanvasLayer.show()
-
 	# Load the DynamicArray script
 	var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
@@ -177,7 +170,6 @@ func _ready():
 	%FoodLabel.update_text(globals.QuestFood,100)
 	%WaterLabel.update_text(globals.QuestWater,100)
 	%HPLabel.update_text(0,0)
-
 	if( globals.NewGame ):
 		initialize_gamemanager()
 		globals.NewGame = false
