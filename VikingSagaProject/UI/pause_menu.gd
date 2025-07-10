@@ -4,6 +4,7 @@ extends Control
 @onready var click_sound = $Panel/VBoxContainer/SaveButton/AudioStreamPlayer
 @onready var hover_sound = $HoverSound
 func _ready():
+	$VersionNumber.text = Version.get_full_version_string()
 	verify_save_directory(game_manager.playerData.save_file_path)
 	game_manager.connect("toggle_game_paused",_on_game_manager_toggle_game_paused)
 func verify_save_directory(path: String):

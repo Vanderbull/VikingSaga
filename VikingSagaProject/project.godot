@@ -24,6 +24,8 @@ Globals="*res://globals.gd"
 State="*res://scenes/battle/state.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Warmth="*res://player/PlayerWarmth.gd"
+Version="*res://version.gd"
+BuildTracker="*res://build_tracker.gd"
 
 [display]
 
