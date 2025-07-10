@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=30 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" uid="uid://d2hkwg20n04pp" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://mscd0rf1x2wc" path="res://arts/player.png" id="1_b63l5"]
@@ -10,8 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b28mjablv0mxo" path="res://arts/pixel-viking-2.jpg" id="9_uo6co"]
 [ext_resource type="Texture2D" uid="uid://dm215l4h5f1pv" path="res://arts/pixel-viking-3.jpg" id="10_1q6hr"]
 [ext_resource type="Script" uid="uid://bb8rxhne6lhy1" path="res://scenes/AnimatedFace.gd" id="10_8t03j"]
-[ext_resource type="Texture2D" uid="uid://csgid0dd17lvi" path="res://icon.png" id="11_2ieo8"]
 [ext_resource type="Script" uid="uid://byrk66dfmxsvw" path="res://player/action_control.gd" id="11_ebec5"]
+[ext_resource type="Texture2D" uid="uid://c7omodkcir1cv" path="res://assets/dig.png" id="12_ebec5"]
+[ext_resource type="Texture2D" uid="uid://bsnxmiy5syyxq" path="res://assets/collect_water.png" id="13_yllr7"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -320,33 +321,53 @@ script = ExtResource("10_8t03j")
 
 [node name="action_control" type="Control" parent="ActionButtons"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("11_ebec5")
 
-[node name="CutGrass" type="Button" parent="ActionButtons/action_control"]
-top_level = true
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionButtons/action_control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -72.0
+offset_right = 36.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Dig" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
 layout_mode = 2
-offset_left = 218.0
-offset_top = 93.0
-offset_right = 354.0
-offset_bottom = 229.0
-icon = ExtResource("11_2ieo8")
+icon = ExtResource("12_ebec5")
+metadata/_edit_use_anchors_ = true
+
+[node name="CollectWater" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
 
 [node name="ProgressBar" type="ProgressBar" parent="ActionButtons/action_control"]
-layout_mode = 0
-offset_left = 157.0
-offset_top = -11.0
-offset_right = 450.0
-offset_bottom = 16.0
-scale = Vector2(1.01443, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -274.0
+offset_right = 146.5
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]
 [connection signal="area_exited" from="ShowStatsBox" to="." method="_on_show_stats_box_area_exited"]
 [connection signal="finished" from="DiggPlayer" to="DiggPlayer" method="_on_finished"]
 [connection signal="finished" from="ChopPlayer" to="." method="_on_chop_player_finished"]
-[connection signal="pressed" from="ActionButtons/action_control/CutGrass" to="ActionButtons/action_control" method="_on_cut_grass_pressed"]
+[connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/Dig" to="ActionButtons/action_control" method="_on_dig_pressed"]
+[connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/CollectWater" to="ActionButtons/action_control" method="_on_collect_water_pressed"]

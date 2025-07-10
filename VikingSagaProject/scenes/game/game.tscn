@@ -889,6 +889,7 @@ Next level: %s"
 script = ExtResource("55_cd3h7")
 
 [node name="WarmthBar" type="ProgressBar" parent="Interface"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -924,6 +925,7 @@ text = "100.0 / 100.0"
 script = ExtResource("56_pw8nd")
 
 [node name="FoodBar" type="ProgressBar" parent="Interface"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -1007,19 +1009,19 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="QuestWater" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestWater" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect water 0 / 10000"
 script = ExtResource("60_tprwl")
 
-[node name="QuestFood" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestFood" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect food 0 / 10000"
 script = ExtResource("61_7qr0p")
 
-[node name="QuestTrees" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestTrees" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Collect tree 0 / 10000"
@@ -1031,7 +1033,7 @@ layout_mode = 2
 text = "[ ] Collect clay 0 / 10000"
 script = ExtResource("63_ro3um")
 
-[node name="QuestRoads" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="QuestRoads" type="Label" parent="Quests/Control/Panel/VBoxContainer" groups=["updatable_labels"]]
 unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"
