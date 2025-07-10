@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=100 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://iaidvsn1s1ua" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="Script" uid="uid://1aeybglim3yy" path="res://scenes/world.gd" id="3_ur7m5"]
@@ -683,6 +683,22 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="SystemFont" id="SystemFont_7dxef"]
+
+[sub_resource type="Theme" id="Theme_1s0gc"]
+default_font = SubResource("SystemFont_7dxef")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84b8o"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_size = 5
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_66mx2"]
 radius = 233.14
 
@@ -1020,6 +1036,15 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "[ ] Build some roads  0 / 10000"
 script = ExtResource("64_8l5fl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Quests/Control/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Quests/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1s0gc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
+text = "[✓] collect donkeys 0 / 6"
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("popup", "popup_label", "typing_timer")]
 visible = false
