@@ -30,11 +30,15 @@ func _on_cut_grass_pressed() -> void:
 		# Wait until tween finishes, then call a method
 		tween.tween_callback(Callable(self, "_on_progress_reset"))
 	else:
-		update_labels(new_value)
+		tween.tween_callback(Callable(self, "_on_progress_updated"))
+		#update_labels(new_value)
 
 func _on_progress_reset():
 	update_labels(0)
 	progress_bar.visible = false  # Hide the ProgressBar
+
+func _on_progress_updated():
+	update_labels(progress_bar.value)
 	
 func update_labels(value: int):
 	for label in get_tree().get_nodes_in_group("updatable_labels"):
