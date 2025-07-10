@@ -1,4 +1,7 @@
 extends CharacterBody2D
+
+@onready var globals = get_node("/root/Globals")
+
 const SPEED = 30.0
 var current_state = IDLE
 var dir = Vector2.RIGHT
@@ -56,3 +59,11 @@ func _on_timer_timeout():
 	current_state = choose([IDLE, NEW_DIR,MOVE])
 	# Restart the timer
 	$Timer.start()
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var fetch_food_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_food")  # Use actual node path
+	globals.QuestFood += 1000
+	if globals.QuestFood < 10000:
+		fetch_food_node.text = "[ ] Fetch food %s / %d" % [globals.QuestFood, 10000]
+	else:
+		fetch_food_node.text = "[X] Fetch food %s / %d" % [globals.QuestFood, 10000]
+	queue_free()

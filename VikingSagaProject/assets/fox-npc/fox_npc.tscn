@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bx3l4m11fvtxu"]
+[gd_scene load_steps=15 format=3 uid="uid://bx3l4m11fvtxu"]
 
 [ext_resource type="Script" uid="uid://selknpnxry68" path="res://assets/cave-npc/cave_npc.gd" id="1_uxfb2"]
-[ext_resource type="Texture2D" uid="uid://bcfwi8ssjfee8" path="res://assets/fox-npc/MiniFox.png" id="2_uucpf"]
+[ext_resource type="Texture2D" uid="uid://bdhqudfjj4xhe" path="res://assets/fox-npc/MiniFox.png" id="2_uucpf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6rtv"]
 atlas = ExtResource("2_uucpf")
@@ -73,7 +73,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jol7r"]
-radius = 3.0
+radius = 11.0454
 
 [sub_resource type="Curve2D" id="Curve2D_0irhr"]
 _data = {
@@ -81,17 +81,17 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lhgos"]
+
 [node name="fox-npc" type="CharacterBody2D"]
-position = Vector2(80, 54)
 script = ExtResource("1_uxfb2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -7)
 sprite_frames = SubResource("SpriteFrames_0rcwh")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1)
+visible = false
 shape = SubResource("CircleShape2D_jol7r")
 
 [node name="Timer" type="Timer" parent="."]
@@ -103,4 +103,10 @@ curve = SubResource("Curve2D_0irhr")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 rotation = 0.478914
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lhgos")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
