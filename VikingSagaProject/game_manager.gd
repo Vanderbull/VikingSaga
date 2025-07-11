@@ -203,7 +203,7 @@ func initialize_gamemanager():
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
 	$TileInfoWindow/PanelContainer/VBoxContainer/FPS.text = "FPS: %d" % fps
-	%godot_version.update_text()
+	#%godot_version.update_text()
 	%WarmthLabel.update_text(globals.Warmth,100)
 	%FoodLabel.update_text(playerData.Food,1000)
 	%WaterLabel.update_text(playerData.Water,1000)

@@ -298,6 +298,7 @@ stream = ExtResource("6_h85y2")
 script = ExtResource("7_0tvku")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3

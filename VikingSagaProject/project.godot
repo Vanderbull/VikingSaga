@@ -32,7 +32,7 @@ BuildTracker="*res://build_tracker.gd"
 window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
-window/vsync/vsync_mode=0
+window/vsync/vsync_mode=2
 
 [editor_plugins]
 
