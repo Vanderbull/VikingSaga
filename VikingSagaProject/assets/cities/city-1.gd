@@ -33,3 +33,25 @@ func _on_timer_timeout():
 	current_state = choose([IDLE])
 	# Restart the timer
 	#$Timer.start()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	$CanvasLayer/Label.show()
+	Globals.QuestFood -= 1
+	Globals.QuestWater -= 1
+	var fetch_food_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_food")
+	if Globals.QuestFood < 10000:
+		fetch_food_node.text = "[ ] Fetch food %s / %d" % [Globals.QuestFood, 10000]
+	else:
+		fetch_food_node.text = "[X] Fetch food %s / %d" % [Globals.QuestFood, 10000]
+	var fetch_water_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_water")
+	if Globals.QuestWater < 10000:
+		fetch_water_node.text = "[ ] Fetch water %s / %d" % [Globals.QuestWater, 10000]
+	else:
+		fetch_water_node.text = "[X] Fetch water %s / %d" % [Globals.QuestWater, 10000]
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	$CanvasLayer/Label.hide()
+	pass # Replace with function body.

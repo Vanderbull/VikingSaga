@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd77ae3om5rpc"]
+[gd_scene load_steps=5 format=3 uid="uid://dd77ae3om5rpc"]
 
-[ext_resource type="Script" uid="uid://dqn6xn02ko8kj" path="res://assets/cities/city-1.gd" id="1_cy4j6"]
-[ext_resource type="Texture2D" uid="uid://723d511476x" path="res://assets/city.png" id="1_svvup"]
+[ext_resource type="Script" uid="uid://berhib73bmil2" path="res://assets/cities/city-1.gd" id="1_cy4j6"]
+[ext_resource type="Texture2D" uid="uid://n5s1n1r4pf43" path="res://assets/city.png" id="1_svvup"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_cy4j6"]
 points = PackedVector2Array(-39, -63, -91, -23, -90, 16, -82, 64, -20, 95, 60, 91, 111, 52, 104, -35, 42, -69)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cy4j6"]
+radius = 107.168
 
 [node name="City-1" type="Node2D"]
 script = ExtResource("1_cy4j6")
@@ -17,3 +20,23 @@ texture = ExtResource("1_svvup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("ConvexPolygonShape2D_cy4j6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cy4j6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -47.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "BIRKA"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

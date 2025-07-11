@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctonjdfct5u4q"]
+[gd_scene load_steps=19 format=3 uid="uid://ctonjdfct5u4q"]
 
 [ext_resource type="Script" uid="uid://selknpnxry68" path="res://assets/cave-npc/cave_npc.gd" id="1_3hjv2"]
-[ext_resource type="Texture2D" uid="uid://dgk2hkn6ysu7a" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
+[ext_resource type="Texture2D" uid="uid://5xjsu87chv0d" path="res://assets/cave-npc/cave_npc.png" id="1_78v6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usjva"]
 atlas = ExtResource("1_78v6i")
@@ -109,8 +109,9 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk68s"]
+
 [node name="cave-npc" type="CharacterBody2D"]
-position = Vector2(80, 54)
 script = ExtResource("1_3hjv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -131,4 +132,10 @@ curve = SubResource("Curve2D_0irhr")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 rotation = 0.478914
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wk68s")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
