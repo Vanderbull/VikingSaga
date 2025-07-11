@@ -56,29 +56,17 @@ func _on_pressed() -> void:
 
 func _on_download_update_panel_updated(new_version) -> void:
 	download_dialog.hide()
-
-
 	editor_plugin.get_editor_interface().get_resource_filesystem().scan()
-
-	print_rich("\n[b]Updated Gaea to v%s\n" % new_version)
+	#print_rich("\n[b]Updated Gaea to v%s\n" % new_version)
 	editor_plugin.get_editor_interface().call_deferred("set_plugin_enabled", "gaea", true)
 	editor_plugin.get_editor_interface().set_plugin_enabled("gaea", false)
-
-
 func _on_download_update_panel_failed() -> void:
 	download_dialog.hide()
 	update_failed_dialog.popup_centered()
-
-
 func _get_version() -> String:
 	var config: ConfigFile = ConfigFile.new()
-
 	config.load(LOCAL_CONFIG_PATH)
 	return config.get_value("plugin", "version")
-
-
 func _version_to_number(version: String) -> int:
 	var bits = version.split(".")
 	return bits[0].to_int() * 1000000 + bits[1].to_int() * 1000 + bits[2].to_int()
-
-

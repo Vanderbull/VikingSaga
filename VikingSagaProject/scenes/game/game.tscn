@@ -839,8 +839,13 @@ script = ExtResource("49_ylode")
 
 [node name="godot_version" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("50_0sb5j")
+
+[node name="FPS" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "FPS:"
 
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2

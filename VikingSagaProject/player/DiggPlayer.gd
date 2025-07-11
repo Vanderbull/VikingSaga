@@ -11,5 +11,5 @@ func is_audio_playing() -> bool:
 	return is_playing()
 
 func _on_finished():
-	print("Audio has finished playing.")
+	#print("Audio has finished playing.")
 	pass # Replace with function body.

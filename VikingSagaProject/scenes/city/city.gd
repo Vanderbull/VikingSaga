@@ -133,7 +133,6 @@ func _on_upgrade_ship_pressed():
 	if globals.PlayerWood >= 10 and globals.PlayerShip == true:
 		globals.PlayerWood -= 10
 		globals.PlayerShipSpeed = 1000.0
-		print("SPEED INCREASED!!!!!!!!!!!!!!!")
 	else:
 		globals.PlayerShipSpeed = 250.0
 	pass # Replace with function body.

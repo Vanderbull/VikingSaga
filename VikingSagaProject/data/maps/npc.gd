@@ -21,7 +21,6 @@ func get_tile_info(tilemap: TileMap, cell_position: Vector2i):
 	# Fetch the tile information from the TileSet
 	var tile_data = tileset.get_source(tile_id)
 	if tile_data is TileSetAtlasSource:
-		print("ATLAS ATLAS WOOOHOOOO WOOOO")
 		var atlas_coordinates = tilemap.get_cell_atlas_coords(tile_id, cell_position)
 		# For atlas tiles
 		var texture_region = tile_data.get_tile_texture_region(cell_position, tile_id)
@@ -38,7 +37,7 @@ func get_tile_info(tilemap: TileMap, cell_position: Vector2i):
 	#return tile_data
 	
 func _ready():
-	print("ncp _ready...")
+	pass
 
 func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)

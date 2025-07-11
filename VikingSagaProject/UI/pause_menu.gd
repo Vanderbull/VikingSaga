@@ -14,7 +14,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
 		#print("show")
 		var action_buttons = %Player.find_child("ActionButtons")
-		print("action_buttons: %i", action_buttons.get_index())
+		#print("action_buttons: %i", action_buttons.get_index())
 		action_buttons = %Player.get_child(12)
 		action_buttons.hide()
 		$"../../world".hide()

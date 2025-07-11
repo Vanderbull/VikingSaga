@@ -32,10 +32,11 @@ BuildTracker="*res://build_tracker.gd"
 window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [filesystem]
 

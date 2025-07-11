@@ -66,7 +66,7 @@ func place_city(city_instance: Node2D, min_distance: float = 2000.0):
 				city_instance.position = new_position
 				occupied_positions.append(new_position)
 				add_child(city_instance)
-				print(new_position )
+				#print(new_position )
 				return  # Exit after placing
 
 			attempts -= 1
@@ -201,6 +201,8 @@ func initialize_gamemanager():
 			#$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
 
 func _process(_delta):
+	var fps = Engine.get_frames_per_second()
+	$TileInfoWindow/PanelContainer/VBoxContainer/FPS.text = "FPS: %d" % fps
 	%godot_version.update_text()
 	%WarmthLabel.update_text(globals.Warmth,100)
 	%FoodLabel.update_text(playerData.Food,1000)

@@ -213,9 +213,9 @@ func _process(delta):
 	var tile_data: TileData = $"..".get_cell_tile_data(layer, cell)
 	if tile_data:
 		var terrain_type = tile_data.get_custom_data("terrain_type")
-		print("Terrain type:", terrain_type)
+		#print("Terrain type:", terrain_type)
 		var movement_cost = tile_data.get_custom_data("movement_cost")
-		print("Movement cost:", movement_cost)
+		#print("Movement cost:", movement_cost)
 		move_and_slide()
 		updateAnimation()
 	

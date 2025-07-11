@@ -24,11 +24,11 @@ func apply(grid: GaeaGrid, generator: GaeaGenerator):
 			if not _passes_filter(grid, cell):
 				continue
 
-			print("Found ground?")
+			#print("Found ground?")
 
 			var above: Vector2i = cell + Vector2i.UP
 			if not _passes_filter(grid, above):
-				print("Found top of ground.")
+				#print("Found top of ground.")
 				_temp_grid.set_value(cell, wall_tile)
 
 			#if grid.get_value(cell, layer) == generator.settings.tile:

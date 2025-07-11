@@ -7,7 +7,7 @@ func is_tile_set(x: int, y: int) -> bool:
 	return cell_source_id != -1
 
 func _ready():
-	print("AnimalMap _ready()...")
+	pass
 	
 func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)
@@ -33,6 +33,6 @@ func _process(_delta):
 		# Animal Text output
 		var custom_data = tile_data.get_custom_data("type")
 		$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "ANIMALS: %s" % [custom_data]
-		print("There is a %s present here." % [custom_data])
+		#print("There is a %s present here." % [custom_data])
 	else:
 		pass
