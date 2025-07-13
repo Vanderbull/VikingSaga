@@ -246,3 +246,24 @@ func _on_animatedfire_warmth_effected(player: Variant) -> void:
 		near_fire = true
 	else:
 		near_fire = false
+
+func _on_player_detection_area_area_entered(area: Area2D) -> void:
+	# Check if the Area2D itself is in the "player" group (if you added PlayerDetectionArea to "player" group)
+	if area.is_in_group("Animal"):
+		print("Player hit by enemy animal attack!")
+		print("Animal hit by player attack!")
+		## Call a method on the player itself, like take_damage()
+		XpManager.calculate_xp_for_level(globals.level)
+		XpManager.increase_experience(globals.experience,100,globals.level)
+		area.get_parent().queue_free()
+	elif area.is_in_group("Npc"):
+		print("Player hit by enemy npc attack!")
+		print("Npc hit by player attack!")
+		## Call a method on the player itself, like take_damage()
+		XpManager.calculate_xp_for_level(globals.level)
+		XpManager.increase_experience(globals.experience,100,globals.level)
+		area.get_parent().queue_free()
+
+	#elif area.is_in_group("collectible"):
+		#print("Player picked up a collectible!")
+		#area.queue_free() # Remove the collectible

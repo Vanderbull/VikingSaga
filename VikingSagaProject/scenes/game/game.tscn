@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=107 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://iaidvsn1s1ua" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="Script" uid="uid://1aeybglim3yy" path="res://scenes/world.gd" id="3_ur7m5"]
@@ -63,6 +63,7 @@
 [ext_resource type="Script" uid="uid://cl7fk03r7ubil" path="res://Control.gd" id="66_3pms8"]
 [ext_resource type="PackedScene" uid="uid://bk8t0obmxovhi" path="res://quest_finished.tscn" id="67_gr1mp"]
 [ext_resource type="Script" uid="uid://jvg7fugoaak8" path="res://http_request.gd" id="68_wvglm"]
+[ext_resource type="PackedScene" uid="uid://bfhw4nwj64fj6" path="res://assets/collectable/wood/wood.tscn" id="69_84b8o"]
 [ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_obvfi"]
 [ext_resource type="PackedScene" uid="uid://um0wu28oq78x" path="res://scenes/help_menu/help_menu.tscn" id="70_lcryn"]
 [ext_resource type="Script" uid="uid://bslwqgx2fms1h" path="res://patch_manager/patch_manager.gd" id="71_elrr2"]
@@ -1227,6 +1228,9 @@ stream = ExtResource("73_bjk8q")
 volume_db = -20.0
 autoplay = true
 script = ExtResource("74_bf22m")
+
+[node name="Wood" parent="." instance=ExtResource("69_84b8o")]
+position = Vector2(609, 342)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]

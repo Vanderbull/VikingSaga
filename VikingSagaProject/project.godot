@@ -26,6 +26,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Warmth="*res://player/PlayerWarmth.gd"
 Version="*res://version.gd"
 BuildTracker="*res://build_tracker.gd"
+XpManager="*res://xp_manager.gd"
 
 [display]
 
@@ -94,8 +95,10 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/dialogue.dialogu
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="Enemy"
+2d_physics/layer_1="Player_Hurtbox"
+2d_physics/layer_2="Enemy_Hitbox"
+2d_physics/layer_3="Player_Hitbox"
+2d_physics/layer_4="Enemy_Hurtbox"
 
 [physics]
 

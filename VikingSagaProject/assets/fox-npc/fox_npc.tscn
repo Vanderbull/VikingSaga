@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bx3l4m11fvtxu"]
 
-[ext_resource type="Script" uid="uid://selknpnxry68" path="res://assets/cave-npc/cave_npc.gd" id="1_uxfb2"]
+[ext_resource type="Script" uid="uid://c5ghfou34056" path="res://assets/fox-npc/fox_npc.gd" id="1_lhgos"]
 [ext_resource type="Texture2D" uid="uid://bdhqudfjj4xhe" path="res://assets/fox-npc/MiniFox.png" id="2_uucpf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6rtv"]
@@ -83,8 +83,8 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhgos"]
 
-[node name="fox-npc" type="CharacterBody2D"]
-script = ExtResource("1_uxfb2")
+[node name="fox-npc" type="CharacterBody2D" groups=["Animal"]]
+script = ExtResource("1_lhgos")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rcwh")
@@ -103,10 +103,10 @@ curve = SubResource("Curve2D_0irhr")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 rotation = 0.478914
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="AnimalDetectionArea" type="Area2D" parent="." groups=["Animal"]]
+scale = Vector2(2.08, 2.08)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimalDetectionArea"]
 shape = SubResource("CircleShape2D_lhgos")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

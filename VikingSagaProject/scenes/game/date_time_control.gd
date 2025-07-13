@@ -12,7 +12,7 @@ func _process(delta):
 	if current_time_seconds >= 86400:
 		current_time_seconds -= 86400
 		days_passed += 1  # ⬅️ Increment day counter
-		print("New day! Days passed: ", days_passed)
+		#print("New day! Days passed: ", days_passed)
 		$VBoxContainer/Day.text = "DAY: %s" % [days_passed]
 	update_clock_display()
 
@@ -21,7 +21,7 @@ func update_clock_display():
 	var minutes = int(fmod(current_time_seconds, 3600) / 60)
 
 	var time_string = "%02d:%02d" % [hours, minutes]
-	print(time_string)
+	#print(time_string)
 	$VBoxContainer/Time.text = "%02d:%02d" % [hours, minutes]
 
 # Optional: Change clock speed with a function or input

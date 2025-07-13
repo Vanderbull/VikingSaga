@@ -296,10 +296,10 @@ func _on_in_game_canvas_layer_visibility_changed() -> void:
 				print("InGameCanvasLayer is hidden")
 				child.visible = false
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("in the zone")
-	playerData.Food = 1000
-	playerData.Water = 1000
+#func _on_area_2d_area_entered(area: Area2D) -> void:
+	#print("in the zone")
+	#playerData.Food = 1000
+	#playerData.Water = 1000
 
 func _on_quest_1_ready() -> void:
 	pass # Replace with function body.

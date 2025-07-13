@@ -111,7 +111,7 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk68s"]
 
-[node name="cave-npc" type="CharacterBody2D"]
+[node name="cave-npc" type="CharacterBody2D" groups=["Npc"]]
 script = ExtResource("1_3hjv2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -132,10 +132,10 @@ curve = SubResource("Curve2D_0irhr")
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 rotation = 0.478914
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="NPCDetectionArea" type="Area2D" parent="." groups=["Npc"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCDetectionArea"]
 shape = SubResource("CircleShape2D_wk68s")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="NPCDetectionArea" to="." method="_on_npc_detection_area_area_entered"]

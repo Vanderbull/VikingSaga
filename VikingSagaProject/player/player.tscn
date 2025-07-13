@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bf4jil1d0pjen"]
+[gd_scene load_steps=27 format=3 uid="uid://bf4jil1d0pjen"]
 
 [ext_resource type="Script" uid="uid://d2hkwg20n04pp" path="res://player/player.gd" id="1_b0x02"]
 [ext_resource type="Texture2D" uid="uid://mscd0rf1x2wc" path="res://arts/player.png" id="1_b63l5"]
@@ -113,10 +113,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_582m7"]
 size = Vector2(14, 2)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c2vid"]
-radius = 6.0
-height = 14.0
-
 [sub_resource type="Animation" id="Animation_vxlpq"]
 length = 0.001
 tracks/0/type = "value"
@@ -155,14 +151,6 @@ _data = {
 &"RESET": SubResource("Animation_vxlpq"),
 &"hurtBlink": SubResource("Animation_bkqq3")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ib25o"]
-radius = 28.0179
-
-[sub_resource type="Gradient" id="Gradient_16kgw"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwlvb"]
-gradient = SubResource("Gradient_16kgw")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_71amf"]
 
@@ -225,6 +213,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yllr7"]
+radius = 20.025
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_b0x02")
 
@@ -252,14 +243,6 @@ libraries = {
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_582m7")
 
-[node name="hurtBox" type="Area2D" parent="."]
-visible = false
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtBox"]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_c2vid")
-
 [node name="Effects" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_sy8eo")
@@ -267,19 +250,6 @@ libraries = {
 
 [node name="hurtTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="ShowStatsBox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowStatsBox"]
-position = Vector2(0, -6)
-shape = SubResource("CircleShape2D_ib25o")
-
-[node name="Sprite2D" type="Sprite2D" parent="ShowStatsBox"]
-visible = false
-z_index = -1
-position = Vector2(0, -6)
-scale = Vector2(0.87788, 0.87172)
-texture = SubResource("GradientTexture2D_xwlvb")
 
 [node name="Identity" type="Label" parent="."]
 visible = false
@@ -366,10 +336,20 @@ offset_bottom = -247.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="area_entered" from="hurtBox" to="." method="_on_hurt_box_area_entered"]
-[connection signal="area_entered" from="ShowStatsBox" to="." method="_on_show_stats_box_area_entered"]
-[connection signal="area_exited" from="ShowStatsBox" to="." method="_on_show_stats_box_area_exited"]
+[node name="Player_Hurtbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="Player_Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CircleShape2D_yllr7")
+
 [connection signal="finished" from="DiggPlayer" to="DiggPlayer" method="_on_finished"]
 [connection signal="finished" from="ChopPlayer" to="." method="_on_chop_player_finished"]
 [connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/Dig" to="ActionButtons/action_control" method="_on_dig_pressed"]
 [connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/CollectWater" to="ActionButtons/action_control" method="_on_collect_water_pressed"]
+[connection signal="area_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_entered"]
