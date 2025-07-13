@@ -143,6 +143,16 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 @onready var minimap_rect = $Interface/Control/Minimap
 
 func _ready():
+	print("--- GPU Information ---")
+	# Get GPU adapter name (e.g., "NVIDIA GeForce RTX 3080", "AMD Radeon RX 6800XT", "Intel(R) Iris(TM) Xe Graphics")
+	var gpu_name = RenderingServer.get_video_adapter_name()
+	print("GPU Name: " + gpu_name)
+	# Get GPU vendor name (e.g., "NVIDIA Corporation", "Advanced Micro Devices, Inc.", "Intel")
+	var gpu_vendor = RenderingServer.get_video_adapter_vendor()
+	print("GPU Vendor: " + gpu_vendor)
+	var rendering_driver = RenderingServer.get_current_rendering_driver_name()
+	print("Rendering Driver: " + rendering_driver)
+
 	#patch_manager.apply_patch("res://patch_manager/patch_1.json")
 	randomize()
 	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
