@@ -41,11 +41,10 @@ func _ready():
 
 func _process(_delta):
 	var tile_pos = $".".local_to_map(player.position)
-	var datan
-	datan = get_tile_info($".",tile_pos)
+	var _datan = get_tile_info($".",tile_pos)
 	#if datan != null:
 		#print(datan)
-	#print(tile_pos)
+	#print(tile_pos) 
 	#print_debug("processing animal map...")
 	#if is_tile_set(globals.player_position.x,globals.player_position.y):
 	if is_tile_set(tile_pos.x,tile_pos.y):
@@ -56,20 +55,20 @@ func _process(_delta):
 		else:
 			return
 			#print_debug(source_id)
-		var _atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
-		# SOME STRANGE BUG HERE
-		var tile_source = tile_set.get_source(source_id)
-		#print(tile_source)
-		if( tile_source == null ):
-			#print_debug("tile_source is null")
-			return
-		var tile_data = tile_set.get_source(source_id).get_tile_data(Vector2i(0, 1),0)
-		if( tile_data == null ):
-			#print_debug("tile_data is null")
-			return
-		# Animal Text output
-		var custom_data = tile_data.get_custom_data("type")
-		$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "NPC: %s" % [custom_data]
+		#var _atlas_coord := get_cell_atlas_coords(source_id, Vector2i(0, 1))
+		## SOME STRANGE BUG HERE
+		#var tile_source = tile_set.get_source(source_id)
+		##print(tile_source)
+		#if( tile_source == null ):
+			##print_debug("tile_source is null")
+			#return
+		#var tile_data = tile_set.get_source(source_id).get_tile_data(Vector2i(0, 1),0)
+		#if( tile_data == null ):
+			##print_debug("tile_data is null")
+			#return
+		## Animal Text output
+		#var custom_data = tile_data.get_custom_data("type")
+		#$"../../TileInfoWindow/PanelContainer/VBoxContainer/TileAnimals".text = "NPC: %s" % [custom_data]
 		#print("There is a %s present here." % [custom_data])
 	else:
 		return

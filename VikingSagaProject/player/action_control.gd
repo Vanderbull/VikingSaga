@@ -48,7 +48,7 @@ func _on_progress_updated():
 	update_labels(progress_bar.value)
 	
 func update_labels(value: int):
-	var my_tile_type = globals.TerrainType.GRASS
+	var _my_tile_type = globals.TerrainType.GRASS
 	#print(globals.TerrainType.keys()[my_tile_type])  # Outputs "FOREST"
 	for label in get_tree().get_nodes_in_group("updatable_labels"):
 		if label.name == "QuestWater" and globals.Terrain == "Water":

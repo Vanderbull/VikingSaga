@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://drgko81r4nvke"]
 
-[ext_resource type="Script" uid="uid://djsy4o8ynobk7" path="res://scenes/gameover/game_over.gd" id="1_1gt0k"]
-[ext_resource type="Texture2D" uid="uid://bhjwcdwhbc1nf" path="res://scenes/gameover/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="2_c501a"]
+[ext_resource type="Script" uid="uid://d3f8tnhu3cjrd" path="res://scenes/gameover/game_over.gd" id="1_1gt0k"]
+[ext_resource type="Texture2D" uid="uid://cjij0npia8dgs" path="res://scenes/gameover/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="2_c501a"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3

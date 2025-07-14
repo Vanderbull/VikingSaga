@@ -20,7 +20,7 @@ func update_clock_display():
 	var hours = int(current_time_seconds / 3600)
 	var minutes = int(fmod(current_time_seconds, 3600) / 60)
 
-	var time_string = "%02d:%02d" % [hours, minutes]
+	var _time_string = "%02d:%02d" % [hours, minutes]
 	#print(time_string)
 	$VBoxContainer/Time.text = "%02d:%02d" % [hours, minutes]
 

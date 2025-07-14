@@ -18,7 +18,7 @@ func _ready():
 	# Update the marker position initially
 	update_marker_position()
 
-func _process(delta):
+func _process(_delta):
 	# Update the marker position every frame
 	update_marker_position()
 

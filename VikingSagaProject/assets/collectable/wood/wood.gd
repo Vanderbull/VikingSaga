@@ -2,8 +2,9 @@ extends Area2D
 @export var value: int = 1 # How much the coin is worth
 
 func _ready():
+	pass
 	# Connect the signal when the coin is ready
-	body_entered.connect(_on_body_entered)
+	#body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	# Check if the colliding body is the player

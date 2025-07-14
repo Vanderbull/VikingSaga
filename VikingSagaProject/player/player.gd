@@ -205,16 +205,16 @@ func _process(delta):
 
 	handleInput()
 	position = globals.character_position
-	var tile_pos = worldMap.local_to_map(position)
+	var _tile_pos = worldMap.local_to_map(position)
 	# Assume tilemap is your TileMap node, and world_pos is a Vector2 world position
 	var cell = $"..".local_to_map(position)
 	var layer = 0
 
 	var tile_data: TileData = $"..".get_cell_tile_data(layer, cell)
 	if tile_data:
-		var terrain_type = tile_data.get_custom_data("terrain_type")
+		var _terrain_type = tile_data.get_custom_data("terrain_type")
 		#print("Terrain type:", terrain_type)
-		var movement_cost = tile_data.get_custom_data("movement_cost")
+		var _movement_cost = tile_data.get_custom_data("movement_cost")
 		#print("Movement cost:", movement_cost)
 		move_and_slide()
 		updateAnimation()

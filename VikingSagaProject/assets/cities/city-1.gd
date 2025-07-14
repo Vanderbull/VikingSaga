@@ -12,7 +12,7 @@ func _ready():
 	# Store the initial position of the NPC
 	start_pos = position
 
-func _process(delta):
+func _process(_delta):
 	# Play the appropriate animation based on the current state
 	if current_state == IDLE:
 		pass
@@ -35,7 +35,7 @@ func _on_timer_timeout():
 	#$Timer.start()
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(_area: Area2D) -> void:
 	$CanvasLayer/Label.show()
 	Globals.QuestFood -= 1
 	Globals.QuestWater -= 1
@@ -52,6 +52,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass # Replace with function body.
 
 
-func _on_area_2d_area_exited(area: Area2D) -> void:
+func _on_area_2d_area_exited(_area: Area2D) -> void:
 	$CanvasLayer/Label.hide()
 	pass # Replace with function body.

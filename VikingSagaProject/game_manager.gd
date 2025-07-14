@@ -175,7 +175,7 @@ func _ready():
 	# Manually call _ready() to initialize the instance
 	dynamic_array_instance._ready()
 	# Initialize Labels
-	%Label.update_text(globals.level, globals.experience, globals.experience_required)
+	#%Label.update_text(globals.level, globals.experience, globals.experience_required)
 	%WarmthLabel.update_text(globals.Warmth,100)
 	%FoodLabel.update_text(globals.QuestFood,100)
 	%WaterLabel.update_text(globals.QuestWater,100)
