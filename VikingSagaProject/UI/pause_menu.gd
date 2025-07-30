@@ -1,6 +1,5 @@
 extends Control
 @export var game_manager : GameManager
-# Reference to the AudioStreamPlayer node
 @onready var click_sound = $Panel/VBoxContainer/SaveButton/AudioStreamPlayer
 @onready var hover_sound = $HoverSound
 func _ready():
@@ -47,20 +46,12 @@ func _on_save_button_mouse_entered():
 	hover_sound.play()
 func _on_save_button_pressed():
 	click_sound.play()
-	#print(OS.get_user_data_dir())
 	ResourceSaver.save(game_manager.playerData, game_manager.playerData.save_file_path + game_manager.playerData.save_file_name)
 	game_manager.playerData.save("user://save/tilemap2.tres",$"../../world/TileMap2")
 func _on_load_button_mouse_entered():
 	hover_sound.play()
 func _on_load_button_pressed():
 	click_sound.play()
-	#print("LOAD PRESSED")
-	#if ResourceLoader.exists(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name):
-	#	game_manager.playerData = ResourceLoader.load(game_manager.playerData.save_file_path + game_manager.playerData.save_file_name).duplicate(true)
-	#	$"../../world/TileMap/Player".position = game_manager.playerData.player_position
-	#	game_manager.playerData.LoadSaveGame = true
-	#	game_manager.playerData.load("user://save/tilemap2.tres",$"../../world/TileMap2")
-	#return null
 func _on_settings_button_mouse_entered():
 	hover_sound.play()
 func _on_settings_button_pressed():

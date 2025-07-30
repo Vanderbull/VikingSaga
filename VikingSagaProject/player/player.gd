@@ -22,7 +22,7 @@ class_name Player
 # Digg clay
 @export var digg_sounds: Array[AudioStream]  # List of wood choping sounds
 # Reference to the DynamicArray script
-var dynamic_array_instance = null
+#var dynamic_array_instance = null
 var time_since_last_step: float = 0.0
 
 var warmth: float = 10000.0 # Player's warmth level
@@ -93,11 +93,11 @@ func _ready():
 	if globals.character_position != Vector2.ZERO:
 		position = globals.character_position
 	# Load the DynamicArray script
-	var DynamicArrayScript = preload("res://dynamic_array.gd")
+	#var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
-	dynamic_array_instance = DynamicArrayScript.new()	
+	#dynamic_array_instance = DynamicArrayScript.new()	
 	# Manually call _ready() to initialize the instance
-	dynamic_array_instance._ready()
+	#dynamic_array_instance._ready()
 	
 	$Camera2D.zoom.x = 6.00
 	$Camera2D.zoom.y = 6.00
@@ -141,8 +141,8 @@ func _unhandled_input(event):
 	if( globals.Terrain == "Grass" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Grass"
 
-	var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y)
-	$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates".text = TileCoordinateText
+	#var TileCoordinateText = dynamic_array_instance.find_coordinate_with_text(tile_pos.x,tile_pos.y)
+	#$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileCoordinates".text = TileCoordinateText
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()

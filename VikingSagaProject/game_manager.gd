@@ -1,22 +1,23 @@
 extends Node
-
 class_name GameManager
-
 # Reference to the PatchManager node
-@onready var patch_manager = $PatchManager
+@onready var patch_manager = %PatchManager
+# Globals
+@onready var globals = get_node("/root/Globals")
 # Preload the scene for better performance
-@onready var my_scene = preload("res://assets/cave-npc/cave_npc.tscn")
+@onready var cave_npc_scene = preload("res://assets/cave-npc/cave_npc.tscn")
 @onready var fox_npc_scene = preload("res://assets/fox-npc/fox_npc.tscn")
 @onready var city_1_scene = preload("res://assets/cities/city-1.tscn")
 @onready var animate_fire_scene = preload("res://assets/animated-fire/animated_fire.tscn")
-
-@onready var globals = get_node("/root/Globals")
-const TEST_CURVE = preload("res://data/curves/test_curve.tres")
-
+# Reference to the minimap
+@onready var minimap_rect = $Interface/Control/Minimap
+# Signals
 signal toggle_game_paused(is_paused : bool)
 signal toggle_quest_paused(is_paused : bool)
-
+# Variables
 var playerData = PlayerData.new()
+var noise = FastNoiseLite.new()
+var occupied_positions = []
 
 var game_paused : bool = false:
 	get:
@@ -26,18 +27,17 @@ var game_paused : bool = false:
 		get_tree().paused = game_paused
 		emit_signal("toggle_game_paused",game_paused)
 
-var quest_paused : bool = false:
-	get:
-		return quest_paused
-	set(value):
-		quest_paused = value
-		get_tree().paused = quest_paused
-		emit_signal("toggle_quest_paused",quest_paused)
+#var quest_paused : bool = false:
+	#get:
+		#return quest_paused
+	#set(value):
+		#quest_paused = value
+		#get_tree().paused = quest_paused
+		#emit_signal("toggle_quest_paused",quest_paused)
 
 # Reference to the DynamicArray script
-var dynamic_array_instance = null
-var noise = FastNoiseLite.new()
-
+#var dynamic_array_instance = null
+# Functions
 func spawn_animate_fire():
 	var animate_fire_instance = animate_fire_scene.instantiate()
 	if animate_fire_instance is Node2D:
@@ -45,8 +45,6 @@ func spawn_animate_fire():
 		#var animate_fire_random_y = randi_range(0, 0)
 		animate_fire_instance.position = Vector2(globals.character_position.x, globals.character_position.y)
 		add_child(animate_fire_instance)
-
-var occupied_positions = []
 
 func is_position_valid(new_pos: Vector2, min_distance: float) -> bool:
 	for pos in occupied_positions:
@@ -85,7 +83,7 @@ func spawn_scene():
 	# Add the instance to the scene tree
 	add_child(fox_instance)
 	# Create an instance of the loaded scene
-	var instance = my_scene.instantiate()
+	var instance = cave_npc_scene.instantiate()
 	# Optionally, set its position or other properties if it's a 2D/3D node
 	if instance is Node2D:
 		# Generate random position within a range
@@ -140,19 +138,69 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 	texture.set_image(image)
 	return texture
 
-@onready var minimap_rect = $Interface/Control/Minimap
 
 func _ready():
-	print("--- GPU Information ---")
-	# Get GPU adapter name (e.g., "NVIDIA GeForce RTX 3080", "AMD Radeon RX 6800XT", "Intel(R) Iris(TM) Xe Graphics")
-	var gpu_name = RenderingServer.get_video_adapter_name()
-	print("GPU Name: " + gpu_name)
-	# Get GPU vendor name (e.g., "NVIDIA Corporation", "Advanced Micro Devices, Inc.", "Intel")
-	var gpu_vendor = RenderingServer.get_video_adapter_vendor()
-	print("GPU Vendor: " + gpu_vendor)
-	var rendering_driver = RenderingServer.get_current_rendering_driver_name()
-	print("Rendering Driver: " + rendering_driver)
+	print("--- Initial State ---")
+	print("Quest Water: ", globals.quest_water)
+	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	print("---------------------\n")
+# Example 1: Add a small amount of water (e.g., from collecting a single drop)
+	var amount_collected_1: float = 500.0
+	print("Adding ", amount_collected_1, " water...")
+	globals.quest_water = globals.gain_resource(
+		globals.quest_water,
+		amount_collected_1,
+		globals.MAX_QUEST_WATER,
+		&"collect_water_multiplier", # The StringName of the variable to set
+		globals.WATER_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Water: ", globals.quest_water)
+	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	print("---------------------\n")
 
+	# Example 2: Add more water, but not enough to reach the max
+	var amount_collected_2: float = 3000.0
+	print("Adding ", amount_collected_2, " water...")
+	globals.quest_water = globals.gain_resource(
+		globals.quest_water,
+		amount_collected_2,
+		globals.MAX_QUEST_WATER,
+		&"collect_water_multiplier",
+		globals.WATER_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Water: ", globals.quest_water)
+	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	print("---------------------\n")
+
+	# Example 3: Add enough water to exceed the maximum
+	# This will cap QuestWater at 10000 and set CollectWaterMultiplier to 2.0
+	var amount_collected_3: float = 7000.0 # (Current 3500 + 7000 = 10500)
+	print("Adding ", amount_collected_3, " water (should hit max)...")
+	globals.quest_water = globals.gain_resource(
+		globals.quest_water,
+		amount_collected_3,
+		globals.MAX_QUEST_WATER,
+		&"collect_water_multiplier",
+		globals.WATER_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Water: ", globals.quest_water)
+	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	print("---------------------\n")
+
+	# Example 4: Adding more water when already at max (no change)
+	var amount_collected_4: float = 100.0
+	print("Adding ", amount_collected_4, " water (already at max)...")
+	globals.quest_water = globals.gain_resource(
+		globals.quest_water,
+		amount_collected_4,
+		globals.MAX_QUEST_WATER,
+		&"collect_water_multiplier",
+		globals.WATER_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Water: ", globals.quest_water)
+	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	print("---------------------\n")
+	
 	#patch_manager.apply_patch("res://patch_manager/patch_1.json")
 	randomize()
 	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
@@ -167,13 +215,14 @@ func _ready():
 	%QuestFinished.hide() #$QuestFinished.hide()
 	for i in range(globals.SpawnRadius):
 		spawn_scene()
+	# Mainmenu for the game
 	$MenuCanvasLayer.show()
 	# Load the DynamicArray script
-	var DynamicArrayScript = preload("res://dynamic_array.gd")
+	#var DynamicArrayScript = preload("res://dynamic_array.gd")
 	# Create an instance of the DynamicArray script
-	dynamic_array_instance = DynamicArrayScript.new()
+	#dynamic_array_instance = DynamicArrayScript.new()
 	# Manually call _ready() to initialize the instance
-	dynamic_array_instance._ready()
+	#dynamic_array_instance._ready()
 	# Initialize Labels
 	#%Label.update_text(globals.level, globals.experience, globals.experience_required)
 	%WarmthLabel.update_text(globals.Warmth,100)

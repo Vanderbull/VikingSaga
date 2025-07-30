@@ -64,6 +64,12 @@ var QuestHunting = 0
 # Dictionary to store item data
 var animals_db = {}
 var npc_db = {}
+# Declare the variable to store the GPU name
+var gpu_name: String
+# Declare the variable to store the GPU vendor
+var gpu_vendor: String
+# Declare the variable to store the RENDERING driver
+var rendering_driver: String
 # ENUMS
 enum TerrainType {
 	GRASS,
@@ -73,6 +79,20 @@ enum TerrainType {
 	FOREST,
 	SNOW
 }
+
+# Functions
+func _ready() -> void:
+	print("Initializing globals...")
+	print("--- GPU Information ---")
+	# Get GPU adapter name (e.g., "NVIDIA GeForce RTX 3080", "AMD Radeon RX 6800XT", "Intel(R) Iris(TM) Xe Graphics")
+	gpu_name = RenderingServer.get_video_adapter_name()
+	print("GPU Name: " + gpu_name)
+	# Get GPU vendor name (e.g., "NVIDIA Corporation", "Advanced Micro Devices, Inc.", "Intel")
+	gpu_vendor = RenderingServer.get_video_adapter_vendor()
+	print("GPU Vendor: " + gpu_vendor)
+	rendering_driver = RenderingServer.get_current_rendering_driver_name()
+	print("Rendering Driver: " + rendering_driver)
+		
 func switch_scene(scene_path: String):
 	## Save the character's position
 	character_position = $CharacterBody2D.position
@@ -101,7 +121,6 @@ func gain_quest_clay(amount) -> int:
 	QuestClay += amount
 	if QuestClay > 10000:
 		QuestClay = 10000
-		
 	# Check if the quest is completed
 	if QuestClay >= 5000:  # Example threshold for completing the quest
 		complete_quest("Clay")
@@ -110,29 +129,38 @@ func complete_quest(quest_type: String):
 	match quest_type:
 		"Water":
 			print("Quest for Water Completed!")
-			# Perform actions related to completing the water quest
 		"Food":
 			print("Quest for Food Completed!")
-			# Perform actions related to completing the food quest
 		"Trees":
 			print("Quest for Trees Completed!")
-			# Perform actions related to completing the trees quest
 		"Clay":
 			print("Quest for Clay Completed!")
-			# Perform actions related to completing the clay quest
+			QuestClay = 0
 		"Hunting":
 			print("Quest for Hunting Completed!")
-			# Perform actions related to completing the hunting quest
 	# Reset the quest amount after completion
 	QuestClay = 0
-#func get_required_experience(p_level):
-	#return round(pow(p_level, 1.8) + p_level * 4)
-#func gain_experience(amount):
-	#experience_total += amount
-	#experience += amount
-	#while experience >= experience_required:
-		#experience -= experience_required
-		#level_up()
-#func level_up():
-	#level += 1
-	#experience_required = get_required_experience(level +1)
+	
+# --- Declare Quest Water and Multiplier variables ---
+# Initialize them with their starting values.
+var quest_water: float = 0.0
+var collect_water_multiplier: float = 1.0
+# --- Define the maximum amount for Quest Water ---
+const MAX_QUEST_WATER: float = 10000.0
+# --- Define the multiplier value when max water is reached ---
+const WATER_MAX_MULTIPLIER_VALUE: float = 2.0
+
+func gain_resource(current_resource_amount: float, amount_to_add: float, max_resource_amount: float, multiplier_variable_to_set: StringName = &"", multiplier_value: float = 1.0) -> float:
+	var new_resource_amount = current_resource_amount + amount_to_add
+
+	if new_resource_amount > max_resource_amount:
+		new_resource_amount = max_resource_amount
+		# If a multiplier variable name is provided, set its value
+		if multiplier_variable_to_set != &"":
+			# This assumes the multiplier variable is a property of the current script
+			# Or a globally accessible variable (e.g., in a singleton)
+			set(multiplier_variable_to_set, multiplier_value)
+			# If it's a global singleton, you'd access it like:
+			# GlobalSingleton.set(multiplier_variable_to_set, multiplier_value)
+
+	return new_resource_amount
