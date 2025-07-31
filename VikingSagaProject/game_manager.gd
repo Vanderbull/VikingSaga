@@ -13,7 +13,7 @@ class_name GameManager
 @onready var minimap_rect = $Interface/Control/Minimap
 # Signals
 signal toggle_game_paused(is_paused : bool)
-signal toggle_quest_paused(is_paused : bool)
+#signal toggle_quest_paused(is_paused : bool)
 # Variables
 var playerData = PlayerData.new()
 var noise = FastNoiseLite.new()
@@ -214,6 +214,44 @@ func _ready():
 	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
 	print("---------------------\n")
 	
+	var amount_collected_food: float = 500.0
+	print("Adding ", amount_collected_food, " food...")
+	globals.quest_food = globals.gain_resource(
+		globals.quest_food,
+		amount_collected_food,
+		globals.MAX_QUEST_FOOD,
+		&"collect_food_multiplier", # The StringName of the variable to set
+		globals.FOOD_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Food: ", globals.quest_food)
+	print("Collect Food Multiplier: ", globals.collect_food_multiplier)
+	print("---------------------\n")
+	
+	var amount_collected_wood: float = 500.0
+	print("Adding ", amount_collected_wood, " wood...")
+	globals.quest_wood = globals.gain_resource(
+		globals.quest_wood,
+		amount_collected_wood,
+		globals.MAX_QUEST_WOOD,
+		&"collect_wood_multiplier", # The StringName of the variable to set
+		globals.WOOD_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Wood: ", globals.quest_wood)
+	print("Collect Wood Multiplier: ", globals.collect_wood_multiplier)
+	print("---------------------\n")
+	
+	var amount_collected_clay: float = 500.0
+	print("Adding ", amount_collected_clay, " clay...")
+	globals.quest_clay = globals.gain_resource(
+		globals.quest_clay,
+		amount_collected_clay,
+		globals.MAX_QUEST_CLAY,
+		&"collect_clay_multiplier", # The StringName of the variable to set
+		globals.CLAY_MAX_MULTIPLIER_VALUE
+	)
+	print("Current Quest Clay: ", globals.quest_clay)
+	print("Collect Clay Multiplier: ", globals.collect_clay_multiplier)
+	print("---------------------\n")
 	#patch_manager.apply_patch("res://patch_manager/patch_1.json")
 	randomize()
 	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
@@ -239,8 +277,8 @@ func _ready():
 	# Initialize Labels
 	#%Label.update_text(globals.level, globals.experience, globals.experience_required)
 	%WarmthLabel.update_text(globals.Warmth,100)
-	%FoodLabel.update_text(globals.QuestFood,100)
-	%WaterLabel.update_text(globals.QuestWater,100)
+	%FoodLabel.update_text(globals.quest_food,100)
+	%WaterLabel.update_text(globals.quest_water,100)
 	%HPLabel.update_text(0,0)
 	if( globals.NewGame ):
 		initialize_gamemanager()
@@ -274,7 +312,7 @@ func initialize_gamemanager():
 
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
-	$TileInfoWindow/PanelContainer/VBoxContainer/FPS.text = "FPS: %d" % fps
+	$FpsCanvas/FPS.text = "FPS: %d" % fps
 	#%godot_version.update_text()
 	%WarmthLabel.update_text(globals.Warmth,100)
 	%FoodLabel.update_text(playerData.Food,1000)

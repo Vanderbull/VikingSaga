@@ -34,24 +34,28 @@ func _on_timer_timeout():
 	# Restart the timer
 	#$Timer.start()
 
-
 func _on_area_2d_area_entered(_area: Area2D) -> void:
 	$CanvasLayer/Label.show()
-	Globals.QuestFood -= 1
-	Globals.QuestWater -= 1
 	var fetch_food_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_food")
-	if Globals.QuestFood < 10000:
-		fetch_food_node.text = "[ ] Fetch food %s / %d" % [Globals.QuestFood, 10000]
+	if Globals.quest_food < Globals.MAX_QUEST_FOOD:
+		fetch_food_node.text = "[ ] Fetch food %s / %d" % [Globals.quest_food, Globals.MAX_QUEST_FOOD]
 	else:
-		fetch_food_node.text = "[X] Fetch food %s / %d" % [Globals.QuestFood, 10000]
+		fetch_food_node.text = "[X] Fetch food %s / %d" % [Globals.quest_food, Globals.MAX_QUEST_FOOD]
 	var fetch_water_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_water")
-	if Globals.QuestWater < 10000:
-		fetch_water_node.text = "[ ] Fetch water %s / %d" % [Globals.QuestWater, 10000]
+	if Globals.quest_water < Globals.MAX_QUEST_WATER:
+		fetch_water_node.text = "[ ] Fetch water %s / %d" % [Globals.quest_water, Globals.MAX_QUEST_WATER]
 	else:
-		fetch_water_node.text = "[X] Fetch water %s / %d" % [Globals.QuestWater, 10000]
-	pass # Replace with function body.
-
-
+		fetch_water_node.text = "[X] Fetch water %s / %d" % [Globals.quest_water, Globals.MAX_QUEST_WATER]
+	var fetch_wood_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_wood")
+	if Globals.quest_wood < Globals.MAX_QUEST_WOOD:
+		fetch_wood_node.text = "[ ] Fetch wood %s / %d" % [Globals.quest_wood, Globals.MAX_QUEST_WOOD]
+	else:
+		fetch_water_node.text = "[X] Fetch wood %s / %d" % [Globals.quest_wood, Globals.MAX_QUEST_WOOD]
+	var fetch_clay_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_clay")
+	if Globals.quest_clay < Globals.MAX_QUEST_CLAY:
+		fetch_clay_node.text = "[ ] Fetch clay %s / %d" % [Globals.quest_clay, Globals.MAX_QUEST_CLAY]
+	else:
+		fetch_clay_node.text = "[X] Fetch clay %s / %d" % [Globals.quest_clay, Globals.MAX_QUEST_CLAY]
+		
 func _on_area_2d_area_exited(_area: Area2D) -> void:
 	$CanvasLayer/Label.hide()
-	pass # Replace with function body.

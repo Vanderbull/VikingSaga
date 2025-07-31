@@ -52,23 +52,23 @@ func update_labels(value: int):
 	#print(globals.TerrainType.keys()[my_tile_type])  # Outputs "FOREST"
 	for label in get_tree().get_nodes_in_group("updatable_labels"):
 		if label.name == "QuestWater" and globals.Terrain == "Water":
-			globals.QuestWater += value
-			if globals.QuestWater >= 10000:
-				label.text = "[✓] Collect water %s / %d" % [globals.QuestWater, 10000]
+			globals.quest_water += value
+			if globals.quest_water >= globals.MAX_QUEST_WATER:
+				label.text = "[✓] Collect water %s / %d" % [globals.quest_water, globals.MAX_QUEST_WATER]
 			else:
-				label.text = "[ ] Collect water %s / %d" % [globals.QuestWater, 10000]
+				label.text = "[ ] Collect water %s / %d" % [globals.quest_water, globals.MAX_QUEST_WATER]
 		if label.name == "QuestTrees" and globals.Terrain == "Forest":
-			globals.QuestTrees += value
-			if globals.QuestTrees >= 10000:
-				label.text = "[✓] Collect trees %s / %d" % [globals.QuestTrees, 10000]
+			globals.quest_wood += value
+			if globals.quest_wood >= globals.MAX_QUEST_WOOD:
+				label.text = "[✓] Collect trees %s / %d" % [globals.quest_wood, globals.MAX_QUEST_WOOD]
 			else:
-				label.text = "[ ] Collect trees %s / %d" % [globals.QuestTrees, 10000]
+				label.text = "[ ] Collect trees %s / %d" % [globals.quest_wood, globals.MAX_QUEST_WOOD]
 		if label.name == "QuestClay" and globals.Terrain == "Grass":
-			globals.QuestClay += value
-			if globals.QuestClay >= 10000:
-				label.text = "[✓] Collect clay %s / %d" % [globals.QuestClay, 10000]
+			globals.quest_clay += value
+			if globals.quest_clay >= globals.MAX_QUEST_CLAY:
+				label.text = "[✓] Collect clay %s / %d" % [globals.quest_clay, globals.MAX_QUEST_CLAY]
 			else:
-				label.text = "[ ] Collect clay %s / %d" % [globals.QuestClay, 10000]
+				label.text = "[ ] Collect clay %s / %d" % [globals.quest_clay, globals.MAX_QUEST_CLAY]
 func _on_collect_water_pressed() -> void:
 	progress_bar.show()
 	# Increase the progress bar value by 10, with a max of 100
@@ -96,4 +96,4 @@ func _on_collect_water_pressed() -> void:
 		tween.tween_callback(Callable(self, "_on_progress_reset"))
 	else:
 		tween.tween_callback(Callable(self, "_on_progress_updated"))
-		#update_labels(new_value)
+		update_labels(new_value)

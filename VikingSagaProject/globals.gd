@@ -55,10 +55,10 @@ var StoredFood = 0
 var StoredTrees = 0
 var StoredClay = 0
 # Quests ( Should be replaced with carried and stored variables )
-var QuestWater = 0
-var QuestFood = 0
-var QuestTrees = 0
-var QuestClay = 0
+#var QuestWater = 0
+#var QuestFood = 0
+#var QuestTrees = 0
+#var QuestClay = 0
 var QuestRoads = 0
 var QuestHunting = 0
 # Dictionary to store item data
@@ -79,7 +79,6 @@ enum TerrainType {
 	FOREST,
 	SNOW
 }
-
 # Functions
 func _ready() -> void:
 	print("Initializing globals...")
@@ -101,54 +100,68 @@ func switch_scene(scene_path: String):
 func save_player_positon(character_node: CharacterBody2D):
 	character_position = character_node.position
 func gain_quest_water(amount):
-	QuestWater += amount
-	if QuestWater > 10000:
-		QuestWater = 10000
+	quest_water += amount
+	if quest_water > MAX_QUEST_WATER:
+		quest_water = MAX_QUEST_WATER
 		CollectWaterMultiplier = 2
-	return QuestWater
+	return quest_water
 func gain_quest_food(amount):
-	QuestFood += amount
-	if QuestFood > 10000:
-		QuestFood = 10000
+	quest_food += amount
+	if quest_food > MAX_QUEST_FOOD:
+		quest_food = MAX_QUEST_FOOD
 		HuntingMultiplier = 2
-	return QuestFood
+	return quest_food
 func gain_quest_trees(amount):
-	QuestTrees += amount
-	if QuestTrees > 10000:
-		QuestTrees = 10000
-	return QuestTrees
+	quest_wood += amount
+	if quest_wood > MAX_QUEST_WOOD:
+		quest_wood = MAX_QUEST_WOOD
+	return quest_wood
 func gain_quest_clay(amount) -> int:
-	QuestClay += amount
-	if QuestClay > 10000:
-		QuestClay = 10000
-	# Check if the quest is completed
-	if QuestClay >= 5000:  # Example threshold for completing the quest
-		complete_quest("Clay")
-	return QuestClay
-func complete_quest(quest_type: String):
-	match quest_type:
-		"Water":
-			print("Quest for Water Completed!")
-		"Food":
-			print("Quest for Food Completed!")
-		"Trees":
-			print("Quest for Trees Completed!")
-		"Clay":
-			print("Quest for Clay Completed!")
-			QuestClay = 0
-		"Hunting":
-			print("Quest for Hunting Completed!")
-	# Reset the quest amount after completion
-	QuestClay = 0
+	quest_clay += amount
+	if quest_clay > MAX_QUEST_CLAY:
+		quest_clay = MAX_QUEST_CLAY
+	return quest_clay
 	
-# --- Declare Quest Water and Multiplier variables ---
+# --- Declare quest water and multiplier variables ---
 # Initialize them with their starting values.
 var quest_water: float = 0.0
 var collect_water_multiplier: float = 1.0
-# --- Define the maximum amount for Quest Water ---
+# --- Define the maximum amount for quest water ---
 const MAX_QUEST_WATER: float = 10000.0
 # --- Define the multiplier value when max water is reached ---
 const WATER_MAX_MULTIPLIER_VALUE: float = 2.0
+# --- Declare quest food and multiplier variables ---
+# Initialize them with their starting values.
+var quest_food: float = 0.0
+var collect_food_multiplier: float = 1.0
+# --- Define the maximum amount for quest food ---
+const MAX_QUEST_FOOD: float = 10000.0
+# --- Define the multiplier value when max food is reached ---
+const FOOD_MAX_MULTIPLIER_VALUE: float = 2.0
+# --- Declare quest wood and multiplier variables ---
+# Initialize them with their starting values.
+var quest_wood: float = 0.0
+var collect_wood_multiplier: float = 1.0
+# --- Define the maximum amount for quest wood ---
+const MAX_QUEST_WOOD: float = 10000.0
+# --- Define the multiplier value when max wood is reached ---
+const WOOD_MAX_MULTIPLIER_VALUE: float = 2.0
+# --- Declare quest clay and multiplier variables ---
+# Initialize them with their starting values.
+var quest_clay: float = 0.0
+var collect_clay_multiplier: float = 1.0
+# --- Define the maximum amount for quest clay ---
+const MAX_QUEST_CLAY: float = 10000.0
+# --- Define the multiplier value when max clay is reached ---
+const CLAY_MAX_MULTIPLIER_VALUE: float = 2.0
+# --- Declare quest sand and multiplier variables ---
+# Initialize them with their starting values.
+var quest_sand: float = 0.0
+var collect_sand_multiplier: float = 1.0
+# --- Define the maximum amount for quest sand ---
+const MAX_QUEST_SAND: float = 10000.0
+# --- Define the multiplier value when max sand is reached ---
+const SAND_MAX_MULTIPLIER_VALUE: float = 2.0
 
 func gain_resource(current_resource_amount: float, amount_to_add: float, max_resource_amount: float, multiplier_variable_to_set: StringName = &"", multiplier_value: float = 1.0) -> float:
 	var new_resource_amount = current_resource_amount + amount_to_add

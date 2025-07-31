@@ -17,4 +17,3 @@ func _on_button_pressed():
 	globals.QuestTrees = 0
 	globals.QuestClay = 0
 	globals.QuestRoads = 0
-	pass # Replace with function body.

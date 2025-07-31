@@ -894,10 +894,6 @@ visible = false
 layout_mode = 2
 script = ExtResource("50_0sb5j")
 
-[node name="FPS" type="Label" parent="TileInfoWindow/PanelContainer/VBoxContainer"]
-layout_mode = 2
-text = "FPS:"
-
 [node name="Interface" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -1149,7 +1145,7 @@ theme = SubResource("Theme_1s0gc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_84b8o")
 text = "[✓] fetch food 0 / 1"
 
-[node name="fetch_trees" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
+[node name="fetch_wood" type="Label" parent="Quests/Control/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 theme = SubResource("Theme_1s0gc")
@@ -1232,6 +1228,15 @@ script = ExtResource("74_bf22m")
 
 [node name="Wood" parent="." instance=ExtResource("69_84b8o")]
 position = Vector2(609, 342)
+
+[node name="FpsCanvas" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="FpsCanvas"]
+offset_left = 1039.0
+offset_top = 28.0
+offset_right = 1150.0
+offset_bottom = 51.0
+text = "FPS: Unknown"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]

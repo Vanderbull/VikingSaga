@@ -48,10 +48,10 @@ var freezing_point: float = 0.0
 var insulation_factor: float = 1.0 # 0 = no clothes, 2 = heavy coat
 
 func check_if_quest_finished():
-	if globals.QuestWater >= %QuestWater.amount:
-		if globals.QuestFood >= %QuestFood.amount:
-			if globals.QuestTrees >= %QuestTrees.amount:
-				if globals.QuestClay >= %QuestClay.amount:
+	if globals.quest_water >= globals.MAX_QUEST_WATER:
+		if globals.quest_food >= globals.MAX_QUEST_FOOD:
+			if globals.quest_wood >= globals.MAX_QUEST_WOOD:
+				if globals.quest_clay >= globals.MAX_QUEST_CLAY:
 					%QuestFinished.show()
 
 func _physics_process(delta: float) -> void:
@@ -200,7 +200,7 @@ func _process(delta):
 		#if(!$DiggPlayer.is_audio_playing()):
 			#$DiggPlayer.play()
 	if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
-		get_tree().change_scene_to_file("res://game_over.tscn")
+		get_tree().change_scene_to_file("res://scenes/gameover/gameover.tscn")
 	game_manager.playerData.position = position
 
 	handleInput()

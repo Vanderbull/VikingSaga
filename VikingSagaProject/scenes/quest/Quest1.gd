@@ -1,12 +1,10 @@
 extends Label
 
 @export var finished: bool = false                # If quest is finished
-@export var amount: int = 10000                # If quest is finished
-
 @onready var globals = get_node("/root/Globals")
 
 func update_text():
-	if globals.QuestWater >= amount:
-		text = "[✓] Collect trees %s / %d" % [globals.QuestWater, amount]
+	if globals.quest_water >= globals.MAX_QUEST_WATER:
+		text = "[✓] Collect water %s / %d" % [globals.quest_water, globals.MAX_QUEST_WATER]
 	else:
-		text = "[ ] Collect trees %s / %d" % [globals.QuestWater, amount]
+		text = "[ ] Collect water %s / %d" % [globals.quest_water, globals.MAX_QUEST_WATER]
