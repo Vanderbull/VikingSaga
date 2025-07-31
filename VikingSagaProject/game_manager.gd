@@ -138,8 +138,21 @@ func generate_minimap(size: int, margin: int) -> ImageTexture:
 	texture.set_image(image)
 	return texture
 
+@onready var xp_manager = null # Initialize to null
+
+func _on_xp_manager_level_up(level: int):
+	print("Player/UI: Received level up signal! New level: ", level)
+	# Perform actions here, like updating a UI label, playing a sound, etc.
+	# $LevelLabel.text = "Level: " + str(level)
 
 func _ready():
+	# XpManager is the 'Node Name' you set in Project Settings -> Autoload
+	if is_instance_valid(XpManager): # Use is_instance_valid for autoloads
+		XpManager.level_up.connect(_on_xp_manager_level_up)
+		print("Successfully connected to XpManager's 'level_up' signal (Autoload).")
+	else:
+		print("Error: XpManager Autoload not found or invalid! (This shouldn't happen if setup correctly)")
+
 	print("--- Initial State ---")
 	print("Quest Water: ", globals.quest_water)
 	print("Collect Water Multiplier: ", globals.collect_water_multiplier)

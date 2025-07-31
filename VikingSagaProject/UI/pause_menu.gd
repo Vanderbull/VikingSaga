@@ -28,7 +28,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		$"../../InGameCanvasLayer".show()
 		%Quests.show() #$"../../Quests".show()
 		$"../../Interface".show()
-		#$"../../TileInfoWindow".show()
+		$"../../TileInfoWindow".show()
 		hide()
 func _on_resume_button_mouse_entered():
 	hover_sound.play()

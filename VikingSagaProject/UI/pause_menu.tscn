@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://w37clktmv21o"]
 
 [ext_resource type="Script" uid="uid://yhnv8teh55hq" path="res://UI/pause_menu.gd" id="1_exvrm"]
-[ext_resource type="AudioStream" uid="uid://chje44afe8lgj" path="res://sound/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" id="2_xv4gp"]
-[ext_resource type="Texture2D" uid="uid://b7ura616hgb40" path="res://assets/battleback/battleback10.png" id="3_0b5ob"]
-[ext_resource type="AudioStream" uid="uid://qw7yj3fk5hcf" path="res://sound/buttonclick.mp3" id="3_6frx1"]
-[ext_resource type="AudioStream" uid="uid://cdfx4uq27o86v" path="res://sound/sound_coin.wav" id="3_l8fx3"]
-[ext_resource type="Texture2D" uid="uid://ctww132n6akhb" path="res://assets/mainmenu/background.png" id="4_pqlge"]
-[ext_resource type="Texture2D" uid="uid://422482ndl373" path="res://assets/mainmenu/background2.png" id="5_nben2"]
+[ext_resource type="AudioStream" uid="uid://dwo0vkh0q5xf7" path="res://sound/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" id="2_xv4gp"]
+[ext_resource type="Texture2D" uid="uid://do83ilotbcsue" path="res://assets/battleback/battleback10.png" id="3_0b5ob"]
+[ext_resource type="AudioStream" uid="uid://bqwtqocvyns5r" path="res://sound/buttonclick.mp3" id="3_6frx1"]
+[ext_resource type="AudioStream" uid="uid://bmfltvhrj73ah" path="res://sound/sound_coin.wav" id="3_l8fx3"]
+[ext_resource type="Texture2D" uid="uid://btmcl5j8d1fc4" path="res://assets/mainmenu/background.png" id="4_pqlge"]
+[ext_resource type="Texture2D" uid="uid://dkmik54byw7um" path="res://assets/mainmenu/background2.png" id="5_nben2"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3

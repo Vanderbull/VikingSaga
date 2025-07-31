@@ -11,6 +11,8 @@ const DEFAULT_BASE_XP: int = 100
 # Common values are between 1.2 and 2.0.
 const DEFAULT_GROWTH_RATE: float = 1.5
 
+signal level_up(new_level: int)
+
 func _ready() -> void:
 	# Example usage when the script is run in Godot.
 	# This acts similarly to Python's `if __name__ == "__main__":` block.

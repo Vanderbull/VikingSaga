@@ -33,7 +33,12 @@ XpManager="*res://xp_manager.gd"
 window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
-window/vsync/vsync_mode=2
+window/vsync/vsync_mode=0
+
+[editor]
+
+movie_writer/movie_file="demo.avi"
+movie_writer/disable_vsync=true
 
 [editor_plugins]
 
