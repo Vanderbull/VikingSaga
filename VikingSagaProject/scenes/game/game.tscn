@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://iaidvsn1s1ua" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="Script" uid="uid://1aeybglim3yy" path="res://scenes/world.gd" id="3_ur7m5"]
@@ -587,15 +587,6 @@ shader_parameter/base_rain_speed = 0.5
 shader_parameter/additional_rain_speed = 0.5
 shader_parameter/slant = 0.2
 
-[sub_resource type="Gradient" id="Gradient_a8qux"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_l3lke"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mvi7"]
-seamless = true
-color_ramp = SubResource("Gradient_a8qux")
-noise = SubResource("FastNoiseLite_l3lke")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4br4k"]
 bg_color = Color(0.6, 0.6, 0.6, 0.501961)
 border_width_left = 4
@@ -841,11 +832,6 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0.254902)
 
 [node name="InGameCanvasLayer" parent="." instance=ExtResource("48_uewhu")]
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-energy = 0.69
-texture = SubResource("NoiseTexture2D_6mvi7")
 
 [node name="TileInfoWindow" type="CanvasLayer" parent="."]
 visible = false

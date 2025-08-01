@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bb8rxhne6lhy1" path="res://scenes/AnimatedFace.gd" id="10_8t03j"]
 [ext_resource type="Script" uid="uid://byrk66dfmxsvw" path="res://player/action_control.gd" id="11_ebec5"]
 [ext_resource type="Texture2D" uid="uid://c7omodkcir1cv" path="res://assets/dig.png" id="12_ebec5"]
-[ext_resource type="Texture2D" uid="uid://bsnxmiy5syyxq" path="res://assets/collect_water.png" id="13_yllr7"]
+[ext_resource type="Texture2D" uid="uid://c07cukil3bj7e" path="res://assets/action_buttons/collect_water.png" id="13_yllr7"]
 
 [sub_resource type="Animation" id="Animation_1di4i"]
 length = 0.001
@@ -289,7 +289,6 @@ animation = &"sad"
 script = ExtResource("10_8t03j")
 
 [node name="ActionButtons" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="action_control" type="Control" parent="ActionButtons"]
 layout_mode = 3
@@ -319,6 +318,34 @@ icon = ExtResource("12_ebec5")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollectWater" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button2" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button3" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button4" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button5" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button6" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("13_yllr7")
+
+[node name="Button7" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("13_yllr7")
 
