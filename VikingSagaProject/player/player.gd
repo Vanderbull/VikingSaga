@@ -130,8 +130,7 @@ func _unhandled_input(event):
 		return
 	var tile_pos = worldMap.local_to_map(position)
 	#globals.player_position = tile_pos
-	#globals.player_position = tile_pos
-	
+	#globals.player_position = tile_pos	
 	if( globals.Terrain == "Forest" ):
 		$"../../../TileInfoWindow/PanelContainer/VBoxContainer/TileType".text = "TileType: Forest"
 	if( globals.Terrain == "Sand" ):
@@ -168,15 +167,49 @@ func _unhandled_input(event):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
 		if event.pressed and event.keycode == KEY_3:
-			# Burn some wood
-			pass		
+			print("KEY_3 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_4:
+			print("KEY_4 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_5:
+			print("KEY_5 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_6:
+			print("KEY_6 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_7:
+			print("KEY_7 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_8:
+			print("KEY_8 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_9:
+			print("KEY_9 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_0:
+			print("KEY_0 pressed")
+			pass
+		if event.pressed and event.keycode == KEY_KP_0:
+			print("KEY_KP_2 pressed")
 		if event.pressed and event.keycode == KEY_KP_1:
 			$"../../TileMap2".set_cell(0, Vector2i(tile_pos.x, tile_pos.y), 1 ,Vector2(1,2))
-		#if event.pressed and event.keycode == KEY_KP_2:
-			#$"../../../Control"._show_popup_with_typing()
+		if event.pressed and event.keycode == KEY_KP_2:
+			print("KEY_KP_2 pressed")
 		if event.pressed and event.keycode == KEY_KP_3:
-			%QuestFinished.show() #$"../../../QuestFinished/QuestFinished".show()
-			
+			%QuestFinished.show()
+		if event.pressed and event.keycode == KEY_KP_4:
+			print("KEY_KP_4 pressed")
+		if event.pressed and event.keycode == KEY_KP_5:
+			print("KEY_KP_5 pressed")
+		if event.pressed and event.keycode == KEY_KP_6:
+			print("KEY_KP_6 pressed")
+		if event.pressed and event.keycode == KEY_KP_7:
+			print("KEY_KP_7 pressed")
+		if event.pressed and event.keycode == KEY_KP_8:
+			print("KEY_KP_8 pressed")
+		if event.pressed and event.keycode == KEY_KP_9:
+			print("KEY_KP_9 pressed")
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
