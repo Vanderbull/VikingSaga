@@ -65,23 +65,16 @@ func _physics_process(delta: float) -> void:
 		time_since_last_step = footstep_interval  # Reset when not moving
 
 func play_footstep_sound() -> void:
-	if walking_sounds.size() > 0:
-		#var sound = walking_sounds[randi() % walking_sounds.size()]
-		#footstep_player.stream = sound
-		footstep_player.stream = walking_sounds[randi() % walking_sounds.size()]
-		footstep_player.play()
+	var footstep_sfx = preload("res://assets/sounds/footsteps/Steps_floor-001.ogg")
+	SoundManager.play_sfx(footstep_sfx)
 		
 func play_chop_sound() -> void:
-	if chop_sounds.size() > 0:
-		#var sound = chop_sounds[randi() % chop_sounds.size()]
-		#chop_player.stream = sound
-		chop_player.stream = chop_sounds[randi() % chop_sounds.size()]
-		chop_player.play()
-		await chop_player.finished
+	var chop_wood_sfx = preload("res://assets/sounds/chop_wood/Chopping Wood .mp3")
+	SoundManager.play_sfx(chop_wood_sfx)
 		
 func play_digg_sound() -> void:
-	if(digg_player.is_audio_playing()):
-		digg_player.play()
+	var digg_clay_sfx = preload("res://assets/sounds/digg_clay/digging-v1-27585.mp3")
+	SoundManager.play_sfx(digg_clay_sfx)
 
 func _input(_event):
 	pass
@@ -160,36 +153,30 @@ func _unhandled_input(event):
 			elif( globals.Terrain == "Forest" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.ForestCutting = not globals.ForestCutting
+				play_chop_sound()
 			elif( globals.Terrain == "Water" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectWater = not globals.CollectWater
 			elif( globals.Terrain == "Grass" ):
 				$"../../../InGameCanvasLayer/ProgressBar".show()
 				globals.CollectClay = not globals.CollectClay
+				play_digg_sound()
 		if event.pressed and event.keycode == KEY_3:
 			print("KEY_3 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_4:
 			print("KEY_4 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_5:
 			print("KEY_5 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_6:
 			print("KEY_6 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_7:
 			print("KEY_7 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_8:
 			print("KEY_8 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_9:
 			print("KEY_9 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_0:
 			print("KEY_0 pressed")
-			pass
 		if event.pressed and event.keycode == KEY_KP_0:
 			print("KEY_KP_2 pressed")
 		if event.pressed and event.keycode == KEY_KP_1:

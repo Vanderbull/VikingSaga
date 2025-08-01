@@ -27,6 +27,7 @@ Warmth="*res://player/PlayerWarmth.gd"
 Version="*res://version.gd"
 BuildTracker="*res://build_tracker.gd"
 XpManager="*res://xp_manager.gd"
+SoundManager="*res://SoundManager.gd"
 
 [display]
 
