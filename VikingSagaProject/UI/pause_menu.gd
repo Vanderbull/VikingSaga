@@ -24,6 +24,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		show()
 	else:
 		#print("hide")
+		%ActionButtons.show()
 		$"../../world".show()
 		$"../../InGameCanvasLayer".show()
 		%Quests.show() #$"../../Quests".show()

@@ -257,6 +257,7 @@ func _ready():
 	var minimap_texture = generate_minimap(128,10)  # Generate a 128x128 minimap
 	minimap_rect.texture = minimap_texture  # Assign the texture
 	# Hide things initially
+	%ActionButtons.hide()
 	%HelpMenu.hide()
 	$world.hide()
 	$InGameCanvasLayer.hide()

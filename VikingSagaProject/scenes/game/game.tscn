@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://dm0i1inffsx7a"]
+[gd_scene load_steps=108 format=4 uid="uid://dm0i1inffsx7a"]
 
 [ext_resource type="Script" uid="uid://iaidvsn1s1ua" path="res://game_manager.gd" id="1_4jurc"]
 [ext_resource type="Script" uid="uid://1aeybglim3yy" path="res://scenes/world.gd" id="3_ur7m5"]
@@ -65,8 +65,12 @@
 [ext_resource type="Script" uid="uid://jvg7fugoaak8" path="res://http_request.gd" id="68_wvglm"]
 [ext_resource type="PackedScene" uid="uid://bfhw4nwj64fj6" path="res://assets/collectable/wood/wood.tscn" id="69_84b8o"]
 [ext_resource type="PackedScene" uid="uid://btenw6y1oqqj0" path="res://assets/animated-fire/animated_fire.tscn" id="69_obvfi"]
+[ext_resource type="Script" uid="uid://byrk66dfmxsvw" path="res://player/action_control.gd" id="70_bjk8q"]
 [ext_resource type="PackedScene" uid="uid://um0wu28oq78x" path="res://scenes/help_menu/help_menu.tscn" id="70_lcryn"]
+[ext_resource type="Texture2D" uid="uid://c7omodkcir1cv" path="res://assets/action_buttons/dig.png" id="71_bf22m"]
 [ext_resource type="Script" uid="uid://bslwqgx2fms1h" path="res://patch_manager/patch_manager.gd" id="71_elrr2"]
+[ext_resource type="Texture2D" uid="uid://bsnxmiy5syyxq" path="res://assets/action_buttons/collect_water.png" id="72_tcv87"]
+[ext_resource type="Texture2D" uid="uid://dmpen0n7s0f5x" path="res://assets/action_buttons/placeholder.png" id="73_3f8qr"]
 [ext_resource type="VideoStream" uid="uid://hd6lkh5ss547" path="res://Blazing-Cube-Logo_free.ogv" id="73_bjk8q"]
 [ext_resource type="Script" uid="uid://ctvunuebwx34r" path="res://scenes/game/video_stream_player.gd" id="74_bf22m"]
 
@@ -1224,5 +1228,98 @@ offset_right = 1150.0
 offset_bottom = 51.0
 text = "FPS: Unknown"
 
+[node name="ActionButtons" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="action_control" type="Control" parent="ActionButtons"]
+z_index = 99
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("70_bjk8q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionButtons/action_control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -72.0
+offset_right = 36.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Dig" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Dig"
+icon = ExtResource("71_bf22m")
+metadata/_edit_use_anchors_ = true
+
+[node name="CollectWater" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Collect water"
+icon = ExtResource("72_tcv87")
+
+[node name="key_3" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_3"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_4" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_4"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_5" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_5"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_6" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_6"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_7" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_7"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_8" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_8"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_9" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_9"
+icon = ExtResource("73_3f8qr")
+
+[node name="key_0" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "key_0"
+icon = ExtResource("73_3f8qr")
+
+[node name="ProgressBar" type="ProgressBar" parent="ActionButtons/action_control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.5
+offset_top = -274.0
+offset_right = 146.5
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="warmth_effected" from="animated-fire" to="world/TileMap/Player" method="_on_animatedfire_warmth_effected"]
+[connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/Dig" to="ActionButtons/action_control" method="_on_dig_pressed"]
+[connection signal="pressed" from="ActionButtons/action_control/HBoxContainer/CollectWater" to="ActionButtons/action_control" method="_on_collect_water_pressed"]

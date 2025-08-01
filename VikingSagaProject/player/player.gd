@@ -87,7 +87,7 @@ func _input(_event):
 	pass
 
 func _ready():
-	$ActionButtons.hide()
+	#$ActionButtons.hide()
 	Warmth.set_insulation(1.5) # Player has medium clothing
 	Warmth.set_ambient_temperature(5.0) # Cold biome
 	if globals.character_position != Vector2.ZERO:
@@ -223,7 +223,7 @@ func _unhandled_input(event):
 			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
 func _process(delta):
-	$ActionButtons.show()
+	#$ActionButtons.show()
 	if( globals.Terrain == "Water" ):
 		ambient_temperature = -5.0
 	else:
