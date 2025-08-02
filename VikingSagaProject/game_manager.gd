@@ -187,18 +187,18 @@ func _ready():
 
 	# Example 3: Add enough water to exceed the maximum
 	# This will cap QuestWater at 10000 and set CollectWaterMultiplier to 2.0
-	var amount_collected_3: float = 7000.0 # (Current 3500 + 7000 = 10500)
-	print("Adding ", amount_collected_3, " water (should hit max)...")
-	globals.quest_water = globals.gain_resource(
-		globals.quest_water,
-		amount_collected_3,
-		globals.MAX_QUEST_WATER,
-		&"collect_water_multiplier",
-		globals.WATER_MAX_MULTIPLIER_VALUE
-	)
-	print("Current Quest Water: ", globals.quest_water)
-	print("Collect Water Multiplier: ", globals.collect_water_multiplier)
-	print("---------------------\n")
+	#var amount_collected_3: float = 7000.0 # (Current 3500 + 7000 = 10500)
+	#print("Adding ", amount_collected_3, " water (should hit max)...")
+	#globals.quest_water = globals.gain_resource(
+		#globals.quest_water,
+		#amount_collected_3,
+		#globals.MAX_QUEST_WATER,
+		#&"collect_water_multiplier",
+		#globals.WATER_MAX_MULTIPLIER_VALUE
+	#)
+	#print("Current Quest Water: ", globals.quest_water)
+	#print("Collect Water Multiplier: ", globals.collect_water_multiplier)
+	#print("---------------------\n")
 
 	# Example 4: Adding more water when already at max (no change)
 	var amount_collected_4: float = 100.0
@@ -277,10 +277,10 @@ func _ready():
 	#dynamic_array_instance._ready()
 	# Initialize Labels
 	#%Label.update_text(globals.level, globals.experience, globals.experience_required)
-	%WarmthLabel.update_text(globals.Warmth,100)
-	%FoodLabel.update_text(globals.quest_food,100)
-	%WaterLabel.update_text(globals.quest_water,100)
-	%HPLabel.update_text(0,0)
+	#%WarmthLabel.update_text(globals.Warmth,100)
+	#%FoodLabel.update_text(globals.quest_food,100)
+	#%WaterLabel.update_text(globals.quest_water,100)
+	#%HPLabel.update_text(0,0)
 	if( globals.NewGame ):
 		initialize_gamemanager()
 		globals.NewGame = false
@@ -293,54 +293,23 @@ func initialize_gamemanager():
 		game_paused = !game_paused
 	pass
 
-#func spawnNPC():
-	#for i in range(globals.SpawnRadius):
-		##var tilemap = $world/Npc
-		#var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
-		## What NPC images should be used?
-		#var atlas_coords = Vector2i(randi_range(0, 10), randi_range(0, 10))
-		## If grass then spawn NPC
-		#if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			#$world/Npc.set_cell(0, cell_position, randi_range(0, 0) ,atlas_coords)
-#
-#func spawnAnimals():
-	## ADDING ANIMALS TO ANIMALMAP
-	#for i in range(globals.SpawnRadius):
-		#var cell_position = Vector2i(randi_range(-globals.SpawnRadius, globals.SpawnRadius), randi_range(-globals.SpawnRadius, globals.SpawnRadius))
-		#var atlas_coords = Vector2i(0, 1)
-		#if( $world/TileMap.get_terrain_type(cell_position.x, cell_position.y) == "Grass"):
-			#$world/AnimalMap.set_cell(0, cell_position, randi_range(1, 8) ,atlas_coords)
-
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
 	$FpsCanvas/FPS.text = "FPS: %d" % fps
 	#%godot_version.update_text()
-	%WarmthLabel.update_text(globals.Warmth,100)
-	%FoodLabel.update_text(playerData.Food,1000)
-	%WaterLabel.update_text(playerData.Water,1000)
+	#%WarmthLabel.update_text(globals.Warmth,100)
+	#%FoodLabel.update_text(playerData.Food,1000)
+	#%WaterLabel.update_text(playerData.Water,1000)
 	
 	if( globals.Walking == true):
 		playerData.Food -= globals.FoodDeterioration
 		playerData.Water -= globals.WaterDeterioration
-	if(globals.Hunting):
-		$InGameCanvasLayer/ProgressBar/Label.text = "Hunting Rabbit"
-		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.HuntingMultiplier )
-		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
-			$InGameCanvasLayer/ProgressBar.value = 0
-			globals.Hunting = not globals.Hunting
-			$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
-			playerData.Food += globals.CollectingFoodAmount
-			#globals.gain_experience(1)
-			globals.gain_quest_food(globals.CollectingFoodAmount)
-			%QuestFood.update_text()
 	elif(globals.DigSand and globals.Terrain == "Sand"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Digging sand"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + 1 )
 		if( $InGameCanvasLayer/ProgressBar.value == 100 ):
 			playerData.Sand += globals.CollectingSandAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
-			#globals.gain_experience(1)
-			#$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.ForestCutting and globals.Terrain == "Forest"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Cutting trees"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.ForestCuttingMultiplier )
@@ -348,10 +317,8 @@ func _process(_delta):
 			playerData.Wood += globals.CollectingWoodAmount
 			$InGameCanvasLayer/ProgressBar.value = 0
 			#$world/TileMap2.set_cell(0, Vector2i(globals.player_position.x, globals.player_position.y), 1 ,Vector2(1,2))
-			#globals.gain_experience(1)
 			globals.gain_quest_trees(globals.CollectingWoodAmount)
 			%QuestTrees.update_text()
-			#$Interface/Label.update_text(globals.level, globals.experience, globals.experience_required)
 	elif(globals.CollectWater and globals.Terrain == "Water"):
 		$InGameCanvasLayer/ProgressBar/Label.text = "Collecting water"
 		$InGameCanvasLayer/ProgressBar.set_value( $InGameCanvasLayer/ProgressBar.value + globals.CollectWaterMultiplier )
