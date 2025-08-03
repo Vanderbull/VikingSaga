@@ -1,14 +1,14 @@
 [DONE]1. Remake the menus
 [DONE]2. Create or find some more animal sprites
-[IN PROGRESS]3. Redraw the player sprite in the new viking look with helmet for all directions
+[TODO]3. Redraw the player sprite in the new viking look with helmet for all directions
 [TODO]4. Rename TileMap2 to something more understandable
-[REMOVED]5. Remake the quest system to something better
+[DONE]5. Remake the quest system to something better
 [DONE]6. Remove errors and warnings in the editor
-[IN PROGRESS]7. Rearrange the files in the filesystem
+[DONE]7. Rearrange the files in the filesystem
 [REMOVED]8. Finish the inventory system
 [REMOVED]9. Add boat to the game
-[DONE]10. Check that the fighting system works
-[IN PROGRESS]11. Integrate the fighting system into the game so that you can fight animals and other npcs
+[IN PROGRESS]10. Check that the fighting system works
+[TODO]11. Integrate the fighting system into the game so that you can fight animals and other npcs
 [REMOVED]12. Implement a basic crafting system
 	12.1 Make planks from the wood collected
 	12.2 Make bricks from the clay collected
@@ -18,9 +18,9 @@
 [IN PROGRESS]14. Create the beginner tutorial
 	[DONE]14.1 Collect all the resources in the game
 	[TODO]14.2 When finishing the tutorial the player gets some experience and is able to found its first village
-	[TODO]14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
+	[DONE]14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
 [DONE]15. Make the fireplace animated
-[TODO]16. Make the fireplace buildable from wood or planks and being lit or not
+[DONE]16. Make the fireplace buildable from wood or planks and being lit or not
 [TODO]17. Sleep zzzZZzzzz
 [TODO]18. Day and night time
 	[]18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://diq3f78bw53ky"]
+
+[ext_resource type="Script" uid="uid://cglf70yqraq" path="res://scenes/camp/camp.gd" id="1_bqk0h"]
+[ext_resource type="Script" uid="uid://xsyunn1j8qko" path="res://scenes/camp/label.gd" id="2_15lph"]
+[ext_resource type="Texture2D" uid="uid://wstyr4o5i0p3" path="res://assets/camp/camp.png" id="2_w8r68"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pbcj1"]
+font_size = 72
+
+[sub_resource type="Animation" id="Animation_15lph"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bqk0h"]
+resource_name = "sleeping"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 2, 3.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8r68"]
+_data = {
+&"RESET": SubResource("Animation_15lph"),
+&"sleeping": SubResource("Animation_bqk0h")
+}
+
+[node name="Camp" type="Node2D"]
+script = ExtResource("1_bqk0h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_w8r68")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 345.0
+offset_bottom = 99.0
+size_flags_horizontal = 4
+text = "zzzzZZZZZ"
+label_settings = SubResource("LabelSettings_pbcj1")
+script = ExtResource("2_15lph")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_w8r68")
+}

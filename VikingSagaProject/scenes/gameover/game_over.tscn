@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dngyetxu1k28l"]
+[gd_scene load_steps=3 format=3 uid="uid://dwyntpxasrpv"]
 
 [sub_resource type="GDScript" id="GDScript_1gt0k"]
 script/source = "extends Control
@@ -19,7 +19,6 @@ func _on_quit_button_pressed():
 "
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jxgye"]
-load_path = "res://.godot/imported/draugr_valley_by_jakubjagoda_dezera3-pre.jpg-ddd850faed72ab91685cdf4e3f571fd7.ctex"
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
