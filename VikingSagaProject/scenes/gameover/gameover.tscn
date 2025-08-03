@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://8b7niyfbrfne"]
+[gd_scene load_steps=3 format=3 uid="uid://8b7niyfbrfne"]
 
-[ext_resource type="Texture2D" uid="uid://bhjwcdwhbc1nf" path="res://scenes/gameover/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="1_0ci8s"]
+[ext_resource type="Script" uid="uid://cflvole07eslb" path="res://scenes/gameover/gameover.gd" id="1_al6oj"]
+[ext_resource type="Texture2D" uid="uid://b7dx28uvs3gdr" path="res://assets/gameover/gameover.png" id="2_al6oj"]
 
 [node name="Gameover" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_al6oj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 offset_right = 1192.0
 offset_bottom = 670.0
-texture = ExtResource("1_0ci8s")
+texture = ExtResource("2_al6oj")

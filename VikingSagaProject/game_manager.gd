@@ -1,6 +1,7 @@
 extends Node
 class_name GameManager
 # Reference to the PatchManager node
+@onready var player_object = %Player
 @onready var patch_manager = %PatchManager
 # Globals
 @onready var globals = get_node("/root/Globals")
@@ -146,6 +147,7 @@ func _on_xp_manager_level_up(level: int):
 	# $LevelLabel.text = "Level: " + str(level)
 
 func _ready():
+	player_object.player_died.connect(_on_player_died)
 	# XpManager is the 'Node Name' you set in Project Settings -> Autoload
 	if is_instance_valid(XpManager): # Use is_instance_valid for autoloads
 		XpManager.level_up.connect(_on_xp_manager_level_up)
@@ -381,3 +383,6 @@ func _on_in_game_canvas_layer_visibility_changed() -> void:
 
 func _on_quest_1_ready() -> void:
 	pass # Replace with function body.
+
+func _on_player_died():
+	print("Game Over! The player died.")

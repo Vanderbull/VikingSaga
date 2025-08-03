@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 class_name Player
+
+signal player_died
+
 @onready var globals = get_node("/root/Globals")
 @onready var game_manager = $"../../.."
 @onready var animations = $AnimationPlayer
@@ -209,7 +212,20 @@ func _unhandled_input(event):
 				#$Camera2D.zoom.y -= 0.25
 			$Camera2D.zoom = $Camera2D.zoom.clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
 
+var food = 100
+var water = 100
+
 func _process(delta):
+	# Decrease food and water over time
+	food -= 0.1 * delta
+	water -= 0.1 * delta
+	if food <= 0 or water <= 0:
+		player_died.emit()
+		var tree = get_tree()
+		if tree != null:
+			tree.change_scene_to_file("res://scenes/gameover/gameover.tscn")
+		else:
+			print("WRONG WRONG ONWRG!")
 	#$ActionButtons.show()
 	if( globals.Terrain == "Water" ):
 		ambient_temperature = -5.0
@@ -219,8 +235,8 @@ func _process(delta):
 	#if globals.CollectClay:
 		#if(!$DiggPlayer.is_audio_playing()):
 			#$DiggPlayer.play()
-	if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
-		get_tree().change_scene_to_file("res://scenes/gameover/gameover.tscn")
+	#if( game_manager.playerData.Food < 0 || game_manager.playerData.Water < 0 ):
+		#get_tree().change_scene_to_file("res://scenes/gameover/gameover.tscn")
 	game_manager.playerData.position = position
 
 	handleInput()

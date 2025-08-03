@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://drgko81r4nvke"]
+[gd_scene load_steps=3 format=3 uid="uid://dngyetxu1k28l"]
 
-[ext_resource type="Script" uid="uid://d3f8tnhu3cjrd" path="res://scenes/gameover/game_over.gd" id="1_1gt0k"]
-[ext_resource type="Texture2D" uid="uid://cjij0npia8dgs" path="res://scenes/gameover/draugr_valley_by_jakubjagoda_dezera3-pre.jpg" id="2_c501a"]
+[sub_resource type="GDScript" id="GDScript_1gt0k"]
+script/source = "extends Control
+
+@onready var restart_button = $RestartButton
+@onready var quit_button = $QuitButton
+
+func _ready():
+	# Connect button signals
+	restart_button.pressed.connect(_on_restart_button_pressed)
+	quit_button.pressed.connect(_on_quit_button_pressed)
+
+func _on_restart_button_pressed():
+	get_tree().change_scene_to_file(\"res://game.tscn\")
+
+func _on_quit_button_pressed():
+	get_tree().quit()
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jxgye"]
+load_path = "res://.godot/imported/draugr_valley_by_jakubjagoda_dezera3-pre.jpg-ddd850faed72ab91685cdf4e3f571fd7.ctex"
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -10,13 +28,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1gt0k")
+script = SubResource("GDScript_1gt0k")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1192.0
 offset_bottom = 670.0
-texture = ExtResource("2_c501a")
+texture = SubResource("CompressedTexture2D_jxgye")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
