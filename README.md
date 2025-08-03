@@ -30,9 +30,10 @@ Zapier
 <img width="1536" height="1024" alt="ChatGPT Image Jul 10, 2025, 04_22_36 PM" src="https://github.com/user-attachments/assets/ab4a5135-6ee8-464d-aaf9-60c95f7e0037" />
 
 ![openart-image_YrEtrj7c_1752151468663_raw](https://github.com/user-attachments/assets/42d148d4-9864-43b5-9c10-c803b4185e80)
-
+![image](https://github.com/user-attachments/assets/c34b1a81-082d-47c1-b319-6eb86b3b4289)
 
 # Screenshots
+
 
 ![image](https://github.com/user-attachments/assets/0b44e5c0-4e77-43c8-a1f0-e8a29597876c)
 ![image](https://github.com/Vanderbull/VikingSaga/assets/1743820/ff612a9f-c273-4089-9cbf-a45c5f9f22b3)
