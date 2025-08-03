@@ -179,7 +179,12 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_9:
 			print("KEY_9 pressed")
 		if event.pressed and event.keycode == KEY_0:
-			print("KEY_0 pressed")
+			#print("KEY_0 pressed")
+			var tree = get_tree()
+			if tree != null:
+				tree.change_scene_to_file("res://scenes/camp/camp.tscn")
+			else:
+				print("WRONG WRONG ONWRG!")
 		if event.pressed and event.keycode == KEY_KP_0:
 			print("KEY_KP_2 pressed")
 		if event.pressed and event.keycode == KEY_KP_1:

@@ -1225,7 +1225,6 @@ grow_horizontal = 2
 grow_vertical = 2
 stream = ExtResource("73_bjk8q")
 volume_db = -20.0
-autoplay = true
 script = ExtResource("74_bf22m")
 
 [node name="Wood" parent="." instance=ExtResource("69_84b8o")]
@@ -1315,6 +1314,7 @@ icon = ExtResource("73_3f8qr")
 [node name="key_0" type="Button" parent="ActionButtons/action_control/HBoxContainer"]
 layout_mode = 2
 tooltip_text = "key_0"
+text = "Sleep"
 icon = ExtResource("73_3f8qr")
 
 [node name="ProgressBar" type="ProgressBar" parent="ActionButtons/action_control"]

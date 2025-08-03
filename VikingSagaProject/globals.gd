@@ -70,6 +70,8 @@ var gpu_name: String
 var gpu_vendor: String
 # Declare the variable to store the RENDERING driver
 var rendering_driver: String
+var intro_video_played: bool = false
+
 # ENUMS
 enum TerrainType {
 	GRASS,

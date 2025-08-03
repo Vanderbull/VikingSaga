@@ -147,6 +147,7 @@ func _on_xp_manager_level_up(level: int):
 	# $LevelLabel.text = "Level: " + str(level)
 
 func _ready():
+	#print("Previous scene's _ready() function was called! The scene switch was successful.")
 	player_object.player_died.connect(_on_player_died)
 	# XpManager is the 'Node Name' you set in Project Settings -> Autoload
 	if is_instance_valid(XpManager): # Use is_instance_valid for autoloads
@@ -293,7 +294,12 @@ func initialize_gamemanager():
 	playerData = PlayerData.new()
 	if OS.is_debug_build():
 		game_paused = !game_paused
-	pass
+	if(!globals.intro_video_played):
+		$CanvasLayer/VideoStreamPlayer.play()
+		globals.intro_video_played = true
+	else:
+		$CanvasLayer/VideoStreamPlayer.stop()
+		$CanvasLayer/VideoStreamPlayer.hide()
 
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
