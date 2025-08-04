@@ -21,6 +21,8 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		%Quests.hide() #$"../../Quests".hide()
 		$"../../Interface".hide()
 		#$"../../TileInfoWindow".hide()
+		%ActionButtons.hide()
+		$"../../TileInfoWindow".hide()
 		show()
 	else:
 		#print("hide")
@@ -30,6 +32,7 @@ func _on_game_manager_toggle_game_paused(is_paused : bool):
 		%Quests.show() #$"../../Quests".show()
 		$"../../Interface".show()
 		$"../../TileInfoWindow".show()
+		%ActionButtons.hide()
 		hide()
 func _on_resume_button_mouse_entered():
 	hover_sound.play()

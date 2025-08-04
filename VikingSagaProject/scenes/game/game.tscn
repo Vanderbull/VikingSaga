@@ -799,6 +799,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("44_1s0gc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/DateTimeControl"]
@@ -850,6 +851,7 @@ offset_left = 864.0
 offset_top = 224.0
 offset_right = 1140.0
 offset_bottom = 635.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_4br4k")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TileInfoWindow/PanelContainer"]
@@ -897,6 +899,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 script = ExtResource("55_5dkr6")
 
 [node name="Minimap" type="TextureRect" parent="Interface/Control"]
@@ -1077,6 +1080,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 10.0
 offset_bottom = 10.0
+mouse_filter = 1
 
 [node name="Panel" type="Panel" parent="Quests/Control"]
 layout_mode = 0
@@ -1167,6 +1171,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 script = ExtResource("66_3pms8")
 popup = NodePath("Popup")
 popup_label = NodePath("Popup/PopupLabel")
@@ -1187,6 +1192,7 @@ visible = false
 
 [node name="QuestFinished" parent="QuestFinished" instance=ExtResource("67_gr1mp")]
 unique_name_in_owner = true
+mouse_filter = 1
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("68_wvglm")

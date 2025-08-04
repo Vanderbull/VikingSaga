@@ -30,6 +30,8 @@ func _ready():
 @export var previous_scene_path: String = "res://scenes/game/game.tscn"
 
 func _on_timer_timeout():
+	# Make sure to unpause the game before changing the scene.
+	get_tree().paused = false
 	# Replace "res://path/to/your/previous_scene.tscn" with the actual path
 	# of the scene you want to go back to.
 	var error = get_tree().change_scene_to_file(previous_scene_path)
