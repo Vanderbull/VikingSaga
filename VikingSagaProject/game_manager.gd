@@ -303,7 +303,7 @@ func initialize_gamemanager():
 
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
-	$FpsCanvas/FPS.text = "FPS: %d" % fps
+	%FPS.text = "FPS: %d" % fps
 	#%godot_version.update_text()
 	#%WarmthLabel.update_text(globals.Warmth,100)
 	#%FoodLabel.update_text(playerData.Food,1000)
