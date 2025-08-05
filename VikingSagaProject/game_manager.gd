@@ -295,11 +295,11 @@ func initialize_gamemanager():
 	if OS.is_debug_build():
 		game_paused = !game_paused
 	if(!globals.intro_video_played):
-		$CanvasLayer/VideoStreamPlayer.play()
+		$IntroVideo/VideoStreamPlayer.play()
 		globals.intro_video_played = true
 	else:
-		$CanvasLayer/VideoStreamPlayer.stop()
-		$CanvasLayer/VideoStreamPlayer.hide()
+		$IntroVideo/VideoStreamPlayer.stop()
+		$IntroVideo/VideoStreamPlayer.hide()
 
 func _process(_delta):
 	var fps = Engine.get_frames_per_second()
