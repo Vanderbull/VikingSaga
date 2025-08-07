@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://w37clktmv21o"]
+[gd_scene load_steps=6 format=3 uid="uid://w37clktmv21o"]
 
 [ext_resource type="Script" uid="uid://yhnv8teh55hq" path="res://UI/pause_menu.gd" id="1_exvrm"]
 [ext_resource type="AudioStream" uid="uid://dwo0vkh0q5xf7" path="res://sound/forest-with-small-river-birds-and-nature-field-recording-6735.mp3" id="2_xv4gp"]
-[ext_resource type="Texture2D" uid="uid://do83ilotbcsue" path="res://assets/battleback/battleback10.png" id="3_0b5ob"]
-[ext_resource type="AudioStream" uid="uid://bqwtqocvyns5r" path="res://sound/buttonclick.mp3" id="3_6frx1"]
 [ext_resource type="AudioStream" uid="uid://bmfltvhrj73ah" path="res://sound/sound_coin.wav" id="3_l8fx3"]
-[ext_resource type="Texture2D" uid="uid://btmcl5j8d1fc4" path="res://assets/mainmenu/background.png" id="4_pqlge"]
+[ext_resource type="AudioStream" uid="uid://3rstjuncm1b5" path="res://assets/sounds/Otopack/menu/menu_move.ogg" id="4_mxjhc"]
 [ext_resource type="Texture2D" uid="uid://dkmik54byw7um" path="res://assets/mainmenu/background2.png" id="5_nben2"]
 
 [node name="PauseMenu" type="Control"]
@@ -26,27 +24,10 @@ autoplay = true
 stream = ExtResource("3_l8fx3")
 volume_db = -20.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_0b5ob")
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mxjhc")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
-z_index = 1
-layout_mode = 1
-offset_right = 2560.0
-offset_bottom = 1439.0
-scale = Vector2(0.45, 0.45)
-texture = ExtResource("4_pqlge")
-
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 z_index = 1
 layout_mode = 1
 offset_right = 2560.0
@@ -82,44 +63,24 @@ layout_mode = 2
 text = "MAIN MENU"
 horizontal_alignment = 1
 
-[node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "Save"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/VBoxContainer/SaveButton"]
-stream = ExtResource("3_6frx1")
-
 [node name="LoadButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Load
 "
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/VBoxContainer/LoadButton"]
-stream = ExtResource("3_6frx1")
-
-[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="NewGameButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
-text = "Resume
+text = "New game
 "
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/VBoxContainer/ResumeButton"]
-stream = ExtResource("3_6frx1")
 
 [node name="SettingsButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/VBoxContainer/SettingsButton"]
-stream = ExtResource("3_6frx1")
-
 [node name="ExitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Exit
 "
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Panel/VBoxContainer/ExitButton"]
-stream = ExtResource("3_6frx1")
-playback_type = 1
 
 [node name="VersionNumber" type="Label" parent="."]
 z_index = 1
@@ -132,12 +93,10 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "Version: 0.0.1"
 
-[connection signal="mouse_entered" from="Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_mouse_entered"]
-[connection signal="pressed" from="Panel/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="mouse_entered" from="Panel/VBoxContainer/LoadButton" to="." method="_on_load_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
-[connection signal="mouse_entered" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_mouse_entered"]
-[connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_mouse_entered"]
+[connection signal="pressed" from="Panel/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="mouse_entered" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="Panel/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]

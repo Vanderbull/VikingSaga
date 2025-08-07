@@ -33,14 +33,13 @@
 [ext_resource type="Script" uid="uid://bjudjyepm61g6" path="res://scenes/follow cam.gd" id="32_qn1h5"]
 [ext_resource type="AudioStream" uid="uid://go8lulvaacbp" path="res://sound/aachen_burning-fireplace-crackling-fire-soundswav-14561.mp3" id="33_u2325"]
 [ext_resource type="Script" uid="uid://cim28n6m60w6h" path="res://data/maps/TileMap2.gd" id="34_v1nyk"]
-[ext_resource type="Texture2D" uid="uid://dcpbdq27nllan" path="res://assets/MinifolksForestAnimals/Outline/MiniWolf.png" id="35_ll28t"]
-[ext_resource type="Texture2D" uid="uid://dxu2dvwam3tos" path="res://assets/MinifolksForestAnimals/Outline/MiniFox.png" id="36_6vrqx"]
-[ext_resource type="Texture2D" uid="uid://baqstf2x8ppts" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer2.png" id="37_jhuw1"]
-[ext_resource type="Texture2D" uid="uid://pg58b4focb4a" path="res://assets/MinifolksForestAnimals/Outline/MiniDeer1.png" id="38_hs875"]
-[ext_resource type="Texture2D" uid="uid://cbf16q7uy6csq" path="res://assets/MinifolksForestAnimals/Outline/MiniBunny.png" id="39_tfrsd"]
-[ext_resource type="Texture2D" uid="uid://bte42xcq87dg8" path="res://assets/MinifolksForestAnimals/Outline/MiniBoar.png" id="40_2ad58"]
-[ext_resource type="Texture2D" uid="uid://b2q0l1gw4vwh6" path="res://assets/MinifolksForestAnimals/Outline/MiniBird.png" id="41_eae5g"]
-[ext_resource type="Texture2D" uid="uid://bcp3mr8c44jpx" path="res://assets/MinifolksForestAnimals/Outline/MiniBear.png" id="42_h3rcq"]
+[ext_resource type="Texture2D" uid="uid://dcpbdq27nllan" path="res://assets/miniwolf-npc/outline/MiniWolf.png" id="35_ll28t"]
+[ext_resource type="Texture2D" uid="uid://baqstf2x8ppts" path="res://assets/minideer-npc/outline/MiniDeer2.png" id="37_jhuw1"]
+[ext_resource type="Texture2D" uid="uid://pg58b4focb4a" path="res://assets/minideer-npc/outline/MiniDeer1.png" id="38_hs875"]
+[ext_resource type="Texture2D" uid="uid://cbf16q7uy6csq" path="res://assets/minibunny-npc/outline/MiniBunny.png" id="39_tfrsd"]
+[ext_resource type="Texture2D" uid="uid://bte42xcq87dg8" path="res://assets/miniboar-npc/outline/MiniBoar.png" id="40_2ad58"]
+[ext_resource type="Texture2D" uid="uid://b2q0l1gw4vwh6" path="res://assets/minibird-npc/outline/MiniBird.png" id="41_eae5g"]
+[ext_resource type="Texture2D" uid="uid://bcp3mr8c44jpx" path="res://assets/minibear-npc/outline/MiniBear.png" id="42_h3rcq"]
 [ext_resource type="Script" uid="uid://csdcpvosdqmte" path="res://data/maps/AnimalMap.gd" id="43_fgl5k"]
 [ext_resource type="Script" uid="uid://cnbcl6xrja7qm" path="res://scenes/game/date_time_control.gd" id="44_1s0gc"]
 [ext_resource type="Script" uid="uid://ddl765nt25vos" path="res://data/maps/npc.gd" id="45_ba03u"]
@@ -250,49 +249,16 @@ texture = ExtResource("35_ll28t")
 0:15/0 = 0
 0:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3f8qr"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mksnn"]
-texture = ExtResource("36_6vrqx")
-0:1/size_in_atlas = Vector2i(2, 1)
-0:1/animation_columns = 4
-0:1/animation_frame_0/duration = 1.0
-0:1/animation_frame_1/duration = 1.0
-0:1/animation_frame_2/duration = 1.0
-0:1/animation_frame_3/duration = 1.0
+texture = SubResource("CompressedTexture2D_3f8qr")
 0:1/0 = 0
 0:1/0/custom_data_0 = "Fox"
-0:3/size_in_atlas = Vector2i(2, 1)
-0:3/animation_columns = 4
-0:3/animation_frame_0/duration = 1.0
-0:3/animation_frame_1/duration = 1.0
-0:3/animation_frame_2/duration = 1.0
-0:3/animation_frame_3/duration = 1.0
 0:3/0 = 0
-0:5/size_in_atlas = Vector2i(2, 1)
-0:5/animation_columns = 3
-0:5/animation_frame_0/duration = 1.0
-0:5/animation_frame_1/duration = 1.0
-0:5/animation_frame_2/duration = 1.0
 0:5/0 = 0
-0:7/size_in_atlas = Vector2i(2, 1)
-0:7/animation_columns = 6
-0:7/animation_frame_0/duration = 1.0
-0:7/animation_frame_1/duration = 1.0
-0:7/animation_frame_2/duration = 1.0
-0:7/animation_frame_3/duration = 1.0
-0:7/animation_frame_4/duration = 1.0
-0:7/animation_frame_5/duration = 1.0
 0:7/0 = 0
-0:9/size_in_atlas = Vector2i(2, 1)
-0:9/animation_columns = 2
-0:9/animation_frame_0/duration = 1.0
-0:9/animation_frame_1/duration = 1.0
 0:9/0 = 0
-0:11/size_in_atlas = Vector2i(2, 1)
-0:11/animation_columns = 4
-0:11/animation_frame_0/duration = 1.0
-0:11/animation_frame_1/duration = 1.0
-0:11/animation_frame_2/duration = 1.0
-0:11/animation_frame_3/duration = 1.0
 0:11/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jbp5p"]
