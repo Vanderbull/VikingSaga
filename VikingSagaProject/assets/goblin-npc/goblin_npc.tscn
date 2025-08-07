@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dr2yvenwrsrsx"]
 
-[ext_resource type="Texture2D" uid="uid://da8nloprl8x3c" path="res://arts/enemy.png" id="1_utptp"]
+[ext_resource type="Texture2D" uid="uid://c63rhwxblplsb" path="res://arts/enemy.png" id="1_nseoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jhjg"]
 size = Vector2(16.7623, 19.9727)
@@ -160,7 +160,7 @@ shape = SubResource("RectangleShape2D_0jhjg")
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("1_utptp")
+texture = ExtResource("1_nseoy")
 hframes = 4
 vframes = 4
 

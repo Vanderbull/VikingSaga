@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @onready var globals = get_node("/root/Globals")
-
 const SPEED = 30.0
+var is_active = false
 var current_state = IDLE
 var dir = Vector2.RIGHT
 var start_pos = Vector2(0,0)  # Variable to store the starting position
@@ -22,17 +22,20 @@ func _ready():
 
 func _process(delta):
 	# Play the appropriate animation based on the current state
-	if current_state == IDLE:
-		$AnimatedSprite2D.play("idle")
-	elif current_state == MOVE:
-		$AnimatedSprite2D.play("walk")
-	match current_state:
-		IDLE:
-			pass
-		NEW_DIR:
-			dir = choose(DIRECTIONS)
-		MOVE:
-			move(delta)
+	if is_active:
+		if current_state == IDLE:
+			$AnimatedSprite2D.play("idle")
+		elif current_state == MOVE:
+			$AnimatedSprite2D.play("walk")
+		match current_state:
+			IDLE:
+				pass
+			NEW_DIR:
+				dir = choose(DIRECTIONS)
+			MOVE:
+				move(delta)
+	else:
+		current_state == IDLE
 			
 func move(delta):
 	position += dir * SPEED * delta
@@ -59,22 +62,6 @@ func _on_timer_timeout():
 	current_state = choose([IDLE, NEW_DIR,MOVE])
 	# Restart the timer
 	$Timer.start()
-#func _on_area_2d_area_entered(area: Area2D) -> void:
-	#print(area.name)
-	#if area.is_in_group("Player"):
-		#print("Player entered the area (via Group Check)!")
-		#globals.QuestFood += 1000
-		#pass
-	#else:
-		#print("Another area entered: not the player")
-#
-	#var fetch_food_node = get_node("/root/GameManager/Quests/Control/Panel/VBoxContainer/fetch_food")  # Use actual node path
-	##globals.QuestFood += 1000
-	#if globals.QuestFood < 10000:
-		#fetch_food_node.text = "[ ] Fetch food %s / %d" % [globals.QuestFood, 10000]
-	#else:
-		#fetch_food_node.text = "[X] Fetch food %s / %d" % [globals.QuestFood, 10000]
-	#queue_free()
 
 func _on_animal_detection_area_area_entered(area: Area2D) -> void:
 	# Check if the Area2D itself is in the "Npc" group (if you added NPCDetectionArea to "Npc" group)
@@ -87,3 +74,15 @@ func _on_animal_detection_area_area_entered(area: Area2D) -> void:
 			# Do npc-specific actions here
 			pass
 	pass # Replace with function body.
+	
+# This function is called when the VisibleOnScreenNotifier2D's bounding box enters the screen.
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	is_active = true
+	print("Fox entered the screen, activating.")
+
+# This function is called when the VisibleOnScreenNotifier2D's bounding box exits the screen.
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	is_active = false
+	# Stop the enemy completely when it's off-screen
+	velocity = Vector2.ZERO
+	print("Fox exited the screen, deactivating.")

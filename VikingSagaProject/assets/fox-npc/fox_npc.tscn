@@ -109,4 +109,8 @@ scale = Vector2(2.08, 2.08)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimalDetectionArea"]
 shape = SubResource("CircleShape2D_lhgos")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
