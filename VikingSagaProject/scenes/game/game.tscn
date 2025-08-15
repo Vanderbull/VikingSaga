@@ -698,10 +698,11 @@ shader_parameter/slant = 0.2
 process_mode = 3
 script = ExtResource("1_4jurc")
 
-[node name="world" type="Node2D" parent="."]
+[node name="world" type="Node2D" parent="." node_paths=PackedStringArray("help_menu")]
 process_mode = 1
 scale = Vector2(1.00092, 1)
 script = ExtResource("3_ur7m5")
+help_menu = NodePath("../HelpMenu")
 
 [node name="TileMap" type="TileMap" parent="world"]
 tile_set = SubResource("TileSet_ie527")
@@ -841,6 +842,7 @@ horizontal_alignment = 1
 
 [node name="HelpMenu" parent="." instance=ExtResource("70_lcryn")]
 unique_name_in_owner = true
+layer = 128
 visible = false
 
 [node name="InGameCanvasLayer" parent="." instance=ExtResource("48_uewhu")]

@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://um0wu28oq78x"]
+[gd_scene load_steps=2 format=3 uid="uid://um0wu28oq78x"]
+
+[ext_resource type="Script" uid="uid://dnr3n6jvlq3av" path="res://scenes/help_menu/help_menu.gd" id="1_d53yp"]
 
 [node name="HelpMenu" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_d53yp")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

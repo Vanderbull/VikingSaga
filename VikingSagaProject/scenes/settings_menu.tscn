@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsl55rhlti64s"]
 
-[ext_resource type="Texture2D" uid="uid://bm421bfqic8x6" path="res://arts/village_background.png" id="1_h5g4a"]
-[ext_resource type="AudioStream" uid="uid://d108ywbjr8tml" path="res://sound/1_Black Moon Tavern by Ean Grimm.mp3" id="3_bnds6"]
+[ext_resource type="Texture2D" uid="uid://dc27geh7xa63e" path="res://arts/village_background.png" id="1_h5g4a"]
+[ext_resource type="AudioStream" uid="uid://235vgdapf8qr" path="res://sound/1_Black Moon Tavern by Ean Grimm.mp3" id="3_bnds6"]
 
 [sub_resource type="GDScript" id="GDScript_2la10"]
 script/source = "extends Control
