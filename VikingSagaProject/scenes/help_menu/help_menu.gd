@@ -8,12 +8,13 @@ var is_active = false
 func _ready():
 	# Populate the controls section with key bindings
 	populate_controls()
-	
+		
 	# Set a flag to indicate the scene is ready and active.
 	is_active = true
 	# It's good practice to pause the game when the menu appears.
 	get_tree().paused = true
 	
+
 # This function iterates through the InputMap and populates the CodeEdit node.
 func populate_controls():
 	# Build a list of strings to be joined later
