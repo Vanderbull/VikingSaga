@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://um0wu28oq78x"]
+[gd_scene load_steps=3 format=3 uid="uid://um0wu28oq78x"]
 
 [ext_resource type="Script" uid="uid://dnr3n6jvlq3av" path="res://scenes/help_menu/help_menu.gd" id="1_d53yp"]
+[ext_resource type="Script" uid="uid://jkxjqiuapuy7" path="res://scenes/help_menu/label.gd" id="2_kvpdf"]
 
 [node name="HelpMenu" type="CanvasLayer"]
 layer = 128
@@ -33,3 +34,12 @@ event.keycode == KEY_8: <NOT SET>
 event.keycode == KEY_9: <NOT SET>
 event.keycode == KEY_0: PLACE FIREPLACE
 "
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 678.0
+offset_top = 207.0
+offset_right = 718.0
+offset_bottom = 230.0
+text = "Git Branch: N/A"
+script = ExtResource("2_kvpdf")
