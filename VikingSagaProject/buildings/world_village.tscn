@@ -1,41 +1,47 @@
 [gd_scene load_steps=4 format=3 uid="uid://b70osvalqleu2"]
 
+[ext_resource type="Texture2D" path="res://assets/TilesetHouse.png" id="1"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jevw3"]
 radius = 80.0
 height = 160.0
 
-[sub_resource type="Resource" id="Resource_558bg"]
-metadata/__load_path__ = "res://assets/TilesetHouse.png"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_5sf0l"]
 radius = 24.0
 
-[node name="world_village" type="StaticBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_village"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 48, 46)
+
+[node name="world_village" type="StaticBody2D" groups=["villages"]]
 z_index = 1
 collision_layer = 2
 collision_mask = 2
+editor_description = "Village POI: static collision + hover/interaction hitbox"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CapsuleShape2D_jevw3")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture_filter = 1
 position = Vector2(0, -15)
-texture = SubResource("Resource_558bg")
-region_enabled = true
-region_rect = Rect2(0, 0, 48, 46)
+texture_filter = 1
+texture = SubResource("AtlasTexture_village")
+centered = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="villageHitbox" type="Area2D" parent="."]
 position = Vector2(0, -24)
+monitorable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="villageHitbox"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_5sf0l")
 
 [node name="Identity" type="Label" parent="."]
+position = Vector2(0, -52)
 offset_right = 40.0
 offset_bottom = 23.0
+horizontal_alignment = 1
 text = "Village"
