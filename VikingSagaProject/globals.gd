@@ -72,6 +72,13 @@ var gpu_vendor: String
 var rendering_driver: String
 var intro_video_played: bool = false
 
+# --- Dictionaries ---
+# --- GPU/Rendering info ---
+var gpu_info := {
+	"name": "",
+	"vendor": "",
+	"driver": ""
+}
 # ENUMS
 enum TerrainType {
 	GRASS,
@@ -83,16 +90,52 @@ enum TerrainType {
 }
 # Functions
 func _ready() -> void:
-	print("Initializing globals...")
+	_init_gpu_info()
+	
+func _init_gpu_info():
+	# Try to fetch GPU info with error handling
+	var name = ""
+	var vendor = ""
+	var driver = ""
+	var error = false
+	
+	# Attempt to fetch GPU name
+	if RenderingServer.has_method("get_video_adapter_name"):
+		name = RenderingServer.get_video_adapter_name()
+		if not name:
+			name = "Unknown GPU"
+			error = true
+	else:
+		name = "Method not available"
+		error = true
+		
+	# Attempt to fetch GPU vendor
+	if RenderingServer.has_method("get_video_adapter_vendor"):
+		vendor = RenderingServer.get_video_adapter_vendor()
+		if not vendor:
+			vendor = "Unknown Vendor"
+			error = true
+	else:
+		vendor = "Method not available"
+		error = true
+		
+	# Attempt to fetch rendering driver
+	if RenderingServer.has_method("get_current_rendering_driver_name"):
+		driver = RenderingServer.get_current_rendering_driver_name()
+		if not driver:
+			driver = "Unknown Driver"
+			error = true
+	else:
+		driver = "Method not available"
+		error = true
+		
+	# Print GPU info with clarity
 	print("--- GPU Information ---")
-	# Get GPU adapter name (e.g., "NVIDIA GeForce RTX 3080", "AMD Radeon RX 6800XT", "Intel(R) Iris(TM) Xe Graphics")
-	gpu_name = RenderingServer.get_video_adapter_name()
-	print("GPU Name: " + gpu_name)
-	# Get GPU vendor name (e.g., "NVIDIA Corporation", "Advanced Micro Devices, Inc.", "Intel")
-	gpu_vendor = RenderingServer.get_video_adapter_vendor()
-	print("GPU Vendor: " + gpu_vendor)
-	rendering_driver = RenderingServer.get_current_rendering_driver_name()
-	print("Rendering Driver: " + rendering_driver)
+	print("GPU Name: %s" % name)
+	print("GPU Vendor: %s" % vendor)
+	print("Rendering Driver: %s" % driver)
+	if error:
+		print("Warning: Some GPU information could not be retrieved.")
 		
 func switch_scene(scene_path: String):
 	## Save the character's position
