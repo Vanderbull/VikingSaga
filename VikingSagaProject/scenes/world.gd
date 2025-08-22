@@ -32,39 +32,17 @@ func _process(_delta):
 	Globals.save_player_positon(player)
 
 func _unhandled_input(event):
+	if event.is_action_pressed("spawn_animate_fire"):
+		$"..".spawn_animate_fire()
+	if event.is_action_pressed("reload_current_scene"):
+		get_tree().reload_current_scene()
+	if event.is_action_pressed("enter_city_scene"):
+		get_tree().change_scene_to_file("res://scenes/city/city.tscn")
+	if event.is_action_pressed("enter_battle_scene"):
+		get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")			
 	if event.is_action_pressed("toggle_help_menu"):
-		# Check if the help_menu variable has been assigned and is not null.
 		if help_menu:
-		# Toggle the visibility of the menu.
 			help_menu.visible = not help_menu.visible
-	if event is InputEventKey:
-		#if event.pressed and event.keycode == KEY_F1:
-			#if $"../HelpMenu".visible:
-				#$"../HelpMenu".hide()
-			#else:
-				#$"../HelpMenu".show()
-			#print_debug("Debug: This is coming from file: ", file_name)
-		if event.pressed and event.keycode == KEY_2:
-			print_debug("Debug: This is coming from file: ", file_name)
-		if event.pressed and event.keycode == KEY_3:
-			get_tree().change_scene_to_file("res://scenes/battle/battle.tscn")
-			pass
-		if event.pressed and event.keycode == KEY_4:
-			print_debug("Debug: Change scene to file: res://scenes/city/city.tscn")
-			get_tree().change_scene_to_file("res://scenes/city/city.tscn")
-		if event.pressed and event.keycode == KEY_5:
-			pass
-		if event.pressed and event.keycode == KEY_6:
-			print_debug("Debug: This is coming from file: ", file_name)
-		if event.pressed and event.keycode == KEY_7:
-			print_debug("Debug: Reloading current scene")
-			get_tree().reload_current_scene()
-		if event.pressed and event.keycode == KEY_8:
-			print_debug("Debug: This is coming from file: ", file_name)
-		if event.pressed and event.keycode == KEY_9:
-			print_debug("Debug: This is coming from file: ", file_name)
-		if event.pressed and event.keycode == KEY_0:
-			$"..".spawn_animate_fire()
 
 func _on_area_2d_body_entered(_body):
 	$HUD/StatusInfo/Label.visible = true
