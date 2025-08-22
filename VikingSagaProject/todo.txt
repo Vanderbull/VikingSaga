@@ -21,6 +21,7 @@
 	[DONE]14.3 The village is a hex or possibly multiple hexes on the map and there might be a scene where you can go into the village or city todo things like in civilization
 [DONE]15. Make the fireplace animated
 [DONE]16. Make the fireplace buildable from wood or planks and being lit or not
+############################
 [TODO]17. Sleep zzzZZzzzz
 [TODO]18. Day and night time
 	[]18.1 Make some sort of time that passes when playing, might simply be some kind of timer that counts from 0 to 24 where 6 to 18 could be daytime and the rest night time
